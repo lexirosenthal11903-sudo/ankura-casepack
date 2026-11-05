@@ -1,0 +1,13 @@
+.intro { max-width: 760px; margin-bottom: 24px; }
+.lede { font-size: 19px; }
+.tableWrap { overflow-x: auto; }
+.deadline { white-space: nowrap; width: 150px; }
+.caseLink { font-weight: 700; font-size: 17px; }
+.flags { display: flex; flex-wrap: wrap; gap: 6px; }
+@media (max-width: 700px) {
+  .tableWrap table, .tableWrap thead, .tableWrap tbody, .tableWrap tr, .tableWrap td { display: block; }
+  .tableWrap thead { position: absolute; left: -9999px; }
+  .tableWrap tr { border-bottom: 2px solid var(--border); padding: 12px 0; }
+  .tableWrap td { border: 0; padding: 4px 0; }
+  .deadline { width: auto; }
+}

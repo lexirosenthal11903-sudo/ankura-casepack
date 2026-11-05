@@ -1,0 +1,753 @@
+{
+  "caseId": "HV-003",
+  "createdAt": "2026-11-05T22:28:11.545Z",
+  "model": "claude-haiku-5-5",
+  "promptVersion": "casepack-v2",
+  "redacted": {
+    "id": "HV-003",
+    "received": "2026-11-02",
+    "channel": "web_form",
+    "documents": [
+      {
+        "id": "D1",
+        "system": "WEBFORM",
+        "type": "web_form",
+        "date": "2026-11-01",
+        "author_role": "customer",
+        "text": "Complaint form | Name: [CUSTOMER] | Account: current acct ending [ACCOUNT_1] | Contact email: [EMAIL_1] | Preferred contact: email\nWhat happened: My wages go into my instant saver and on payday I move what I need into my current account to cover my bills. Friday 30th was payday and your app and online banking were down ALL DAY. I tried from about 8am, kept getting 'something went wrong'. Phone line was over an hour wait and I was at work. My energy direct debit (Lumen Home Energy, £96.40) bounced because the money was stuck in my savings. You then charged me £15 for the unpaid item and Lumen have added a £20 late payment fee. This was not my fault, it was your system.\nWhat would put it right: Refund the £15 and pay me the £20 Lumen charged. That's all I want."
+      },
+      {
+        "id": "D2",
+        "system": "CORE",
+        "type": "system_log",
+        "date": "2026-10-30",
+        "author_role": "system",
+        "text": "INCIDENT INC-2026-1030-01 (P1) Service: H&V mobile app + online banking. Impact: app and online banking unavailable 30/10/2026 07:10-15:40. Cause: failed certificate rotation on authentication gateway following overnight change CHG-88213. Card payments and ATMs unaffected, 3DS in-app approvals unavailable for duration. Telephone banking queues peaked 74 min. Status: RESOLVED 15:40. Customer impact review: open, owner Digital Ops."
+      },
+      {
+        "id": "D3",
+        "system": "CORE",
+        "type": "system_log",
+        "date": "2026-11-02",
+        "author_role": "system",
+        "text": "CA [ACCOUNT_1]. 30/10/2026 00:01 Credit BACS SALARY ref 'ARDEN LOGISTICS PAY' to SAV [ACCOUNT_2] GBP 1,842.17. 30/10/2026 06:00 DD presented LUMEN HOME ENERGY GBP 96.40. Available balance GBP 31.08. DD RETURNED UNPAID (ARUDD reason 0 refer to payer) 30/10/2026 17:30. 02/11/2026 Unpaid item fee GBP 15.00 debited. No transfers SAV>CA 30/10. Last transfer SAV>CA 30/09/2026 08:14 GBP 1,200.00 (mobile)."
+      }
+    ],
+    "replacements": [
+      {
+        "placeholder": "[EMAIL_1]",
+        "original": "cbrennan.work@example.com",
+        "layer": "pattern",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Chloe Brennan",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[ACCOUNT_1]",
+        "original": "2264",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[ACCOUNT_1]",
+        "original": "39182264",
+        "layer": "record",
+        "documentId": "D3"
+      },
+      {
+        "placeholder": "[ACCOUNT_2]",
+        "original": "59011837",
+        "layer": "record",
+        "documentId": "D3"
+      }
+    ],
+    "placeholders": [
+      "[ACCOUNT_1]",
+      "[ACCOUNT_2]",
+      "[CUSTOMER]",
+      "[EMAIL_1]"
+    ]
+  },
+  "pack": {
+    "enough_information": {
+      "sufficient": true,
+      "what_is_needed": ""
+    },
+    "intake": {
+      "issues": [
+        {
+          "product": "current_account",
+          "cause": "digital_outage",
+          "description": "Customer says app and online banking were down on 30/10/2026 and they could not move savings to cover bills.",
+          "citations": [
+            {
+              "source": "D1",
+              "quote": "your app and online banking were down ALL DAY"
+            },
+            {
+              "source": "D2",
+              "quote": "app and online banking unavailable 30/10/2026 07:10-15:40"
+            }
+          ]
+        },
+        {
+          "product": "current_account",
+          "cause": "fees_interest",
+          "description": "Customer disputes the £15 unpaid item fee charged after the energy Direct Debit was returned, and says Lumen Home Energy added a £20 late fee.",
+          "citations": [
+            {
+              "source": "D3",
+              "quote": "02/11/2026 Unpaid item fee GBP 15.00 debited."
+            },
+            {
+              "source": "D1",
+              "quote": "Lumen have added a £20 late payment fee."
+            }
+          ]
+        }
+      ],
+      "suggested_team": "frontline",
+      "team_reason": {
+        "text": "No specialist remit identified. Outage and fee issues appear resolvable by the first handler.",
+        "citations": [
+          {
+            "source": "CP-6.1",
+            "quote": "A complaint must be passed to a specialist team when it falls within that team's remit"
+          }
+        ]
+      },
+      "payment_services": "no",
+      "payment_services_reason": {
+        "text": "Complaint concerns an app outage and a fee. No unauthorised or wrongly executed payment is alleged.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "My energy direct debit (Lumen Home Energy, £96.40) bounced because the money was stuck in my savings."
+          }
+        ]
+      },
+      "already_with_ombudsman": false,
+      "linked_to_earlier_complaint": false
+    },
+    "summary": [
+      {
+        "text": "Customer says app and online banking were unavailable on 30/10/2026, so savings could not be moved to cover bills.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "your app and online banking were down ALL DAY"
+          }
+        ]
+      },
+      {
+        "text": "Bank system log records app and online banking unavailable 07:10-15:40 on 30/10/2026, resolved at 15:40.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Status: RESOLVED 15:40"
+          }
+        ]
+      },
+      {
+        "text": "A £96.40 Direct Debit was presented at 06:00 with available balance £31.08 and returned unpaid at 17:30 on 30/10/2026.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Available balance GBP 31.08"
+          },
+          {
+            "source": "D3",
+            "quote": "DD RETURNED UNPAID (ARUDD reason 0 refer to payer) 30/10/2026 17:30"
+          }
+        ]
+      },
+      {
+        "text": "A £15 unpaid item fee was debited on 02/11/2026. Customer seeks a £15 refund and payment of the £20 Lumen charged.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "02/11/2026 Unpaid item fee GBP 15.00 debited."
+          },
+          {
+            "source": "D1",
+            "quote": "Refund the £15 and pay me the £20 Lumen charged"
+          }
+        ]
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-30",
+        "event": "Salary of £1,842.17 credited to savings account.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Credit BACS SALARY ref 'ARDEN LOGISTICS PAY' to SAV [ACCOUNT_2] GBP 1,842.17."
+          }
+        ]
+      },
+      {
+        "date": "2026-10-30",
+        "event": "Energy Direct Debit of £96.40 presented at 06:00.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "30/10/2026 06:00 DD presented LUMEN HOME ENERGY GBP 96.40"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-30",
+        "event": "App and online banking unavailable from 07:10 to 15:40 according to system log.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "app and online banking unavailable 30/10/2026 07:10-15:40"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-30",
+        "event": "Direct Debit returned unpaid at 17:30.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "DD RETURNED UNPAID (ARUDD reason 0 refer to payer) 30/10/2026 17:30"
+          }
+        ]
+      },
+      {
+        "date": "2026-11-01",
+        "event": "Customer complaint form dated.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Complaint form | Name: [CUSTOMER]"
+          }
+        ]
+      },
+      {
+        "date": "2026-11-02",
+        "event": "£15 unpaid item fee debited to the current account.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "02/11/2026 Unpaid item fee GBP 15.00 debited."
+          }
+        ]
+      }
+    ],
+    "outcome_sought": {
+      "text": "Refund the £15 and pay me the £20 Lumen charged.",
+      "citations": [
+        {
+          "source": "D1",
+          "quote": "Refund the £15 and pay me the £20 Lumen charged"
+        }
+      ]
+    },
+    "vulnerability": [],
+    "relevant_policy": [
+      {
+        "policy_id": "CP-2.1",
+        "why_relevant": "Complaint is not expected to be resolved by the third business day, so a written acknowledgement naming the handler is needed.",
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "we must send a prompt written acknowledgement that names the handler or team dealing with it"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-2.2",
+        "why_relevant": "Summary resolution is possible only if the customer is satisfied by the third business day.",
+        "citations": [
+          {
+            "source": "CP-2.2",
+            "quote": "may be closed with a summary resolution communication"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-2.3",
+        "why_relevant": "Complaint raises two separate issues, each needing its own product and cause category.",
+        "citations": [
+          {
+            "source": "CP-2.3",
+            "quote": "each issue must be recorded separately with its own product and cause category"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-3.4",
+        "why_relevant": "Any final response must include the Ombudsman referral right.",
+        "citations": [
+          {
+            "source": "CP-3.4",
+            "quote": "Every final response must tell the customer they have six months from the date of the final response"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.2",
+        "why_relevant": "System log and customer account of outage duration differ and must both be recorded.",
+        "citations": [
+          {
+            "source": "CP-4.2",
+            "quote": "must record both versions and the source of each, and must not choose between them without evidence"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.3",
+        "why_relevant": "Customer's requested outcome must be recorded in their own words.",
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "The handler must record, in the customer's own words where possible, the outcome the customer is seeking"
+          }
+        ]
+      }
+    ],
+    "handover_checklist": [
+      {
+        "item_id": "outcome_sought",
+        "status": "present",
+        "value": "Refund the £15 and pay me the £20 Lumen charged.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Refund the £15 and pay me the £20 Lumen charged"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_contact_attempted",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "customer_told_of_handover",
+        "status": "not_applicable",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "vulnerability_recorded",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "linked_complaints_checked",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      }
+    ],
+    "conflicts": [
+      {
+        "text": "Customer says the app was down all day from about 8am. System log shows unavailable 07:10-15:40. Both versions recorded, not resolved.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "your app and online banking were down ALL DAY"
+          },
+          {
+            "source": "D2",
+            "quote": "app and online banking unavailable 30/10/2026 07:10-15:40"
+          }
+        ]
+      }
+    ],
+    "flags": [
+      {
+        "type": "deadline_risk",
+        "description": "Complaint received 2026-11-02. If not resolved by the close of the third business day (2026-11-05), a written acknowledgement naming the handler is required.",
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "If a complaint is not resolved by the close of the third business day after it was received"
+          }
+        ]
+      },
+      {
+        "type": "other",
+        "description": "System log shows the customer impact review for the outage is still open with Digital Ops.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Customer impact review: open, owner Digital Ops."
+          }
+        ]
+      }
+    ]
+  },
+  "checks": {
+    "statements": [
+      {
+        "path": "intake.issues.0",
+        "text": "Customer says app and online banking were down on 30/10/2026 and they could not move savings to cover bills.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "your app and online banking were down ALL DAY",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "app and online banking unavailable 30/10/2026 07:10-15:40",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.issues.1",
+        "text": "Customer disputes the £15 unpaid item fee charged after the energy Direct Debit was returned, and says Lumen Home Energy added a £20 late fee.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "02/11/2026 Unpaid item fee GBP 15.00 debited.",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "Lumen have added a £20 late payment fee.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.team_reason",
+        "text": "No specialist remit identified. Outage and fee issues appear resolvable by the first handler.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-6.1",
+            "quote": "A complaint must be passed to a specialist team when it falls within that team's remit",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.payment_services_reason",
+        "text": "Complaint concerns an app outage and a fee. No unauthorised or wrongly executed payment is alleged.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "My energy direct debit (Lumen Home Energy, £96.40) bounced because the money was stuck in my savings.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.0",
+        "text": "Customer says app and online banking were unavailable on 30/10/2026, so savings could not be moved to cover bills.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "your app and online banking were down ALL DAY",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.1",
+        "text": "Bank system log records app and online banking unavailable 07:10-15:40 on 30/10/2026, resolved at 15:40.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Status: RESOLVED 15:40",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.2",
+        "text": "A £96.40 Direct Debit was presented at 06:00 with available balance £31.08 and returned unpaid at 17:30 on 30/10/2026.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Available balance GBP 31.08",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "DD RETURNED UNPAID (ARUDD reason 0 refer to payer) 30/10/2026 17:30",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.3",
+        "text": "A £15 unpaid item fee was debited on 02/11/2026. Customer seeks a £15 refund and payment of the £20 Lumen charged.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "02/11/2026 Unpaid item fee GBP 15.00 debited.",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "Refund the £15 and pay me the £20 Lumen charged",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.0",
+        "text": "2026-10-30: Salary of £1,842.17 credited to savings account.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Credit BACS SALARY ref 'ARDEN LOGISTICS PAY' to SAV [ACCOUNT_2] GBP 1,842.17.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.1",
+        "text": "2026-10-30: Energy Direct Debit of £96.40 presented at 06:00.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "30/10/2026 06:00 DD presented LUMEN HOME ENERGY GBP 96.40",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.2",
+        "text": "2026-10-30: App and online banking unavailable from 07:10 to 15:40 according to system log.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "app and online banking unavailable 30/10/2026 07:10-15:40",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.3",
+        "text": "2026-10-30: Direct Debit returned unpaid at 17:30.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "DD RETURNED UNPAID (ARUDD reason 0 refer to payer) 30/10/2026 17:30",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.4",
+        "text": "2026-11-01: Customer complaint form dated.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Complaint form | Name: [CUSTOMER]",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.5",
+        "text": "2026-11-02: £15 unpaid item fee debited to the current account.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "02/11/2026 Unpaid item fee GBP 15.00 debited.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "outcome_sought",
+        "text": "Refund the £15 and pay me the £20 Lumen charged.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Refund the £15 and pay me the £20 Lumen charged",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.0",
+        "text": "CP-2.1: Complaint is not expected to be resolved by the third business day, so a written acknowledgement naming the handler is needed.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "we must send a prompt written acknowledgement that names the handler or team dealing with it",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.1",
+        "text": "CP-2.2: Summary resolution is possible only if the customer is satisfied by the third business day.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.2",
+            "quote": "may be closed with a summary resolution communication",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.2",
+        "text": "CP-2.3: Complaint raises two separate issues, each needing its own product and cause category.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.3",
+            "quote": "each issue must be recorded separately with its own product and cause category",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.3",
+        "text": "CP-3.4: Any final response must include the Ombudsman referral right.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-3.4",
+            "quote": "Every final response must tell the customer they have six months from the date of the final response",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.4",
+        "text": "CP-4.2: System log and customer account of outage duration differ and must both be recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.2",
+            "quote": "must record both versions and the source of each, and must not choose between them without evidence",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.5",
+        "text": "CP-4.3: Customer's requested outcome must be recorded in their own words.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "The handler must record, in the customer's own words where possible, the outcome the customer is seeking",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.outcome_sought",
+        "text": "outcome_sought: Refund the £15 and pay me the £20 Lumen charged.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Refund the £15 and pay me the £20 Lumen charged",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "conflicts.0",
+        "text": "Customer says the app was down all day from about 8am. System log shows unavailable 07:10-15:40. Both versions recorded, not resolved.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "your app and online banking were down ALL DAY",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "app and online banking unavailable 30/10/2026 07:10-15:40",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.0",
+        "text": "deadline_risk: Complaint received 2026-11-02. If not resolved by the close of the third business day (2026-11-05), a written acknowledgement naming the handler is required.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "If a complaint is not resolved by the close of the third business day after it was received",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.1",
+        "text": "other: System log shows the customer impact review for the outage is still open with Digital Ops.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Customer impact review: open, owner Digital Ops.",
+            "result": "verified"
+          }
+        ]
+      }
+    ],
+    "supportedCount": 25,
+    "unsupportedCount": 0,
+    "inventedPlaceholders": [],
+    "checklist": {
+      "required": 4,
+      "present": 1,
+      "missing": [
+        "customer_contact_attempted",
+        "vulnerability_recorded",
+        "linked_complaints_checked"
+      ],
+      "conflicting": []
+    }
+  },
+  "clock": "8_weeks",
+  "deadlines": {
+    "received": "2026-11-02",
+    "clock": "8_weeks",
+    "summaryResolutionWindowCloses": "2026-11-05",
+    "eightWeekDue": "2026-12-28",
+    "workingDue": "2026-12-28",
+    "needsHandlerConfirmation": false,
+    "calendarDaysLeft": 49,
+    "businessDaysLeft": 33,
+    "status": "on_track"
+  },
+  "usage": {
+    "inputTokens": 880,
+    "outputTokens": 10564,
+    "cacheReadTokens": 0,
+    "cacheWriteTokens": 9362,
+    "costUsd": 0.00654025,
+    "latencyMs": 39854
+  }
+}

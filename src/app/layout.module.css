@@ -1,0 +1,12 @@
+.header { background: var(--brand); color: #fff; border-bottom: 8px solid #2b7a9e; }
+.headerInner { max-width: 1400px; margin: 0 auto; padding: 0 16px; }
+.header .headerInner { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 56px; flex-wrap: wrap; }
+.brand { color: #fff; text-decoration: none; font-weight: 700; font-size: 19px; }
+.brand:hover { color: #fff; text-decoration: underline; }
+.brandSub { font-weight: 400; opacity: 0.85; margin-left: 6px; }
+.nav { display: flex; gap: 20px; }
+.nav a { color: #fff; font-weight: 700; text-decoration: none; }
+.nav a:hover { color: #fff; text-decoration: underline; }
+.banner { background: var(--amber-bg); border-bottom: 1px solid #e8d7a8; padding: 8px 0; font-size: 14px; }
+.main { max-width: 1400px; margin: 0 auto; padding: 24px 16px 48px; }
+.footer { border-top: 1px solid var(--border); background: var(--surface-alt); padding: 20px 0; font-size: 14px; color: var(--text-secondary); }

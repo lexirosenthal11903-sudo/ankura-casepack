@@ -23,3 +23,7 @@ jobs:
       - name: Unit tests (no API key, no cost)
         run: npm test
       - run: npm run build
+      - name: End-to-end smoke test (saved mode, no API key)
+        run: |
+          npx playwright install --with-deps chromium
+          npx playwright test

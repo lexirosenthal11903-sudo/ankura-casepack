@@ -1,0 +1,61 @@
+.titleRow { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; flex-wrap: wrap; margin-bottom: 16px; }
+.titleRow h1 { margin-bottom: 4px; }
+.modeBox { border-left: 4px solid var(--border); padding: 4px 0 4px 12px; max-width: 420px; }
+.modeButtons { display: flex; align-items: center; gap: 12px; margin-top: 8px; flex-wrap: wrap; }
+
+.note { background: var(--amber-bg); border-left: 5px solid var(--amber); padding: 10px 14px; margin-bottom: 16px; }
+.returned { background: var(--red-bg); border-left: 5px solid var(--red); padding: 12px 14px; margin-bottom: 16px; }
+.insufficient { background: var(--amber-bg); border-left: 5px solid var(--amber); padding: 10px 14px; margin: 12px 0; }
+
+.grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, 0.85fr); gap: 32px; align-items: start; }
+@media (max-width: 1100px) { .grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .grid > aside { grid-column: 1 / -1; } }
+@media (max-width: 760px) { .grid { grid-template-columns: minmax(0, 1fr); gap: 24px; } }
+.col { min-width: 0; }
+.col h3 { margin-top: 24px; padding-bottom: 4px; border-bottom: 1px solid var(--border); }
+
+/* Documents */
+.toggle { display: inline-flex; border: 2px solid var(--text); margin-bottom: 8px; }
+.toggle button { background: var(--surface); border: 0; padding: 6px 12px; cursor: pointer; font-size: 14px; }
+.toggle button[aria-pressed="true"] { background: var(--text); color: #fff; font-weight: 700; }
+.doc { border: 1px solid var(--border); margin-bottom: 12px; background: var(--surface); }
+.docHead { background: var(--surface-alt); padding: 6px 10px; font-size: 13px; border-bottom: 1px solid var(--border); }
+.docText { padding: 10px; white-space: pre-wrap; font-size: 14px; line-height: 1.55; overflow-wrap: anywhere; }
+
+/* Case pack */
+.packHead { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.reviewBar { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; background: var(--surface-alt); padding: 10px 12px; margin-bottom: 8px; }
+.redText { color: var(--red); }
+.statement { border-left: 4px solid var(--green); padding: 8px 0 8px 12px; margin: 8px 0; }
+.statement.red { border-left-color: var(--red); background: var(--red-bg); padding-right: 8px; }
+.statement.rejected { opacity: 0.55; }
+.statement.rejected .statementText { text-decoration: line-through; }
+.statementText { overflow-wrap: anywhere; }
+.statementText :global(.tag) { margin-left: 4px; }
+.statementMeta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; margin-top: 4px; }
+.sources { font-size: 14px; }
+.sources summary { cursor: pointer; color: var(--link); }
+.sources ul { margin: 6px 0 0; padding-left: 18px; }
+.sources li { margin-bottom: 4px; }
+.actions { display: inline-flex; gap: 12px; }
+.editor textarea { width: 100%; font: inherit; padding: 8px; border: 2px solid var(--text); margin-top: 6px; }
+.editorButtons { display: flex; gap: 8px; margin-top: 6px; }
+
+/* Right column */
+.panel { border-top: 4px solid var(--brand); padding-top: 12px; margin-bottom: 28px; }
+.dl { margin: 0; }
+.dl dt { font-size: 13px; color: var(--text-secondary); margin-top: 8px; }
+.dl dd { margin: 2px 0 0; }
+.clockChoice { border: 0; border-left: 5px solid var(--amber); background: var(--amber-bg); padding: 10px 12px; margin: 14px 0 0; display: grid; gap: 8px; }
+.clockChoice legend { float: left; width: 100%; padding: 0; margin-bottom: 4px; }
+.checklist { list-style: none; padding: 0; margin: 0; }
+.checklist li { display: grid; grid-template-columns: 22px 1fr; gap: 6px; padding: 6px 0; border-bottom: 1px solid var(--border-light); }
+.checkIcon { font-weight: 700; text-align: center; }
+.check_present .checkIcon { color: var(--green); }
+.check_missing .checkIcon, .check_conflicting .checkIcon { color: var(--red); }
+.check_not_applicable { color: var(--text-secondary); }
+.checkValue { display: block; overflow-wrap: anywhere; }
+.specialist { display: grid; gap: 10px; }
+.specialist fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 4px; }
+.specialist select { display: block; margin-top: 4px; font: inherit; padding: 6px; border: 2px solid var(--text); width: 100%; }
+.audit { padding-left: 18px; margin: 0; max-height: 320px; overflow-y: auto; }
+.audit li { margin-bottom: 6px; }

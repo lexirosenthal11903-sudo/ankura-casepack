@@ -2,12 +2,12 @@
 .env.*
 !.env.example
 node_modules/
-.vercel/
-.DS_Store
-evals/results/*.raw.json
 .next/
 out/
+.vercel/
 coverage/
 *.tsbuildinfo
+.DS_Store
+evals/results/*.raw.json
 test-results/
 playwright-report/
