@@ -1,0 +1,63 @@
+{
+  "id": "HV-025",
+  "split": "heldout",
+  "author": "claude",
+  "received": "2026-09-29",
+  "channel": "email",
+  "record": {
+    "customer": {
+      "name": "Sofia Marques",
+      "title": "Ms",
+      "dob": "1996-02-27",
+      "address": "Flat 3, 58 Albert Road, Southsea",
+      "postcode": "PO5 2SH",
+      "phone": "07700 900 381",
+      "email": "sofia.marques@example.com"
+    },
+    "accounts": [
+      {
+        "product": "current_account",
+        "sort_code": "77-41-84",
+        "number": "29467031",
+        "card_last4": "8813"
+      }
+    ],
+    "other_parties": [],
+    "staff": [
+      {
+        "name": "Dean Fowler",
+        "role": "Contact centre agent"
+      },
+      {
+        "name": "Hollie Brandt",
+        "role": "Complaints handler"
+      }
+    ]
+  },
+  "documents": [
+    {
+      "id": "D1",
+      "system": "EMAIL",
+      "type": "email",
+      "date": "2026-09-29",
+      "author_role": "customer",
+      "text": "Subject: Account blocked with NO warning - where are my wages??\n\nHi,\n\nOn Thursday (24th) my card was declined at the petrol station and when I logged into the app it said my account is 'restricted' and to call you. I rang on Saturday and the man (Dean I think) said a decision had been made to close my account and that I was sent a letter at the start of August giving me 60 days notice. I NEVER got any letter. I've lived at the same flat for 3 years and I get all my other post fine.\n\nMy wages went in on the 25th (£1,742) and I can't touch them. I've had to borrow money off my mum for food and petrol and my rent is due on the 1st. Nobody will tell me why my account is being closed, he just said it was 'a business decision' and he couldn't say any more.\n\nI've banked with you since I was 16. I haven't done anything wrong.\n\nI want:\n1. my wages released to me now. I've opened an account with another bank and can give you the details\n2. a copy of this so called letter\n3. to know why, and if you are closing it, to be given the proper notice like you're supposed to\n\nSofia\n07700 900 381"
+    },
+    {
+      "id": "D2",
+      "system": "CRM",
+      "type": "crm_note",
+      "date": "2026-09-29",
+      "author_role": "handler",
+      "text": "30/07/26 Account review outcome: EXIT - business decision (ref ER-2207). Notice period 60 days. CL60 closure notice letter sent 01/08/2026 to address on file. Account to close 30/09/2026. - Customer Review team\n26/09/26 Inbound call, Ms Marquez. Cust disputes receiving closure letter. Advised decision stands, CL60 sent 01/08 per CRM. Cust upset re wages. Advised cannot disclose reasons. - D Fowler\n29/09/26 Email complaint logged. Called cust 07700 900 381 at 14:10, no answer, VM left. - H Brandt"
+    },
+    {
+      "id": "D3",
+      "system": "CORE",
+      "type": "system_log",
+      "date": "2026-09-28",
+      "author_role": "system",
+      "text": "Account 29467031 event history 01/07/2026 - 28/09/2026:\n29/07/2026 REVIEW FLAG SET (CR)\n25/08/2026 FP IN GBP 1,738.90 BLAKEMORE CARE LTD PAYROLL\n24/09/2026 08:41 STATUS CHANGE OPEN -> RESTRICTED (DEBITS + CREDITS HELD) reason EXIT-BD user BATCH\n24/09/2026 08:41 CARD 8813 BLOCKED\n25/09/2026 06:02 FP IN GBP 1,742.18 BLAKEMORE CARE LTD PAYROLL - HELD (account restricted)\nCorrespondence events in period: none\nScheduled closure date: 24/11/2026"
+    }
+  ]
+}

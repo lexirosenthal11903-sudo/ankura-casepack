@@ -1,0 +1,65 @@
+{
+  "id": "HV-018",
+  "split": "heldout",
+  "author": "claude",
+  "received": "2026-11-03",
+  "channel": "phone",
+  "record": {
+    "customer": {
+      "name": "Shirley Mensah",
+      "title": "Mrs",
+      "dob": "1952-05-14",
+      "address": "48 Oakdene Avenue, Leeds",
+      "postcode": "LS8 2JR",
+      "phone": "0113 496 0217",
+      "email": ""
+    },
+    "accounts": [
+      {
+        "product": "current_account",
+        "sort_code": "77-41-63",
+        "number": "39250876",
+        "card_last4": "2284"
+      }
+    ],
+    "other_parties": [
+      {
+        "role": "DECEASED",
+        "name": "Kofi Mensah",
+        "organisation": ""
+      }
+    ],
+    "staff": [
+      {
+        "name": "Lewis Hartley",
+        "role": "Contact centre agent"
+      }
+    ]
+  },
+  "documents": [
+    {
+      "id": "D1",
+      "system": "CRM",
+      "type": "call_summary",
+      "date": "2026-11-03",
+      "author_role": "handler",
+      "text": "Call transcript (automatic transcription, inbound 03/11/2026 14:26, duration 11m 40s)\n\nAgent: Good afternoon, Harbour and Vale Bank, you're speaking with Lewis. How can I help?\nCaller: Hello. Yes. Sorry. I'm ringing because my card isn't working and I... my husband passed away.\nAgent: Oh, I'm so sorry to hear that. Please take your time. Can I take your name?\nCaller: Shirley Mensah. Mrs.\nAgent: Thank you, Mrs Mensah. And just for security, can I take your date of birth and your postcode?\nCaller: Fourteenth of May, nineteen fifty-two. LS8 2JR.\nAgent: Thank you, that's all fine. Now tell me what's happened.\nCaller: My husband Kofi died on the eighteenth. Of October. It was very sudden, his heart. Our daughter Abena rang you the week after to tell you, she thought she was doing the right thing. And now everything's stopped. It's our joint account, it's always been our joint account, forty years. My pension goes in there. And the card says declined at the supermarket, and the gas and the council tax have come back unpaid, I got a letter from the council this morning. I've got forty pounds in my purse.\nAgent: That must be awful on top of everything else. Let me have a look for you. ... Right, I can see the account was restricted on the twenty-second of October, when we were told about Mr Mensah's death.\nCaller: But it's my account too. Kof always said if anything happened it all comes to me. Nobody told me it would be frozen. Nobody asked me anything.\nAgent: I understand. With a joint account the money would normally pass to the surviving account holder, so I'm not sure why the whole account has been blocked. I'm afraid I can't lift it myself from here.\nCaller: [crying] I'm sorry. I just can't... I can't do the funeral and this as well. The funeral director wants a deposit and I don't know what to tell him.\nAgent: Please don't apologise. I'm going to raise this as a complaint for you today and mark it urgent, and I'm passing it to our bereavement team, they deal with exactly this. Someone from that team will call you, I'm asking for within two working days. Is this the best number to reach you?\nCaller: Yes, the house phone. Or my mobile, it's 07700 900 734, I don't always hear the house phone.\nAgent: Thank you. Is there anything that would make it easier for you when they call?\nCaller: Afternoons are better. Abena can be with me if they ring after four.\nAgent: I'll put that on your record. And I'll ask the team to look at sorting out the payments that have come back unpaid because of this.\nCaller: I just want my account back so I can pay my bills. And somebody to say sorry would be nice. That's all.\nAgent: Of course. I'm really sorry, Mrs Mensah. You'll hear from the bereavement team, and if you don't, please call us back and quote the complaint reference I'm going to give you now."
+    },
+    {
+      "id": "D2",
+      "system": "CORE",
+      "type": "system_log",
+      "date": "2026-11-03",
+      "author_role": "system",
+      "text": "Account 39250876 (JOINT, 2 holders). 22/10/2026 10:17 Deceased party notified (holder 2), source: telephone, notifier: third party. 22/10/2026 10:19 Restriction applied: ALL DEBITS BLOCKED, reason DEC-NOTIF. Card 2284 status: BLOCKED. Death certificate: NOT SEEN. 30/10/2026 State pension credit GBP 1,186.40 received. 01/11/2026 Direct Debit HARROWDENE CITY COUNCIL CTAX GBP 148.00 RETURNED (account restricted). 02/11/2026 Direct Debit NORTHERN GAS SUPPLY GBP 84.50 RETURNED (account restricted). Balance 03/11/2026 GBP 6,412.77 CR."
+    },
+    {
+      "id": "D3",
+      "system": "CRM",
+      "type": "crm_note",
+      "date": "2026-11-03",
+      "author_role": "handler",
+      "text": "Mrs Mensha called re jnt acct ending 0876 frozen after DoD notification (h/band Kofi, DoD 18/10/26, notified by daughter 22/10). Pension paid in but cust can't access, 2x DD returned (CT + gas). Cust unaware acct would be restricted. VULN: recent bereavement, very distressed, crying throughout. Support needs: prefers calls after 4pm when daughter can be present, try mobile first. Raised complaint + passed to Bereavement & PoA, marked URGENT, cust has approx £40 cash. Told cust B&P will call within 2 working days. LH"
+    }
+  ]
+}

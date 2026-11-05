@@ -1,0 +1,61 @@
+{
+  "id": "HV-017",
+  "issues": [
+    {
+      "product": "current_account",
+      "cause": "payment_problem"
+    }
+  ],
+  "team": "payments_disputes",
+  "disp_clock": "15_business_days",
+  "vulnerability": {
+    "present": false,
+    "signals": []
+  },
+  "already_with_fos": false,
+  "linked_complaint": false,
+  "outcome_sought": "Refund of £1,140 in costs caused by the late completion, an explanation of why the payment was held, compensation for distress and an apology.",
+  "expected_policy_ids": [
+    "CP-3.2",
+    "CP-4.1",
+    "CP-4.3",
+    "CP-2.4",
+    "CP-6.1"
+  ],
+  "missing_info": [
+    "customer_told_of_handover",
+    "vulnerability_recorded",
+    "linked_complaints_checked"
+  ],
+  "planted_pii": [
+    "Owen Gallagher",
+    "Mr Gallager",
+    "GALLAGHER",
+    "Brendan",
+    "Siobhan",
+    "Niamh",
+    "Cathal",
+    "Mrs Okonedo",
+    "Bev",
+    "27 Bramley Close",
+    "HG5 0TW",
+    "27 BRAMLEY CL",
+    "11 Hawthorn Rise",
+    "4471 2093",
+    "44712093",
+    "0113 496 0582",
+    "owen.gallagher79@example.com",
+    "L Whitmore"
+  ],
+  "tests": [
+    "long_input",
+    "psrs_15_day_clock",
+    "late_execution",
+    "irrelevant_history",
+    "old_complaint_outside_12_months",
+    "account_number_with_space",
+    "surname_and_address_in_payment_reference",
+    "misspelt_surname"
+  ],
+  "rationale": "The bank held a CHAPS payment past its requested value date and did not action its own verification task, so this is a late-executed payment under Parts 6-7 PSRs and the 15 business day clock applies (CP-3.2). The 2019 card complaint is more than twelve months old, so it is not a linked complaint, but the check itself is not recorded. The surname and new address hide inside the CHAPS reference, and the account number appears with a space in it."
+}

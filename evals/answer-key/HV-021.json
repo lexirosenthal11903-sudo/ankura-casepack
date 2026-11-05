@@ -1,0 +1,71 @@
+{
+  "id": "HV-021",
+  "issues": [
+    {
+      "product": "current_account",
+      "cause": "app_scam"
+    }
+  ],
+  "team": "fraud_scams",
+  "disp_clock": "8_weeks",
+  "vulnerability": {
+    "present": true,
+    "signals": [
+      "age",
+      "bereavement",
+      "isolation",
+      "coercion",
+      "ongoing_scam_risk"
+    ]
+  },
+  "already_with_fos": false,
+  "linked_complaint": false,
+  "outcome_sought": "Not yet stated by the customer. Her sister wants further payments stopped and the £23,400 recovered.",
+  "expected_policy_ids": [
+    "CP-7.2",
+    "CP-7.3",
+    "CP-7.4",
+    "CP-1.2",
+    "CP-5.1",
+    "CP-5.3",
+    "CP-6.1"
+  ],
+  "missing_info": [
+    "outcome_sought",
+    "customer_account_of_events",
+    "customer_told_of_handover",
+    "linked_complaints_checked"
+  ],
+  "planted_pii": [
+    "Patricia Halloran",
+    "Mrs Halloran",
+    "Trish",
+    "Dennis",
+    "Mo",
+    "Maureen Doherty",
+    "M Doherty",
+    "Maureen",
+    "07700 900 609",
+    "01632 960 584",
+    "Richard",
+    "R CALLOWAY",
+    "RICHARD CALLOWAY",
+    "15840962",
+    "58114307",
+    "SM",
+    "GO"
+  ],
+  "tests": [
+    "romance_scam",
+    "third_party_without_authority",
+    "thirteen_month_window_from_last_payment",
+    "customer_ambivalent",
+    "bank_intervention_misled",
+    "multiple_payees",
+    "vulnerable_no_excess",
+    "nickname",
+    "family_named_in_passing",
+    "scammer_alias_is_pii"
+  ],
+  "rationale": "Nine authorised Faster Payments to a romance fraudster make this an APP scam for Fraud and Scams on the 8-week clock. The claim was made within thirteen months of the last payment (29 Sep 2026), so under CP-7.2 the whole series is in scope, even though the first two payments are more than thirteen months old. The pack must not drop them. The sister has no authority (CP-1.2), the customer has not given her own outcome or account of events, and her vulnerability means no excess and a warm handover."
+}

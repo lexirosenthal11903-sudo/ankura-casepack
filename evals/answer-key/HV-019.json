@@ -1,0 +1,60 @@
+{
+  "id": "HV-019",
+  "issues": [
+    {
+      "product": "mortgage",
+      "cause": "affordability_arrears"
+    },
+    {
+      "product": "mortgage",
+      "cause": "fees_interest"
+    }
+  ],
+  "team": "mortgages",
+  "disp_clock": "8_weeks",
+  "vulnerability": {
+    "present": true,
+    "signals": [
+      "financial_difficulty",
+      "distress"
+    ]
+  },
+  "already_with_fos": false,
+  "linked_complaint": false,
+  "outcome_sought": "Stop the legal action letters, agree an affordable payment plan, remove the two £45 arrears fees and explain why nobody called back.",
+  "expected_policy_ids": [
+    "CP-9.1",
+    "CP-9.2",
+    "CP-5.1",
+    "CP-5.3",
+    "CP-2.3",
+    "CP-4.3",
+    "CP-6.1"
+  ],
+  "missing_info": [
+    "broker_involved",
+    "customer_contact_attempted",
+    "customer_told_of_handover",
+    "vulnerability_recorded",
+    "linked_complaints_checked"
+  ],
+  "planted_pii": [
+    "Tom W.",
+    "Mr Wisnewski",
+    "Ewa",
+    "tom.wisniewski@example.com",
+    "8146 0237",
+    "81460237",
+    "RN"
+  ],
+  "tests": [
+    "arrears_collections_pause",
+    "forbearance_request_ignored",
+    "multiple_issues",
+    "nickname_signoff",
+    "misspelt_surname",
+    "account_number_with_space",
+    "pii_not_in_record"
+  ],
+  "rationale": "He asked for a payment plan before falling far behind, the callback was never made and collections sent two legal-action letters with no hold in place, so CP-9.1 (forbearance, pausing collections, debt advice) is central and the fees fall under CP-9.2. Mortgage arrears belong with Mortgage Servicing. The only contact on file is his own call in September, and nobody has tried to reach him since the complaint arrived."
+}

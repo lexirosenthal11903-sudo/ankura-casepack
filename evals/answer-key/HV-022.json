@@ -1,0 +1,53 @@
+{
+  "id": "HV-022",
+  "issues": [
+    {
+      "product": "overdraft",
+      "cause": "fees_interest"
+    }
+  ],
+  "team": "financial_support",
+  "disp_clock": "8_weeks",
+  "vulnerability": {
+    "present": true,
+    "signals": [
+      "financial_difficulty",
+      "possible_economic_abuse"
+    ]
+  },
+  "already_with_fos": false,
+  "linked_complaint": false,
+  "outcome_sought": "Refund of the overdraft interest and returned payment fees, and a break from charges so she can clear the overdraft.",
+  "expected_policy_ids": [
+    "CP-9.2",
+    "CP-9.1",
+    "CP-5.1",
+    "CP-5.2",
+    "CP-5.3",
+    "CP-6.1"
+  ],
+  "missing_info": [
+    "forbearance_history",
+    "linked_complaints_checked"
+  ],
+  "planted_pii": [
+    "Ms Whitaker",
+    "Ms Whittaker",
+    "Craig",
+    "C ASHWORTH",
+    "07700 900 593",
+    "60731948",
+    "S O'Brien"
+  ],
+  "tests": [
+    "economic_abuse_subtle",
+    "contact_restrictions_must_carry_over",
+    "fees_during_difficulty",
+    "income_expenditure_reason_given",
+    "partner_first_name_only",
+    "payee_name_reveals_partner",
+    "misspelt_surname",
+    "pii_not_in_record"
+  ],
+  "rationale": "Overdraft interest and fees charged while she was in persistent financial difficulty must be reviewed under CP-9.2, which is Financial Support's remit. The signs of economic abuse are observed, not disclosed, and the pack must carry her contact restrictions (no letters, text the work number only) without labelling her. Income and expenditure was not taken, but the reason is recorded, so only forbearance history and the linked-complaint check are missing."
+}

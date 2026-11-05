@@ -1,0 +1,65 @@
+{
+  "id": "HV-019",
+  "split": "heldout",
+  "author": "claude",
+  "received": "2026-10-22",
+  "channel": "email",
+  "record": {
+    "customer": {
+      "name": "Tomasz Wisniewski",
+      "title": "Mr",
+      "dob": "1984-09-30",
+      "address": "6 Fernlea Close, Wolverhampton",
+      "postcode": "WV6 9DS",
+      "phone": "0121 496 0388",
+      "email": ""
+    },
+    "accounts": [
+      {
+        "product": "mortgage",
+        "sort_code": "77-41-70",
+        "number": "81460237",
+        "card_last4": ""
+      },
+      {
+        "product": "current_account",
+        "sort_code": "77-41-70",
+        "number": "26618405",
+        "card_last4": "5571"
+      }
+    ],
+    "other_parties": [],
+    "staff": [
+      {
+        "name": "Rachel Ng",
+        "role": "Contact centre agent"
+      }
+    ]
+  },
+  "documents": [
+    {
+      "id": "D1",
+      "system": "EMAIL",
+      "type": "email",
+      "date": "2026-10-21",
+      "author_role": "customer",
+      "text": "Subject: Re: Notice of intended legal action - mortgage 8146 0237\n\nTo Harbour & Vale,\n\nI'm writing because I've had two letters from your collections department threatening legal action over my mortgage and I think this is completely wrong.\n\nI was made redundant at the end of July when the distribution centre I worked at closed. I rang you on 16 September, before I'd even missed a second payment, to tell you and to ask for a payment plan. The lady went through some of my income and outgoings with me and said someone from the arrears team would call me back within 10 working days to agree a plan. Nobody called.\n\nThen on 2 October I got a letter headed 'Notice of intended legal action' and on 19 October another one saying if the arrears are not cleared within 14 days the matter will be passed to your solicitors. My partner Ewa opened the second one and was in tears. We have two kids and we are scared we're going to lose the house.\n\nI've got a new job starting on 9 November (shift supervisor, less money than before but steady) and I can pay something now from my redundancy money. I just need someone to agree a plan with me. I've also been charged £45 'arrears management fee' twice which is just making it worse.\n\nWhat I want:\n- stop the legal action letters while this is sorted\n- a payment plan I can actually afford\n- the arrears fees taken off\n- an explanation of why nobody rang me back\n\nI can't really take calls on weekdays at the moment because of interviews and the school run, email is best: tom.wisniewski@example.com\n\nTom W."
+    },
+    {
+      "id": "D2",
+      "system": "CRM",
+      "type": "call_summary",
+      "date": "2026-09-16",
+      "author_role": "handler",
+      "text": "Inbound - Mr Wisnewski (ID&V ok). Made redundant end July, benefits claim in progress, partner works p/t. Missed Aug mortgage pmt, Sept (due 28/09) will also be missed. Requests payment plan. Started I&E - income + housing costs taken, cust didn't have all bills to hand, I&E INCOMPLETE. Cust stressed, says not sleeping. Referred to Arrears Support queue for callback within 10 WD. - RN"
+    },
+    {
+      "id": "D3",
+      "system": "CORE",
+      "type": "system_log",
+      "date": "2026-10-20",
+      "author_role": "system",
+      "text": "Mortgage 81460237. Product: 2yr fixed 4.29%, fixed period ends 31/03/2027 then SVR. Term remaining 21y 5m. Repayment basis: capital and interest. Contractual monthly payment GBP 1,086.12, due 28th. Missed: 28/08/2026, 28/09/2026. Arrears GBP 2,172.24 (2.0 payments). Arrears management fee GBP 45.00 debited 05/10/2026 and 20/10/2026. Collections: LA1 letter 'Notice of intended legal action' issued 02/10/2026, LA2 letter 'Final notice before referral to solicitors' issued 19/10/2026. Collections hold: NONE. Arrears Support callback task created 16/09/2026, status OPEN, unassigned."
+    }
+  ]
+}

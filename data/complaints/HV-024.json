@@ -1,0 +1,59 @@
+{
+  "id": "HV-024",
+  "split": "heldout",
+  "author": "claude",
+  "received": "2026-09-21",
+  "channel": "web_form",
+  "record": {
+    "customer": {
+      "name": "Nadia Haddad",
+      "title": "Ms",
+      "dob": "1987-10-05",
+      "address": "4 Linden Grove, Cardiff",
+      "postcode": "CF14 2LP",
+      "phone": "07700 900 925",
+      "email": "n.haddad@example.com"
+    },
+    "accounts": [
+      {
+        "product": "current_account",
+        "sort_code": "77-41-56",
+        "number": "33970814",
+        "card_last4": "7731"
+      }
+    ],
+    "other_parties": [],
+    "staff": [
+      {
+        "name": "Ellis Mwangi",
+        "role": "Complaints handler"
+      }
+    ]
+  },
+  "documents": [
+    {
+      "id": "D1",
+      "system": "WEBFORM",
+      "type": "web_form",
+      "date": "2026-09-21",
+      "author_role": "customer",
+      "text": "WEB FORM - Make a complaint\nName: Nadia Haddad\nAccount type: Current account\nWhat is your complaint about? Card payment / refund\nTell us what happened:\nOn 20 June I ordered a corner sofa online from Larchmont Living and paid £1,349.00 in full on my H&V debit card ending 7731. Delivery was promised for the week of 10 August. It never came. My partner Sami took two days off work to wait in for it. They kept emailing to say there were delays at the factory. On 2 September they went into administration and the website just has a notice on it now. The administrators' letter says customers are 'unsecured creditors' and are unlikely to get anything back.\n\nI contacted you on app chat on 10 September and asked for a chargeback. The person said you can't do chargebacks when a company has gone bust and I need to claim from the administrators. My friend got her money back from her bank for exactly the same thing, so I don't think that's right. I said I wasn't happy and was told to 'submit a complaint online', which is what I'm doing.\nWhat would you like us to do? Raise a chargeback and refund the £1,349.\nBest way to contact you: nadia.h87@example.com (please use this one, not my old work email)"
+    },
+    {
+      "id": "D2",
+      "system": "CARDS",
+      "type": "system_log",
+      "date": "2026-09-10",
+      "author_role": "system",
+      "text": "Card 7731. 20/06/2026 14:38 LARCHMONT LIVING LTD GBP 1,349.00 e-commerce, 3DS challenged, approved. Merchant status (scheme lookup 10/09/2026): TERMINATED - insolvency. 10/09/2026 16:22 Dispute enquiry via in-app chat, reason: goods not received. Agent outcome: NOT RAISED, 'merchant insolvent, refer cust to administrator'. Chat transcript note: customer wrote 'I'm not happy with this answer'. No complaint logged."
+    },
+    {
+      "id": "D3",
+      "system": "CRM",
+      "type": "crm_note",
+      "date": "2026-09-22",
+      "author_role": "handler",
+      "text": "Web form complaint logged. Debit card purchase, goods not received, merchant in administration. Chargeback declined in chat 10/09. Chat shows cust said she was not happy on 10/09, TL to confirm whether received date should be 10/09. Called cust 07700 900 925 22/09 10:15, no answer, no voicemail facility. To Payments & Disputes. - E Mwangi"
+    }
+  ]
+}

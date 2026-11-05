@@ -1,0 +1,48 @@
+{
+  "id": "HV-020",
+  "issues": [
+    {
+      "product": "current_account",
+      "cause": "digital_outage"
+    }
+  ],
+  "team": "frontline",
+  "disp_clock": "8_weeks",
+  "vulnerability": {
+    "present": false,
+    "signals": []
+  },
+  "already_with_fos": false,
+  "linked_complaint": false,
+  "outcome_sought": "Refund of the £25 late fee from her letting agent and an acknowledgement that the late rent was the bank's fault.",
+  "expected_policy_ids": [
+    "CP-1.1",
+    "CP-1.3",
+    "CP-2.2",
+    "CP-4.3",
+    "CP-10.2"
+  ],
+  "missing_info": [
+    "linked_complaints_checked"
+  ],
+  "planted_pii": [
+    "Ms I Clarke",
+    "Imani",
+    "Mr Okafor",
+    "07700 900 451",
+    "70385126",
+    "FLAT 14 WREN CT",
+    "DK"
+  ],
+  "tests": [
+    "outage_cluster",
+    "root_cause_tagging",
+    "summary_resolution_candidate",
+    "consequential_loss_small",
+    "first_name_only",
+    "third_party_staff_name",
+    "address_in_payment_reference",
+    "staff_initials"
+  ],
+  "rationale": "A small consequential loss from the 30 Oct outage that frontline can likely resolve within three business days by summary resolution (CP-2.2). It must carry the incident root-cause tag so it clusters with the other outage complaints (CP-10.2). The branch note records the outcome, a vulnerability check and what she was told, but no linked-complaint check. Part of her address hides inside the rent payment reference."
+}

@@ -1,0 +1,59 @@
+{
+  "id": "HV-023",
+  "issues": [
+    {
+      "product": "current_account",
+      "cause": "staff_conduct"
+    },
+    {
+      "product": "current_account",
+      "cause": "service_delay"
+    }
+  ],
+  "team": "frontline",
+  "disp_clock": "8_weeks",
+  "vulnerability": {
+    "present": true,
+    "signals": [
+      "disability"
+    ]
+  },
+  "already_with_fos": false,
+  "linked_complaint": false,
+  "outcome_sought": "The ramp repaired or a temporary ramp provided, an apology with staff told to help disabled customers, and £99 in taxi fares refunded.",
+  "expected_policy_ids": [
+    "CP-2.3",
+    "CP-5.1",
+    "CP-5.2",
+    "CP-5.3",
+    "CP-4.3",
+    "CP-4.5",
+    "CP-10.2"
+  ],
+  "missing_info": [
+    "customer_contact_attempted",
+    "vulnerability_recorded"
+  ],
+  "planted_pii": [
+    "H. S. Sandhu",
+    "Mr Sandu",
+    "Joyce",
+    "71 Thornhill Road",
+    "WF1 3PB",
+    "0113 496 0745",
+    "KP",
+    "M Barker"
+  ],
+  "tests": [
+    "letter_transcription",
+    "disability_support_need_not_recorded",
+    "multiple_issues",
+    "staff_conduct",
+    "root_cause_branch_access",
+    "initials_signature",
+    "misspelt_surname",
+    "carer_named_in_passing",
+    "pii_not_in_record"
+  ],
+  "rationale": "There are two issues, the branch being inaccessible for weeks and a staff member refusing to help, so each needs its own category (CP-2.3). His disability is obvious from the letter but the profile shows no support need recorded, which the pack should flag under CP-5.2. The landline is only in the letter and nobody has called him yet."
+}

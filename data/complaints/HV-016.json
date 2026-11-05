@@ -1,0 +1,59 @@
+{
+  "id": "HV-016",
+  "split": "heldout",
+  "author": "claude",
+  "received": "2026-10-04",
+  "channel": "email",
+  "record": {
+    "customer": {
+      "name": "Chloe Brennan",
+      "title": "Miss",
+      "dob": "1998-04-17",
+      "address": "Flat 2, 9 Severn Terrace, Worcester",
+      "postcode": "WR1 3DL",
+      "phone": "07700 900 147",
+      "email": "chloe.brennan@example.com"
+    },
+    "accounts": [
+      {
+        "product": "current_account",
+        "sort_code": "77-41-14",
+        "number": "52837190",
+        "card_last4": "6620"
+      }
+    ],
+    "other_parties": [],
+    "staff": [
+      {
+        "name": "Amir Khalid",
+        "role": "Complaints handler"
+      }
+    ]
+  },
+  "documents": [
+    {
+      "id": "D1",
+      "system": "EMAIL",
+      "type": "email",
+      "date": "2026-10-04",
+      "author_role": "customer",
+      "text": "Subject: scam - puppy - need my money back pls\n\nHello,\n\nI want to make a complaint about a payment I made on Thursday 1st October. I paid £650 to someone selling a cockapoo puppy on social media (a page called 'Malvern Hills Cockapoos'). They had loads of photos and videos of the puppies with the mum and he said I had to pay to hold her because 3 other people were interested. He said his name was Ryan and the account name was R HOLLIS. I sent it by bank transfer in your app.\n\nHe said we could collect her on Saturday from an address near Ledbury. My boyfriend Josh drove us there and it was just a farm track, there was no house with that number. Ryan stopped answering my messages and by Saturday night the page had been deleted. I feel so stupid, we'd already bought her a bed and everything.\n\nWhen I paid, the app showed a message asking if I was sure but it was just the usual 'could this be a scam' thing, it didn't say anything about pets or paying deposits to people you don't know. It also said the name matched so I thought it was fine.\n\nI reported it on the app chat on Saturday night (3rd) and got a reference but nobody has called me. I've seen on the news that banks have to pay back scams now. I want the £650 back please.\n\nMy number has changed, please use 07700 900 862 not the old one.\n\nThanks\nChloe"
+    },
+    {
+      "id": "D2",
+      "system": "CORE",
+      "type": "system_log",
+      "date": "2026-10-03",
+      "author_role": "system",
+      "text": "01/10/2026 19:47 Faster Payment out CA 52837190 GBP 650.00 payee 'R HOLLIS' receiving bank Tallis Street Bank. Confirmation of Payee result: MATCH. Payment reason selected: 'Something else'. Warning shown: general scam warning v2 ('Could this be a scam? Fraudsters can pretend to be anyone'). Customer selected 'I understand, continue'. 03/10/2026 22:14 Scam claim raised via in-app chat, claim ref SC-2026-118204, type PURCHASE. Beneficiary bank notified 03/10/2026 22:31, funds recovery: PENDING."
+    },
+    {
+      "id": "D3",
+      "system": "CRM",
+      "type": "crm_note",
+      "date": "2026-10-05",
+      "author_role": "handler",
+      "text": "Complaint logged from email rec'd Sun 04/10. APP scam - purchase (puppy, social media advert). Called cust on 07700 900 147 (on file) 05/10 11:20, number not in service. Tried 07700 900 862 from her email, no answer, VM left asking her to call back, no acct details left. Contact details to be updated once ID&V done. Referring to F&S. - AK"
+    }
+  ]
+}

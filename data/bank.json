@@ -36,7 +36,11 @@
     },
     {
       "id": "unauthorised_transaction",
-      "label": "Unauthorised or disputed transaction"
+      "label": "Unauthorised transaction (customer says they did not make it)"
+    },
+    {
+      "id": "card_dispute",
+      "label": "Card dispute with a retailer (chargeback)"
     },
     {
       "id": "payment_problem",

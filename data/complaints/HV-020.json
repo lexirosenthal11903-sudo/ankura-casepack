@@ -1,0 +1,59 @@
+{
+  "id": "HV-020",
+  "split": "heldout",
+  "author": "claude",
+  "received": "2026-11-02",
+  "channel": "branch",
+  "record": {
+    "customer": {
+      "name": "Imani Clarke",
+      "title": "Ms",
+      "dob": "1995-12-03",
+      "address": "Flat 14, Wren Court, 3 Gloucester Road, Bristol",
+      "postcode": "BS7 8AE",
+      "phone": "07700 900 451",
+      "email": "imani.clarke@example.com"
+    },
+    "accounts": [
+      {
+        "product": "current_account",
+        "sort_code": "77-41-19",
+        "number": "70385126",
+        "card_last4": "3309"
+      }
+    ],
+    "other_parties": [],
+    "staff": [
+      {
+        "name": "Danielle Kerr",
+        "role": "Customer service adviser (branch)"
+      }
+    ]
+  },
+  "documents": [
+    {
+      "id": "D1",
+      "system": "BRANCH",
+      "type": "branch_note",
+      "date": "2026-11-02",
+      "author_role": "branch_staff",
+      "text": "Branch: Bristol Broadmead. Cust Ms I Clarke, ID seen (driving licence). Came in re app outage Fri 30/10. Pays rent (£875) to letting agent by bank transfer on the 30th every month, due date is the 30th. Tried app from approx 8am, error 'something went wrong', tried online banking on a laptop at lunch, same. Rang the phone line, held 40+ mins & gave up (on her lunch break, works in a nursery so can't have phone on her in the afternoon). Paid it Sat morning 31/10. Letting agent (Ashdown Property Lettings, contact Mr Okafor) charged a £25 late payment fee under the tenancy agreement - cust showed me the email on her phone, fee dated 31/10. Cust wants the £25 back and 'an acknowledgement that it was your fault not mine'. Says she has never been late with rent & is worried about her reference with the agent. Vuln check done - none identified, cust confident with the app normally. Explained outage was bank-wide & complaint will be logged, complaints team will contact her within 3 working days and may be able to resolve then. Cust prefers text/email, mob 07700 900 451 confirmed. Imani was very polite but frustrated. - DK"
+    },
+    {
+      "id": "D2",
+      "system": "CORE",
+      "type": "system_log",
+      "date": "2026-10-31",
+      "author_role": "system",
+      "text": "Digital session log CA 70385126. 30/10/2026 08:03 APP LOGIN FAIL ERR-503. 30/10/2026 08:04 APP LOGIN FAIL ERR-503. 30/10/2026 12:47 OLB LOGIN FAIL ERR-503. 30/10/2026 12:49 OLB LOGIN FAIL ERR-503. Linked incident INC-2026-1030-01 'app and online banking unavailable 30/10/2026 07:10-15:40'. 31/10/2026 09:12 APP LOGIN OK. 31/10/2026 09:15 Faster Payment out GBP 875.00 payee ASHDOWN PROPERTY LETTINGS ref 'FLAT 14 WREN CT RENT'."
+    },
+    {
+      "id": "D3",
+      "system": "CRM",
+      "type": "crm_note",
+      "date": "2026-11-02",
+      "author_role": "handler",
+      "text": "Complaint logged from branch (DK, Broadmead). Cause: app/online banking outage. Root cause tag: INC-2026-1030-01. Amount claimed GBP 25.00 (third-party late payment fee). Customer contact pref: text/email."
+    }
+  ]
+}

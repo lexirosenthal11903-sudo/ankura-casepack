@@ -1,0 +1,63 @@
+{
+  "id": "HV-023",
+  "split": "heldout",
+  "author": "claude",
+  "received": "2026-10-12",
+  "channel": "letter",
+  "record": {
+    "customer": {
+      "name": "Harjit Sandhu",
+      "title": "Mr",
+      "dob": "1961-03-19",
+      "address": "71 Thornhill Road, Wakefield",
+      "postcode": "WF1 3PB",
+      "phone": "",
+      "email": ""
+    },
+    "accounts": [
+      {
+        "product": "current_account",
+        "sort_code": "77-41-38",
+        "number": "47205613",
+        "card_last4": "1907"
+      }
+    ],
+    "other_parties": [],
+    "staff": [
+      {
+        "name": "Karl Pearson",
+        "role": "Customer service adviser (branch)"
+      },
+      {
+        "name": "Michelle Barker",
+        "role": "Branch manager"
+      }
+    ]
+  },
+  "documents": [
+    {
+      "id": "D1",
+      "system": "LETTER",
+      "type": "letter",
+      "date": "2026-10-08",
+      "author_role": "customer",
+      "text": "[Scanned letter, handwritten, received in post room 12/10/2026. Transcribed by complaints admin. Words in square brackets could not be read clearly.]\n\n71 Thornhill Road\nWakefield\nWF1 3PB\nTel 0113 496 0745\n\n8th October 2026\n\nDear Sir or Madam,\n\nI am writing to complain about your Westgate branch in Wakefield and the way I was treated there.\n\nI have used a wheelchair since an accident in 2009. I bank at Westgate because it is the nearest branch to me and until recently the ramp at the side door meant I could get in on my own. At the beginning of September a sign went up saying the ramp was 'out of service' and to 'ask for assistance'. There is no bell and no way of asking for anything when you cannot get up the three steps at the front.\n\nOn Tuesday 15th September I needed to pay in cash and a cheque. My carer Joyce went in and asked if someone could come out to me. She was told by a young man that staff could not leave the counter and I should use the app or go to another branch. I do not use the app, my hands are not good enough for small screens. I sat outside in the [rain] for twenty minutes while Joyce queued. In the end she paid the cheque in for me but they would not take the cash without me there.\n\nI went back on 29th September hoping it would be fixed. It was not. This time I asked a lady going in to fetch somebody and the same young man came to the door and said 'sorry mate, rules' and went back inside. Since then I have had to take a taxi to the Leeds Road branch three times at £16.50 each way.\n\nIt is now over five weeks. I would like:\n1. The ramp repaired, or a proper temporary ramp put in.\n2. An apology, and for staff to be told they must help disabled customers.\n3. My taxi fares paid back (£99).\n\nI do not want to change banks after 30 years but I will.\n\nYours faithfully,\n\nH. S. Sandhu (Mr)"
+    },
+    {
+      "id": "D2",
+      "system": "CRM",
+      "type": "crm_note",
+      "date": "2026-10-13",
+      "author_role": "handler",
+      "text": "Letter complaint logged (rec'd 12/10). Acknowledgement letter sent 13/10 naming handler. Profile check: no accessibility or support needs recorded. No contact number on profile, landline given in letter, not yet called. Previous complaints last 12m: none. Branch asked for response."
+    },
+    {
+      "id": "D3",
+      "system": "BRANCH",
+      "type": "branch_note",
+      "date": "2026-10-14",
+      "author_role": "branch_staff",
+      "text": "Branch response for complaints - Westgate, Wakefield. Side ramp failed H&S inspection 02/09/2026, taped off. Contractor booked twice, both visits cancelled by contractor, new date 30/10. No portable ramp held at branch. Staff guidance during closure: 'assist customers at the door where possible'. Spoke to KP (CSA) re Mr Sandu. KP says he understood he could not leave the counter when he is the only cashier on, and did not realise it was the same customer both times. KP reminded of guidance. - M Barker, BM"
+    }
+  ]
+}

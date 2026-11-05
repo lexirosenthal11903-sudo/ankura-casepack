@@ -1,0 +1,48 @@
+{
+  "id": "HV-024",
+  "issues": [
+    {
+      "product": "current_account",
+      "cause": "card_dispute"
+    }
+  ],
+  "team": "payments_disputes",
+  "disp_clock": "8_weeks",
+  "vulnerability": {
+    "present": false,
+    "signals": []
+  },
+  "already_with_fos": false,
+  "linked_complaint": false,
+  "outcome_sought": "Raise a chargeback and refund the £1,349 paid for a sofa that was never delivered.",
+  "expected_policy_ids": [
+    "CP-3.1",
+    "CP-1.1",
+    "CP-1.3",
+    "CP-4.1",
+    "CP-4.3",
+    "CP-6.1"
+  ],
+  "missing_info": [
+    "customer_told_of_handover",
+    "vulnerability_recorded",
+    "linked_complaints_checked"
+  ],
+  "planted_pii": [
+    "Nadia Haddad",
+    "Sami",
+    "7731",
+    "nadia.h87@example.com",
+    "07700 900 925",
+    "E Mwangi"
+  ],
+  "tests": [
+    "card_scheme_dispute_not_psrs",
+    "do_not_over_apply_15_day_clock",
+    "complaint_missed_in_chat",
+    "received_date_question",
+    "pii_not_in_record",
+    "partner_first_name_only"
+  ],
+  "rationale": "A chargeback for goods not received is a card scheme dispute, not a Parts 6-7 PSRs execution or authorisation issue, so the 8-week clock applies (CP-3.1) and it goes to Payments and Disputes, not Fraud and Scams. Her 'not happy' in chat on 10 Sep was arguably a complaint that should have been logged then (CP-1.1, CP-1.3), so the received date needs a team leader's view. The email she wants used is not the one on her record."
+}

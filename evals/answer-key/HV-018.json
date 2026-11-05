@@ -1,0 +1,65 @@
+{
+  "id": "HV-018",
+  "issues": [
+    {
+      "product": "current_account",
+      "cause": "bereavement_poa"
+    }
+  ],
+  "team": "bereavement_poa",
+  "disp_clock": "8_weeks",
+  "vulnerability": {
+    "present": true,
+    "signals": [
+      "bereavement",
+      "distress",
+      "age",
+      "financial_strain"
+    ]
+  },
+  "already_with_fos": false,
+  "linked_complaint": false,
+  "outcome_sought": "Access to the joint account restored so she can pay her bills and the funeral deposit, the returned Direct Debits put right, and an apology.",
+  "expected_policy_ids": [
+    "CP-8.1",
+    "CP-5.1",
+    "CP-5.2",
+    "CP-5.3",
+    "CP-6.1",
+    "CP-6.3",
+    "CP-4.3"
+  ],
+  "missing_info": [
+    "authority_type",
+    "linked_complaints_checked"
+  ],
+  "planted_pii": [
+    "Shirley Mensah",
+    "Mrs Mensah",
+    "Mr Mensah",
+    "Mrs Mensha",
+    "Kofi",
+    "Kof",
+    "Abena",
+    "Lewis",
+    "LH",
+    "Fourteenth of May, nineteen fifty-two",
+    "LS8 2JR",
+    "07700 900 734",
+    "39250876",
+    "2284",
+    "0876"
+  ],
+  "tests": [
+    "transcript_input",
+    "bereavement",
+    "surviving_joint_holder",
+    "urgent_put_right",
+    "vulnerability_recorded_well",
+    "spoken_dob",
+    "nickname",
+    "misspelt_surname",
+    "staff_first_name_only"
+  ],
+  "rationale": "The surviving joint holder has lost access to her own money because the bank blocked all debits when her husband died, so it belongs with Bereavement and Power of Attorney. CP-5.3 says a vulnerable customer's case should be put right quickly. The agent recorded vulnerability, support needs and what she was told well. Nobody has recorded on what basis she can act (surviving joint holder, with no executor or grant needed), so authority_type is missing."
+}

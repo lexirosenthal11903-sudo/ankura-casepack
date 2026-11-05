@@ -1,0 +1,75 @@
+{
+  "id": "HV-021",
+  "split": "heldout",
+  "author": "claude",
+  "received": "2026-10-14",
+  "channel": "email",
+  "record": {
+    "customer": {
+      "name": "Patricia Halloran",
+      "title": "Mrs",
+      "dob": "1958-01-22",
+      "address": "Rose Cottage, 2 Church Lane, Settle",
+      "postcode": "BD24 9JH",
+      "phone": "01632 960 584",
+      "email": ""
+    },
+    "accounts": [
+      {
+        "product": "current_account",
+        "sort_code": "77-41-27",
+        "number": "15840962",
+        "card_last4": "8046"
+      },
+      {
+        "product": "savings",
+        "sort_code": "77-41-27",
+        "number": "58114307",
+        "card_last4": ""
+      }
+    ],
+    "other_parties": [
+      {
+        "role": "THIRD_PARTY",
+        "name": "Maureen Doherty",
+        "organisation": ""
+      }
+    ],
+    "staff": [
+      {
+        "name": "Sanjay Mistry",
+        "role": "Complaints handler"
+      },
+      {
+        "name": "Grace Owusu",
+        "role": "Fraud and Scams analyst"
+      }
+    ]
+  },
+  "documents": [
+    {
+      "id": "D1",
+      "system": "EMAIL",
+      "type": "email",
+      "date": "2026-10-13",
+      "author_role": "third_party",
+      "text": "Subject: My sister is being scammed - please help\n\nDear Sir/Madam,\n\nI am writing about my younger sister, Patricia Halloran, who banks with you. I am not on her account and I know you probably can't tell me anything, but I am desperate and I didn't know who else to write to.\n\nSince the summer of last year Trish has been 'in a relationship' with a man she met on a word game app. He calls himself Richard. He says he is an engineer on an oil platform off Norway and that he is going to come and live with her when his contract finishes. She has never met him. They have never even done a video call, there is always an excuse, the signal on the rig, his camera is broken.\n\nOver the past year he has needed money for one thing after another. Customs fees for a parcel he sent her, a hospital bill, his daughter's school fees, a lawyer to get his wages released. I found a notebook in her kitchen where she has written down what she has sent him and it comes to over twenty-three thousand pounds. That is most of the money Dennis left her when he died.\n\nShe has changed so much. She has stopped coming to church, she doesn't answer when her friends ring, and she told me 'Richard says you're jealous and I shouldn't listen to you'. Last week she asked me if I knew how to get a loan because he needs £8,000 for a flight and a visa. I am so frightened she is going to do it.\n\nWhen I tried to talk to her about it she cried and said he is the only one who understands her. The next day she said 'maybe you're right, Mo, I don't know what's real any more'. Then on Sunday she was defending him again.\n\nPlease can you stop any more money going to this man and try to get back what she has lost. I can come into the branch with her if that would help.\n\nMaureen Doherty\n07700 900 609"
+    },
+    {
+      "id": "D2",
+      "system": "CRM",
+      "type": "crm_note",
+      "date": "2026-10-15",
+      "author_role": "handler",
+      "text": "14/10/26 09:40 Email rec'd from sister (M Doherty) re suspected romance scam. NOT a party to the acct, no authority on file. Acct not discussed. Logged as concern, complaint pending cust contact. SM\n14/10/26 11:05 Outbound to cust on 01632 960 584, no answer. Tried again 15:30, no answer. SM\n15/10/26 10:12 Outbound, spoke to Mrs Halloran, ID&V passed. Cust initially said 'there's nothing wrong, my sister doesn't like him'. Confirmed she made all the payments herself to 'Richard' and his 'business account'. Said 'I sent it, it's my money'. Became upset when I explained common signs of romance scams. Later said 'he did ask me not to tell anyone, he said the bank wouldn't understand'. Asked about loan - cust said he had asked her to look into one. Cust did not want to go through everything today, asked if we could call back with her sister there. Agreed we can look into the payments. Did not ask what outcome she wants, cust not in a place for that. VULNERABLE CUSTOMER flag added: suspected ongoing romance scam, isolation, possible coercive control, bereaved (husband 2024). Support: call afternoons, cust happy for sister Maureen to join calls - verbal only, no written third party authority. Payment block + fraud marker requested. SM\n15/10/26 10:40 F&S notified for urgent intervention (live scam risk, loan request). GO"
+    },
+    {
+      "id": "D3",
+      "system": "CORE",
+      "type": "system_log",
+      "date": "2026-10-15",
+      "author_role": "system",
+      "text": "Payment history extract, CA 15840962, payees flagged by F&S:\n14/07/2025 FP out GBP 800.00 payee R CALLOWAY, receiving bank Fenmoor Digital Bank. Reason: Friends and family. CoP: CLOSE MATCH (actual name RICHARD CALLOWAY). Generic warning v2 shown, continued.\n02/09/2025 FP out GBP 1,500.00 payee R CALLOWAY. Reason: Friends and family. CoP: MATCH. Generic warning v2 shown, continued.\n21/10/2025 FP out GBP 2,000.00 payee R CALLOWAY. Reason: Friends and family. Generic warning v2 shown, continued.\n09/12/2025 FP out GBP 2,500.00 payee VARRICK MARITIME SERVICES LTD, receiving bank Ardley Bank plc. Reason: Paying an invoice. CoP: NO MATCH. Invoice warning v3 shown, continued.\n03/02/2026 FP out GBP 3,000.00 payee VARRICK MARITIME SERVICES LTD. Reason: Paying an invoice. Invoice warning v3 shown, continued.\n17/04/2026 FP out GBP 3,200.00 payee R CALLOWAY. HELD for review. Outbound call 17/04 14:20, cust stated 'paying my nephew back for a car'. Released 14:31.\n26/06/2026 FP out GBP 3,400.00 payee R CALLOWAY. Reason: Friends and family. Romance scam warning v1 (dynamic) shown, continued.\n11/08/2026 FP out GBP 3,500.00 payee R CALLOWAY. Romance scam warning v1 shown, continued.\n29/09/2026 FP out GBP 3,500.00 payee R CALLOWAY. Romance scam warning v1 shown, continued.\nTotal 9 payments GBP 23,400.00. Internal transfers from SAV 58114307 to CA preceded 6 of the 9 payments. Fraud marker added 15/10/2026 10:44. Outbound payments block: ACTIVE."
+    }
+  ]
+}

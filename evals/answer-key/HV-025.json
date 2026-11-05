@@ -1,0 +1,53 @@
+{
+  "id": "HV-025",
+  "issues": [
+    {
+      "product": "current_account",
+      "cause": "account_opening_closure"
+    }
+  ],
+  "team": "frontline",
+  "disp_clock": "8_weeks",
+  "vulnerability": {
+    "present": true,
+    "signals": [
+      "financial_strain"
+    ]
+  },
+  "already_with_fos": false,
+  "linked_complaint": false,
+  "outcome_sought": "Her held wages released now, a copy of the closure letter, the reason for closure, and proper notice if the account is being closed.",
+  "expected_policy_ids": [
+    "CP-4.2",
+    "CP-4.1",
+    "CP-4.3",
+    "CP-1.1",
+    "CP-5.1",
+    "CP-5.3"
+  ],
+  "missing_info": [
+    "vulnerability_recorded",
+    "linked_complaints_checked"
+  ],
+  "planted_pii": [
+    "Sofia",
+    "Ms Marquez",
+    "Dean",
+    "D Fowler",
+    "H Brandt",
+    "07700 900 381",
+    "29467031",
+    "8813"
+  ],
+  "tests": [
+    "conflicting_records",
+    "do_not_choose_between_systems",
+    "three_way_date_conflict",
+    "complaint_missed_on_call",
+    "held_wages_put_right_quickly",
+    "first_name_only_signoff",
+    "misspelt_surname",
+    "staff_first_name_only"
+  ],
+  "rationale": "CRM says a 60-day notice letter went out on 1 Aug with closure on 30 Sep, but core banking has no letter event, restricted the account on 24 Sep before that notice would have ended, and shows a closure date of 24 Nov. CP-4.2 requires the pack to set out both versions and their sources without deciding which is right. Her 26 Sep call already disputed the decision and should have been treated as a complaint (CP-1.1). She cannot reach her wages and is borrowing to eat, so CP-5.3 points to putting the held funds right quickly."
+}
