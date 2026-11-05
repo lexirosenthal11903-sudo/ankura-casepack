@@ -1,0 +1,1188 @@
+{
+  "caseId": "HV-010",
+  "createdAt": "2026-11-05T22:29:07.118Z",
+  "model": "claude-haiku-5-5",
+  "promptVersion": "casepack-v2",
+  "redacted": {
+    "id": "HV-010",
+    "received": "2026-10-27",
+    "channel": "phone",
+    "documents": [
+      {
+        "id": "D1",
+        "system": "CRM",
+        "type": "call_summary",
+        "date": "2026-10-27",
+        "author_role": "handler",
+        "text": "Inbound 18:20 from [POWER_OF_ATTORNEY], daughter of [CUSTOMER]. Says Mum ([CUSTOMER]) has Alzheimer's, diagnosed last yr, now cant manage money or use phone/cheques. [POWER_OF_ATTORNEY] is named attorney on a property & financial affairs LPA, signed 18/07, sent to OPG early Aug, OPG letter says still being processed. Went to Bolton branch Weds 21/10 with the LPA and the OPG letter and was refused, told to 'come back when its registered' and that we 'couldnt even confirm Mum banks with us'. Felt she was treated like she was trying to steal from her own mum. Mum used to pay her home care agency (Brookvale Home Care, £640 a month) by cheque, nothing paid since Aug, agency now threatening to reduce visits. [POWER_OF_ATTORNEY] wants: some way to pay the care bills now, one named contact, letters to Mum stopped as they confuse her, and an apology for branch. [POWER_OF_ATTORNEY] is Mum's main carer, works full time, sounded exhausted and was close to tears. Asked for calls after 6pm on [PHONE_1]. Recorded vuln: [CUSTOMER] cognitive impairment, attorney/carer under strain, call after 6pm. Explained we can't discuss acct detail until LPA registered, complaint logged and acknowledgement will follow. Customer ID&V not possible. - [STAFF_1]"
+      },
+      {
+        "id": "D2",
+        "system": "BRANCH",
+        "type": "branch_note",
+        "date": "2026-10-21",
+        "author_role": "branch_staff",
+        "text": "Bolton. Lady attended with unregistered LPA (no OPG stamp) for her mother [CUSTOMER]. Explained we can only accept a registered LPA or court order. Advised re-attend once OPG returns it. Docs not scanned or copied. Cust (daughter) unhappy, left. - [STAFF_2]"
+      },
+      {
+        "id": "D3",
+        "system": "CORE",
+        "type": "system_log",
+        "date": "2026-10-27",
+        "author_role": "system",
+        "text": "CA [ACCOUNT_1] [CUSTOMER]. Third party mandate: NONE. POA/LPA flag: NONE. Vulnerability flag: NONE. Balance GBP 8,412.33. Last cheque paid 14/08/2026 GBP 640.00 payee BROOKVALE HOME CARE. DD COUNCIL TAX active, paid 01/10/2026. Statement + marketing mail: postal, to address on file. SAV [ACCOUNT_2] balance GBP 21,960.04."
+      }
+    ],
+    "replacements": [
+      {
+        "placeholder": "[POWER_OF_ATTORNEY]",
+        "original": "Karen Doherty",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Mrs Hollins",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Pat",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[POWER_OF_ATTORNEY]",
+        "original": "Karen",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[POWER_OF_ATTORNEY]",
+        "original": "Karen",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[POWER_OF_ATTORNEY]",
+        "original": "Karen",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Mrs H",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[STAFF_1]",
+        "original": "S Marchetti",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[PHONE_1]",
+        "original": "07700 900 902",
+        "layer": "pattern",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[STAFF_2]",
+        "original": "RP",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Mrs P Hollings",
+        "layer": "near_match",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[ACCOUNT_1]",
+        "original": "31560482",
+        "layer": "record",
+        "documentId": "D3"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Mrs P HOLLINS",
+        "layer": "record",
+        "documentId": "D3"
+      },
+      {
+        "placeholder": "[ACCOUNT_2]",
+        "original": "57704129",
+        "layer": "record",
+        "documentId": "D3"
+      }
+    ],
+    "placeholders": [
+      "[ACCOUNT_1]",
+      "[ACCOUNT_2]",
+      "[CUSTOMER]",
+      "[PHONE_1]",
+      "[POWER_OF_ATTORNEY]",
+      "[STAFF_1]",
+      "[STAFF_2]"
+    ]
+  },
+  "pack": {
+    "enough_information": {
+      "sufficient": true,
+      "what_is_needed": ""
+    },
+    "intake": {
+      "issues": [
+        {
+          "product": "current_account",
+          "cause": "bereavement_poa",
+          "description": "Attorney refused at Bolton branch on 21/10/2026 because the LPA is not yet registered; cannot act on the account or discuss it until registration.",
+          "citations": [
+            {
+              "source": "D1",
+              "quote": "Went to Bolton branch Weds 21/10 with the LPA and the OPG letter and was refused"
+            },
+            {
+              "source": "D2",
+              "quote": "Explained we can only accept a registered LPA or court order"
+            }
+          ]
+        },
+        {
+          "product": "current_account",
+          "cause": "staff_conduct",
+          "description": "Attorney says branch staff treated her as if she was trying to steal and said the bank could not confirm the customer banks with us.",
+          "citations": [
+            {
+              "source": "D1",
+              "quote": "Felt she was treated like she was trying to steal from her own mum"
+            },
+            {
+              "source": "D1",
+              "quote": "couldnt even confirm Mum banks with us"
+            }
+          ]
+        },
+        {
+          "product": "current_account",
+          "cause": "payment_problem",
+          "description": "Care agency payments made by cheque have not been made since August 2026; attorney wants a way to pay care bills now.",
+          "citations": [
+            {
+              "source": "D1",
+              "quote": "nothing paid since Aug, agency now threatening to reduce visits"
+            },
+            {
+              "source": "D3",
+              "quote": "Last cheque paid 14/08/2026 GBP 640.00 payee BROOKVALE HOME CARE"
+            }
+          ]
+        }
+      ],
+      "suggested_team": "bereavement_poa",
+      "team_reason": {
+        "text": "Complaint concerns acting under an unregistered LPA and third-party authority, which must be registered and checked before detailed discussion.",
+        "citations": [
+          {
+            "source": "CP-8.2",
+            "quote": "the authority must be registered and checked before the complaint is discussed in detail"
+          },
+          {
+            "source": "D1",
+            "quote": "is named attorney on a property & financial affairs LPA"
+          }
+        ]
+      },
+      "payment_services": "no",
+      "payment_services_reason": {
+        "text": "Complaint is about LPA acceptance and branch handling. No unauthorised or wrongly executed payment is described.",
+        "citations": [
+          {
+            "source": "CP-3.2",
+            "quote": "such as an unauthorised or wrongly executed payment"
+          },
+          {
+            "source": "D1",
+            "quote": "nothing paid since Aug"
+          }
+        ]
+      },
+      "already_with_ombudsman": false,
+      "linked_to_earlier_complaint": false
+    },
+    "summary": [
+      {
+        "text": "Daughter of the customer, acting as named attorney under a property and financial affairs LPA not yet registered, complains about being refused at Bolton branch on 21/10/2026.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "is named attorney on a property & financial affairs LPA"
+          },
+          {
+            "source": "D2",
+            "quote": "Explained we can only accept a registered LPA or court order"
+          }
+        ]
+      },
+      {
+        "text": "Customer's cheque payments of £640 a month to Brookvale Home Care have not been made since August 2026; the agency is threatening to reduce visits.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "nothing paid since Aug, agency now threatening to reduce visits"
+          },
+          {
+            "source": "D3",
+            "quote": "Last cheque paid 14/08/2026 GBP 640.00 payee BROOKVALE HOME CARE"
+          }
+        ]
+      },
+      {
+        "text": "Attorney wants a way to pay care bills now, one named contact, letters to the customer stopped, and an apology for the branch visit.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "some way to pay the care bills now, one named contact"
+          }
+        ]
+      },
+      {
+        "text": "Attorney reports she was treated as if trying to steal; the branch note records that the LPA was not scanned or copied.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Felt she was treated like she was trying to steal from her own mum"
+          },
+          {
+            "source": "D2",
+            "quote": "Docs not scanned or copied"
+          }
+        ]
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-07-18",
+        "event": "LPA signed.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "signed 18/07"
+          }
+        ]
+      },
+      {
+        "date": "early Aug",
+        "event": "LPA sent to OPG; OPG letter says it is still being processed.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "sent to OPG early Aug, OPG letter says still being processed"
+          }
+        ]
+      },
+      {
+        "date": "2026-08-14",
+        "event": "Last cheque paid, £640.00 to Brookvale Home Care.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Last cheque paid 14/08/2026 GBP 640.00 payee BROOKVALE HOME CARE"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-21",
+        "event": "Attorney attended Bolton branch with unregistered LPA and was refused.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Lady attended with unregistered LPA (no OPG stamp)"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-27",
+        "event": "Attorney called the bank by phone at 18:20; complaint logged.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Inbound 18:20 from [POWER_OF_ATTORNEY]"
+          }
+        ]
+      }
+    ],
+    "outcome_sought": {
+      "text": "Some way to pay the care bills now, one named contact, letters to the customer stopped, and an apology for the branch visit.",
+      "citations": [
+        {
+          "source": "D1",
+          "quote": "some way to pay the care bills now, one named contact"
+        }
+      ]
+    },
+    "vulnerability": [
+      {
+        "signal": "Cognitive impairment: customer has Alzheimer's and cannot manage money or use phone or cheques.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "has Alzheimer's, diagnosed last yr, now cant manage money or use phone/cheques"
+          }
+        ]
+      },
+      {
+        "signal": "Financial difficulty: care bills unpaid since August and care visits at risk.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "agency now threatening to reduce visits"
+          }
+        ]
+      },
+      {
+        "signal": "Attorney under strain: full-time worker and main carer, sounded exhausted and close to tears.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "sounded exhausted and was close to tears"
+          }
+        ]
+      }
+    ],
+    "relevant_policy": [
+      {
+        "policy_id": "CP-8.2",
+        "why_relevant": "Attorney authority is unregistered, so it must be checked before detailed discussion; pending registration must be recorded.",
+        "citations": [
+          {
+            "source": "CP-8.2",
+            "quote": "Pending registration must be recorded and does not delay the acknowledgement."
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-2.1",
+        "why_relevant": "Complaint is not resolved within three business days, so a written acknowledgement naming the handler is due.",
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "we must send a prompt written acknowledgement that names the handler or team dealing with it."
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-5.2",
+        "why_relevant": "Vulnerability signs were mentioned and need formal recording with support needs.",
+        "citations": [
+          {
+            "source": "CP-5.2",
+            "quote": "Signs of vulnerability must be recorded with the customer's consent where possible"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-5.3",
+        "why_relevant": "Vulnerable customer: handling must be adapted, and no team transfer without a warm handover.",
+        "citations": [
+          {
+            "source": "CP-5.3",
+            "quote": "must not pass a vulnerable customer between teams without a warm handover"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.5",
+        "why_relevant": "Customer identity could not be verified and information is missing, so a documented contact attempt is needed before handover.",
+        "citations": [
+          {
+            "source": "CP-4.5",
+            "quote": "must make at least one documented attempt to contact the customer before a case is passed to a specialist team"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.2",
+        "why_relevant": "Records conflict on the LPA and on vulnerability; both versions must be recorded.",
+        "citations": [
+          {
+            "source": "CP-4.2",
+            "quote": "record both versions and the source of each, and must not choose between them without evidence"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.3",
+        "why_relevant": "Outcome sought must be recorded in the customer's own words where possible.",
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "record, in the customer's own words where possible, the outcome the customer is seeking"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-2.3",
+        "why_relevant": "Three separate issues were raised and each must be recorded and answered separately.",
+        "citations": [
+          {
+            "source": "CP-2.3",
+            "quote": "each issue must be recorded separately with its own product and cause category"
+          }
+        ]
+      }
+    ],
+    "handover_checklist": [
+      {
+        "item_id": "outcome_sought",
+        "status": "present",
+        "value": "Some way to pay care bills now, one named contact, letters stopped, apology for branch.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "some way to pay the care bills now, one named contact"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_contact_attempted",
+        "status": "missing",
+        "value": "Attorney called 27/10; customer not spoken to and ID&V not possible.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Customer ID&V not possible."
+          }
+        ]
+      },
+      {
+        "item_id": "customer_told_of_handover",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "vulnerability_recorded",
+        "status": "conflicting",
+        "value": "CRM call summary records cognitive impairment; CORE vulnerability flag shows none.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Recorded vuln: [CUSTOMER] cognitive impairment"
+          },
+          {
+            "source": "D3",
+            "quote": "Vulnerability flag: NONE."
+          }
+        ]
+      },
+      {
+        "item_id": "linked_complaints_checked",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "date_of_death",
+        "status": "not_applicable",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "authority_type",
+        "status": "present",
+        "value": "Attorney under property and financial affairs LPA (not yet registered).",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "is named attorney on a property & financial affairs LPA"
+          }
+        ]
+      },
+      {
+        "item_id": "authority_evidence_status",
+        "status": "missing",
+        "value": "Unregistered LPA seen at branch 21/10, not copied; OPG registration pending.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Docs not scanned or copied"
+          },
+          {
+            "source": "D2",
+            "quote": "unregistered LPA (no OPG stamp)"
+          }
+        ]
+      },
+      {
+        "item_id": "accounts_affected",
+        "status": "present",
+        "value": "Current account [ACCOUNT_1]; savings [ACCOUNT_2] also held by customer.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "CA [ACCOUNT_1] [CUSTOMER]"
+          },
+          {
+            "source": "D3",
+            "quote": "SAV [ACCOUNT_2] balance GBP 21,960.04"
+          }
+        ]
+      },
+      {
+        "item_id": "relationship_to_customer",
+        "status": "present",
+        "value": "Daughter of the customer.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "daughter of [CUSTOMER]"
+          }
+        ]
+      }
+    ],
+    "conflicts": [
+      {
+        "text": "CORE shows no third-party mandate and no POA/LPA flag; CRM records an LPA signed 18/07 and sent to OPG. Both versions recorded, not resolved.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "POA/LPA flag: NONE"
+          },
+          {
+            "source": "D1",
+            "quote": "signed 18/07"
+          }
+        ]
+      },
+      {
+        "text": "CRM records vulnerability recorded for the customer; CORE vulnerability flag shows none.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Recorded vuln: [CUSTOMER] cognitive impairment"
+          },
+          {
+            "source": "D3",
+            "quote": "Vulnerability flag: NONE."
+          }
+        ]
+      },
+      {
+        "text": "Attorney reports staff said the bank could not confirm the customer banks with us; the branch note records only the LPA refusal and re-attendance advice. CORE shows the account exists.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "couldnt even confirm Mum banks with us"
+          },
+          {
+            "source": "D2",
+            "quote": "Advised re-attend once OPG returns it."
+          }
+        ]
+      }
+    ],
+    "flags": [
+      {
+        "type": "third_party_authority",
+        "description": "Attorney's authority is unregistered and unchecked. No account detail may be shared until the LPA is registered and checked.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "we can't discuss acct detail until LPA registered"
+          }
+        ]
+      },
+      {
+        "type": "deadline_risk",
+        "description": "Written acknowledgement due by close of 2026-10-30 (CP-2.1). Final response due by 2026-12-22 (CP-3.1). Care payments have lapsed and visits are at risk.",
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "If a complaint is not resolved by the close of the third business day after it was received"
+          },
+          {
+            "source": "CP-3.1",
+            "quote": "We must send a final response within eight weeks of receiving the complaint"
+          },
+          {
+            "source": "D1",
+            "quote": "agency now threatening to reduce visits"
+          }
+        ]
+      },
+      {
+        "type": "data_quality",
+        "description": "CORE shows no POA/LPA flag, no third-party mandate and no vulnerability flag, which conflict with the CRM call record.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Third party mandate: NONE. POA/LPA flag: NONE."
+          }
+        ]
+      }
+    ]
+  },
+  "checks": {
+    "statements": [
+      {
+        "path": "intake.issues.0",
+        "text": "Attorney refused at Bolton branch on 21/10/2026 because the LPA is not yet registered; cannot act on the account or discuss it until registration.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Went to Bolton branch Weds 21/10 with the LPA and the OPG letter and was refused",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Explained we can only accept a registered LPA or court order",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.issues.1",
+        "text": "Attorney says branch staff treated her as if she was trying to steal and said the bank could not confirm the customer banks with us.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Felt she was treated like she was trying to steal from her own mum",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "couldnt even confirm Mum banks with us",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.issues.2",
+        "text": "Care agency payments made by cheque have not been made since August 2026; attorney wants a way to pay care bills now.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "nothing paid since Aug, agency now threatening to reduce visits",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Last cheque paid 14/08/2026 GBP 640.00 payee BROOKVALE HOME CARE",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.team_reason",
+        "text": "Complaint concerns acting under an unregistered LPA and third-party authority, which must be registered and checked before detailed discussion.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-8.2",
+            "quote": "the authority must be registered and checked before the complaint is discussed in detail",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "is named attorney on a property & financial affairs LPA",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.payment_services_reason",
+        "text": "Complaint is about LPA acceptance and branch handling. No unauthorised or wrongly executed payment is described.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-3.2",
+            "quote": "such as an unauthorised or wrongly executed payment",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "nothing paid since Aug",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.0",
+        "text": "Daughter of the customer, acting as named attorney under a property and financial affairs LPA not yet registered, complains about being refused at Bolton branch on 21/10/2026.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "is named attorney on a property & financial affairs LPA",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Explained we can only accept a registered LPA or court order",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.1",
+        "text": "Customer's cheque payments of £640 a month to Brookvale Home Care have not been made since August 2026; the agency is threatening to reduce visits.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "nothing paid since Aug, agency now threatening to reduce visits",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Last cheque paid 14/08/2026 GBP 640.00 payee BROOKVALE HOME CARE",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.2",
+        "text": "Attorney wants a way to pay care bills now, one named contact, letters to the customer stopped, and an apology for the branch visit.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "some way to pay the care bills now, one named contact",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.3",
+        "text": "Attorney reports she was treated as if trying to steal; the branch note records that the LPA was not scanned or copied.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Felt she was treated like she was trying to steal from her own mum",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Docs not scanned or copied",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.0",
+        "text": "2026-07-18: LPA signed.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "signed 18/07",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.1",
+        "text": "early Aug: LPA sent to OPG; OPG letter says it is still being processed.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "sent to OPG early Aug, OPG letter says still being processed",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.2",
+        "text": "2026-08-14: Last cheque paid, £640.00 to Brookvale Home Care.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Last cheque paid 14/08/2026 GBP 640.00 payee BROOKVALE HOME CARE",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.3",
+        "text": "2026-10-21: Attorney attended Bolton branch with unregistered LPA and was refused.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Lady attended with unregistered LPA (no OPG stamp)",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.4",
+        "text": "2026-10-27: Attorney called the bank by phone at 18:20; complaint logged.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Inbound 18:20 from [POWER_OF_ATTORNEY]",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "outcome_sought",
+        "text": "Some way to pay the care bills now, one named contact, letters to the customer stopped, and an apology for the branch visit.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "some way to pay the care bills now, one named contact",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "vulnerability.0",
+        "text": "Cognitive impairment: customer has Alzheimer's and cannot manage money or use phone or cheques.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "has Alzheimer's, diagnosed last yr, now cant manage money or use phone/cheques",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "vulnerability.1",
+        "text": "Financial difficulty: care bills unpaid since August and care visits at risk.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "agency now threatening to reduce visits",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "vulnerability.2",
+        "text": "Attorney under strain: full-time worker and main carer, sounded exhausted and close to tears.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "sounded exhausted and was close to tears",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.0",
+        "text": "CP-8.2: Attorney authority is unregistered, so it must be checked before detailed discussion; pending registration must be recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-8.2",
+            "quote": "Pending registration must be recorded and does not delay the acknowledgement.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.1",
+        "text": "CP-2.1: Complaint is not resolved within three business days, so a written acknowledgement naming the handler is due.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "we must send a prompt written acknowledgement that names the handler or team dealing with it.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.2",
+        "text": "CP-5.2: Vulnerability signs were mentioned and need formal recording with support needs.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-5.2",
+            "quote": "Signs of vulnerability must be recorded with the customer's consent where possible",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.3",
+        "text": "CP-5.3: Vulnerable customer: handling must be adapted, and no team transfer without a warm handover.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-5.3",
+            "quote": "must not pass a vulnerable customer between teams without a warm handover",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.4",
+        "text": "CP-4.5: Customer identity could not be verified and information is missing, so a documented contact attempt is needed before handover.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.5",
+            "quote": "must make at least one documented attempt to contact the customer before a case is passed to a specialist team",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.5",
+        "text": "CP-4.2: Records conflict on the LPA and on vulnerability; both versions must be recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.2",
+            "quote": "record both versions and the source of each, and must not choose between them without evidence",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.6",
+        "text": "CP-4.3: Outcome sought must be recorded in the customer's own words where possible.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "record, in the customer's own words where possible, the outcome the customer is seeking",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.7",
+        "text": "CP-2.3: Three separate issues were raised and each must be recorded and answered separately.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.3",
+            "quote": "each issue must be recorded separately with its own product and cause category",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.outcome_sought",
+        "text": "outcome_sought: Some way to pay care bills now, one named contact, letters stopped, apology for branch.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "some way to pay the care bills now, one named contact",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.vulnerability_recorded",
+        "text": "vulnerability_recorded: CRM call summary records cognitive impairment; CORE vulnerability flag shows none.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Recorded vuln: [CUSTOMER] cognitive impairment",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Vulnerability flag: NONE.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.authority_type",
+        "text": "authority_type: Attorney under property and financial affairs LPA (not yet registered).",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "is named attorney on a property & financial affairs LPA",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.accounts_affected",
+        "text": "accounts_affected: Current account [ACCOUNT_1]; savings [ACCOUNT_2] also held by customer.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "CA [ACCOUNT_1] [CUSTOMER]",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "SAV [ACCOUNT_2] balance GBP 21,960.04",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.relationship_to_customer",
+        "text": "relationship_to_customer: Daughter of the customer.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "daughter of [CUSTOMER]",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "conflicts.0",
+        "text": "CORE shows no third-party mandate and no POA/LPA flag; CRM records an LPA signed 18/07 and sent to OPG. Both versions recorded, not resolved.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "POA/LPA flag: NONE",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "signed 18/07",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "conflicts.1",
+        "text": "CRM records vulnerability recorded for the customer; CORE vulnerability flag shows none.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Recorded vuln: [CUSTOMER] cognitive impairment",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Vulnerability flag: NONE.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "conflicts.2",
+        "text": "Attorney reports staff said the bank could not confirm the customer banks with us; the branch note records only the LPA refusal and re-attendance advice. CORE shows the account exists.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "couldnt even confirm Mum banks with us",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Advised re-attend once OPG returns it.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.0",
+        "text": "third_party_authority: Attorney's authority is unregistered and unchecked. No account detail may be shared until the LPA is registered and checked.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "we can't discuss acct detail until LPA registered",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.1",
+        "text": "deadline_risk: Written acknowledgement due by close of 2026-10-30 (CP-2.1). Final response due by 2026-12-22 (CP-3.1). Care payments have lapsed and visits are at risk.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "If a complaint is not resolved by the close of the third business day after it was received",
+            "result": "verified"
+          },
+          {
+            "source": "CP-3.1",
+            "quote": "We must send a final response within eight weeks of receiving the complaint",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "agency now threatening to reduce visits",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.2",
+        "text": "data_quality: CORE shows no POA/LPA flag, no third-party mandate and no vulnerability flag, which conflict with the CRM call record.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Third party mandate: NONE. POA/LPA flag: NONE.",
+            "result": "verified"
+          }
+        ]
+      }
+    ],
+    "supportedCount": 37,
+    "unsupportedCount": 0,
+    "inventedPlaceholders": [],
+    "checklist": {
+      "required": 9,
+      "present": 4,
+      "missing": [
+        "customer_contact_attempted",
+        "customer_told_of_handover",
+        "linked_complaints_checked",
+        "authority_evidence_status"
+      ],
+      "conflicting": [
+        "vulnerability_recorded"
+      ]
+    }
+  },
+  "clock": "8_weeks",
+  "deadlines": {
+    "received": "2026-10-27",
+    "clock": "8_weeks",
+    "summaryResolutionWindowCloses": "2026-10-30",
+    "eightWeekDue": "2026-12-22",
+    "workingDue": "2026-12-22",
+    "needsHandlerConfirmation": false,
+    "calendarDaysLeft": 43,
+    "businessDaysLeft": 31,
+    "status": "on_track"
+  },
+  "usage": {
+    "inputTokens": 985,
+    "outputTokens": 13257,
+    "cacheReadTokens": 9362,
+    "cacheWriteTokens": 0,
+    "costUsd": 0.0068206199999999995,
+    "latencyMs": 50187
+  }
+}
