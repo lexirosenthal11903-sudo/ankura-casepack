@@ -13,3 +13,7 @@ Use only these figures in the deck. Re-check anything not listed here.
 | UK GDPR automated decisions | Art 22 replaced by Arts 22A to 22D via DUAA 2025 s.80, commenced 5 Feb 2026 (SI 2026/82) | legislation.gov.uk/uksi/2026/82 |
 | FCA complaints data 2026 H1 | ~1.85m complaints (+6.3%); banking and credit cards 898,877 (+4.8%, ~48.6% of total, our calculation); firms upheld 54.8% | fca.org.uk/data/complaints-data-2026-h1 |
 | EU AI Act | Complaint handling is not in Annex III (5(b) creditworthiness, 5(c) life/health insurance pricing) | artificialintelligenceact.eu/annex/3/ (secondary mirror) |
+
+## Still to verify at primary source (added 5 Nov 2026)
+- **APP scam reimbursement figures in policy CP-7.2 and CP-7.3.** The £85,000 cap, the 13-month claim window, the optional £100 excess (never for vulnerable customers) and the 5 business day decision with a 35 business day stop-the-clock limit. So far these are confirmed only by bank and fintech explainers, not the regulator's own text. Check the PSR Specific Direction and reimbursement rules (now within the FCA).
+- **Which clock applies to an APP scam complaint.** The answer key assumes 8 weeks, because APP payments are authorised and so not a Parts 6-7 PSRs execution issue. Confirm against DISP 1.6.2A and any FCA or FOS statement before the deck states it.

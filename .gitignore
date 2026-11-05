@@ -5,3 +5,9 @@ node_modules/
 .vercel/
 .DS_Store
 evals/results/*.raw.json
+.next/
+out/
+coverage/
+*.tsbuildinfo
+test-results/
+playwright-report/
