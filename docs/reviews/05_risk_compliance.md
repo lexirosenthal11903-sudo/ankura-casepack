@@ -1,0 +1,6 @@
+# Review: conduct risk / DPO / model risk, 5 Nov 2026
+Errors flagged: "0 PII" false (pseudonymised = personal data); EU AI Act not applicable (UK bank, not Annex III, Art 50 not internal aid) → applicability table; DISP 1.6.2A 15/35 business days for payment services, SRC = close of 3rd business day (DISP 1.5), FOS 6 months; PS25/19 replaces DISP 1.10 returns from 1 Jan 2027; FOS fees changed 2026/27 (check Plans & Budget PDF); vulnerable ≠ blocked fast-track.
+Must: one-page DPIA; Art 9 special category lawful basis (6(1)(c)/(f) + DPA 2018 Sch 1); Art 22 → 22A-22D under DUAA 2025 (SI 2026/82, from 5 Feb 2026); citation = provenance check + omission recall; vendor risk rows (DPA, transfers, ZDR, pinning, exit); control register with owner/type/test/evidence/KRI.
+Should: audit log retention (DISP 1.9 3 yrs), redacted only, DSAR; monitoring + kill switch; measure automation bias (time-on-review, edit rate); vulnerability false negatives; redact live input too.
+Ideas: applicability table; accountable SMF; Consumer Duty outcomes testing; model inventory record with tier.
+Hard Qs: husband died + Harrogate branch to US provider lawful basis; SS1/23 applicability (IRB firms formally, proportionate); 98% unchanged approvals.

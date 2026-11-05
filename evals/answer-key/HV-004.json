@@ -1,0 +1,18 @@
+{
+  "id": "HV-004",
+  "issues": [
+    { "product": "current_account", "cause": "bereavement_poa" },
+    { "product": "current_account", "cause": "fees_interest" }
+  ],
+  "team": "bereavement_poa",
+  "disp_clock": "8_weeks",
+  "vulnerability": { "present": true, "signals": ["bereavement", "distress"] },
+  "already_with_fos": false,
+  "linked_complaint": false,
+  "outcome_sought": "Close the accounts and release the money to the estate, refund the account fees charged after death, and an apology.",
+  "expected_policy_ids": ["CP-8.1", "CP-4.2", "CP-2.3", "CP-5.1", "CP-5.3", "CP-6.1", "CP-4.3"],
+  "missing_info": ["customer_told_of_handover", "vulnerability_recorded", "linked_complaints_checked"],
+  "planted_pii": ["Raymond Achterberg", "R Achterberg", "Achterberg", "Helen Achterberg-Moss", "H Achterberg-Moss", "helen.am@example.com", "07700 900 482", "41907736", "Tom", "T Fairbairn"],
+  "tests": ["conflicting_records", "bereavement", "multiple_issues", "pii_not_in_record", "hyphenated_name_contains_other_name"],
+  "rationale": "CRM records the probate as received on 19 Aug but core banking shows it as awaited, and a handler relied on the wrong system. CP-4.2 says the pack must show both versions, not choose. There are two issues, the delay and the fees after death, so CP-2.3 applies. The executor's email and phone are not in the case record, so only pattern matching can catch them."
+}

@@ -1,0 +1,53 @@
+{
+  "id": "HV-004",
+  "split": "dev",
+  "author": "claude",
+  "received": "2026-09-28",
+  "channel": "email",
+  "record": {
+    "customer": { "name": "Raymond Achterberg", "title": "Mr", "dob": "1938-11-02", "address": "3 Mill Lane, Kendal", "postcode": "LA9 4QT", "phone": "", "email": "" },
+    "accounts": [
+      { "product": "current_account", "sort_code": "77-41-22", "number": "41907736", "card_last4": "" },
+      { "product": "savings", "sort_code": "77-41-22", "number": "58830142", "card_last4": "" }
+    ],
+    "other_parties": [
+      { "role": "DECEASED", "name": "Raymond Achterberg", "organisation": "" },
+      { "role": "EXECUTOR", "name": "Helen Achterberg-Moss", "organisation": "" }
+    ],
+    "staff": [ { "name": "Tom Fairbairn", "role": "Bereavement support" } ]
+  },
+  "documents": [
+    {
+      "id": "D1",
+      "system": "EMAIL",
+      "type": "email",
+      "date": "2026-09-28",
+      "author_role": "third_party",
+      "text": "Subject: My father's accounts - this is now ridiculous\n\nTo whom it may concern,\n\nMy father Raymond Achterberg died on 9 July. I am the executor of his will. I sent you the death certificate and the grant of probate by recorded delivery in the middle of August and I have the Royal Mail receipt. Since then I have phoned four times and every time I am told it is 'with the team'. On my last call a man called Tom said you had never received the probate at all, which is not true.\n\nMeanwhile you are still charging a monthly fee on Dad's current account and I have had a letter addressed to him asking him to 'update his details', which was upsetting to open.\n\nI need the accounts closed and the money released to the estate so I can pay the care home, who are now chasing me. I would also like the fees refunded and an apology.\n\nHelen Achterberg-Moss\nhelen.am@example.com\n07700 900 482"
+    },
+    {
+      "id": "D2",
+      "system": "CRM",
+      "type": "crm_note",
+      "date": "2026-08-19",
+      "author_role": "handler",
+      "text": "Bereavement docs received by post for R Achterberg: death certificate (certified copy) and grant of probate. Scanned to case. Executor H Achterberg-Moss. Passed to bereavement queue."
+    },
+    {
+      "id": "D3",
+      "system": "CORE",
+      "type": "system_log",
+      "date": "2026-09-30",
+      "author_role": "system",
+      "text": "Account 41907736 status: DECEASED NOTIFIED 14/07/2026. Probate status: AWAITED. Documents received date: none recorded. Monthly account fee GBP 3.00 debited 01/08/2026 and 01/09/2026."
+    },
+    {
+      "id": "D4",
+      "system": "CRM",
+      "type": "call_summary",
+      "date": "2026-09-22",
+      "author_role": "handler",
+      "text": "Executor called chasing release of funds. Checked CORE, shows probate awaited, advised her we have not received probate and asked her to resend. Executor said she had sent it and became upset. - T Fairbairn"
+    }
+  ]
+}

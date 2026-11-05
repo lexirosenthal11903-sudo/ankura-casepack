@@ -1,0 +1,6 @@
+# Review: AI solutions architect, 5 Nov 2026
+Must: layered redaction (dictionary from structured case record + regex), plant labelled PII, report recall not "0", validate placeholders; rename citation check "provenance check" (entailment not checked), normalise quotes, match on redacted text, decide how missing-info items cite; injection defence by architecture (no tools, no outcome/compensation field in schema, untrusted-data wrapping); data residency (Vercel lhr1, production via Bedrock/Vertex UK/EU, zero retention); eval circularity (15 dev / 10 held-out, Lexi writes some cases, deterministic scoring); DISP 15/35 business days for payment services + E&W bank holidays.
+Should: latency 20-60s (stream/progress, check API tier); limiter degrade to demo; demo cache provenance stamps; pin model snapshot + log versions; audit logs redacted only, IP retention; human test = usability; vulnerability recall + FP rate, FG21/1.
+Ideas: trust-boundary diagram; "what was sent to model" + recall badge; cost/latency per pack; known-failure-modes panel.
+Cut: arrival feed, PDF export, handler-first (design only), value calculator page, three-tier Playwright (unit + 1 e2e smoke), EU AI Act prominence.
+Hard Qs: verbatim green but unsupported; "my late wife Margaret Okafor" what reaches model; contaminated eval + model risk committee.

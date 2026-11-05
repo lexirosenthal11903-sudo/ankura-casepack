@@ -1,0 +1,15 @@
+{
+  "id": "HV-001",
+  "issues": [ { "product": "current_account", "cause": "app_scam" } ],
+  "team": "fraud_scams",
+  "disp_clock": "8_weeks",
+  "vulnerability": { "present": true, "signals": ["bereavement", "age_lives_alone", "distress"] },
+  "already_with_fos": false,
+  "linked_complaint": false,
+  "outcome_sought": "Full refund of the two scam payments (£7,750 in total).",
+  "expected_policy_ids": ["CP-7.2", "CP-7.3", "CP-7.4", "CP-5.1", "CP-5.3", "CP-6.1"],
+  "missing_info": ["vulnerability_recorded", "linked_complaints_checked"],
+  "planted_pii": ["Mrs Ellison", "Ellison", "ELLISON", "David Ellison", "David", "30118842", "52260419", "4417", "P Raman"],
+  "tests": ["messy_call_note", "two_systems", "vulnerable_no_excess", "third_party_without_authority", "surname_inside_payee_name"],
+  "rationale": "A safe-account impersonation scam where the customer authorised two Faster Payments, so it is an APP scam for the Fraud and Scams team. The complaint stays on the 8-week clock because APP scams are authorised payments, not a Parts 6-7 PSRs execution issue. She is bereaved, elderly and lives alone, so the excess cannot apply (CP-7.2). Vulnerability is described but no support needs are recorded, and no linked-complaint check is noted."
+}

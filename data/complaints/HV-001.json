@@ -1,0 +1,42 @@
+{
+  "id": "HV-001",
+  "split": "dev",
+  "author": "claude",
+  "received": "2026-10-26",
+  "channel": "phone",
+  "record": {
+    "customer": { "name": "Margaret Ellison", "title": "Mrs", "dob": "1943-03-14", "address": "14 Larkfield Road, Shrewsbury", "postcode": "SY3 7PL", "phone": "01632 960 211", "email": "" },
+    "accounts": [
+      { "product": "current_account", "sort_code": "77-41-08", "number": "30118842", "card_last4": "4417" },
+      { "product": "savings", "sort_code": "77-41-08", "number": "52260419", "card_last4": "" }
+    ],
+    "other_parties": [ { "role": "THIRD_PARTY", "name": "David Ellison", "organisation": "" } ],
+    "staff": [ { "name": "Priya Raman", "role": "Complaints handler" } ]
+  },
+  "documents": [
+    {
+      "id": "D1",
+      "system": "CRM",
+      "type": "call_summary",
+      "date": "2026-10-26",
+      "author_role": "handler",
+      "text": "Inbound call from Mrs Ellison (ID&V passed) 10:42. Very upset, crying at times. Says on Thurs 22/10 she got a call from 'Harbour and Vale fraud team' saying her acc was being used by criminals and she had to move her money to a safe account. Caller knew her name and the last 4 digits of her card. She moved money from her savings to her current acc and then sent two payments on the app while still on the phone with them, £4,800 and then £2,950. Says the man told her what to type. She thinks there was a message on screen but 'he told me to press continue its normal'. Realised when her son David came round on Sat and told her it was a scam. She lives alone since her husband passed last year and says she 'cant sleep, that was money for my funeral'. She wants all her money back. Told her I would raise a complaint and the fraud team would be in touch. Advised her we will never ask her to move money. Gave complaint ref. - P Raman"
+    },
+    {
+      "id": "D2",
+      "system": "CORE",
+      "type": "system_log",
+      "date": "2026-10-22",
+      "author_role": "system",
+      "text": "22/10/2026 15:03 Internal transfer SAV 52260419 to CA 30118842 GBP 7,800.00. 22/10/2026 15:11 Faster Payment out CA 30118842 GBP 4,800.00 payee 'J ELLISON SAFE' receiving bank Northgate Payments Ltd. Confirmation of Payee result: NO MATCH. Scam warning shown: 'safe account' warning v4, customer selected Continue. 22/10/2026 15:19 Faster Payment out CA 30118842 GBP 2,950.00 payee 'J ELLISON SAFE' same account. Confirmation of Payee result: NO MATCH. Scam warning shown, customer selected Continue."
+    },
+    {
+      "id": "D3",
+      "system": "CRM",
+      "type": "crm_note",
+      "date": "2026-10-24",
+      "author_role": "handler",
+      "text": "Call from David Ellison (son) on 24/10 reporting his mother has been scammed. Not on the account, no authority on file. Advised mother must call in herself or we need third party authority. Fraud block placed on card ending 4417 as precaution."
+    }
+  ]
+}

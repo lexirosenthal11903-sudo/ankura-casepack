@@ -1,0 +1,57 @@
+{
+  "_note": "Handover checklists for each specialist team (fictional). Item ids are stable because the answer key and the scorer use them. Every handover also needs the common items.",
+  "common": [
+    { "id": "outcome_sought", "label": "Outcome the customer wants, in their words" },
+    { "id": "customer_contact_attempted", "label": "At least one documented attempt to contact the customer" },
+    { "id": "customer_told_of_handover", "label": "What the customer has been told about the handover" },
+    { "id": "vulnerability_recorded", "label": "Vulnerability signs and support needs recorded (or none seen)" },
+    { "id": "linked_complaints_checked", "label": "Earlier or linked complaints checked" }
+  ],
+  "teams": {
+    "fraud_scams": [
+      { "id": "payment_date", "label": "Date of each payment" },
+      { "id": "payment_amount", "label": "Amount of each payment" },
+      { "id": "payment_method", "label": "Payment method (Faster Payment, card, standing order)" },
+      { "id": "payee_details", "label": "Payee name and receiving bank" },
+      { "id": "date_reported", "label": "When the customer reported it" },
+      { "id": "warnings_shown", "label": "Warnings shown at the time of payment" },
+      { "id": "customer_account_of_events", "label": "Customer's account of events in their own words" },
+      { "id": "authorised_or_not", "label": "Whether the customer says they authorised the payment" }
+    ],
+    "bereavement_poa": [
+      { "id": "date_of_death", "label": "Date of death (bereavement cases)" },
+      { "id": "authority_type", "label": "Type of authority (executor, administrator, attorney, deputy)" },
+      { "id": "authority_evidence_status", "label": "Whether the authority documents are received and checked" },
+      { "id": "accounts_affected", "label": "Accounts affected" },
+      { "id": "relationship_to_customer", "label": "Complainant's relationship to the customer" }
+    ],
+    "financial_support": [
+      { "id": "balance_and_arrears", "label": "Current balance and arrears" },
+      { "id": "income_expenditure", "label": "Income and expenditure, or why not available" },
+      { "id": "forbearance_history", "label": "Forbearance offered or in place" },
+      { "id": "collections_status", "label": "Collections activity and whether it is paused" },
+      { "id": "debt_advice_signposted", "label": "Whether free debt advice was signposted" }
+    ],
+    "mortgages": [
+      { "id": "mortgage_account_status", "label": "Mortgage product, rate and term" },
+      { "id": "key_dates", "label": "Key dates (offer, switch, redemption, rate change)" },
+      { "id": "amount_in_dispute", "label": "Amount in dispute" },
+      { "id": "broker_involved", "label": "Whether a broker was involved" }
+    ],
+    "payments_disputes": [
+      { "id": "transaction_reference", "label": "Transaction date, amount and reference" },
+      { "id": "payment_type", "label": "Payment type (Faster Payment, CHAPS, Direct Debit, card)" },
+      { "id": "expected_vs_actual", "label": "What the customer expected and what happened" },
+      { "id": "merchant_or_payee", "label": "Merchant or payee" },
+      { "id": "customer_loss", "label": "Any loss or extra cost the customer says they suffered" }
+    ]
+  },
+  "send_back_reasons": [
+    { "id": "no_customer_contact", "label": "No customer contact attempted" },
+    { "id": "evidence_missing", "label": "Transaction or account evidence missing" },
+    { "id": "wrong_team", "label": "Wrong team" },
+    { "id": "outcome_not_captured", "label": "Outcome sought not captured" },
+    { "id": "authority_not_checked", "label": "Third-party authority not checked" },
+    { "id": "other", "label": "Other (free text)" }
+  ]
+}
