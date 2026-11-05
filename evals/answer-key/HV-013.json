@@ -1,0 +1,46 @@
+{
+  "id": "HV-013",
+  "issues": [
+    {
+      "product": "current_account",
+      "cause": "digital_outage"
+    }
+  ],
+  "team": "frontline",
+  "disp_clock": "8_weeks",
+  "vulnerability": {
+    "present": false,
+    "signals": []
+  },
+  "already_with_fos": false,
+  "linked_complaint": true,
+  "outcome_sought": "Cover the extra £360 he would pay for resale tickets, or other compensation, and reassurance that the app will not keep failing.",
+  "expected_policy_ids": [
+    "CP-2.4",
+    "CP-1.1",
+    "CP-4.1",
+    "CP-4.3",
+    "CP-10.2",
+    "CP-3.1"
+  ],
+  "missing_info": [
+    "vulnerability_recorded"
+  ],
+  "planted_pii": [
+    "Mr Asanti",
+    "Dan",
+    "24081597",
+    "6612",
+    "B Clarke",
+    "M Lee"
+  ],
+  "tests": [
+    "repeat_complaint",
+    "outage_cluster",
+    "misspelt_name_in_note",
+    "nickname",
+    "consequential_loss",
+    "staff_initials"
+  ],
+  "rationale": "The customer complained about app access in August and that complaint was closed on 12 Aug, so this is a repeat on the same subject within twelve months and CP-2.4 requires the link to be recorded. The cards log ties his failed purchase to in-app 3DS approvals being unavailable during the 30 Oct outage, which is also a root-cause point under CP-10.2. Whether to compensate the resale cost is a decision for a person, not the pack."
+}

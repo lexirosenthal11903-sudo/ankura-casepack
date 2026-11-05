@@ -1,0 +1,44 @@
+{
+  "id": "HV-015",
+  "split": "dev",
+  "author": "claude",
+  "received": "2026-11-05",
+  "channel": "web_form",
+  "record": {
+    "customer": {
+      "name": "Craig Pollard",
+      "title": "Mr",
+      "dob": "1972-11-28",
+      "address": "9 Fernhill Close, Walsall",
+      "postcode": "WS3 2LJ",
+      "phone": "0121 496 0184",
+      "email": "craigpollard72@example.com"
+    },
+    "accounts": [
+      {
+        "product": "current_account",
+        "sort_code": "77-41-33",
+        "number": "38419026",
+        "card_last4": "2741"
+      },
+      {
+        "product": "credit_card",
+        "sort_code": "",
+        "number": "71240388",
+        "card_last4": "5508"
+      }
+    ],
+    "other_parties": [],
+    "staff": []
+  },
+  "documents": [
+    {
+      "id": "D1",
+      "system": "WEBFORM",
+      "type": "web_form",
+      "date": "2026-11-05",
+      "author_role": "customer",
+      "text": "Complaint form (logged-in session) | Name: Craig P | Account: [not selected] | What happened: you have taken money from me AGAIN, sort it out or Im leaving | What would put it right: [blank]"
+    }
+  ]
+}

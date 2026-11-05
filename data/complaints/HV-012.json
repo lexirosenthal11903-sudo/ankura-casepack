@@ -1,0 +1,59 @@
+{
+  "id": "HV-012",
+  "split": "dev",
+  "author": "claude",
+  "received": "2026-10-20",
+  "channel": "email",
+  "record": {
+    "customer": {
+      "name": "Hamza Qureshi",
+      "title": "Mr",
+      "dob": "1989-10-03",
+      "address": "41 Stratford Road, Sparkhill, Birmingham",
+      "postcode": "B11 1AR",
+      "phone": "0121 496 0627",
+      "email": "hamza.qureshi@example.com"
+    },
+    "accounts": [
+      {
+        "product": "current_account",
+        "sort_code": "77-41-44",
+        "number": "35127760",
+        "card_last4": "9318"
+      }
+    ],
+    "other_parties": [],
+    "staff": [
+      {
+        "name": "Grace Whitfield",
+        "role": "Complaints handler"
+      }
+    ]
+  },
+  "documents": [
+    {
+      "id": "D1",
+      "system": "EMAIL",
+      "type": "email",
+      "date": "2026-10-20",
+      "author_role": "customer",
+      "text": "Subject: Loan decision - still not happy\n\nHello,\n\nI'm writing again about the £8,000 loan you turned down in August. I wanted it to clear my two credit cards which are maxed out and the interest is killing me, every month it gets worse. You said in your letter you would not change the decision, so my case is already with the ombudsman, ref FOS-2026-118842.\n\nSince then I've had a pay rise (attached payslip shows £2,480 a month now, not £2,150) so I really think you should look at it again. I've been with your bank 9 years and I don't understand how you can just say no. I'm not sleeping well over this to be honest.\n\nPlease reconsider and let me know.\n\nHamza\n07700 900 871"
+    },
+    {
+      "id": "D2",
+      "system": "CRM",
+      "type": "crm_note",
+      "date": "2026-09-15",
+      "author_role": "handler",
+      "text": "Complaint CMP-2026-30917 (Mr Qureshi, PL decline 29/08). Reviewed decision, affordability decline correctly applied per lending policy, DTI over limit. Not upheld. Final response sent 15/09 by email with FOS leaflet and 6 month referral rights. Closed. - GW"
+    },
+    {
+      "id": "D3",
+      "system": "CORE",
+      "type": "system_log",
+      "date": "2026-08-29",
+      "author_role": "system",
+      "text": "PL APP 29/08/2026 online. Amount GBP 8,000 term 48m purpose DEBT CONSOLIDATION. Declared net income GBP 2,150/m. Housing GBP 725/m. Bureau credit commitments GBP 610/m (2 x credit card, combined bal GBP 7,940, util 99%). DTI 48% (limit 40%). Decision DECLINE reason AFF-03 affordability. Decline letter issued 29/08/2026."
+    }
+  ]
+}

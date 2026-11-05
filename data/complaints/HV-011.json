@@ -1,0 +1,63 @@
+{
+  "id": "HV-011",
+  "split": "dev",
+  "author": "claude",
+  "received": "2026-10-14",
+  "channel": "email",
+  "record": {
+    "customer": {
+      "name": "Rebecca Osei",
+      "title": "Ms",
+      "dob": "1993-04-08",
+      "address": "Flat 12, Albion Court, 88 Lordship Lane, London",
+      "postcode": "SE22 8HF",
+      "phone": "020 7946 0461",
+      "email": "rebecca.osei@example.com"
+    },
+    "accounts": [
+      {
+        "product": "current_account",
+        "sort_code": "77-41-05",
+        "number": "26398814",
+        "card_last4": "4079"
+      }
+    ],
+    "other_parties": [],
+    "staff": [
+      {
+        "name": "Jonah Price",
+        "role": "Complaints handler"
+      },
+      {
+        "name": "Rachel Fenwick",
+        "role": "Team leader"
+      }
+    ]
+  },
+  "documents": [
+    {
+      "id": "D1",
+      "system": "EMAIL",
+      "type": "email",
+      "date": "2026-10-14",
+      "author_role": "customer",
+      "text": "Subject: Gym direct debit taken TWICE after I cancelled it\n\nHi there,\n\nI cancelled my direct debit to Corefield Fitness in your app on the evening of Friday 2nd October. The app showed it as cancelled straight away and I have a screenshot. Despite that, £42.99 went out on Monday 5th and then ANOTHER £42.99 on the 12th. The gym says I'm 'still in my notice period' and that it's between me and my bank.\n\nI cancelled the membership with them by email on 30/09 as well. I don't see how you can let a company take money when the direct debit isn't there any more. I'd like both payments (£85.98) put back in my account and confirmation they can't take anything else.\n\nYou can reach me on 07700 900 238 if easier, I'm not always near my landline.\n\nThanks\nBex\n\nRebecca Osei\nSort code 77-41-05"
+    },
+    {
+      "id": "D2",
+      "system": "CORE",
+      "type": "system_log",
+      "date": "2026-10-14",
+      "author_role": "system",
+      "text": "CA 26398814. DDI ref CFL-00418823 originator COREFIELD FITNESS LTD SUN 448120. 02/10/2026 23:48 DDI CANCELLED via mobile app. AUDDIS 0C advice sent 05/10/2026. 05/10/2026 DD paid GBP 42.99 COREFIELD FITNESS (BACS input 01/10/2026, collection already in cycle at cancellation). 12/10/2026 DD paid GBP 42.99 COREFIELD FITNESS ref 'FINAL MONTH NOTICE' - DDI status at presentation: CANCELLED. Not rejected. Exception code DD-NR-07 (cancelled mandate reject rule not applied)."
+    },
+    {
+      "id": "D3",
+      "system": "CRM",
+      "type": "crm_note",
+      "date": "2026-10-15",
+      "author_role": "handler",
+      "text": "Ms Osei - 2 x £42.99 gym DDs after she cancelled DDI in app 02/10. 2nd one (12/10) should have bounced, CORE shows reject rule failed. 1st one maybe already in BACS cycle. Is this a DD Guarantee indemnity claim or unauth payment under PSRs (15 day clock)? Prob both for diff payments. Asked RF to confirm which clock. Emailed cust 15/10 asking for copy of gym cancellation email, no reply yet. Sending to Payments & Disputes. - JP"
+    }
+  ]
+}

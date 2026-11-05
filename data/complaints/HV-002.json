@@ -1,0 +1,65 @@
+{
+  "id": "HV-002",
+  "split": "dev",
+  "author": "claude",
+  "received": "2026-10-19",
+  "channel": "email",
+  "record": {
+    "customer": {
+      "name": "Tariq Hussain",
+      "title": "Mr",
+      "dob": "1984-02-09",
+      "address": "27 Toller Lane, Bradford",
+      "postcode": "BD8 9DE",
+      "phone": "01632 960 548",
+      "email": "t.hussain84@example.com"
+    },
+    "accounts": [
+      {
+        "product": "current_account",
+        "sort_code": "77-41-15",
+        "number": "27450918",
+        "card_last4": "6630"
+      }
+    ],
+    "other_parties": [
+      {
+        "role": "THIRD_PARTY",
+        "name": "Gary Whitworth",
+        "organisation": "Hollinwood & Shaw Building Services"
+      }
+    ],
+    "staff": [
+      {
+        "name": "Lauren Mills",
+        "role": "Complaints handler"
+      }
+    ]
+  },
+  "documents": [
+    {
+      "id": "D1",
+      "system": "EMAIL",
+      "type": "email",
+      "date": "2026-10-19",
+      "author_role": "customer",
+      "text": "Subject: Payment to my builder went missing for 3 days - complaint\n\nHello,\n\nOn Tuesday 13th Oct at about 2.20pm I sent £1,250 by Faster Payment from my current account to my builder, Hollinwood & Shaw Building Services, for the second stage of my kitchen extension. The app said 'Payment sent' straight away. I have used this payee before with no issue.\n\nThe builder rang me the next day and said nothing had come in. Gary (the owner) was not happy and said he could not order the steel without it. I rang you on the 14th and was told the payment 'had left our side' and to wait. It finally landed in his account on Friday 16th, three days later. By then he had lost his delivery slot and he has charged me £75 to rebook the delivery and his lads, and the job has slipped a week.\n\nI want to know where my money was for three days, I want the £75 back and I think I am owed something for the stress, I had to take a day off to sort this out.\n\nBest number for me in the day is my work mobile 07700 900 316.\n\nThanks\nTaz Hussain\n(Tariq Hussain, acct 27450918)"
+    },
+    {
+      "id": "D2",
+      "system": "CORE",
+      "type": "system_log",
+      "date": "2026-10-16",
+      "author_role": "system",
+      "text": "FPS OUT 13/10/2026 14:22:07 DR CA 27450918 GBP 1,250.00 ref 'KITCHEN STG2 HUSSAIN' payee HOLLINWOOD & SHAW BLDG SVS sort 77-41-63. Status ACCEPTED. 13/10/2026 14:22:09 ROUTING EXCEPTION: beneficiary sort code mapped to legacy agency table (TBL-AGY v2.7), payment posted to internal suspense GL 99-410. 16/10/2026 09:51 Manual repair by Payments Ops (batch RPR-1016-04), resubmitted FPS. 16/10/2026 09:51:40 Status SETTLED. Note: 41 payments affected by same agency table fault 12/10-15/10, see PRB-2026-0442."
+    },
+    {
+      "id": "D3",
+      "system": "CRM",
+      "type": "crm_note",
+      "date": "2026-10-19",
+      "author_role": "handler",
+      "text": "Complaint logged from email. Cust (Mr Hussian) says FP of 1250 to builder delayed 3 days, wants £75 rebooking fee + comp. CORE shows payment sat in suspense 13/10-16/10 due to routing table fault, so not cust error. Tried to call 01632 960 548 at 15:10, no answer, LVM asking him to call back. Needs Payments & Disputes for PSR redress calc. - LM"
+    }
+  ]
+}

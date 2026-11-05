@@ -1,0 +1,52 @@
+{
+  "id": "HV-002",
+  "issues": [
+    {
+      "product": "current_account",
+      "cause": "payment_problem"
+    }
+  ],
+  "team": "payments_disputes",
+  "disp_clock": "15_business_days",
+  "vulnerability": {
+    "present": false,
+    "signals": []
+  },
+  "already_with_fos": false,
+  "linked_complaint": false,
+  "outcome_sought": "An explanation of where the £1,250 was for three days, a refund of the builder's £75 rebooking charge, and compensation for the stress and a lost day off work.",
+  "expected_policy_ids": [
+    "CP-3.2",
+    "CP-4.1",
+    "CP-4.3",
+    "CP-6.1",
+    "CP-6.2"
+  ],
+  "missing_info": [
+    "customer_told_of_handover",
+    "vulnerability_recorded",
+    "linked_complaints_checked"
+  ],
+  "planted_pii": [
+    "Tariq Hussain",
+    "Taz Hussain",
+    "Mr Hussian",
+    "HUSSAIN",
+    "Hussain",
+    "Gary",
+    "27450918",
+    "07700 900 316",
+    "01632 960 548",
+    "LM"
+  ],
+  "tests": [
+    "psrs_15_day_clock",
+    "wrongly_executed_payment",
+    "nickname",
+    "misspelt_name_in_note",
+    "pii_not_in_record",
+    "surname_inside_payment_reference",
+    "staff_initials"
+  ],
+  "rationale": "The bank accepted a Faster Payment and then held it in suspense for three days because of its own routing fault, which is a wrongly executed payment under Parts 6-7 PSRs, so the 15 business day clock applies and Payments and Disputes owns it. Every payments checklist item is in the documents, and a contact attempt is logged, but nothing records what he was told about the handover, vulnerability or a linked-complaint check."
+}

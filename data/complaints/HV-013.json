@@ -1,0 +1,71 @@
+{
+  "id": "HV-013",
+  "split": "dev",
+  "author": "claude",
+  "received": "2026-11-02",
+  "channel": "phone",
+  "record": {
+    "customer": {
+      "name": "Daniel Asante",
+      "title": "Mr",
+      "dob": "1998-09-14",
+      "address": "23 Wickham Road, Brockley, London",
+      "postcode": "SE4 1NF",
+      "phone": "020 7946 0753",
+      "email": "dan.asante@example.com"
+    },
+    "accounts": [
+      {
+        "product": "current_account",
+        "sort_code": "77-41-11",
+        "number": "24081597",
+        "card_last4": "6612"
+      }
+    ],
+    "other_parties": [],
+    "staff": [
+      {
+        "name": "Bethany Clarke",
+        "role": "Complaints handler"
+      },
+      {
+        "name": "Marcus Lee",
+        "role": "Complaints handler"
+      }
+    ]
+  },
+  "documents": [
+    {
+      "id": "D1",
+      "system": "CRM",
+      "type": "call_summary",
+      "date": "2026-11-02",
+      "author_role": "handler",
+      "text": "Inbound 09:48 Mr Asanti, ID&V passed. Fri 30/10 he was trying to buy 2 presale tickets for Corvid Bloom at Halden Arena, presale only open 10-12. Card payment needed approving in app (3DS) and the app was down, tried 3 times, all timed out. Presale sold out, general sale sold out in mins, only resale now at approx £180 more per ticket. Says 'this is the second time in three months your app has let me down' and he is 'seriously looking at moving banks'. Wants the extra £360 he'd have to pay on resale covered, or some compensation, and to know the app wont keep failing. Checked CRM, prev complaint Aug 2026 re app login failures, closed 12/08, same subject (app access), linked. Told him logged as complaint, will investigate and come back within 8 wks. - B Clarke"
+    },
+    {
+      "id": "D2",
+      "system": "CRM",
+      "type": "crm_note",
+      "date": "2026-08-12",
+      "author_role": "handler",
+      "text": "Complaint CMP-2026-24471 closed. Dan reported unable to log in to app 03/08-07/08 after app update v8.14 ('session expired' loop). Known defect, fixed in v8.15 on 07/08. Apologised, £25 goodwill credited to CA 24081597. Cust satisfied, summary resolution letter sent with FOS rights. - M Lee"
+    },
+    {
+      "id": "D3",
+      "system": "CORE",
+      "type": "system_log",
+      "date": "2026-10-30",
+      "author_role": "system",
+      "text": "INCIDENT INC-2026-1030-01 (P1) Service: H&V mobile app + online banking. Impact: app and online banking unavailable 30/10/2026 07:10-15:40. Cause: failed certificate rotation on authentication gateway following overnight change CHG-88213. Card payments and ATMs unaffected, 3DS in-app approvals unavailable for duration. Telephone banking queues peaked 74 min. Status: RESOLVED 15:40. Customer impact review: open, owner Digital Ops."
+    },
+    {
+      "id": "D4",
+      "system": "CARDS",
+      "type": "system_log",
+      "date": "2026-10-30",
+      "author_role": "system",
+      "text": "Card 6612. 30/10/2026 10:00:41 e-com AUTH REQ HALDEN ARENA TICKETS GBP 147.50 3DS challenge (in-app) sent, no response, TIMEOUT, declined. 30/10/2026 10:06:12 same merchant GBP 147.50 3DS TIMEOUT declined. 30/10/2026 10:19:55 same merchant GBP 147.50 3DS TIMEOUT declined. No SMS OTP fallback configured for card."
+    }
+  ]
+}

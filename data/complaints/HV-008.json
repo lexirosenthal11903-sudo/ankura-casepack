@@ -1,0 +1,71 @@
+{
+  "id": "HV-008",
+  "split": "dev",
+  "author": "claude",
+  "received": "2026-10-16",
+  "channel": "letter",
+  "record": {
+    "customer": {
+      "name": "Fiona Gallagher",
+      "title": "Mrs",
+      "dob": "1975-03-22",
+      "address": "19 Ravensworth Gardens, Gateshead",
+      "postcode": "NE9 6LT",
+      "phone": "07700 900 744",
+      "email": ""
+    },
+    "accounts": [
+      {
+        "product": "mortgage",
+        "sort_code": "",
+        "number": "81502297",
+        "card_last4": ""
+      },
+      {
+        "product": "current_account",
+        "sort_code": "77-41-58",
+        "number": "22694013",
+        "card_last4": "5023"
+      }
+    ],
+    "other_parties": [
+      {
+        "role": "THIRD_PARTY",
+        "name": "Mark Thornbury",
+        "organisation": "Kestrel Mortgage Solutions"
+      }
+    ],
+    "staff": [
+      {
+        "name": "Imran Bashir",
+        "role": "Mortgage servicing administrator"
+      }
+    ]
+  },
+  "documents": [
+    {
+      "id": "D1",
+      "system": "LETTER",
+      "type": "letter",
+      "date": "2026-10-14",
+      "author_role": "third_party",
+      "text": "Kestrel Mortgage Solutions\nIndependent Mortgage Advice\n\n14 October 2026\n\nComplaints Department\nHarbour & Vale Bank\n\nDear Sir or Madam\n\nRe: Mrs F Gallagher, 19 Ravensworth Gardens, Gateshead NE9 6LT. Mortgage account 8150 2297\n\nI write on behalf of my client, Mrs Gallagher, whose signed letter of authority is enclosed.\n\nMy client's five year fixed rate of 2.19% expired on 31 August 2026. I submitted a product transfer to your 2 year fix at 4.34% through your intermediary portal on 4 August 2026 (portal ref PT-0804-77612), well within your stated 45 day window, and received an automated acknowledgement. Despite chasing by phone on 2 and 23 September, the switch was not completed until 6 October and only took effect from 1 November.\n\nAs a result Mrs Gallagher was charged your standard variable rate of 7.49% for September and October. Her monthly payment rose from £1,186.20 to approximately £1,391, an overpayment of roughly £410 across the two months. She has also been caused considerable worry, having budgeted carefully for the new rate.\n\nWe ask that you refund the difference between the SVR and the agreed product rate for the affected period, and backdate the new product to 1 September 2026.\n\nPlease direct correspondence to me at mark.thornbury@example.com or 0113 496 0318, copying my client.\n\nYours faithfully\n\nMark Thornbury CeMAP\nMortgage Adviser\n\nEnc. Letter of authority signed F. Gallagher 09/10/2026"
+    },
+    {
+      "id": "D2",
+      "system": "CRM",
+      "type": "crm_note",
+      "date": "2026-10-16",
+      "author_role": "handler",
+      "text": "Broker complaint rec'd by post for Gallagher mtg acct 81502297. LOA enclosed, signed by cust 09/10/26, names Kestrel/M Thornbury, covers 'my complaint about the delay to my product switch'. Scanned. Note: PT application on mortgage system shows RECEIVED 19/08/2026, not 04/08 as broker states. Portal ref PT-0804-77612 not found on intermediary portal search, possible archive issue, raised with IT. PT backlog Aug-Sep known (approx 3 wk SLA breach). - I Bashir"
+    },
+    {
+      "id": "D3",
+      "system": "CORE",
+      "type": "system_log",
+      "date": "2026-10-16",
+      "author_role": "system",
+      "text": "MTG 81502297. Product: 5yr fixed 2.19% to 31/08/2026. 01/09/2026 reverted to SVR 7.49%. Monthly pmt 01/09 GBP 1,391.48, 01/10 GBP 1,390.96 (prev GBP 1,186.20). Product transfer: 2yr fixed 4.34%, offer issued 02/10/2026, accepted 05/10/2026, completed 06/10/2026, effective 01/11/2026. New monthly pmt GBP 1,298.37. Balance GBP 214,880.15. Remaining term 18y 7m. Repayment basis: capital and interest. Arrears: nil."
+    }
+  ]
+}

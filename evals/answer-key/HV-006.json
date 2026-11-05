@@ -1,0 +1,58 @@
+{
+  "id": "HV-006",
+  "issues": [
+    {
+      "product": "overdraft",
+      "cause": "fees_interest"
+    },
+    {
+      "product": "current_account",
+      "cause": "staff_conduct"
+    },
+    {
+      "product": "current_account",
+      "cause": "digital_outage"
+    }
+  ],
+  "team": "frontline",
+  "disp_clock": "8_weeks",
+  "vulnerability": {
+    "present": false,
+    "signals": []
+  },
+  "already_with_fos": false,
+  "linked_complaint": false,
+  "outcome_sought": "Refund of the £35 overdraft charges, an apology and for someone to speak to the staff member, and an explanation of the outage with assurance it will not happen again.",
+  "expected_policy_ids": [
+    "CP-2.3",
+    "CP-1.1",
+    "CP-1.3",
+    "CP-4.3",
+    "CP-10.2",
+    "CP-3.1"
+  ],
+  "missing_info": [
+    "vulnerability_recorded",
+    "linked_complaints_checked"
+  ],
+  "planted_pii": [
+    "Ms Ayesha Rahman",
+    "Aisha Rahman",
+    "0113 496 0582",
+    "3447 0921",
+    "34470921",
+    "DH",
+    "Dean",
+    "Kwame",
+    "K Osei"
+  ],
+  "tests": [
+    "multiple_issues",
+    "outage_cluster",
+    "two_channels_same_complaint",
+    "staff_names_and_initials",
+    "misspelt_name_in_note",
+    "account_number_with_space"
+  ],
+  "rationale": "One complaint raises three separate issues with different causes, the overdraft fees, a staff member's conduct and the outage, so CP-2.3 requires each to be recorded and answered on its own. The branch note and email describe the same complaint and should be merged, not logged twice. The account log shows the unarranged usage on the outage day, which supports the fee point, but no vulnerability note or linked-complaint check exists."
+}

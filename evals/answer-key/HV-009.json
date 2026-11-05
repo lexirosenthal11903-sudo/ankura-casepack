@@ -1,0 +1,52 @@
+{
+  "id": "HV-009",
+  "issues": [
+    {
+      "product": "overdraft",
+      "cause": "affordability_arrears"
+    }
+  ],
+  "team": "financial_support",
+  "disp_clock": "8_weeks",
+  "vulnerability": {
+    "present": false,
+    "signals": []
+  },
+  "already_with_fos": false,
+  "linked_complaint": false,
+  "outcome_sought": "Refund of all interest, fees and charges since the account opened plus 8% simple interest, removal of adverse credit file entries, and copies of statements and affordability checks.",
+  "expected_policy_ids": [
+    "CP-8.3",
+    "CP-1.2",
+    "CP-4.5",
+    "CP-4.1",
+    "CP-2.4",
+    "CP-6.1"
+  ],
+  "missing_info": [
+    "customer_contact_attempted",
+    "customer_told_of_handover",
+    "vulnerability_recorded",
+    "income_expenditure",
+    "forbearance_history",
+    "collections_status",
+    "debt_advice_signposted"
+  ],
+  "planted_pii": [
+    "MR L. SUTCLIFE",
+    "Sutclife",
+    "Mr Lee Sutcliffe",
+    "44719930",
+    "44719903",
+    "HL"
+  ],
+  "tests": [
+    "cmc_template",
+    "authority_does_not_cover_complaint",
+    "wrong_identifiers",
+    "misspelt_name",
+    "not_enough_information",
+    "old_complaint_outside_12_months"
+  ],
+  "rationale": "The claims company's only authority covers a closed 2025 packaged account complaint, not this one, so CP-8.3 and CP-1.2 mean the authority must be checked and the customer contacted before anything is discussed. The letter is boilerplate with a wrong account number, a wrong sort code and products he never held, and the pack must say what is unknown rather than build a case from it. The earlier complaint is outside the twelve month window, so it is checked but not linked."
+}

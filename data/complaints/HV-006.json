@@ -1,0 +1,77 @@
+{
+  "id": "HV-006",
+  "split": "dev",
+  "author": "claude",
+  "received": "2026-11-02",
+  "channel": "branch",
+  "record": {
+    "customer": {
+      "name": "Aisha Rahman",
+      "title": "Ms",
+      "dob": "1990-12-04",
+      "address": "56 Harehills Avenue, Leeds",
+      "postcode": "LS8 4EX",
+      "phone": "0113 496 0582",
+      "email": "aisha.rahman@example.com"
+    },
+    "accounts": [
+      {
+        "product": "current_account",
+        "sort_code": "77-41-27",
+        "number": "34470921",
+        "card_last4": "8816"
+      },
+      {
+        "product": "overdraft",
+        "sort_code": "77-41-27",
+        "number": "34470921",
+        "card_last4": ""
+      }
+    ],
+    "other_parties": [],
+    "staff": [
+      {
+        "name": "Kwame Osei",
+        "role": "Branch customer adviser, Leeds Boar Lane"
+      },
+      {
+        "name": "Dean Hargreaves",
+        "role": "Branch customer adviser, Leeds Boar Lane"
+      }
+    ]
+  },
+  "documents": [
+    {
+      "id": "D1",
+      "system": "BRANCH",
+      "type": "branch_note",
+      "date": "2026-11-02",
+      "author_role": "branch_staff",
+      "text": "Leeds Boar Lane. Cust Ms Ayesha Rahman came in approx 12.30, upset. Wanted to dispute £35 overdraft charges on Oct statement. Says she would not have gone into unarranged o/d if she could have moved money on Fri 30/10 but couldnt log in to app all day. Also says when she came in Sat 31/10 to ask about it, colleague DH told her 'the app was fine, you must have forgotten your password' and 'there's nothing I can do, it's in the T&Cs', in front of other customers, and walked off while she was talking. She found this humiliating. I apologised, explained I cant refund fees in branch, told her it will be logged as a complaint and complaints team will call her back. She gave mobile 0113 496 0582. - K Osei"
+    },
+    {
+      "id": "D2",
+      "system": "EMAIL",
+      "type": "email",
+      "date": "2026-11-03",
+      "author_role": "customer",
+      "text": "Subject: Complaint from yesterday at Boar Lane\n\nHi,\n\nI was in the Boar Lane branch yesterday and the man there (Kwame) was really kind and said I'd get a call. I want to put it in writing as well so nothing gets missed.\n\n1. I was charged £35 in overdraft fees for October. I only went overdrawn because I couldn't get into my app on Friday 30th to move my money across from my savings. I want that refunded.\n2. The staff member I spoke to on Saturday, Dean, was rude and dismissive. He told me I'd forgotten my password in front of a queue of people, which was embarrassing, and then just walked away. I want an apology and for someone to speak to him.\n3. Your app was down for most of Friday, which was payday for a lot of people. Nobody told me anything, there was no message in the app or a text. I want to know what happened and that it won't happen again.\n\nThanks,\nAisha Rahman\nAccount 3447 0921"
+    },
+    {
+      "id": "D3",
+      "system": "CORE",
+      "type": "system_log",
+      "date": "2026-10-30",
+      "author_role": "system",
+      "text": "INCIDENT INC-2026-1030-01 (P1) Service: H&V mobile app + online banking. Impact: app and online banking unavailable 30/10/2026 07:10-15:40. Cause: failed certificate rotation on authentication gateway following overnight change CHG-88213. Card payments and ATMs unaffected, 3DS in-app approvals unavailable for duration. Telephone banking queues peaked 74 min. Status: RESOLVED 15:40. Customer impact review: open, owner Digital Ops."
+    },
+    {
+      "id": "D4",
+      "system": "CORE",
+      "type": "system_log",
+      "date": "2026-11-02",
+      "author_role": "system",
+      "text": "CA 34470921. Arranged o/d limit GBP 250. 30/10/2026 balance moved to GBP -412.55 (unarranged GBP 162.55) after card spend + SO. 31/10/2026 Transfer SAV>CA GBP 600.00 (branch counter). 02/11/2026 Overdraft charges Oct GBP 35.00 debited (arranged interest GBP 6.20, unarranged usage fee GBP 28.80). No fee refunds in last 12m."
+    }
+  ]
+}

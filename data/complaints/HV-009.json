@@ -1,0 +1,71 @@
+{
+  "id": "HV-009",
+  "split": "dev",
+  "author": "claude",
+  "received": "2026-09-24",
+  "channel": "letter",
+  "record": {
+    "customer": {
+      "name": "Lee Sutcliffe",
+      "title": "Mr",
+      "dob": "1987-07-11",
+      "address": "112 Moorside Road, Swinton, Manchester",
+      "postcode": "M27 0HW",
+      "phone": "0161 496 0219",
+      "email": ""
+    },
+    "accounts": [
+      {
+        "product": "current_account",
+        "sort_code": "77-41-36",
+        "number": "44719903",
+        "card_last4": "7742"
+      },
+      {
+        "product": "overdraft",
+        "sort_code": "77-41-36",
+        "number": "44719903",
+        "card_last4": ""
+      }
+    ],
+    "other_parties": [
+      {
+        "role": "CMC",
+        "name": "",
+        "organisation": "Reclaim Partners Ltd"
+      }
+    ],
+    "staff": [
+      {
+        "name": "Hannah Lowe",
+        "role": "Complaints handler"
+      }
+    ]
+  },
+  "documents": [
+    {
+      "id": "D1",
+      "system": "LETTER",
+      "type": "letter",
+      "date": "2026-09-21",
+      "author_role": "cmc",
+      "text": "RECLAIM PARTNERS LTD\nAuthorised and regulated by the Financial Conduct Authority\n\nOur ref: RP/OD/558120\nDate: 21/09/2026\n\nTo: The Complaints Department, Harbour and Vale Bank PLC\n\nRE: OUR CLIENT MR L. SUTCLIFE\nAccount number: 44719930   Sort code: 77-41-63\nProduct: Overdraft / Credit Card / Loan\n\nLETTER OF COMPLAINT - IRRESPONSIBLE LENDING\n\nWe act on behalf of the above named client in respect of the above lending. A Letter of Authority has previously been provided.\n\nIt is our client's position that the lending was unaffordable at the point of sale and at each subsequent limit increase, and that you failed to carry out reasonable and proportionate creditworthiness checks as required by CONC 5.2A. Our client states that he was reliant on the facility, was persistently in debt and that the lending caused him financial harm.\n\nWe therefore request that you:\n(a) refund all interest, fees and charges applied to the account(s) from inception;\n(b) add statutory interest at 8% simple per annum;\n(c) remove any adverse information from our client's credit file;\n(d) provide copies of all statements, credit checks and affordability assessments within 15 days.\n\nPlease do not contact our client directly. All correspondence should be addressed to this office.\n\nYours faithfully\nClaims Team\nReclaim Partners Ltd"
+    },
+    {
+      "id": "D2",
+      "system": "CRM",
+      "type": "crm_note",
+      "date": "2026-09-24",
+      "author_role": "handler",
+      "text": "CMC letter rec'd (Reclaim Partners, ref RP/OD/558120). Name spelt 'Sutclife', acct no 44719930 not ours, closest match by name + DOB search is Mr Lee Sutcliffe acct 44719903, sort code on letter (77-41-63) also wrong. Only product held is CA with arranged o/d. Letter lists o/d, credit card and loan, cust has never held card or loan with us. LOA on file from Reclaim Partners dated 11/03/2025 covers 'packaged bank account mis-selling' only, that complaint closed 22/04/2025 not upheld. No LOA for irresponsible lending. Have not contacted cust yet. - HL"
+    },
+    {
+      "id": "D3",
+      "system": "CORE",
+      "type": "system_log",
+      "date": "2026-09-24",
+      "author_role": "system",
+      "text": "CA 44719903 opened 14/06/2019. Arranged o/d history: 14/06/2019 GBP 250, 02/02/2021 GBP 750 (cust request, app), 19/08/2022 GBP 1,500 (pre-approved offer, accepted in app). Current balance GBP -1,182.40. Days in o/d last 12m: 341. Overdraft interest/fees last 12m GBP 427.18. Arrears: none. Repeat use letters sent 03/2023, 03/2024, 03/2025."
+    }
+  ]
+}

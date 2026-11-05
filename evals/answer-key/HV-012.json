@@ -1,0 +1,48 @@
+{
+  "id": "HV-012",
+  "issues": [
+    {
+      "product": "personal_loan",
+      "cause": "affordability_arrears"
+    }
+  ],
+  "team": "ombudsman_liaison",
+  "disp_clock": "8_weeks",
+  "vulnerability": {
+    "present": true,
+    "signals": [
+      "financial_difficulty",
+      "distress"
+    ]
+  },
+  "already_with_fos": true,
+  "linked_complaint": true,
+  "outcome_sought": "Reconsider the declined £8,000 debt consolidation loan in light of his pay rise.",
+  "expected_policy_ids": [
+    "CP-3.5",
+    "CP-2.4",
+    "CP-3.4",
+    "CP-4.4",
+    "CP-5.1"
+  ],
+  "missing_info": [
+    "customer_contact_attempted",
+    "customer_told_of_handover",
+    "vulnerability_recorded"
+  ],
+  "planted_pii": [
+    "Hamza",
+    "Mr Qureshi",
+    "07700 900 871",
+    "GW"
+  ],
+  "tests": [
+    "already_with_fos",
+    "linked_earlier_complaint",
+    "first_name_only",
+    "pii_not_in_record",
+    "staff_initials",
+    "new_evidence_after_final_response"
+  ],
+  "rationale": "The customer says the complaint is already with the Ombudsman and gives the reference, and the CRM shows a final response on the same decline on 15 Sep, so CP-3.5 means recording the reference and passing to Ombudsman liaison rather than starting a new investigation. His pay rise is new evidence a person must decide what to do with. He describes maxed-out cards and lost sleep, but no vulnerability note or debt advice signposting is recorded. It goes to the Ombudsman Liaison team, so only the common handover items apply."
+}

@@ -1,0 +1,60 @@
+{
+  "id": "HV-003",
+  "split": "dev",
+  "author": "claude",
+  "received": "2026-11-02",
+  "channel": "web_form",
+  "record": {
+    "customer": {
+      "name": "Chloe Brennan",
+      "title": "Ms",
+      "dob": "1996-08-30",
+      "address": "Flat 3, 41 Hoole Road, Chester",
+      "postcode": "CH2 3NH",
+      "phone": "07700 900 127",
+      "email": "chloe.brennan@example.com"
+    },
+    "accounts": [
+      {
+        "product": "current_account",
+        "sort_code": "77-41-40",
+        "number": "39182264",
+        "card_last4": "2208"
+      },
+      {
+        "product": "savings",
+        "sort_code": "77-41-40",
+        "number": "59011837",
+        "card_last4": ""
+      }
+    ],
+    "other_parties": [],
+    "staff": []
+  },
+  "documents": [
+    {
+      "id": "D1",
+      "system": "WEBFORM",
+      "type": "web_form",
+      "date": "2026-11-01",
+      "author_role": "customer",
+      "text": "Complaint form | Name: Chloe Brennan | Account: current acct ending 2264 | Contact email: cbrennan.work@example.com | Preferred contact: email\nWhat happened: My wages go into my instant saver and on payday I move what I need into my current account to cover my bills. Friday 30th was payday and your app and online banking were down ALL DAY. I tried from about 8am, kept getting 'something went wrong'. Phone line was over an hour wait and I was at work. My energy direct debit (Lumen Home Energy, £96.40) bounced because the money was stuck in my savings. You then charged me £15 for the unpaid item and Lumen have added a £20 late payment fee. This was not my fault, it was your system.\nWhat would put it right: Refund the £15 and pay me the £20 Lumen charged. That's all I want."
+    },
+    {
+      "id": "D2",
+      "system": "CORE",
+      "type": "system_log",
+      "date": "2026-10-30",
+      "author_role": "system",
+      "text": "INCIDENT INC-2026-1030-01 (P1) Service: H&V mobile app + online banking. Impact: app and online banking unavailable 30/10/2026 07:10-15:40. Cause: failed certificate rotation on authentication gateway following overnight change CHG-88213. Card payments and ATMs unaffected, 3DS in-app approvals unavailable for duration. Telephone banking queues peaked 74 min. Status: RESOLVED 15:40. Customer impact review: open, owner Digital Ops."
+    },
+    {
+      "id": "D3",
+      "system": "CORE",
+      "type": "system_log",
+      "date": "2026-11-02",
+      "author_role": "system",
+      "text": "CA 39182264. 30/10/2026 00:01 Credit BACS SALARY ref 'ARDEN LOGISTICS PAY' to SAV 59011837 GBP 1,842.17. 30/10/2026 06:00 DD presented LUMEN HOME ENERGY GBP 96.40. Available balance GBP 31.08. DD RETURNED UNPAID (ARUDD reason 0 refer to payer) 30/10/2026 17:30. 02/11/2026 Unpaid item fee GBP 15.00 debited. No transfers SAV>CA 30/10. Last transfer SAV>CA 30/09/2026 08:14 GBP 1,200.00 (mobile)."
+    }
+  ]
+}

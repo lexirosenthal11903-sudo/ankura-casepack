@@ -1,0 +1,71 @@
+{
+  "id": "HV-005",
+  "split": "dev",
+  "author": "claude",
+  "received": "2026-11-03",
+  "channel": "phone",
+  "record": {
+    "customer": {
+      "name": "Callum Reid",
+      "title": "Mr",
+      "dob": "1979-05-17",
+      "address": "8 Bellfield Crescent, Telford",
+      "postcode": "TF2 6QR",
+      "phone": "01632 960 873",
+      "email": "callum.reid@example.com"
+    },
+    "accounts": [
+      {
+        "product": "credit_card",
+        "sort_code": "",
+        "number": "71558206",
+        "card_last4": "3391"
+      },
+      {
+        "product": "current_account",
+        "sort_code": "77-41-52",
+        "number": "28803175",
+        "card_last4": "1174"
+      }
+    ],
+    "other_parties": [
+      {
+        "role": "THIRD_PARTY",
+        "name": "Sam Whitlock",
+        "organisation": ""
+      }
+    ],
+    "staff": [
+      {
+        "name": "Nkechi Adeyemi",
+        "role": "Complaints handler"
+      }
+    ]
+  },
+  "documents": [
+    {
+      "id": "D1",
+      "system": "CRM",
+      "type": "call_summary",
+      "date": "2026-11-03",
+      "author_role": "handler",
+      "text": "Inbound 11:05, Mr Reid, ID&V ok. Credit card ending 3391. Says he had major bowel surgery 28/9 and was in hosp 3 weeks (discharged 19/10), still recovering at home, cant work at the moment, on SSP. While he was in, collections kept ringing his mobile 'every day' and letters piled up, incl a default warning. His partner Sam rang us on the 6th to explain and was told we couldnt discuss the acct. Cust very frustrated, says 'I was lying in a hospital bed and you were charging me late fees'. Wants the late fees and interest from while he was in hospital taken off and the calls to stop. Also said he will struggle with the Nov payment. Says he gets tired on long calls, prefers email for now. Placed 30 day collections hold on card acct pending complaint. Advised complaint will go to Financial Support. - NA"
+    },
+    {
+      "id": "D2",
+      "system": "CRM",
+      "type": "crm_note",
+      "date": "2026-10-06",
+      "author_role": "handler",
+      "text": "Call from a Sam Whitlock re cust Mr Reed (cc acct). Says cust in hospital after an op, cant come to phone, asks us to stop calling. Not a party to acct, no third party authority on file, unable to discuss. Advised cust needs to call when able or send authority. Caller left number 07700 900 659. No action on acct."
+    },
+    {
+      "id": "D3",
+      "system": "CARDS",
+      "type": "system_log",
+      "date": "2026-11-03",
+      "author_role": "system",
+      "text": "CC 71558206 card 3391. Balance GBP 3,412.60. Credit limit GBP 3,500. Arrears 2 cycles GBP 186.00. Min pmt due 25/09 GBP 93.00 MISSED. Min pmt due 25/10 GBP 93.00 MISSED. Late fee GBP 12.00 26/09. Late fee GBP 12.00 26/10. Interest 28/09 GBP 71.84, 28/10 GBP 74.12. Collections strategy STD-2. Outbound dialler attempts to 01632 960 873: 29/09-16/10 x19. Letters: arrears L1 30/09, arrears L2 09/10, NOSIA 14/10, default warning DW1 20/10. Collections hold: SET 03/11/2026 30 days (user NADEYEMI)."
+    }
+  ]
+}

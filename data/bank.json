@@ -4,37 +4,133 @@
   "short": "H&V",
   "type": "UK retail bank (fictional), about 1.2 million personal customers",
   "products": [
-    { "id": "current_account", "label": "Current account" },
-    { "id": "overdraft", "label": "Overdraft" },
-    { "id": "credit_card", "label": "Credit card" },
-    { "id": "personal_loan", "label": "Personal loan" },
-    { "id": "mortgage", "label": "Mortgage" },
-    { "id": "savings", "label": "Savings" }
+    {
+      "id": "current_account",
+      "label": "Current account"
+    },
+    {
+      "id": "overdraft",
+      "label": "Overdraft"
+    },
+    {
+      "id": "credit_card",
+      "label": "Credit card"
+    },
+    {
+      "id": "personal_loan",
+      "label": "Personal loan"
+    },
+    {
+      "id": "mortgage",
+      "label": "Mortgage"
+    },
+    {
+      "id": "savings",
+      "label": "Savings"
+    }
   ],
   "causes": [
-    { "id": "app_scam", "label": "Scam (customer authorised the payment)" },
-    { "id": "unauthorised_transaction", "label": "Unauthorised or disputed transaction" },
-    { "id": "payment_problem", "label": "Payment delayed, failed or wrongly executed" },
-    { "id": "fees_interest", "label": "Fees, charges or interest" },
-    { "id": "affordability_arrears", "label": "Affordability, arrears or collections" },
-    { "id": "bereavement_poa", "label": "Bereavement or power of attorney process" },
-    { "id": "digital_outage", "label": "App or online banking problem" },
-    { "id": "service_delay", "label": "Delay or poor service" },
-    { "id": "staff_conduct", "label": "Staff conduct" },
-    { "id": "account_opening_closure", "label": "Account opening, closure or restriction" },
-    { "id": "mortgage_admin", "label": "Mortgage administration (rates, switching, redemption)" }
+    {
+      "id": "app_scam",
+      "label": "Scam (customer authorised the payment)"
+    },
+    {
+      "id": "unauthorised_transaction",
+      "label": "Unauthorised or disputed transaction"
+    },
+    {
+      "id": "payment_problem",
+      "label": "Payment delayed, failed or wrongly executed"
+    },
+    {
+      "id": "fees_interest",
+      "label": "Fees, charges or interest"
+    },
+    {
+      "id": "affordability_arrears",
+      "label": "Affordability, arrears or collections"
+    },
+    {
+      "id": "bereavement_poa",
+      "label": "Bereavement or power of attorney process"
+    },
+    {
+      "id": "digital_outage",
+      "label": "App or online banking problem"
+    },
+    {
+      "id": "service_delay",
+      "label": "Delay or poor service"
+    },
+    {
+      "id": "staff_conduct",
+      "label": "Staff conduct"
+    },
+    {
+      "id": "account_opening_closure",
+      "label": "Account opening, closure or restriction"
+    },
+    {
+      "id": "mortgage_admin",
+      "label": "Mortgage administration (rates, switching, redemption)"
+    }
   ],
   "teams": [
-    { "id": "frontline", "label": "Frontline complaints", "handover": false, "remit": "Straightforward complaints the first handler can resolve, including summary resolution within three business days." },
-    { "id": "fraud_scams", "label": "Fraud and Scams", "handover": true, "remit": "Scams where the customer authorised the payment, and unauthorised transactions." },
-    { "id": "bereavement_poa", "label": "Bereavement and Power of Attorney", "handover": true, "remit": "Deceased customers' accounts, executors, powers of attorney and third-party authority." },
-    { "id": "financial_support", "label": "Financial Support", "handover": true, "remit": "Arrears, collections, affordability and lending decisions on cards, loans and overdrafts." },
-    { "id": "mortgages", "label": "Mortgage Servicing", "handover": true, "remit": "Mortgage rates, product switches, redemptions and mortgage arrears." },
-    { "id": "payments_disputes", "label": "Payments and Disputes", "handover": true, "remit": "Failed, delayed or wrongly executed payments, Direct Debit claims and card disputes (chargebacks)." }
+    {
+      "id": "frontline",
+      "label": "Frontline complaints",
+      "handover": false,
+      "remit": "Straightforward complaints the first handler can resolve, including summary resolution within three business days."
+    },
+    {
+      "id": "fraud_scams",
+      "label": "Fraud and Scams",
+      "handover": true,
+      "remit": "Scams where the customer authorised the payment, and unauthorised transactions."
+    },
+    {
+      "id": "bereavement_poa",
+      "label": "Bereavement and Power of Attorney",
+      "handover": true,
+      "remit": "Deceased customers' accounts, executors, powers of attorney and third-party authority."
+    },
+    {
+      "id": "financial_support",
+      "label": "Financial Support",
+      "handover": true,
+      "remit": "Arrears, collections, affordability and lending decisions on cards, loans and overdrafts."
+    },
+    {
+      "id": "mortgages",
+      "label": "Mortgage Servicing",
+      "handover": true,
+      "remit": "Mortgage rates, product switches, redemptions and mortgage arrears."
+    },
+    {
+      "id": "payments_disputes",
+      "label": "Payments and Disputes",
+      "handover": true,
+      "remit": "Failed, delayed or wrongly executed payments, Direct Debit claims and card disputes (chargebacks)."
+    },
+    {
+      "id": "ombudsman_liaison",
+      "label": "Ombudsman Liaison",
+      "handover": true,
+      "remit": "Complaints the customer has already referred to the Financial Ombudsman Service (policy CP-3.5)."
+    }
   ],
   "case_systems": [
-    { "id": "CRM", "label": "Customer relationship system (complaint log and call notes)" },
-    { "id": "CORE", "label": "Core banking (transactions and account events)" },
-    { "id": "CARDS", "label": "Card platform (card transactions and disputes)" }
+    {
+      "id": "CRM",
+      "label": "Customer relationship system (complaint log and call notes)"
+    },
+    {
+      "id": "CORE",
+      "label": "Core banking (transactions and account events)"
+    },
+    {
+      "id": "CARDS",
+      "label": "Card platform (card transactions and disputes)"
+    }
   ]
 }

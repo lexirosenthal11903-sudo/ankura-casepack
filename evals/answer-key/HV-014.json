@@ -1,0 +1,58 @@
+{
+  "id": "HV-014",
+  "issues": [
+    {
+      "product": "personal_loan",
+      "cause": "affordability_arrears"
+    }
+  ],
+  "team": "financial_support",
+  "disp_clock": "8_weeks",
+  "vulnerability": {
+    "present": true,
+    "signals": [
+      "financial_difficulty",
+      "limited_english",
+      "distress",
+      "dependent_child"
+    ]
+  },
+  "already_with_fos": false,
+  "linked_complaint": false,
+  "outcome_sought": "Check how the loan was approved when she could not afford it, and agree a smaller monthly payment.",
+  "expected_policy_ids": [
+    "CP-9.1",
+    "CP-9.2",
+    "CP-5.1",
+    "CP-5.2",
+    "CP-5.3",
+    "CP-4.2",
+    "CP-6.1"
+  ],
+  "missing_info": [
+    "customer_contact_attempted",
+    "customer_told_of_handover",
+    "vulnerability_recorded",
+    "linked_complaints_checked",
+    "income_expenditure",
+    "forbearance_history",
+    "debt_advice_signposted"
+  ],
+  "planted_pii": [
+    "Agnieszka Wójcik",
+    "Aga",
+    "WOJCIK A",
+    "66027315",
+    "07700 900 563",
+    "TBRIGHT"
+  ],
+  "tests": [
+    "non_native_english",
+    "vulnerability_financial_and_language",
+    "diacritic_and_ascii_name_variants",
+    "nickname",
+    "staff_username",
+    "conflicting_records"
+  ],
+  "rationale": "She says the branch recorded an income of £2,400 when she told them about £1,400, and the application log shows income verification was waived, so CP-4.2 means both versions are recorded and a person decides. She is in arrears with collections still active, so CP-9.1 and CP-9.2 apply, and her limited English and preference for written contact must be recorded under CP-5.2. The redactor must catch both the accented and plain spellings of her surname. Contact calls in the log failed, so no documented complaint contact attempt exists."
+}

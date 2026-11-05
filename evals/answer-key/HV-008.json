@@ -1,0 +1,55 @@
+{
+  "id": "HV-008",
+  "issues": [
+    {
+      "product": "mortgage",
+      "cause": "mortgage_admin"
+    }
+  ],
+  "team": "mortgages",
+  "disp_clock": "8_weeks",
+  "vulnerability": {
+    "present": false,
+    "signals": []
+  },
+  "already_with_fos": false,
+  "linked_complaint": false,
+  "outcome_sought": "Refund the difference between the standard variable rate and the agreed fixed rate for September and October (about £410), and backdate the new product to 1 September 2026.",
+  "expected_policy_ids": [
+    "CP-1.2",
+    "CP-4.2",
+    "CP-4.3",
+    "CP-6.1",
+    "CP-3.1"
+  ],
+  "missing_info": [
+    "customer_contact_attempted",
+    "customer_told_of_handover",
+    "vulnerability_recorded",
+    "linked_complaints_checked"
+  ],
+  "planted_pii": [
+    "Mrs F Gallagher",
+    "Mrs Gallagher",
+    "Gallagher",
+    "F. Gallagher",
+    "19 Ravensworth Gardens, Gateshead NE9 6LT",
+    "NE9 6LT",
+    "8150 2297",
+    "81502297",
+    "Mark Thornbury",
+    "M Thornbury",
+    "mark.thornbury@example.com",
+    "0113 496 0318",
+    "I Bashir"
+  ],
+  "tests": [
+    "broker_representative",
+    "conflicting_records",
+    "account_number_with_space",
+    "address_in_letter",
+    "pii_not_in_record",
+    "staff_initials"
+  ],
+  "rationale": "A broker with the customer's signed authority complains about a late product switch, so CP-1.2 applies and Mortgage Servicing owns it. The broker says the switch went in on 4 Aug but the mortgage system shows 19 Aug, so CP-4.2 means the pack must record both versions and not choose. The mortgage checklist items are all present, but no one has contacted the customer or told her about the handover."
+}

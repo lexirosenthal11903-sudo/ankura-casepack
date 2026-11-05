@@ -1,0 +1,75 @@
+{
+  "id": "HV-010",
+  "split": "dev",
+  "author": "claude",
+  "received": "2026-10-27",
+  "channel": "phone",
+  "record": {
+    "customer": {
+      "name": "Patricia Hollins",
+      "title": "Mrs",
+      "dob": "1941-01-26",
+      "address": "5 Chorley Old Road, Bolton",
+      "postcode": "BL1 3AD",
+      "phone": "01632 960 395",
+      "email": ""
+    },
+    "accounts": [
+      {
+        "product": "current_account",
+        "sort_code": "77-41-19",
+        "number": "31560482",
+        "card_last4": ""
+      },
+      {
+        "product": "savings",
+        "sort_code": "77-41-19",
+        "number": "57704129",
+        "card_last4": ""
+      }
+    ],
+    "other_parties": [
+      {
+        "role": "POWER_OF_ATTORNEY",
+        "name": "Karen Doherty",
+        "organisation": ""
+      }
+    ],
+    "staff": [
+      {
+        "name": "Sofia Marchetti",
+        "role": "Complaints handler"
+      },
+      {
+        "name": "Ryan Pickering",
+        "role": "Branch customer adviser, Bolton"
+      }
+    ]
+  },
+  "documents": [
+    {
+      "id": "D1",
+      "system": "CRM",
+      "type": "call_summary",
+      "date": "2026-10-27",
+      "author_role": "handler",
+      "text": "Inbound 18:20 from Karen Doherty, daughter of Mrs Hollins. Says Mum (Pat) has Alzheimer's, diagnosed last yr, now cant manage money or use phone/cheques. Karen is named attorney on a property & financial affairs LPA, signed 18/07, sent to OPG early Aug, OPG letter says still being processed. Went to Bolton branch Weds 21/10 with the LPA and the OPG letter and was refused, told to 'come back when its registered' and that we 'couldnt even confirm Mum banks with us'. Felt she was treated like she was trying to steal from her own mum. Mum used to pay her home care agency (Brookvale Home Care, £640 a month) by cheque, nothing paid since Aug, agency now threatening to reduce visits. Karen wants: some way to pay the care bills now, one named contact, letters to Mum stopped as they confuse her, and an apology for branch. Karen is Mum's main carer, works full time, sounded exhausted and was close to tears. Asked for calls after 6pm on 07700 900 902. Recorded vuln: Mrs H cognitive impairment, attorney/carer under strain, call after 6pm. Explained we can't discuss acct detail until LPA registered, complaint logged and acknowledgement will follow. Customer ID&V not possible. - S Marchetti"
+    },
+    {
+      "id": "D2",
+      "system": "BRANCH",
+      "type": "branch_note",
+      "date": "2026-10-21",
+      "author_role": "branch_staff",
+      "text": "Bolton. Lady attended with unregistered LPA (no OPG stamp) for her mother Mrs P Hollings. Explained we can only accept a registered LPA or court order. Advised re-attend once OPG returns it. Docs not scanned or copied. Cust (daughter) unhappy, left. - RP"
+    },
+    {
+      "id": "D3",
+      "system": "CORE",
+      "type": "system_log",
+      "date": "2026-10-27",
+      "author_role": "system",
+      "text": "CA 31560482 Mrs P HOLLINS. Third party mandate: NONE. POA/LPA flag: NONE. Vulnerability flag: NONE. Balance GBP 8,412.33. Last cheque paid 14/08/2026 GBP 640.00 payee BROOKVALE HOME CARE. DD COUNCIL TAX active, paid 01/10/2026. Statement + marketing mail: postal, to address on file. SAV 57704129 balance GBP 21,960.04."
+    }
+  ]
+}

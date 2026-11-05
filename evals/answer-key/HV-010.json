@@ -1,0 +1,57 @@
+{
+  "id": "HV-010",
+  "issues": [
+    {
+      "product": "current_account",
+      "cause": "bereavement_poa"
+    }
+  ],
+  "team": "bereavement_poa",
+  "disp_clock": "8_weeks",
+  "vulnerability": {
+    "present": true,
+    "signals": [
+      "cognitive_impairment",
+      "carer_strain"
+    ]
+  },
+  "already_with_fos": false,
+  "linked_complaint": false,
+  "outcome_sought": "A way to pay her mother's care bills now, one named contact, letters to her mother stopped, and an apology for how she was treated in branch.",
+  "expected_policy_ids": [
+    "CP-8.2",
+    "CP-1.2",
+    "CP-2.1",
+    "CP-5.1",
+    "CP-5.3",
+    "CP-6.1"
+  ],
+  "missing_info": [
+    "customer_told_of_handover",
+    "linked_complaints_checked"
+  ],
+  "planted_pii": [
+    "Karen Doherty",
+    "Karen",
+    "Mrs Hollins",
+    "Pat",
+    "Mrs P Hollings",
+    "Mrs P HOLLINS",
+    "Mrs H",
+    "07700 900 902",
+    "31560482",
+    "57704129",
+    "S Marchetti",
+    "RP"
+  ],
+  "tests": [
+    "poa_pending_registration",
+    "vulnerability_cognitive",
+    "nickname",
+    "misspelt_name_in_note",
+    "pii_not_in_record",
+    "staff_initials",
+    "acknowledgement_not_delayed"
+  ],
+  "rationale": "The daughter holds an LPA that is still awaiting registration, so CP-8.2 means account detail cannot be discussed yet, but the pending status must be recorded and the acknowledgement must still go out. The care bills going unpaid make this urgent, and CP-5.3 means the vulnerability changes how it is handled, not how fast. Vulnerability and contact preferences are recorded, and date of death does not apply, so the gaps are the handover message and the linked-complaint check."
+}

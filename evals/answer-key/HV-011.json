@@ -1,0 +1,49 @@
+{
+  "id": "HV-011",
+  "issues": [
+    {
+      "product": "current_account",
+      "cause": "payment_problem"
+    }
+  ],
+  "team": "payments_disputes",
+  "disp_clock": "confirm",
+  "vulnerability": {
+    "present": false,
+    "signals": []
+  },
+  "already_with_fos": false,
+  "linked_complaint": false,
+  "outcome_sought": "Refund of both gym Direct Debit collections (£85.98) and confirmation the gym cannot take any more.",
+  "expected_policy_ids": [
+    "CP-3.3",
+    "CP-3.2",
+    "CP-7.1",
+    "CP-6.1",
+    "CP-4.1",
+    "CP-4.3"
+  ],
+  "missing_info": [
+    "customer_told_of_handover",
+    "vulnerability_recorded",
+    "linked_complaints_checked"
+  ],
+  "planted_pii": [
+    "Rebecca Osei",
+    "Ms Osei",
+    "Bex",
+    "07700 900 238",
+    "26398814",
+    "RF",
+    "JP"
+  ],
+  "tests": [
+    "clock_unclear_confirm",
+    "direct_debit_guarantee_vs_psrs",
+    "nickname",
+    "pii_not_in_record",
+    "staff_initials",
+    "evidence_differs_per_payment"
+  ],
+  "rationale": "The second collection was paid after the mandate was cancelled because a reject rule failed, which looks like a Parts 6-7 PSRs issue, but the first may have been a Direct Debit Guarantee indemnity claim, so the clock is genuinely unclear and CP-3.3 says to confirm with a team leader and, if unsure, apply the shorter limit. The tool must refer the clock to the handler, not pick one. All payments checklist items and a contact attempt are present."
+}

@@ -1,6 +1,6 @@
 # Test data (all fictional)
 
-Harbour & Vale Bank and everyone in these files are invented. Phone numbers use Ofcom's drama ranges (07700 900xxx, 01632 960xxx, 020 7946 0xxx, 0161 496 0xxx), emails use example.com, and sort codes use the made-up prefix 77-41.
+Harbour & Vale Bank and everyone in these files are invented. Phone numbers use Ofcom's drama ranges (07700 900xxx, 01632 960xxx, 020 7946 0xxx, and 0113, 0121 or 0161 496 0xxx), emails use example.com, and sort codes use the made-up prefix 77-41.
 
 ## Files
 - `bank.json` lists the bank's products, cause categories and teams.
@@ -49,3 +49,9 @@ Harbour & Vale Bank and everyone in these files are invented. Phone numbers use 
 }
 ```
 `disp_clock` is `15_business_days` only for complaints about rights and obligations under Parts 6 and 7 of the Payment Services Regulations 2017 (for example unauthorised or wrongly executed payments). It is `confirm` for mixed or unclear cases, which the tool must refer to the handler. APP scam reimbursement claims have their own five-day decision rule (CP-7.3), but a complaint about how the claim was handled stays on 8 weeks.
+
+## Scoring rules for checklist items
+- `missing_info` lists only items that apply to the case and are not in the documents. Items that cannot apply (for example date of death when nobody has died) are left out, and the case pack may mark them "not applicable" without penalty.
+- `customer_told_of_handover` does not apply to the frontline team, because nothing is handed over.
+- `issues: []` means the product and cause cannot be known from the documents (HV-015). The right answer is for the pack to say so.
+- Redaction must match whole words only. Short initials such as "NA" and nicknames such as "Aga" are planted deliberately, and must not be redacted inside other words (for example "again").

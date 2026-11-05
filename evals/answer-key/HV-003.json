@@ -1,0 +1,43 @@
+{
+  "id": "HV-003",
+  "issues": [
+    {
+      "product": "current_account",
+      "cause": "digital_outage"
+    }
+  ],
+  "team": "frontline",
+  "disp_clock": "8_weeks",
+  "vulnerability": {
+    "present": false,
+    "signals": []
+  },
+  "already_with_fos": false,
+  "linked_complaint": false,
+  "outcome_sought": "Refund of the £15 unpaid item fee and reimbursement of the £20 late payment fee charged by her energy supplier.",
+  "expected_policy_ids": [
+    "CP-1.1",
+    "CP-2.2",
+    "CP-4.3",
+    "CP-10.2",
+    "CP-3.1"
+  ],
+  "missing_info": [
+    "customer_contact_attempted",
+    "vulnerability_recorded",
+    "linked_complaints_checked"
+  ],
+  "planted_pii": [
+    "Chloe Brennan",
+    "2264",
+    "cbrennan.work@example.com"
+  ],
+  "tests": [
+    "outage_cluster",
+    "summary_resolution",
+    "pii_not_in_record",
+    "partial_account_number",
+    "consequential_loss"
+  ],
+  "rationale": "The core incident note confirms the outage covered her whole payday and the account log shows her usual payday transfer pattern, so the bounced Direct Debit and both fees follow directly from the outage. It is a simple fee refund the frontline handler can likely settle by summary resolution within three business days (CP-2.2), with the outage tagged as the root cause (CP-10.2). The work email in the form is not in the case record, so only pattern matching will catch it."
+}
