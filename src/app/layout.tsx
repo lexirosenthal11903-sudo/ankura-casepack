@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { DEMO_TODAY } from "@/lib/demo";
 import "./globals.css";
+import NavLinks from "./NavLinks";
 import styles from "./layout.module.css";
 
 export const metadata: Metadata = {
-  title: "Case pack prototype | Harbour & Vale (fictional bank)",
+  title: "Walkthrough | Harbour & Vale case pack prototype (fictional bank)",
   description: "Prototype complaint case pack for a fictional UK bank. Synthetic data only.",
 };
 
@@ -17,20 +18,16 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en-GB">
       <body>
-        <a href="#main" className="visually-hidden">Skip to main content</a>
+        <a href="#main" className="visually-hidden skip-link">Skip to main content</a>
         <header className={styles.header}>
           <div className={styles.headerInner}>
             <Link href="/" className={styles.brand}>
               Harbour &amp; Vale <span className={styles.brandSub}>Complaints workspace</span>
             </Link>
-            <nav aria-label="Main" className={styles.nav}>
-              <Link href="/">Walkthrough</Link>
-              <Link href="/queue">All complaints</Link>
-              <Link href="/how-it-works">How this works</Link>
-            </nav>
+            <NavLinks className={styles.nav} />
           </div>
         </header>
-        <div className={styles.banner} role="note">
+        <div className={styles.banner} role="region" aria-label="Prototype notice">
           <div className={styles.headerInner}>
             <strong>Prototype.</strong> Fictional bank, fictional customers, synthetic data only. Demo date {demoDate}.
           </div>

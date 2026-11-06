@@ -1,0 +1,950 @@
+{
+  "caseId": "HV-006",
+  "createdAt": "2026-11-06T10:39:47.034Z",
+  "model": "claude-haiku-5-5",
+  "promptVersion": "casepack-v3",
+  "redacted": {
+    "id": "HV-006",
+    "received": "2026-11-02",
+    "channel": "branch",
+    "documents": [
+      {
+        "id": "D1",
+        "system": "BRANCH",
+        "type": "branch_note",
+        "date": "2026-11-02",
+        "author_role": "branch_staff",
+        "text": "Leeds Boar Lane. Cust [CUSTOMER] [CUSTOMER] came in approx 12.30, upset. Wanted to dispute £35 overdraft charges on Oct statement. Says she would not have gone into unarranged o/d if she could have moved money on Fri 30/10 but couldnt log in to app all day. Also says when she came in Sat 31/10 to ask about it, colleague [STAFF_2] told her 'the app was fine, you must have forgotten your password' and 'there's nothing I can do, it's in the T&Cs', in front of other customers, and walked off while she was talking. She found this humiliating. I apologised, explained I cant refund fees in branch, told her it will be logged as a complaint and complaints team will call her back. She gave mobile [CUSTOMER_PHONE]. - [STAFF_1]"
+      },
+      {
+        "id": "D2",
+        "system": "EMAIL",
+        "type": "email",
+        "date": "2026-11-03",
+        "author_role": "customer",
+        "text": "Subject: Complaint from yesterday at Boar Lane\n\nHi,\n\nI was in the Boar Lane branch yesterday and the man there ([STAFF_1]) was really kind and said I'd get a call. I want to put it in writing as well so nothing gets missed.\n\n1. I was charged £35 in overdraft fees for October. I only went overdrawn because I couldn't get into my app on Friday 30th to move my money across from my savings. I want that refunded.\n2. The staff member I spoke to on Saturday, [STAFF_2], was rude and dismissive. He told me I'd forgotten my password in front of a queue of people, which was embarrassing, and then just walked away. I want an apology and for someone to speak to him.\n3. Your app was down for most of Friday, which was payday for a lot of people. Nobody told me anything, there was no message in the app or a text. I want to know what happened and that it won't happen again.\n\nThanks,\n[CUSTOMER]\nAccount [ACCOUNT_1]"
+      },
+      {
+        "id": "D3",
+        "system": "CORE",
+        "type": "system_log",
+        "date": "2026-10-30",
+        "author_role": "system",
+        "text": "INCIDENT INC-2026-1030-01 (P1) Service: H&V mobile app + online banking. Impact: app and online banking unavailable 30/10/2026 07:10-15:40. Cause: failed certificate rotation on authentication gateway following overnight change CHG-88213. Card payments and ATMs unaffected, 3DS in-app approvals unavailable for duration. Telephone banking queues peaked 74 min. Status: RESOLVED 15:40. Customer impact review: open, owner Digital Ops."
+      },
+      {
+        "id": "D4",
+        "system": "CORE",
+        "type": "system_log",
+        "date": "2026-11-02",
+        "author_role": "system",
+        "text": "CA [ACCOUNT_1]. Arranged o/d limit GBP 250. 30/10/2026 balance moved to GBP -412.55 (unarranged GBP 162.55) after card spend + SO. 31/10/2026 Transfer SAV>CA GBP 600.00 (branch counter). 02/11/2026 Overdraft charges Oct GBP 35.00 debited (arranged interest GBP 6.20, unarranged usage fee GBP 28.80). No fee refunds in last 12m."
+      }
+    ],
+    "replacements": [
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Rahman",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[STAFF_2]",
+        "original": "DH",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[CUSTOMER_PHONE]",
+        "original": "0113 496 0582",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[STAFF_1]",
+        "original": "K Osei",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Ms Ayesha",
+        "layer": "near_match",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[STAFF_1]",
+        "original": "Kwame",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[STAFF_2]",
+        "original": "Dean",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Aisha Rahman",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[ACCOUNT_1]",
+        "original": "3447 0921",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[ACCOUNT_1]",
+        "original": "34470921",
+        "layer": "record",
+        "documentId": "D4"
+      }
+    ],
+    "placeholders": [
+      "[ACCOUNT_1]",
+      "[CUSTOMER]",
+      "[CUSTOMER_PHONE]",
+      "[STAFF_1]",
+      "[STAFF_2]"
+    ]
+  },
+  "pack": {
+    "enough_information": {
+      "sufficient": true,
+      "what_is_needed": ""
+    },
+    "intake": {
+      "issues": [
+        {
+          "product": "overdraft",
+          "cause": "fees_interest",
+          "description": "Customer disputes £35 October overdraft charges, saying she went unarranged because she could not access the app on 30/10 to move savings.",
+          "citations": [
+            {
+              "source": "D2",
+              "quote": "I was charged £35 in overdraft fees for October"
+            },
+            {
+              "source": "D4",
+              "quote": "Overdraft charges Oct GBP 35.00 debited"
+            }
+          ]
+        },
+        {
+          "product": "current_account",
+          "cause": "staff_conduct",
+          "description": "Customer says a staff member on 31/10 told her she had forgotten her password, said nothing could be done, and walked away, in front of other customers.",
+          "citations": [
+            {
+              "source": "D1",
+              "quote": "in front of other customers, and walked off while she was talking"
+            },
+            {
+              "source": "D2",
+              "quote": "He told me I'd forgotten my password in front of a queue of people"
+            }
+          ]
+        },
+        {
+          "product": "current_account",
+          "cause": "digital_outage",
+          "description": "Customer says the app was down on Friday 30/10 and she was not told why or given any message in the app or by text.",
+          "citations": [
+            {
+              "source": "D2",
+              "quote": "Your app was down for most of Friday"
+            },
+            {
+              "source": "D2",
+              "quote": "there was no message in the app or a text"
+            },
+            {
+              "source": "D3",
+              "quote": "app and online banking unavailable 30/10/2026 07:10-15:40"
+            }
+          ]
+        }
+      ],
+      "suggested_team": "frontline",
+      "team_reason": {
+        "text": "The fee refund, staff conduct and outage communication issues fall within first-handler remit, and no specialist team's remit is shown.",
+        "citations": [
+          {
+            "source": "CP-6.1",
+            "quote": "when it falls within that team's remit"
+          }
+        ]
+      },
+      "payment_services": "no",
+      "payment_services_reason": {
+        "text": "Complaint concerns overdraft fees, staff conduct and an app outage. No unauthorised or wrongly executed payment is alleged.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "I was charged £35 in overdraft fees for October."
+          }
+        ]
+      },
+      "already_with_ombudsman": false,
+      "linked_to_earlier_complaint": false
+    },
+    "summary": [
+      {
+        "text": "Customer disputes £35 overdraft charges debited on 02/11/2026 for October, saying she went unarranged because she could not get into the app on 30/10.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "I only went overdrawn because I couldn't get into my app on Friday 30th"
+          },
+          {
+            "source": "D4",
+            "quote": "Overdraft charges Oct GBP 35.00 debited"
+          }
+        ]
+      },
+      {
+        "text": "Customer says a staff member on 31/10 dismissed her in front of other customers and walked away while she was speaking.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "in front of other customers, and walked off while she was talking"
+          }
+        ]
+      },
+      {
+        "text": "System log records app and online banking unavailable on 30/10 from 07:10 to 15:40 under incident INC-2026-1030-01.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "app and online banking unavailable 30/10/2026 07:10-15:40"
+          }
+        ]
+      },
+      {
+        "text": "Customer raised the complaint in branch on 02/11 and by email on 03/11, and asks for a refund, an apology and an explanation of the outage.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I apologised, explained I cant refund fees in branch"
+          },
+          {
+            "source": "D2",
+            "quote": "I want to put it in writing as well so nothing gets missed"
+          }
+        ]
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-30",
+        "event": "App and online banking unavailable from 07:10 to 15:40 (incident INC-2026-1030-01).",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "app and online banking unavailable 30/10/2026 07:10-15:40"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-30",
+        "event": "Account balance moved to GBP -412.55, unarranged by GBP 162.55, after card spend and standing order.",
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "30/10/2026 balance moved to GBP -412.55 (unarranged GBP 162.55)"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-31",
+        "event": "Customer visited branch to ask about the charge; she says a staff member dismissed her.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "when she came in Sat 31/10 to ask about it"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-31",
+        "event": "GBP 600.00 transferred from savings to current account at branch counter.",
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "31/10/2026 Transfer SAV>CA GBP 600.00 (branch counter)"
+          }
+        ]
+      },
+      {
+        "date": "2026-11-02",
+        "event": "Overdraft charges for October of GBP 35.00 debited.",
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "Overdraft charges Oct GBP 35.00 debited"
+          }
+        ]
+      },
+      {
+        "date": "2026-11-02",
+        "event": "Customer complained in branch; staff said fees cannot be refunded in branch and a complaints team would call back.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I apologised, explained I cant refund fees in branch"
+          }
+        ]
+      },
+      {
+        "date": "2026-11-03",
+        "event": "Customer emailed a written complaint with three issues.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "I want to put it in writing as well so nothing gets missed"
+          }
+        ]
+      }
+    ],
+    "outcome_sought": {
+      "text": "Refund of the £35 October overdraft charges; an apology and for someone to speak to the staff member; and an explanation of the app outage with assurance it will not happen again.",
+      "citations": [
+        {
+          "source": "D2",
+          "quote": "I want that refunded"
+        },
+        {
+          "source": "D2",
+          "quote": "I want an apology and for someone to speak to him"
+        },
+        {
+          "source": "D2",
+          "quote": "I want to know what happened and that it won't happen again"
+        }
+      ]
+    },
+    "vulnerability": [],
+    "relevant_policy": [
+      {
+        "policy_id": "CP-2.1",
+        "why_relevant": "Complaint is not yet resolved; a written acknowledgement naming the handler is due by the third business day, 05/11/2026.",
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "we must send a prompt written acknowledgement that names the handler or team dealing with it"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-2.3",
+        "why_relevant": "Customer raised three separate issues that must each be recorded and answered.",
+        "citations": [
+          {
+            "source": "CP-2.3",
+            "quote": "each issue must be recorded separately with its own product and cause category"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-2.4",
+        "why_relevant": "Earlier complaints on the same subject must be checked before investigating; no check is recorded.",
+        "citations": [
+          {
+            "source": "CP-2.4",
+            "quote": "the handler must check for earlier complaints from the same customer on the same subject in the last twelve months"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-3.1",
+        "why_relevant": "Sets the final response deadline of eight weeks from receipt, 28/12/2026.",
+        "citations": [
+          {
+            "source": "CP-3.1",
+            "quote": "We must send a final response within eight weeks of receiving the complaint"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-3.4",
+        "why_relevant": "The final response must include the Financial Ombudsman Service referral right.",
+        "citations": [
+          {
+            "source": "CP-3.4",
+            "quote": "Every final response must tell the customer they have six months from the date of the final response"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.2",
+        "why_relevant": "Staff account and system log disagree on app availability on 30/10; both must be recorded.",
+        "citations": [
+          {
+            "source": "CP-4.2",
+            "quote": "the handler must record both versions and the source of each, and must not choose between them without evidence"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.3",
+        "why_relevant": "The customer's outcome must be recorded in her own words.",
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "The handler must record, in the customer's own words where possible, the outcome the customer is seeking."
+          }
+        ]
+      }
+    ],
+    "handover_checklist": [
+      {
+        "item_id": "outcome_sought",
+        "status": "present",
+        "value": "Refund of £35 overdraft charges; apology and for staff member to be spoken to; explanation of outage and assurance it will not recur.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "I want that refunded"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_contact_attempted",
+        "status": "present",
+        "value": "Customer spoke with branch staff in person on 02/11/2026 and gave a mobile number.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I apologised, explained I cant refund fees in branch"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_told_of_handover",
+        "status": "not_applicable",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "vulnerability_recorded",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "linked_complaints_checked",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      }
+    ],
+    "conflicts": [
+      {
+        "text": "App availability on 30/10: branch note records a staff account that the app was fine and the customer had forgotten her password; the system log records the app and online banking unavailable from 07:10 to 15:40. Both versions are recorded; no choice made.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "the app was fine, you must have forgotten your password"
+          },
+          {
+            "source": "D3",
+            "quote": "app and online banking unavailable 30/10/2026 07:10-15:40"
+          }
+        ]
+      },
+      {
+        "text": "Duration of access problem: customer says she could not log in to the app all day on 30/10; the system log shows the outage ended at 15:40.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "couldnt log in to app all day"
+          },
+          {
+            "source": "D3",
+            "quote": "Status: RESOLVED 15:40"
+          }
+        ]
+      }
+    ],
+    "flags": [
+      {
+        "type": "deadline_risk",
+        "description": "Acknowledgement is due by close of 05/11/2026 if the complaint is not resolved. Final response is due by 28/12/2026.",
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "we must send a prompt written acknowledgement that names the handler or team dealing with it"
+          },
+          {
+            "source": "CP-3.1",
+            "quote": "We must send a final response within eight weeks of receiving the complaint"
+          }
+        ]
+      },
+      {
+        "type": "data_quality",
+        "description": "Linked-complaint history is not shown. The log records no fee refunds in 12 months, which does not show whether earlier complaints exist.",
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "No fee refunds in last 12m"
+          }
+        ]
+      }
+    ]
+  },
+  "checks": {
+    "statements": [
+      {
+        "path": "intake.issues.0",
+        "text": "Customer disputes £35 October overdraft charges, saying she went unarranged because she could not access the app on 30/10 to move savings.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "I was charged £35 in overdraft fees for October",
+            "result": "verified"
+          },
+          {
+            "source": "D4",
+            "quote": "Overdraft charges Oct GBP 35.00 debited",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.issues.1",
+        "text": "Customer says a staff member on 31/10 told her she had forgotten her password, said nothing could be done, and walked away, in front of other customers.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "in front of other customers, and walked off while she was talking",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "He told me I'd forgotten my password in front of a queue of people",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.issues.2",
+        "text": "Customer says the app was down on Friday 30/10 and she was not told why or given any message in the app or by text.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Your app was down for most of Friday",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "there was no message in the app or a text",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "app and online banking unavailable 30/10/2026 07:10-15:40",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.team_reason",
+        "text": "The fee refund, staff conduct and outage communication issues fall within first-handler remit, and no specialist team's remit is shown.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-6.1",
+            "quote": "when it falls within that team's remit",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.payment_services_reason",
+        "text": "Complaint concerns overdraft fees, staff conduct and an app outage. No unauthorised or wrongly executed payment is alleged.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "I was charged £35 in overdraft fees for October.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.0",
+        "text": "Customer disputes £35 overdraft charges debited on 02/11/2026 for October, saying she went unarranged because she could not get into the app on 30/10.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "I only went overdrawn because I couldn't get into my app on Friday 30th",
+            "result": "verified"
+          },
+          {
+            "source": "D4",
+            "quote": "Overdraft charges Oct GBP 35.00 debited",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.1",
+        "text": "Customer says a staff member on 31/10 dismissed her in front of other customers and walked away while she was speaking.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "in front of other customers, and walked off while she was talking",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.2",
+        "text": "System log records app and online banking unavailable on 30/10 from 07:10 to 15:40 under incident INC-2026-1030-01.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "app and online banking unavailable 30/10/2026 07:10-15:40",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.3",
+        "text": "Customer raised the complaint in branch on 02/11 and by email on 03/11, and asks for a refund, an apology and an explanation of the outage.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I apologised, explained I cant refund fees in branch",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "I want to put it in writing as well so nothing gets missed",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.0",
+        "text": "2026-10-30: App and online banking unavailable from 07:10 to 15:40 (incident INC-2026-1030-01).",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "app and online banking unavailable 30/10/2026 07:10-15:40",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.1",
+        "text": "2026-10-30: Account balance moved to GBP -412.55, unarranged by GBP 162.55, after card spend and standing order.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "30/10/2026 balance moved to GBP -412.55 (unarranged GBP 162.55)",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.2",
+        "text": "2026-10-31: Customer visited branch to ask about the charge; she says a staff member dismissed her.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "when she came in Sat 31/10 to ask about it",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.3",
+        "text": "2026-10-31: GBP 600.00 transferred from savings to current account at branch counter.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "31/10/2026 Transfer SAV>CA GBP 600.00 (branch counter)",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.4",
+        "text": "2026-11-02: Overdraft charges for October of GBP 35.00 debited.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "Overdraft charges Oct GBP 35.00 debited",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.5",
+        "text": "2026-11-02: Customer complained in branch; staff said fees cannot be refunded in branch and a complaints team would call back.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I apologised, explained I cant refund fees in branch",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.6",
+        "text": "2026-11-03: Customer emailed a written complaint with three issues.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "I want to put it in writing as well so nothing gets missed",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "outcome_sought",
+        "text": "Refund of the £35 October overdraft charges; an apology and for someone to speak to the staff member; and an explanation of the app outage with assurance it will not happen again.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "I want that refunded",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "I want an apology and for someone to speak to him",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "I want to know what happened and that it won't happen again",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.0",
+        "text": "CP-2.1: Complaint is not yet resolved; a written acknowledgement naming the handler is due by the third business day, 05/11/2026.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "we must send a prompt written acknowledgement that names the handler or team dealing with it",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.1",
+        "text": "CP-2.3: Customer raised three separate issues that must each be recorded and answered.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.3",
+            "quote": "each issue must be recorded separately with its own product and cause category",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.2",
+        "text": "CP-2.4: Earlier complaints on the same subject must be checked before investigating; no check is recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.4",
+            "quote": "the handler must check for earlier complaints from the same customer on the same subject in the last twelve months",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.3",
+        "text": "CP-3.1: Sets the final response deadline of eight weeks from receipt, 28/12/2026.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-3.1",
+            "quote": "We must send a final response within eight weeks of receiving the complaint",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.4",
+        "text": "CP-3.4: The final response must include the Financial Ombudsman Service referral right.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-3.4",
+            "quote": "Every final response must tell the customer they have six months from the date of the final response",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.5",
+        "text": "CP-4.2: Staff account and system log disagree on app availability on 30/10; both must be recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.2",
+            "quote": "the handler must record both versions and the source of each, and must not choose between them without evidence",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.6",
+        "text": "CP-4.3: The customer's outcome must be recorded in her own words.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "The handler must record, in the customer's own words where possible, the outcome the customer is seeking.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.outcome_sought",
+        "text": "outcome_sought: Refund of £35 overdraft charges; apology and for staff member to be spoken to; explanation of outage and assurance it will not recur.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "I want that refunded",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.customer_contact_attempted",
+        "text": "customer_contact_attempted: Customer spoke with branch staff in person on 02/11/2026 and gave a mobile number.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I apologised, explained I cant refund fees in branch",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "conflicts.0",
+        "text": "App availability on 30/10: branch note records a staff account that the app was fine and the customer had forgotten her password; the system log records the app and online banking unavailable from 07:10 to 15:40. Both versions are recorded; no choice made.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "the app was fine, you must have forgotten your password",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "app and online banking unavailable 30/10/2026 07:10-15:40",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "conflicts.1",
+        "text": "Duration of access problem: customer says she could not log in to the app all day on 30/10; the system log shows the outage ended at 15:40.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "couldnt log in to app all day",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Status: RESOLVED 15:40",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.0",
+        "text": "deadline_risk: Acknowledgement is due by close of 05/11/2026 if the complaint is not resolved. Final response is due by 28/12/2026.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "we must send a prompt written acknowledgement that names the handler or team dealing with it",
+            "result": "verified"
+          },
+          {
+            "source": "CP-3.1",
+            "quote": "We must send a final response within eight weeks of receiving the complaint",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.1",
+        "text": "data_quality: Linked-complaint history is not shown. The log records no fee refunds in 12 months, which does not show whether earlier complaints exist.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "No fee refunds in last 12m",
+            "result": "verified"
+          }
+        ]
+      }
+    ],
+    "supportedCount": 30,
+    "unsupportedCount": 0,
+    "inventedPlaceholders": [],
+    "checklist": {
+      "required": 4,
+      "present": 2,
+      "missing": [
+        "vulnerability_recorded",
+        "linked_complaints_checked"
+      ],
+      "conflicting": []
+    }
+  },
+  "clock": "8_weeks",
+  "deadlines": {
+    "received": "2026-11-02",
+    "clock": "8_weeks",
+    "summaryResolutionWindowCloses": "2026-11-05",
+    "eightWeekDue": "2026-12-28",
+    "workingDue": "2026-12-28",
+    "needsHandlerConfirmation": false,
+    "calendarDaysLeft": 49,
+    "businessDaysLeft": 33,
+    "status": "on_track"
+  },
+  "usage": {
+    "inputTokens": 1174,
+    "outputTokens": 10622,
+    "cacheReadTokens": 9468,
+    "cacheWriteTokens": 0,
+    "costUsd": 0.00552308,
+    "latencyMs": 41469
+  }
+}

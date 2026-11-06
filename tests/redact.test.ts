@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { findInventedPlaceholders, redactCase, restore } from "@/lib/redact";
+import { buildDisplay, findInventedPlaceholders, redactCase, restore } from "@/lib/redact";
 import type { CaseFile } from "@/lib/types";
 
 function makeCase(text: string, overrides: Partial<CaseFile["record"]> = {}): CaseFile {
@@ -77,5 +77,12 @@ describe("placeholder checks", () => {
   it("restores real values for the handler's screen", () => {
     const r = redactCase(makeCase("Mrs Hollins called"));
     expect(restore("[CUSTOMER] wants a refund", r.replacements)).toBe("Mrs Hollins wants a refund");
+  });
+  it("shows the person's proper name, not a misspelling seen first in the notes", () => {
+    const c = makeCase("Spoke to Mrs Hollings. Mrs Hollins said ok.");
+    const r = redactCase(c);
+    const display = buildDisplay(c.record, r.replacements);
+    expect(restore("[CUSTOMER] wants a refund", r.replacements, display)).toBe("Mrs Patricia Hollins wants a refund");
+    expect(restore("Account [ACCOUNT]", r.replacements, display)).toBe("Account 31560482");
   });
 });

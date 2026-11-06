@@ -1,27 +1,27 @@
 {
   "split": "dev",
   "model": "claude-haiku-5-5",
-  "promptVersion": "casepack-v2",
-  "runs": "evals/results/runs/dev-haiku-2026-11-05-2227",
-  "generated": "2026-11-06T10:24:02.820Z",
+  "promptVersion": "casepack-v3",
+  "runs": "evals/results/runs/dev-haiku-2026-11-06-1038",
+  "generated": "2026-11-06T10:40:32.631Z",
   "repeats": [
     {
       "cases": 15,
-      "team": 0.9333333333333333,
-      "clock": 0.9333333333333333,
+      "team": 1,
+      "clock": 1,
       "causeRecall": 1,
       "vulnerability": 1,
       "ombudsman": 1,
       "linked": 1,
-      "policyRecall": 0.7128571428571429,
-      "missingRecall": 0.9349206349206349,
-      "missingPrecision": 0.85,
+      "policyRecall": 0.6906349206349205,
+      "missingRecall": 0.9515873015873015,
+      "missingPrecision": 0.9233333333333333,
       "supportedRate": 1,
       "unsupportedTotal": 0,
       "inventedPlaceholders": 0,
       "injection": "1/1",
-      "costPerCase": 0.005897836666666666,
-      "latencyMedianS": 42.768
+      "costPerCase": 0.005555126666666666,
+      "latencyMedianS": 39.472
     }
   ]
 }

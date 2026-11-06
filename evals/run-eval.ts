@@ -9,7 +9,7 @@
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { generateCasePack, MODELS as MODEL_IDS, type CasePackRun, type ModelKey } from "../src/lib/casepack";
-import { PROMPT_VERSION } from "../src/lib/prompts/casepack-v2";
+import { PROMPT_VERSION } from "../src/lib/prompts/casepack-v3";
 import { listCaseIds } from "../src/lib/data";
 import { formatSummary, scoreRun, summarise, type AnswerKey, type CaseScore } from "./score";
 

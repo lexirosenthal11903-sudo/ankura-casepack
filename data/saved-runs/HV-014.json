@@ -1,8 +1,8 @@
 {
   "caseId": "HV-014",
-  "createdAt": "2026-11-05T22:29:54.733Z",
+  "createdAt": "2026-11-06T10:40:32.577Z",
   "model": "claude-haiku-5-5",
-  "promptVersion": "casepack-v2",
+  "promptVersion": "casepack-v3",
   "redacted": {
     "id": "HV-014",
     "received": "2026-10-20",
@@ -100,55 +100,51 @@
         {
           "product": "personal_loan",
           "cause": "affordability_arrears",
-          "description": "Customer says the £12,000 loan was approved although she cannot afford it. She is now in arrears and says she receives letters and calls. She asks for a review and a smaller payment.",
+          "description": "Customer says the GBP 12,000 loan was approved although they cannot afford it, and payments are now in arrears.",
           "citations": [
             {
               "source": "D1",
               "quote": "Please can you check how you gave me this loan when I cannot afford it"
             },
             {
-              "source": "D2",
-              "quote": "income verification: WAIVED, low-risk band"
+              "source": "D3",
+              "quote": "Arrears GBP 459.80"
             }
           ]
         },
         {
           "product": "personal_loan",
           "cause": "staff_conduct",
-          "description": "Customer says she told the branch adviser she earns about £1,400 a month, but the application records £2,400 a month.",
+          "description": "Customer says branch staff recorded income of GBP 2,400 a month when they told staff about GBP 1,400 a month.",
           "citations": [
             {
               "source": "D1",
-              "quote": "I told her I work part time as a cleaner"
+              "quote": "helped me to fill the form on the computer"
             },
             {
               "source": "D2",
-              "quote": "Declared net income GBP 2,400/m"
+              "quote": "keyed by user [STAFF]"
             }
           ]
         }
       ],
       "suggested_team": "financial_support",
       "team_reason": {
-        "text": "Arrears and active collections on a personal loan, with a lending affordability question.",
+        "text": "Complaint concerns arrears, active collections and a lending decision on a personal loan, which is within the financial_support remit.",
         "citations": [
           {
             "source": "D3",
             "quote": "Collections: ACTIVE, strategy STD-1"
-          },
-          {
-            "source": "D3",
-            "quote": "Arrears GBP 459.80"
           }
         ]
       },
       "payment_services": "no",
       "payment_services_reason": {
-        "text": "The complaint concerns lending, income recording and arrears. No unauthorised or wrongly executed payment is alleged.",
+        "text": "Complaint concerns the lending decision and declared income, not an unauthorised or wrongly executed payment.",
         "citations": [
           {
             "source": "D1",
-            "quote": "Please can you check how you gave me this loan"
+            "quote": "Please can you check how you gave me this loan when I cannot afford it"
           }
         ]
       },
@@ -157,54 +153,50 @@
     },
     "summary": [
       {
-        "text": "Personal loan of £12,000 approved on 12/06/2026 at the Peterborough branch with declared income of £2,400 a month. Income verification was waived.",
+        "text": "Customer took a GBP 12,000 personal loan over 60 months at 16.9% APR in June 2026 for a car and debt consolidation, arranged at the Peterborough branch.",
         "citations": [
           {
             "source": "D2",
-            "quote": "Decision APPROVE. Monthly pmt GBP 289.90."
-          },
-          {
-            "source": "D2",
-            "quote": "income verification: WAIVED, low-risk band"
+            "quote": "Amount GBP 12,000 term 60m APR 16.9%"
           }
         ]
       },
       {
-        "text": "Customer says she told the adviser she earns about £1,400 a month as a part-time cleaner.",
+        "text": "Income was recorded as GBP 2,400 a month with income verification waived; customer says they reported about GBP 1,400 a month.",
         "citations": [
+          {
+            "source": "D2",
+            "quote": "Declared net income GBP 2,400/m"
+          },
           {
             "source": "D1",
             "quote": "maybe £1,400 in a month"
-          },
-          {
-            "source": "D1",
-            "quote": "I told her I work part time as a cleaner"
           }
         ]
       },
       {
-        "text": "September payment was part paid (£120) and October was missed. Arrears are £459.80 and collections are active.",
+        "text": "September payment was part-paid (GBP 120 of GBP 289.90) and October payment was not made; arrears are GBP 459.80.",
         "citations": [
+          {
+            "source": "D3",
+            "quote": "Pmt due 15/10/2026 GBP 289.90, received GBP 0.00"
+          },
           {
             "source": "D3",
             "quote": "Arrears GBP 459.80"
-          },
-          {
-            "source": "D3",
-            "quote": "Collections: ACTIVE, strategy STD-1"
           }
         ]
       },
       {
-        "text": "Customer asks for a review of how the loan was given and for a smaller payment. She reports stress and poor sleep.",
+        "text": "Collections are active and six outbound calls have not reached the customer.",
         "citations": [
           {
-            "source": "D1",
-            "quote": "help me with a smaller payment"
+            "source": "D3",
+            "quote": "Collections: ACTIVE, strategy STD-1"
           },
           {
-            "source": "D1",
-            "quote": "I am very stressed, I do not sleep well"
+            "source": "D3",
+            "quote": "Outbound calls x6 to [CUSTOMER_PHONE], no contact"
           }
         ]
       }
@@ -212,15 +204,11 @@
     "timeline": [
       {
         "date": "2026-06-12",
-        "event": "Personal loan of £12,000 keyed at the Peterborough branch and approved. Declared net income £2,400 a month; income verification waived.",
+        "event": "Loan application keyed at the Peterborough branch and approved.",
         "citations": [
           {
             "source": "D2",
             "quote": "Decision APPROVE. Monthly pmt GBP 289.90."
-          },
-          {
-            "source": "D2",
-            "quote": "Declared net income GBP 2,400/m"
           }
         ]
       },
@@ -236,7 +224,7 @@
       },
       {
         "date": "2026-09-15",
-        "event": "Payment of £289.90 due; £120.00 received.",
+        "event": "Payment of GBP 289.90 due; GBP 120.00 received.",
         "citations": [
           {
             "source": "D3",
@@ -246,17 +234,17 @@
       },
       {
         "date": "18/09",
-        "event": "Arrears letter L1 sent.",
+        "event": "Arrears letter L1 issued.",
         "citations": [
           {
             "source": "D3",
-            "quote": "arrears L1 18/09"
+            "quote": "Letters: arrears L1 18/09, arrears L2 19/10"
           }
         ]
       },
       {
         "date": "2026-10-15",
-        "event": "Payment of £289.90 due; nothing received.",
+        "event": "Payment of GBP 289.90 due; GBP 0.00 received.",
         "citations": [
           {
             "source": "D3",
@@ -266,17 +254,17 @@
       },
       {
         "date": "19/10",
-        "event": "Arrears letter L2 sent.",
+        "event": "Arrears letter L2 issued.",
         "citations": [
           {
             "source": "D3",
-            "quote": "arrears L2 19/10"
+            "quote": "Letters: arrears L1 18/09, arrears L2 19/10"
           }
         ]
       },
       {
         "date": "2026-10-20",
-        "event": "Complaint received by email.",
+        "event": "Customer emails complaint about the loan.",
         "citations": [
           {
             "source": "D1",
@@ -286,7 +274,7 @@
       },
       {
         "date": "23/10",
-        "event": "Outbound collections call scheduled.",
+        "event": "Next outbound call to customer scheduled.",
         "citations": [
           {
             "source": "D3",
@@ -296,12 +284,8 @@
       }
     ],
     "outcome_sought": {
-      "text": "Customer asks the bank to check how the loan was given and to help her with a smaller payment.",
+      "text": "Customer asks for the loan to be checked given they say they cannot afford it, and for help with a smaller payment.",
       "citations": [
-        {
-          "source": "D1",
-          "quote": "Please can you check how you gave me this loan when I cannot afford it"
-        },
         {
           "source": "D1",
           "quote": "help me with a smaller payment"
@@ -310,20 +294,16 @@
     },
     "vulnerability": [
       {
-        "signal": "Financial difficulty: missed payment and rent of £750 a month",
+        "signal": "Financial difficulty: customer says they cannot afford the payments and has missed payments.",
         "citations": [
           {
             "source": "D1",
-            "quote": "In October I could not pay"
-          },
-          {
-            "source": "D1",
-            "quote": "I pay rent £750"
+            "quote": "when I cannot afford it"
           }
         ]
       },
       {
-        "signal": "Stress and poor sleep",
+        "signal": "Stress and poor sleep.",
         "citations": [
           {
             "source": "D1",
@@ -332,7 +312,7 @@
         ]
       },
       {
-        "signal": "Limited English; prefers written contact to phone",
+        "signal": "Limited English and a preference for written contact over phone calls.",
         "citations": [
           {
             "source": "D1",
@@ -348,7 +328,7 @@
     "relevant_policy": [
       {
         "policy_id": "CP-2.3",
-        "why_relevant": "The customer raises more than one issue, so each must be recorded separately.",
+        "why_relevant": "Two issues are raised (affordability and staff recording of income) and each must be recorded separately.",
         "citations": [
           {
             "source": "CP-2.3",
@@ -358,27 +338,27 @@
       },
       {
         "policy_id": "CP-4.2",
-        "why_relevant": "The stated income differs between the customer and the application record. Both versions must be shown.",
+        "why_relevant": "System income and customer account of income disagree and both versions must be recorded.",
         "citations": [
           {
             "source": "CP-4.2",
-            "quote": "must record both versions and the source of each"
+            "quote": "record both versions and the source of each"
           }
         ]
       },
       {
         "policy_id": "CP-4.3",
-        "why_relevant": "The outcome sought must be recorded in the customer's words.",
+        "why_relevant": "The outcome the customer seeks must be recorded in their own words.",
         "citations": [
           {
             "source": "CP-4.3",
-            "quote": "record, in the customer's own words where possible, the outcome the customer is seeking"
+            "quote": "the outcome the customer is seeking"
           }
         ]
       },
       {
         "policy_id": "CP-5.2",
-        "why_relevant": "Financial difficulty, stress and limited English are signs that need recording with support needs.",
+        "why_relevant": "Signs of vulnerability must be recorded with any support needed, such as written contact.",
         "citations": [
           {
             "source": "CP-5.2",
@@ -388,7 +368,7 @@
       },
       {
         "policy_id": "CP-5.3",
-        "why_relevant": "The customer prefers written contact, so handling and any handover must be adapted.",
+        "why_relevant": "Handling must be adapted for this customer and they must not be passed between teams without a warm handover.",
         "citations": [
           {
             "source": "CP-5.3",
@@ -398,7 +378,7 @@
       },
       {
         "policy_id": "CP-6.1",
-        "why_relevant": "The case falls within the financial support team's remit, so it goes to that team.",
+        "why_relevant": "The case falls within the financial_support remit and must be passed there.",
         "citations": [
           {
             "source": "CP-6.1",
@@ -407,8 +387,18 @@
         ]
       },
       {
+        "policy_id": "CP-6.2",
+        "why_relevant": "The handover is complete only when all required checklist items are filled in or marked with a reason.",
+        "citations": [
+          {
+            "source": "CP-6.2",
+            "quote": "A handover is complete only when every required checklist item is filled in"
+          }
+        ]
+      },
+      {
         "policy_id": "CP-9.1",
-        "why_relevant": "Arrears and collections are involved, so forbearance, collections pausing and debt advice must be checked.",
+        "why_relevant": "Arrears case: forbearance, pausing collections during investigation and debt advice must be checked.",
         "citations": [
           {
             "source": "CP-9.1",
@@ -421,7 +411,7 @@
       {
         "item_id": "outcome_sought",
         "status": "present",
-        "value": "Customer wants the loan reviewed and a smaller payment.",
+        "value": "Smaller payment and a check of how the loan was given.",
         "citations": [
           {
             "source": "D1",
@@ -432,12 +422,8 @@
       {
         "item_id": "customer_contact_attempted",
         "status": "present",
-        "value": "Customer emailed the bank. Bank made six outbound calls with no contact recorded.",
+        "value": "Six outbound calls made with no contact. Customer emailed the complaint.",
         "citations": [
-          {
-            "source": "D1",
-            "quote": "Subject: Problem with my loan, please help"
-          },
           {
             "source": "D3",
             "quote": "Outbound calls x6 to [CUSTOMER_PHONE], no contact"
@@ -465,7 +451,7 @@
       {
         "item_id": "balance_and_arrears",
         "status": "present",
-        "value": "Balance £11,402.77; arrears £459.80.",
+        "value": "Balance GBP 11,402.77; arrears GBP 459.80.",
         "citations": [
           {
             "source": "D3",
@@ -480,15 +466,15 @@
       {
         "item_id": "income_expenditure",
         "status": "conflicting",
-        "value": "Declared £2,400 a month; customer says about £1,400. Rent £750. Income verification waived.",
+        "value": "Declared GBP 2,400 a month, verification waived; customer says about GBP 1,400 a month.",
         "citations": [
-          {
-            "source": "D1",
-            "quote": "maybe £1,400 in a month"
-          },
           {
             "source": "D2",
             "quote": "Declared net income GBP 2,400/m"
+          },
+          {
+            "source": "D1",
+            "quote": "maybe £1,400 in a month"
           }
         ]
       },
@@ -501,7 +487,7 @@
       {
         "item_id": "collections_status",
         "status": "present",
-        "value": "Active, strategy STD-1. Not paused.",
+        "value": "Active, strategy STD-1. No pause recorded.",
         "citations": [
           {
             "source": "D3",
@@ -518,28 +504,15 @@
     ],
     "conflicts": [
       {
-        "text": "Stated monthly income. Customer says she gave about £1,400; the application records £2,400. Not resolved here.",
+        "text": "Declared income: system records GBP 2,400 a month; customer says they reported about GBP 1,400 a month and that the paper shows GBP 2,400. Both versions recorded, not resolved.",
         "citations": [
-          {
-            "source": "D1",
-            "quote": "maybe £1,400 in a month"
-          },
           {
             "source": "D2",
             "quote": "Declared net income GBP 2,400/m"
-          }
-        ]
-      },
-      {
-        "text": "Contact. Customer says she receives letters and calls; system shows six outbound calls with no contact.",
-        "citations": [
-          {
-            "source": "D1",
-            "quote": "Now I receive letters and calls"
           },
           {
-            "source": "D3",
-            "quote": "Outbound calls x6 to [CUSTOMER_PHONE], no contact"
+            "source": "D1",
+            "quote": "maybe £1,400 in a month"
           }
         ]
       }
@@ -547,25 +520,21 @@
     "flags": [
       {
         "type": "deadline_risk",
-        "description": "Collections are active and an outbound call is due 23/10 while the complaint is open (CP-9.1). Final response due by 2026-12-15 under CP-3.1.",
+        "description": "Collections are active and an outbound call is scheduled for 23/10 while the complaint is open; whether to pause collections needs review (CP-9.1).",
         "citations": [
           {
             "source": "D3",
             "quote": "Next action: outbound call 23/10"
-          },
-          {
-            "source": "CP-3.1",
-            "quote": "We must send a final response within eight weeks of receiving the complaint"
           }
         ]
       },
       {
         "type": "data_quality",
-        "description": "Income verification was waived at application, so the declared income has not been checked.",
+        "description": "Letter dates in the arrears record have no year.",
         "citations": [
           {
-            "source": "D2",
-            "quote": "income verification: WAIVED, low-risk band"
+            "source": "D3",
+            "quote": "Letters: arrears L1 18/09, arrears L2 19/10"
           }
         ]
       }
@@ -575,7 +544,7 @@
     "statements": [
       {
         "path": "intake.issues.0",
-        "text": "Customer says the £12,000 loan was approved although she cannot afford it. She is now in arrears and says she receives letters and calls. She asks for a review and a smaller payment.",
+        "text": "Customer says the GBP 12,000 loan was approved although they cannot afford it, and payments are now in arrears.",
         "supported": true,
         "citations": [
           {
@@ -584,139 +553,124 @@
             "result": "verified"
           },
           {
-            "source": "D2",
-            "quote": "income verification: WAIVED, low-risk band",
+            "source": "D3",
+            "quote": "Arrears GBP 459.80",
             "result": "verified"
           }
         ]
       },
       {
         "path": "intake.issues.1",
-        "text": "Customer says she told the branch adviser she earns about £1,400 a month, but the application records £2,400 a month.",
+        "text": "Customer says branch staff recorded income of GBP 2,400 a month when they told staff about GBP 1,400 a month.",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "I told her I work part time as a cleaner",
+            "quote": "helped me to fill the form on the computer",
             "result": "verified"
           },
           {
             "source": "D2",
-            "quote": "Declared net income GBP 2,400/m",
+            "quote": "keyed by user [STAFF]",
             "result": "verified"
           }
         ]
       },
       {
         "path": "intake.team_reason",
-        "text": "Arrears and active collections on a personal loan, with a lending affordability question.",
+        "text": "Complaint concerns arrears, active collections and a lending decision on a personal loan, which is within the financial_support remit.",
         "supported": true,
         "citations": [
           {
             "source": "D3",
             "quote": "Collections: ACTIVE, strategy STD-1",
-            "result": "verified"
-          },
-          {
-            "source": "D3",
-            "quote": "Arrears GBP 459.80",
             "result": "verified"
           }
         ]
       },
       {
         "path": "intake.payment_services_reason",
-        "text": "The complaint concerns lending, income recording and arrears. No unauthorised or wrongly executed payment is alleged.",
+        "text": "Complaint concerns the lending decision and declared income, not an unauthorised or wrongly executed payment.",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "Please can you check how you gave me this loan",
+            "quote": "Please can you check how you gave me this loan when I cannot afford it",
             "result": "verified"
           }
         ]
       },
       {
         "path": "summary.0",
-        "text": "Personal loan of £12,000 approved on 12/06/2026 at the Peterborough branch with declared income of £2,400 a month. Income verification was waived.",
+        "text": "Customer took a GBP 12,000 personal loan over 60 months at 16.9% APR in June 2026 for a car and debt consolidation, arranged at the Peterborough branch.",
         "supported": true,
         "citations": [
           {
             "source": "D2",
-            "quote": "Decision APPROVE. Monthly pmt GBP 289.90.",
-            "result": "verified"
-          },
-          {
-            "source": "D2",
-            "quote": "income verification: WAIVED, low-risk band",
+            "quote": "Amount GBP 12,000 term 60m APR 16.9%",
             "result": "verified"
           }
         ]
       },
       {
         "path": "summary.1",
-        "text": "Customer says she told the adviser she earns about £1,400 a month as a part-time cleaner.",
+        "text": "Income was recorded as GBP 2,400 a month with income verification waived; customer says they reported about GBP 1,400 a month.",
         "supported": true,
         "citations": [
           {
-            "source": "D1",
-            "quote": "maybe £1,400 in a month",
+            "source": "D2",
+            "quote": "Declared net income GBP 2,400/m",
             "result": "verified"
           },
           {
             "source": "D1",
-            "quote": "I told her I work part time as a cleaner",
+            "quote": "maybe £1,400 in a month",
             "result": "verified"
           }
         ]
       },
       {
         "path": "summary.2",
-        "text": "September payment was part paid (£120) and October was missed. Arrears are £459.80 and collections are active.",
+        "text": "September payment was part-paid (GBP 120 of GBP 289.90) and October payment was not made; arrears are GBP 459.80.",
         "supported": true,
         "citations": [
           {
             "source": "D3",
-            "quote": "Arrears GBP 459.80",
+            "quote": "Pmt due 15/10/2026 GBP 289.90, received GBP 0.00",
             "result": "verified"
           },
           {
             "source": "D3",
-            "quote": "Collections: ACTIVE, strategy STD-1",
+            "quote": "Arrears GBP 459.80",
             "result": "verified"
           }
         ]
       },
       {
         "path": "summary.3",
-        "text": "Customer asks for a review of how the loan was given and for a smaller payment. She reports stress and poor sleep.",
+        "text": "Collections are active and six outbound calls have not reached the customer.",
         "supported": true,
         "citations": [
           {
-            "source": "D1",
-            "quote": "help me with a smaller payment",
+            "source": "D3",
+            "quote": "Collections: ACTIVE, strategy STD-1",
             "result": "verified"
           },
           {
-            "source": "D1",
-            "quote": "I am very stressed, I do not sleep well",
+            "source": "D3",
+            "quote": "Outbound calls x6 to [CUSTOMER_PHONE], no contact",
             "result": "verified"
           }
         ]
       },
       {
         "path": "timeline.0",
-        "text": "2026-06-12: Personal loan of £12,000 keyed at the Peterborough branch and approved. Declared net income £2,400 a month; income verification waived.",
+        "text": "2026-06-12: Loan application keyed at the Peterborough branch and approved.",
         "supported": true,
         "citations": [
           {
             "source": "D2",
             "quote": "Decision APPROVE. Monthly pmt GBP 289.90.",
-            "result": "verified"
-          },
-          {
-            "source": "D2",
-            "quote": "Declared net income GBP 2,400/m",
             "result": "verified"
           }
         ]
@@ -735,7 +689,7 @@
       },
       {
         "path": "timeline.2",
-        "text": "2026-09-15: Payment of £289.90 due; £120.00 received.",
+        "text": "2026-09-15: Payment of GBP 289.90 due; GBP 120.00 received.",
         "supported": true,
         "citations": [
           {
@@ -747,19 +701,19 @@
       },
       {
         "path": "timeline.3",
-        "text": "18/09: Arrears letter L1 sent.",
+        "text": "18/09: Arrears letter L1 issued.",
         "supported": true,
         "citations": [
           {
             "source": "D3",
-            "quote": "arrears L1 18/09",
+            "quote": "Letters: arrears L1 18/09, arrears L2 19/10",
             "result": "verified"
           }
         ]
       },
       {
         "path": "timeline.4",
-        "text": "2026-10-15: Payment of £289.90 due; nothing received.",
+        "text": "2026-10-15: Payment of GBP 289.90 due; GBP 0.00 received.",
         "supported": true,
         "citations": [
           {
@@ -771,19 +725,19 @@
       },
       {
         "path": "timeline.5",
-        "text": "19/10: Arrears letter L2 sent.",
+        "text": "19/10: Arrears letter L2 issued.",
         "supported": true,
         "citations": [
           {
             "source": "D3",
-            "quote": "arrears L2 19/10",
+            "quote": "Letters: arrears L1 18/09, arrears L2 19/10",
             "result": "verified"
           }
         ]
       },
       {
         "path": "timeline.6",
-        "text": "2026-10-20: Complaint received by email.",
+        "text": "2026-10-20: Customer emails complaint about the loan.",
         "supported": true,
         "citations": [
           {
@@ -795,7 +749,7 @@
       },
       {
         "path": "timeline.7",
-        "text": "23/10: Outbound collections call scheduled.",
+        "text": "23/10: Next outbound call to customer scheduled.",
         "supported": true,
         "citations": [
           {
@@ -807,14 +761,9 @@
       },
       {
         "path": "outcome_sought",
-        "text": "Customer asks the bank to check how the loan was given and to help her with a smaller payment.",
+        "text": "Customer asks for the loan to be checked given they say they cannot afford it, and for help with a smaller payment.",
         "supported": true,
         "citations": [
-          {
-            "source": "D1",
-            "quote": "Please can you check how you gave me this loan when I cannot afford it",
-            "result": "verified"
-          },
           {
             "source": "D1",
             "quote": "help me with a smaller payment",
@@ -824,24 +773,19 @@
       },
       {
         "path": "vulnerability.0",
-        "text": "Financial difficulty: missed payment and rent of £750 a month",
+        "text": "Financial difficulty: customer says they cannot afford the payments and has missed payments.",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "In October I could not pay",
-            "result": "verified"
-          },
-          {
-            "source": "D1",
-            "quote": "I pay rent £750",
+            "quote": "when I cannot afford it",
             "result": "verified"
           }
         ]
       },
       {
         "path": "vulnerability.1",
-        "text": "Stress and poor sleep",
+        "text": "Stress and poor sleep.",
         "supported": true,
         "citations": [
           {
@@ -853,7 +797,7 @@
       },
       {
         "path": "vulnerability.2",
-        "text": "Limited English; prefers written contact to phone",
+        "text": "Limited English and a preference for written contact over phone calls.",
         "supported": true,
         "citations": [
           {
@@ -870,7 +814,7 @@
       },
       {
         "path": "relevant_policy.0",
-        "text": "CP-2.3: The customer raises more than one issue, so each must be recorded separately.",
+        "text": "CP-2.3: Two issues are raised (affordability and staff recording of income) and each must be recorded separately.",
         "supported": true,
         "citations": [
           {
@@ -882,31 +826,31 @@
       },
       {
         "path": "relevant_policy.1",
-        "text": "CP-4.2: The stated income differs between the customer and the application record. Both versions must be shown.",
+        "text": "CP-4.2: System income and customer account of income disagree and both versions must be recorded.",
         "supported": true,
         "citations": [
           {
             "source": "CP-4.2",
-            "quote": "must record both versions and the source of each",
+            "quote": "record both versions and the source of each",
             "result": "verified"
           }
         ]
       },
       {
         "path": "relevant_policy.2",
-        "text": "CP-4.3: The outcome sought must be recorded in the customer's words.",
+        "text": "CP-4.3: The outcome the customer seeks must be recorded in their own words.",
         "supported": true,
         "citations": [
           {
             "source": "CP-4.3",
-            "quote": "record, in the customer's own words where possible, the outcome the customer is seeking",
+            "quote": "the outcome the customer is seeking",
             "result": "verified"
           }
         ]
       },
       {
         "path": "relevant_policy.3",
-        "text": "CP-5.2: Financial difficulty, stress and limited English are signs that need recording with support needs.",
+        "text": "CP-5.2: Signs of vulnerability must be recorded with any support needed, such as written contact.",
         "supported": true,
         "citations": [
           {
@@ -918,7 +862,7 @@
       },
       {
         "path": "relevant_policy.4",
-        "text": "CP-5.3: The customer prefers written contact, so handling and any handover must be adapted.",
+        "text": "CP-5.3: Handling must be adapted for this customer and they must not be passed between teams without a warm handover.",
         "supported": true,
         "citations": [
           {
@@ -930,7 +874,7 @@
       },
       {
         "path": "relevant_policy.5",
-        "text": "CP-6.1: The case falls within the financial support team's remit, so it goes to that team.",
+        "text": "CP-6.1: The case falls within the financial_support remit and must be passed there.",
         "supported": true,
         "citations": [
           {
@@ -942,7 +886,19 @@
       },
       {
         "path": "relevant_policy.6",
-        "text": "CP-9.1: Arrears and collections are involved, so forbearance, collections pausing and debt advice must be checked.",
+        "text": "CP-6.2: The handover is complete only when all required checklist items are filled in or marked with a reason.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-6.2",
+            "quote": "A handover is complete only when every required checklist item is filled in",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.7",
+        "text": "CP-9.1: Arrears case: forbearance, pausing collections during investigation and debt advice must be checked.",
         "supported": true,
         "citations": [
           {
@@ -954,7 +910,7 @@
       },
       {
         "path": "handover_checklist.outcome_sought",
-        "text": "outcome_sought: Customer wants the loan reviewed and a smaller payment.",
+        "text": "outcome_sought: Smaller payment and a check of how the loan was given.",
         "supported": true,
         "citations": [
           {
@@ -966,14 +922,9 @@
       },
       {
         "path": "handover_checklist.customer_contact_attempted",
-        "text": "customer_contact_attempted: Customer emailed the bank. Bank made six outbound calls with no contact recorded.",
+        "text": "customer_contact_attempted: Six outbound calls made with no contact. Customer emailed the complaint.",
         "supported": true,
         "citations": [
-          {
-            "source": "D1",
-            "quote": "Subject: Problem with my loan, please help",
-            "result": "verified"
-          },
           {
             "source": "D3",
             "quote": "Outbound calls x6 to [CUSTOMER_PHONE], no contact",
@@ -983,7 +934,7 @@
       },
       {
         "path": "handover_checklist.balance_and_arrears",
-        "text": "balance_and_arrears: Balance £11,402.77; arrears £459.80.",
+        "text": "balance_and_arrears: Balance GBP 11,402.77; arrears GBP 459.80.",
         "supported": true,
         "citations": [
           {
@@ -1000,24 +951,24 @@
       },
       {
         "path": "handover_checklist.income_expenditure",
-        "text": "income_expenditure: Declared £2,400 a month; customer says about £1,400. Rent £750. Income verification waived.",
+        "text": "income_expenditure: Declared GBP 2,400 a month, verification waived; customer says about GBP 1,400 a month.",
         "supported": true,
         "citations": [
           {
-            "source": "D1",
-            "quote": "maybe £1,400 in a month",
+            "source": "D2",
+            "quote": "Declared net income GBP 2,400/m",
             "result": "verified"
           },
           {
-            "source": "D2",
-            "quote": "Declared net income GBP 2,400/m",
+            "source": "D1",
+            "quote": "maybe £1,400 in a month",
             "result": "verified"
           }
         ]
       },
       {
         "path": "handover_checklist.collections_status",
-        "text": "collections_status: Active, strategy STD-1. Not paused.",
+        "text": "collections_status: Active, strategy STD-1. No pause recorded.",
         "supported": true,
         "citations": [
           {
@@ -1029,63 +980,41 @@
       },
       {
         "path": "conflicts.0",
-        "text": "Stated monthly income. Customer says she gave about £1,400; the application records £2,400. Not resolved here.",
+        "text": "Declared income: system records GBP 2,400 a month; customer says they reported about GBP 1,400 a month and that the paper shows GBP 2,400. Both versions recorded, not resolved.",
         "supported": true,
         "citations": [
-          {
-            "source": "D1",
-            "quote": "maybe £1,400 in a month",
-            "result": "verified"
-          },
           {
             "source": "D2",
             "quote": "Declared net income GBP 2,400/m",
             "result": "verified"
-          }
-        ]
-      },
-      {
-        "path": "conflicts.1",
-        "text": "Contact. Customer says she receives letters and calls; system shows six outbound calls with no contact.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "D1",
-            "quote": "Now I receive letters and calls",
-            "result": "verified"
           },
           {
-            "source": "D3",
-            "quote": "Outbound calls x6 to [CUSTOMER_PHONE], no contact",
+            "source": "D1",
+            "quote": "maybe £1,400 in a month",
             "result": "verified"
           }
         ]
       },
       {
         "path": "flags.0",
-        "text": "deadline_risk: Collections are active and an outbound call is due 23/10 while the complaint is open (CP-9.1). Final response due by 2026-12-15 under CP-3.1.",
+        "text": "deadline_risk: Collections are active and an outbound call is scheduled for 23/10 while the complaint is open; whether to pause collections needs review (CP-9.1).",
         "supported": true,
         "citations": [
           {
             "source": "D3",
             "quote": "Next action: outbound call 23/10",
             "result": "verified"
-          },
-          {
-            "source": "CP-3.1",
-            "quote": "We must send a final response within eight weeks of receiving the complaint",
-            "result": "verified"
           }
         ]
       },
       {
         "path": "flags.1",
-        "text": "data_quality: Income verification was waived at application, so the declared income has not been checked.",
+        "text": "data_quality: Letter dates in the arrears record have no year.",
         "supported": true,
         "citations": [
           {
-            "source": "D2",
-            "quote": "income verification: WAIVED, low-risk band",
+            "source": "D3",
+            "quote": "Letters: arrears L1 18/09, arrears L2 19/10",
             "result": "verified"
           }
         ]
@@ -1123,10 +1052,10 @@
   },
   "usage": {
     "inputTokens": 939,
-    "outputTokens": 13337,
-    "cacheReadTokens": 9362,
+    "outputTokens": 10432,
+    "cacheReadTokens": 9468,
     "cacheWriteTokens": 0,
-    "costUsd": 0.006856019999999999,
-    "latencyMs": 49215
+    "costUsd": 0.00540458,
+    "latencyMs": 39606
   }
 }

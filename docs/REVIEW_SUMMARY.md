@@ -9,7 +9,7 @@ Six independent reviewers read plan v1. Their full notes are in [reviews/](revie
 **1. Three claims made honest.**
 - "Zero personal data sent to the AI" becomes "X percent of planted identifiers caught". Redaction can never be perfect, and pseudonymised data is still personal data under UK law.
 - "Citation checker" becomes "provenance check". It proves a quote exists, not that it supports the point. That gap is exactly why a human reviews.
-- "Injection ignored" becomes "injection impossible by design". The AI's answer format has no field for an outcome or compensation.
+- "Injection ignored" becomes "an injection cannot award an outcome". The AI's answer format has no field for an outcome or compensation. (Refined 6 Nov after the app review: injected text could still try to nudge routing or the deadline rule, which is why a person confirms both.)
 
 **2. One regulatory mistake fixed.** Some payment complaints have a 15 business day deadline, not 8 weeks. We checked the rule at source. It applies only to certain payment complaints (for example unauthorised payments), so the tool asks the handler to confirm.
 

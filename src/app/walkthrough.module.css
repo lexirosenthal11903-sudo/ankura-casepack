@@ -5,6 +5,7 @@
 .steps ol { list-style: none; margin: 0; padding: 0; position: sticky; top: 16px; }
 .steps li { margin: 0; }
 .steps button {
+  min-height: 44px;
   display: flex; align-items: flex-start; gap: 10px; width: 100%; text-align: left;
   background: none; border: 0; border-left: 4px solid var(--border-light); padding: 10px 12px; cursor: pointer; color: var(--text-secondary);
 }
@@ -19,7 +20,8 @@
 .done .num { color: var(--green); }
 @media (max-width: 860px) {
   .steps ol { position: static; display: flex; gap: 6px; }
-  .steps button { border-left: 0; border-bottom: 4px solid var(--border-light); padding: 6px 2px; justify-content: center; }
+  .steps button {
+  min-height: 44px; border-left: 0; border-bottom: 4px solid var(--border-light); padding: 6px 2px; justify-content: center; }
   .current button { border-bottom-color: var(--brand); }
   .done button { border-bottom-color: var(--green); }
   .stepLabel { display: none; }
@@ -69,3 +71,6 @@
 
 .navButtons { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); }
 .endLinks { display: flex; gap: 20px; flex-wrap: wrap; font-weight: 700; }
+
+.failCard { border: 2px solid var(--red); background: var(--red-bg); padding: 16px; margin: 0 0 20px; }
+.failed { color: #942514; font-weight: 700; margin: 0; }

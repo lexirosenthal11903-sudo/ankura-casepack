@@ -1,8 +1,8 @@
 {
   "caseId": "HV-015",
-  "createdAt": "2026-11-05T22:29:23.797Z",
+  "createdAt": "2026-11-06T10:40:17.837Z",
   "model": "claude-haiku-5-5",
-  "promptVersion": "casepack-v2",
+  "promptVersion": "casepack-v3",
   "redacted": {
     "id": "HV-015",
     "received": "2026-11-05",
@@ -32,13 +32,13 @@
   "pack": {
     "enough_information": {
       "sufficient": false,
-      "what_is_needed": "Identify the account or product affected, what money was taken and when, and what the customer wants put right. Make at least one documented attempt to contact the customer (CP-4.5) before passing the case on."
+      "what_is_needed": "Confirm the product and account, what money was taken and when, whether the customer authorised it, and what outcome they want. Contact the customer to obtain these (CP-4.5)."
     },
     "intake": {
       "issues": [],
       "suggested_team": "frontline",
       "team_reason": {
-        "text": "Team cannot be set yet because the product, the debit and the customer's requested outcome are not stated. Frontline should establish these first.",
+        "text": "The product and problem cannot yet be identified, so the first handler should establish the facts before any specialist handover.",
         "citations": [
           {
             "source": "D1",
@@ -48,7 +48,7 @@
       },
       "payment_services": "unclear",
       "payment_services_reason": {
-        "text": "The form does not show whether the money was authorised by the customer or executed correctly.",
+        "text": "The documents do not show whether the money taken was authorised or correctly executed.",
         "citations": [
           {
             "source": "D1",
@@ -61,7 +61,7 @@
     },
     "summary": [
       {
-        "text": "Customer logged a web form complaint on 2026-11-05 while logged in.",
+        "text": "Customer submitted a complaint through the web form on 2026-11-05 from a logged-in session.",
         "citations": [
           {
             "source": "D1",
@@ -83,17 +83,13 @@
         "citations": [
           {
             "source": "D1",
-            "quote": "Account: [not selected] | What happened: you have taken money"
+            "quote": "Account: [not selected]"
           }
         ]
       },
       {
-        "text": "Customer wants the matter sorted out and says they will leave otherwise. No specific remedy is stated.",
+        "text": "The customer has not stated what would put things right.",
         "citations": [
-          {
-            "source": "D1",
-            "quote": "sort it out or Im leaving"
-          },
           {
             "source": "D1",
             "quote": "What would put it right: [blank]"
@@ -104,7 +100,7 @@
     "timeline": [
       {
         "date": "2026-11-05",
-        "event": "Complaint received via web form from a logged-in customer session.",
+        "event": "Complaint received by web form.",
         "citations": [
           {
             "source": "D1",
@@ -114,12 +110,8 @@
       }
     ],
     "outcome_sought": {
-      "text": "Customer wants the bank to sort it out, in their words 'sort it out or Im leaving'. No specific remedy stated.",
+      "text": "Not stated. The 'what would put it right' field is blank.",
       "citations": [
-        {
-          "source": "D1",
-          "quote": "sort it out or Im leaving"
-        },
         {
           "source": "D1",
           "quote": "What would put it right: [blank]"
@@ -129,18 +121,8 @@
     "vulnerability": [],
     "relevant_policy": [
       {
-        "policy_id": "CP-1.1",
-        "why_relevant": "The form expresses dissatisfaction about money taken, so it is treated as a complaint.",
-        "citations": [
-          {
-            "source": "CP-1.1",
-            "quote": "any expression of dissatisfaction, oral or written, justified or not"
-          }
-        ]
-      },
-      {
         "policy_id": "CP-1.3",
-        "why_relevant": "The complaint must be logged on the day received, with channel, product and cause category.",
+        "why_relevant": "The complaint must be logged in the CRM on the day it was received.",
         "citations": [
           {
             "source": "CP-1.3",
@@ -149,32 +131,32 @@
         ]
       },
       {
-        "policy_id": "CP-2.4",
-        "why_relevant": "The customer's word 'AGAIN' suggests an earlier issue, so linked complaints must be checked.",
+        "policy_id": "CP-2.1",
+        "why_relevant": "An acknowledgement naming the handler is due if the complaint is not resolved by the third business day, which is 2026-11-10.",
         "citations": [
           {
-            "source": "CP-2.4",
-            "quote": "check for earlier complaints from the same customer on the same subject"
+            "source": "CP-2.1",
+            "quote": "by the close of the third business day after it was received"
           }
         ]
       },
       {
         "policy_id": "CP-4.3",
-        "why_relevant": "The customer's desired outcome must be recorded in their own words.",
+        "why_relevant": "The outcome the customer is seeking must be recorded, and it is currently blank.",
         "citations": [
           {
             "source": "CP-4.3",
-            "quote": "The handler must record, in the customer's own words where possible"
+            "quote": "the outcome the customer is seeking"
           }
         ]
       },
       {
         "policy_id": "CP-4.5",
-        "why_relevant": "Key information is missing, so a documented contact attempt is needed before any handover.",
+        "why_relevant": "Missing information requires at least one documented contact attempt before any specialist handover.",
         "citations": [
           {
             "source": "CP-4.5",
-            "quote": "Where information needed to investigate is missing, the handler must make at least one documented attempt to contact the customer"
+            "quote": "the handler must make at least one documented attempt to contact the customer"
           }
         ]
       }
@@ -182,14 +164,9 @@
     "handover_checklist": [
       {
         "item_id": "outcome_sought",
-        "status": "present",
-        "value": "Customer says 'sort it out or Im leaving'. No specific remedy stated.",
-        "citations": [
-          {
-            "source": "D1",
-            "quote": "sort it out or Im leaving"
-          }
-        ]
+        "status": "missing",
+        "value": "",
+        "citations": []
       },
       {
         "item_id": "customer_contact_attempted",
@@ -220,7 +197,7 @@
     "flags": [
       {
         "type": "data_quality",
-        "description": "Product, account and cause are not identified. The requested remedy is blank.",
+        "description": "Account not selected, product and problem unclear, and the name field contains a stray character after the placeholder.",
         "citations": [
           {
             "source": "D1",
@@ -228,17 +205,17 @@
           },
           {
             "source": "D1",
-            "quote": "What would put it right: [blank]"
+            "quote": "Name: [CUSTOMER] P"
           }
         ]
       },
       {
         "type": "deadline_risk",
-        "description": "An acknowledgement is due if the complaint is not resolved by the close of the third business day after receipt.",
+        "description": "The acknowledgement is due by the close of 2026-11-10 if the complaint is not resolved by then.",
         "citations": [
           {
             "source": "CP-2.1",
-            "quote": "If a complaint is not resolved by the close of the third business day after it was received"
+            "quote": "by the close of the third business day after it was received"
           }
         ]
       }
@@ -248,7 +225,7 @@
     "statements": [
       {
         "path": "intake.team_reason",
-        "text": "Team cannot be set yet because the product, the debit and the customer's requested outcome are not stated. Frontline should establish these first.",
+        "text": "The product and problem cannot yet be identified, so the first handler should establish the facts before any specialist handover.",
         "supported": true,
         "citations": [
           {
@@ -260,7 +237,7 @@
       },
       {
         "path": "intake.payment_services_reason",
-        "text": "The form does not show whether the money was authorised by the customer or executed correctly.",
+        "text": "The documents do not show whether the money taken was authorised or correctly executed.",
         "supported": true,
         "citations": [
           {
@@ -272,7 +249,7 @@
       },
       {
         "path": "summary.0",
-        "text": "Customer logged a web form complaint on 2026-11-05 while logged in.",
+        "text": "Customer submitted a complaint through the web form on 2026-11-05 from a logged-in session.",
         "supported": true,
         "citations": [
           {
@@ -301,21 +278,16 @@
         "citations": [
           {
             "source": "D1",
-            "quote": "Account: [not selected] | What happened: you have taken money",
+            "quote": "Account: [not selected]",
             "result": "verified"
           }
         ]
       },
       {
         "path": "summary.3",
-        "text": "Customer wants the matter sorted out and says they will leave otherwise. No specific remedy is stated.",
+        "text": "The customer has not stated what would put things right.",
         "supported": true,
         "citations": [
-          {
-            "source": "D1",
-            "quote": "sort it out or Im leaving",
-            "result": "verified"
-          },
           {
             "source": "D1",
             "quote": "What would put it right: [blank]",
@@ -325,7 +297,7 @@
       },
       {
         "path": "timeline.0",
-        "text": "2026-11-05: Complaint received via web form from a logged-in customer session.",
+        "text": "2026-11-05: Complaint received by web form.",
         "supported": true,
         "citations": [
           {
@@ -337,14 +309,9 @@
       },
       {
         "path": "outcome_sought",
-        "text": "Customer wants the bank to sort it out, in their words 'sort it out or Im leaving'. No specific remedy stated.",
+        "text": "Not stated. The 'what would put it right' field is blank.",
         "supported": true,
         "citations": [
-          {
-            "source": "D1",
-            "quote": "sort it out or Im leaving",
-            "result": "verified"
-          },
           {
             "source": "D1",
             "quote": "What would put it right: [blank]",
@@ -354,19 +321,7 @@
       },
       {
         "path": "relevant_policy.0",
-        "text": "CP-1.1: The form expresses dissatisfaction about money taken, so it is treated as a complaint.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "CP-1.1",
-            "quote": "any expression of dissatisfaction, oral or written, justified or not",
-            "result": "verified"
-          }
-        ]
-      },
-      {
-        "path": "relevant_policy.1",
-        "text": "CP-1.3: The complaint must be logged on the day received, with channel, product and cause category.",
+        "text": "CP-1.3: The complaint must be logged in the CRM on the day it was received.",
         "supported": true,
         "citations": [
           {
@@ -377,56 +332,44 @@
         ]
       },
       {
-        "path": "relevant_policy.2",
-        "text": "CP-2.4: The customer's word 'AGAIN' suggests an earlier issue, so linked complaints must be checked.",
+        "path": "relevant_policy.1",
+        "text": "CP-2.1: An acknowledgement naming the handler is due if the complaint is not resolved by the third business day, which is 2026-11-10.",
         "supported": true,
         "citations": [
           {
-            "source": "CP-2.4",
-            "quote": "check for earlier complaints from the same customer on the same subject",
+            "source": "CP-2.1",
+            "quote": "by the close of the third business day after it was received",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.2",
+        "text": "CP-4.3: The outcome the customer is seeking must be recorded, and it is currently blank.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "the outcome the customer is seeking",
             "result": "verified"
           }
         ]
       },
       {
         "path": "relevant_policy.3",
-        "text": "CP-4.3: The customer's desired outcome must be recorded in their own words.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "CP-4.3",
-            "quote": "The handler must record, in the customer's own words where possible",
-            "result": "verified"
-          }
-        ]
-      },
-      {
-        "path": "relevant_policy.4",
-        "text": "CP-4.5: Key information is missing, so a documented contact attempt is needed before any handover.",
+        "text": "CP-4.5: Missing information requires at least one documented contact attempt before any specialist handover.",
         "supported": true,
         "citations": [
           {
             "source": "CP-4.5",
-            "quote": "Where information needed to investigate is missing, the handler must make at least one documented attempt to contact the customer",
-            "result": "verified"
-          }
-        ]
-      },
-      {
-        "path": "handover_checklist.outcome_sought",
-        "text": "outcome_sought: Customer says 'sort it out or Im leaving'. No specific remedy stated.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "D1",
-            "quote": "sort it out or Im leaving",
+            "quote": "the handler must make at least one documented attempt to contact the customer",
             "result": "verified"
           }
         ]
       },
       {
         "path": "flags.0",
-        "text": "data_quality: Product, account and cause are not identified. The requested remedy is blank.",
+        "text": "data_quality: Account not selected, product and problem unclear, and the name field contains a stray character after the placeholder.",
         "supported": true,
         "citations": [
           {
@@ -436,31 +379,32 @@
           },
           {
             "source": "D1",
-            "quote": "What would put it right: [blank]",
+            "quote": "Name: [CUSTOMER] P",
             "result": "verified"
           }
         ]
       },
       {
         "path": "flags.1",
-        "text": "deadline_risk: An acknowledgement is due if the complaint is not resolved by the close of the third business day after receipt.",
+        "text": "deadline_risk: The acknowledgement is due by the close of 2026-11-10 if the complaint is not resolved by then.",
         "supported": true,
         "citations": [
           {
             "source": "CP-2.1",
-            "quote": "If a complaint is not resolved by the close of the third business day after it was received",
+            "quote": "by the close of the third business day after it was received",
             "result": "verified"
           }
         ]
       }
     ],
-    "supportedCount": 16,
+    "supportedCount": 14,
     "unsupportedCount": 0,
     "inventedPlaceholders": [],
     "checklist": {
       "required": 4,
-      "present": 1,
+      "present": 0,
       "missing": [
+        "outcome_sought",
         "customer_contact_attempted",
         "vulnerability_recorded",
         "linked_complaints_checked"
@@ -484,10 +428,10 @@
   },
   "usage": {
     "inputTokens": 173,
-    "outputTokens": 4203,
-    "cacheReadTokens": 9362,
+    "outputTokens": 3239,
+    "cacheReadTokens": 9468,
     "cacheWriteTokens": 0,
-    "costUsd": 0.00221242,
-    "latencyMs": 16653
+    "costUsd": 0.00173148,
+    "latencyMs": 12578
   }
 }

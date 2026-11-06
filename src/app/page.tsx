@@ -13,6 +13,7 @@ export default function Home() {
   const c = loadCase(CASE_ID);
   const run = loadSavedRun(CASE_ID)!;
   const r = run.redacted.replacements;
+  const shown = (t: string) => restore(t, r, run.redacted.display);
   const email = c.documents[0];
   const emailRedacted = run.redacted.documents[0];
 
@@ -38,21 +39,21 @@ export default function Home() {
     emailRedacted: emailRedacted.text,
     hidden,
     totalHidden: r.length,
-    summary: run.pack.summary.map((s) => restore(s.text, r)),
-    wants: restore(run.pack.outcome_sought.text, r),
+    summary: run.pack.summary.map((s) => shown(s.text)),
+    wants: shown(run.pack.outcome_sought.text),
     model: modelName(run.model),
     seconds: Math.round(run.usage.latencyMs / 1000),
     // Rough conversion at 79p to the dollar, only for a plain-English "under 1p" label.
     costPence: run.usage.costUsd * 79,
     check: {
-      statement: restore(statement.text, r),
+      statement: shown(statement.text),
       sourceLabel: `${sourceDoc.id}, ${sourceDoc.system === "CARDS" ? "the bank's card records" : sourceDoc.system === "EMAIL" ? "the customer's email" : sourceDoc.system === "CRM" ? "the bank's case notes" : sourceDoc.system}`,
-      quote: restore(cite.quote, r),
+      quote: shown(cite.quote),
       sourceText: sourceDoc.text,
     },
     verified: run.checks.supportedCount,
     totalStatements: run.checks.supportedCount + run.checks.unsupportedCount,
-    injectionFlag: injection ? restore(injection.description, r) : null,
+    injectionFlag: injection ? shown(injection.description) : null,
     team: team.label,
     workingDue: formatDate(run.deadlines.workingDue, true),
     businessDaysLeft: run.deadlines.businessDaysLeft,

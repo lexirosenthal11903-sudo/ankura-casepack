@@ -1,8 +1,8 @@
 {
   "caseId": "HV-008",
-  "createdAt": "2026-11-05T22:28:56.229Z",
+  "createdAt": "2026-11-06T10:39:51.548Z",
   "model": "claude-haiku-5-5",
-  "promptVersion": "casepack-v2",
+  "promptVersion": "casepack-v3",
   "redacted": {
     "id": "HV-008",
     "received": "2026-10-16",
@@ -144,36 +144,36 @@
         {
           "product": "mortgage",
           "cause": "mortgage_admin",
-          "description": "Product switch delayed; representative says customer was charged the SVR of 7.49% for September and October 2026 and seeks a refund of the difference.",
+          "description": "Delay to the product transfer from the 5 year fix at 2.19% to a 2 year fix at 4.34%. The account reverted to the SVR at 7.49% from 1 September 2026. The broker estimates an overpayment of about £410.",
           "citations": [
             {
-              "source": "D1",
-              "quote": "was charged your standard variable rate of 7.49% for September and October"
+              "source": "D3",
+              "quote": "01/09/2026 reverted to SVR 7.49%."
             },
             {
-              "source": "D3",
-              "quote": "reverted to SVR 7.49%"
+              "source": "D1",
+              "quote": "an overpayment of roughly £410 across the two months"
             }
           ]
         }
       ],
       "suggested_team": "mortgages",
       "team_reason": {
-        "text": "Complaint concerns a mortgage product transfer delay and the reversion to SVR, which is a mortgage rate and product switch matter.",
+        "text": "The complaint concerns a mortgage product transfer (switch) and its delay.",
         "citations": [
           {
             "source": "D1",
-            "quote": "My client's five year fixed rate of 2.19% expired on 31 August 2026."
+            "quote": "I submitted a product transfer to your 2 year fix at 4.34% through your intermediary portal on 4 August 2026"
           }
         ]
       },
       "payment_services": "no",
       "payment_services_reason": {
-        "text": "Complaint concerns the timing of a mortgage product switch and the rate charged, not a payment executed wrongly or late.",
+        "text": "The complaint concerns a product switch delay, not a payment that was unauthorised or wrongly executed.",
         "citations": [
           {
-            "source": "D3",
-            "quote": "Product transfer: 2yr fixed 4.34%"
+            "source": "D1",
+            "quote": "the switch was not completed until 6 October and only took effect from 1 November."
           }
         ]
       },
@@ -182,47 +182,47 @@
     },
     "summary": [
       {
-        "text": "Broker Kestrel Mortgage Solutions complains on behalf of the customer about a delayed product transfer on mortgage account ACCOUNT_1.",
+        "text": "A broker, Kestrel Mortgage Solutions, complains on behalf of the customer about a delayed product switch on mortgage account [ACCOUNT_1].",
         "citations": [
           {
             "source": "D1",
-            "quote": "I write on behalf of my client"
+            "quote": "I write on behalf of my client, [CUSTOMER], whose signed letter of authority is enclosed."
           }
         ]
       },
       {
-        "text": "The customer's five year fix expired on 31 August 2026 and the account reverted to SVR 7.49% from 1 September 2026.",
+        "text": "The five year fix at 2.19% ended on 31 August 2026 and the account reverted to the SVR at 7.49% from 1 September 2026.",
         "citations": [
           {
             "source": "D3",
-            "quote": "reverted to SVR 7.49%"
+            "quote": "01/09/2026 reverted to SVR 7.49%."
           }
         ]
       },
       {
-        "text": "The product transfer to a 2 year fix at 4.34% was offered 02/10/2026, accepted 05/10/2026, completed 06/10/2026 and effective 01/11/2026.",
+        "text": "The 2 year fix at 4.34% was completed on 6 October 2026 and took effect on 1 November 2026.",
         "citations": [
           {
             "source": "D3",
-            "quote": "accepted 05/10/2026, completed 06/10/2026, effective 01/11/2026"
+            "quote": "completed 06/10/2026, effective 01/11/2026"
           }
         ]
       },
       {
-        "text": "The application date conflicts: the broker states 4 August 2026 but the mortgage system shows receipt on 19/08/2026.",
+        "text": "The date the product transfer was submitted is disputed: the broker says 4 August 2026, while the CRM shows it received on 19 August 2026.",
         "citations": [
           {
             "source": "D2",
-            "quote": "not 04/08 as broker states"
+            "quote": "PT application on mortgage system shows RECEIVED 19/08/2026, not 04/08 as broker states."
           }
         ]
       },
       {
-        "text": "The representative asks for a refund of the difference between the SVR and the agreed product rate and backdating of the new product to 1 September 2026.",
+        "text": "The broker estimates an overpayment of about £410 over September and October.",
         "citations": [
           {
             "source": "D1",
-            "quote": "We ask that you refund the difference between the SVR and the agreed product rate for the affected period"
+            "quote": "an overpayment of roughly £410 across the two months"
           }
         ]
       }
@@ -230,7 +230,7 @@
     "timeline": [
       {
         "date": "2026-08-04",
-        "event": "Broker states product transfer submitted via intermediary portal (portal reference not found on portal search).",
+        "event": "Broker states the product transfer was submitted through the intermediary portal. The CRM records a different date (see conflicts).",
         "citations": [
           {
             "source": "D1",
@@ -240,7 +240,7 @@
       },
       {
         "date": "2026-08-19",
-        "event": "Mortgage system records product transfer application as received.",
+        "event": "CRM records the product transfer application as received.",
         "citations": [
           {
             "source": "D2",
@@ -250,41 +250,41 @@
       },
       {
         "date": "2026-08-31",
-        "event": "Five year fixed rate of 2.19% expired.",
+        "event": "Five year fixed rate of 2.19% ended.",
         "citations": [
           {
-            "source": "D1",
-            "quote": "expired on 31 August 2026"
+            "source": "D3",
+            "quote": "Product: 5yr fixed 2.19% to 31/08/2026."
           }
         ]
       },
       {
         "date": "2026-09-01",
-        "event": "Account reverted to SVR 7.49%; monthly payment 1,391.48 recorded.",
+        "event": "Account reverted to the SVR at 7.49%.",
         "citations": [
           {
             "source": "D3",
-            "quote": "01/09/2026 reverted to SVR 7.49%"
+            "quote": "01/09/2026 reverted to SVR 7.49%."
           }
         ]
       },
       {
         "date": "2026-09-02",
-        "event": "Broker chased the switch by phone.",
+        "event": "Broker says they chased the switch by phone. No matching CRM record was supplied.",
         "citations": [
           {
             "source": "D1",
-            "quote": "chasing by phone on 2 and 23 September"
+            "quote": "Despite chasing by phone on 2 and 23 September"
           }
         ]
       },
       {
         "date": "2026-09-23",
-        "event": "Broker chased the switch by phone.",
+        "event": "Broker says they chased the switch by phone again. No matching CRM record was supplied.",
         "citations": [
           {
             "source": "D1",
-            "quote": "chasing by phone on 2 and 23 September"
+            "quote": "Despite chasing by phone on 2 and 23 September"
           }
         ]
       },
@@ -294,7 +294,7 @@
         "citations": [
           {
             "source": "D3",
-            "quote": "offer issued 02/10/2026"
+            "quote": "offer issued 02/10/2026, accepted 05/10/2026"
           }
         ]
       },
@@ -304,7 +304,7 @@
         "citations": [
           {
             "source": "D3",
-            "quote": "accepted 05/10/2026"
+            "quote": "offer issued 02/10/2026, accepted 05/10/2026"
           }
         ]
       },
@@ -314,23 +314,33 @@
         "citations": [
           {
             "source": "D3",
-            "quote": "completed 06/10/2026"
+            "quote": "completed 06/10/2026, effective 01/11/2026"
           }
         ]
       },
       {
         "date": "2026-10-09",
-        "event": "Letter of authority signed by the customer.",
+        "event": "Customer signed the letter of authority for the broker.",
         "citations": [
           {
             "source": "D1",
-            "quote": "Letter of authority signed [CUSTOMER] 09/10/2026"
+            "quote": "Enc. Letter of authority signed [CUSTOMER] 09/10/2026"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-14",
+        "event": "Broker letter of complaint dated.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "14 October 2026"
           }
         ]
       },
       {
         "date": "2026-10-16",
-        "event": "Complaint received by post from the broker and logged.",
+        "event": "Complaint received by post and logged.",
         "citations": [
           {
             "source": "D2",
@@ -340,11 +350,11 @@
       },
       {
         "date": "2026-11-01",
-        "event": "New 2 year fixed product takes effect.",
+        "event": "New 2 year fix at 4.34% takes effect.",
         "citations": [
           {
             "source": "D3",
-            "quote": "effective 01/11/2026"
+            "quote": "completed 06/10/2026, effective 01/11/2026"
           }
         ]
       }
@@ -354,7 +364,11 @@
       "citations": [
         {
           "source": "D1",
-          "quote": "We ask that you refund the difference between the SVR and the agreed product rate for the affected period"
+          "quote": "We ask that you refund the difference between the SVR and the agreed product rate"
+        },
+        {
+          "source": "D1",
+          "quote": "backdate the new product to 1 September 2026"
         }
       ]
     },
@@ -362,67 +376,47 @@
     "relevant_policy": [
       {
         "policy_id": "CP-1.2",
-        "why_relevant": "Complaint is made by a representative; written authority must be checked to cover this complaint.",
+        "why_relevant": "The complaint is made by a broker, so the written authority must be checked to cover this complaint.",
         "citations": [
           {
             "source": "CP-1.2",
-            "quote": "a representative the customer has authorised in writing"
-          }
-        ]
-      },
-      {
-        "policy_id": "CP-2.1",
-        "why_relevant": "Acknowledgement is due if the complaint is not resolved by the third business day.",
-        "citations": [
-          {
-            "source": "CP-2.1",
-            "quote": "If a complaint is not resolved by the close of the third business day"
-          }
-        ]
-      },
-      {
-        "policy_id": "CP-2.4",
-        "why_relevant": "Earlier or linked complaints must be checked before investigating.",
-        "citations": [
-          {
-            "source": "CP-2.4",
-            "quote": "check for earlier complaints from the same customer on the same subject in the last twelve months"
-          }
-        ]
-      },
-      {
-        "policy_id": "CP-3.1",
-        "why_relevant": "Sets the final response deadline of eight weeks from receipt.",
-        "citations": [
-          {
-            "source": "CP-3.1",
-            "quote": "We must send a final response within eight weeks of receiving the complaint"
+            "quote": "by a representative the customer has authorised in writing"
           }
         ]
       },
       {
         "policy_id": "CP-4.2",
-        "why_relevant": "Application date conflicts between the broker and the mortgage system and both must be recorded.",
+        "why_relevant": "The broker's application date and the CRM received date differ, and both must be recorded.",
         "citations": [
           {
             "source": "CP-4.2",
-            "quote": "record both versions and the source of each, and must not choose between them without evidence"
+            "quote": "Where system records disagree, for example on the date of a call or a payment"
           }
         ]
       },
       {
         "policy_id": "CP-4.3",
-        "why_relevant": "The customer's requested outcome must be recorded in their words.",
+        "why_relevant": "The customer's requested outcome must be recorded.",
         "citations": [
           {
             "source": "CP-4.3",
-            "quote": "record, in the customer's own words where possible, the outcome the customer is seeking"
+            "quote": "The handler must record, in the customer's own words where possible, the outcome the customer is seeking."
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.5",
+        "why_relevant": "No documented customer contact is on file before handover.",
+        "citations": [
+          {
+            "source": "CP-4.5",
+            "quote": "the handler must make at least one documented attempt to contact the customer before a case is passed to a specialist team"
           }
         ]
       },
       {
         "policy_id": "CP-6.1",
-        "why_relevant": "The complaint falls within the mortgages team remit and must be passed on.",
+        "why_relevant": "The complaint falls within the mortgages team's remit and must be handed over with its checklist.",
         "citations": [
           {
             "source": "CP-6.1",
@@ -432,11 +426,21 @@
       },
       {
         "policy_id": "CP-6.2",
-        "why_relevant": "The handover is complete only when every required checklist item is filled in or marked with a reason.",
+        "why_relevant": "The handover is incomplete until every required checklist item is filled in or marked with a reason.",
         "citations": [
           {
             "source": "CP-6.2",
-            "quote": "A handover is complete only when every required checklist item is filled in or marked as not available with a reason"
+            "quote": "A handover is complete only when every required checklist item is filled in or marked as not available with a reason."
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-3.1",
+        "why_relevant": "Sets the final response deadline, eight weeks from receipt on 16 October 2026.",
+        "citations": [
+          {
+            "source": "CP-3.1",
+            "quote": "We must send a final response within eight weeks of receiving the complaint"
           }
         ]
       }
@@ -445,11 +449,11 @@
       {
         "item_id": "outcome_sought",
         "status": "present",
-        "value": "Refund of the SVR to agreed product rate difference for the affected period; backdate new product to 1 September 2026.",
+        "value": "Refund of SVR versus agreed product rate for affected period, and backdating to 1 September 2026.",
         "citations": [
           {
             "source": "D1",
-            "quote": "We ask that you refund the difference between the SVR and the agreed product rate for the affected period"
+            "quote": "We ask that you refund the difference between the SVR and the agreed product rate"
           }
         ]
       },
@@ -480,7 +484,7 @@
       {
         "item_id": "mortgage_account_status",
         "status": "present",
-        "value": "5yr fixed 2.19% to 31/08/2026; 2yr fixed 4.34% effective 01/11/2026; capital and interest; balance GBP 214,880.15.",
+        "value": "5 year fix at 2.19% to 31/08/2026; now 2 year fix at 4.34% from 01/11/2026; capital and interest repayment.",
         "citations": [
           {
             "source": "D3",
@@ -495,34 +499,38 @@
       {
         "item_id": "key_dates",
         "status": "conflicting",
-        "value": "Application received 19/08/2026 per mortgage system; submitted 04/08/2026 per broker. Completed 06/10/2026; effective 01/11/2026.",
+        "value": "Product transfer submission or receipt: 4 August 2026 per broker; 19 August 2026 per CRM.",
         "citations": [
           {
-            "source": "D2",
-            "quote": "PT application on mortgage system shows RECEIVED 19/08/2026"
+            "source": "D1",
+            "quote": "on 4 August 2026"
           },
           {
-            "source": "D1",
-            "quote": "I submitted a product transfer to your 2 year fix at 4.34% through your intermediary portal on 4 August 2026"
+            "source": "D2",
+            "quote": "RECEIVED 19/08/2026"
           }
         ]
       },
       {
         "item_id": "amount_in_dispute",
         "status": "present",
-        "value": "Representative states roughly £410 overpaid across September and October; not verified.",
+        "value": "Broker estimates about £410 overpaid over September and October.",
         "citations": [
           {
             "source": "D1",
-            "quote": "an overpayment of roughly £410 across the two months."
+            "quote": "an overpayment of roughly £410 across the two months"
           }
         ]
       },
       {
         "item_id": "broker_involved",
         "status": "present",
-        "value": "Kestrel Mortgage Solutions, acting under a letter of authority.",
+        "value": "Yes. Kestrel Mortgage Solutions acting for the customer under a signed letter of authority.",
         "citations": [
+          {
+            "source": "D2",
+            "quote": "Broker complaint rec'd by post for"
+          },
           {
             "source": "D1",
             "quote": "I write on behalf of my client"
@@ -532,7 +540,7 @@
     ],
     "conflicts": [
       {
-        "text": "Product transfer application date: broker states submitted 4 August 2026; mortgage system records receipt on 19 August 2026. Both versions are recorded; no choice made.",
+        "text": "Product transfer application date: broker states 4 August 2026; CRM shows the application received on 19 August 2026.",
         "citations": [
           {
             "source": "D1",
@@ -540,7 +548,20 @@
           },
           {
             "source": "D2",
-            "quote": "PT application on mortgage system shows RECEIVED 19/08/2026, not 04/08 as broker states"
+            "quote": "PT application on mortgage system shows RECEIVED 19/08/2026, not 04/08 as broker states."
+          }
+        ]
+      },
+      {
+        "text": "Portal reference PT-0804-77612: broker quotes it as the submission reference; the CRM handler could not find it on the intermediary portal search.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "portal ref PT-0804-77612"
+          },
+          {
+            "source": "D2",
+            "quote": "Portal ref PT-0804-77612 not found on intermediary portal search"
           }
         ]
       }
@@ -548,32 +569,38 @@
     "flags": [
       {
         "type": "third_party_authority",
-        "description": "Letter of authority is recorded as scanned and covering this complaint, but the letter itself is not among the documents supplied. Handler must check it before discussing the case with the representative.",
+        "description": "Letter of authority signed 09/10/2026 is recorded as covering the product switch delay complaint. Its scope has not been checked against the complaint by the handler.",
         "citations": [
           {
             "source": "D2",
-            "quote": "LOA enclosed, signed by cust 09/10/26"
+            "quote": "covers 'my complaint about the delay to my product switch'"
           }
         ]
       },
       {
         "type": "data_quality",
-        "description": "Portal reference PT-0804-77612 not found on intermediary portal search; possible archive issue raised with IT.",
+        "description": "Portal reference not found on intermediary portal search; possible archive issue raised with IT.",
         "citations": [
           {
             "source": "D2",
-            "quote": "Portal ref PT-0804-77612 not found on intermediary portal search"
+            "quote": "possible archive issue, raised with IT"
+          }
+        ]
+      },
+      {
+        "type": "other",
+        "description": "Handler notes a known product transfer backlog in August to September with an approximate three-week SLA breach.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "PT backlog Aug-Sep known (approx 3 wk SLA breach)"
           }
         ]
       },
       {
         "type": "deadline_risk",
-        "description": "Complaint received 16 October 2026. If not resolved, acknowledgement is due by close of 21 October 2026 and the final response by 11 December 2026.",
+        "description": "Final response due eight weeks from receipt on 16 October 2026, which is 11 December 2026.",
         "citations": [
-          {
-            "source": "CP-2.1",
-            "quote": "If a complaint is not resolved by the close of the third business day"
-          },
           {
             "source": "CP-3.1",
             "quote": "We must send a final response within eight weeks of receiving the complaint"
@@ -586,108 +613,108 @@
     "statements": [
       {
         "path": "intake.issues.0",
-        "text": "Product switch delayed; representative says customer was charged the SVR of 7.49% for September and October 2026 and seeks a refund of the difference.",
+        "text": "Delay to the product transfer from the 5 year fix at 2.19% to a 2 year fix at 4.34%. The account reverted to the SVR at 7.49% from 1 September 2026. The broker estimates an overpayment of about £410.",
         "supported": true,
         "citations": [
           {
-            "source": "D1",
-            "quote": "was charged your standard variable rate of 7.49% for September and October",
+            "source": "D3",
+            "quote": "01/09/2026 reverted to SVR 7.49%.",
             "result": "verified"
           },
           {
-            "source": "D3",
-            "quote": "reverted to SVR 7.49%",
+            "source": "D1",
+            "quote": "an overpayment of roughly £410 across the two months",
             "result": "verified"
           }
         ]
       },
       {
         "path": "intake.team_reason",
-        "text": "Complaint concerns a mortgage product transfer delay and the reversion to SVR, which is a mortgage rate and product switch matter.",
+        "text": "The complaint concerns a mortgage product transfer (switch) and its delay.",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "My client's five year fixed rate of 2.19% expired on 31 August 2026.",
+            "quote": "I submitted a product transfer to your 2 year fix at 4.34% through your intermediary portal on 4 August 2026",
             "result": "verified"
           }
         ]
       },
       {
         "path": "intake.payment_services_reason",
-        "text": "Complaint concerns the timing of a mortgage product switch and the rate charged, not a payment executed wrongly or late.",
+        "text": "The complaint concerns a product switch delay, not a payment that was unauthorised or wrongly executed.",
         "supported": true,
         "citations": [
           {
-            "source": "D3",
-            "quote": "Product transfer: 2yr fixed 4.34%",
+            "source": "D1",
+            "quote": "the switch was not completed until 6 October and only took effect from 1 November.",
             "result": "verified"
           }
         ]
       },
       {
         "path": "summary.0",
-        "text": "Broker Kestrel Mortgage Solutions complains on behalf of the customer about a delayed product transfer on mortgage account ACCOUNT_1.",
+        "text": "A broker, Kestrel Mortgage Solutions, complains on behalf of the customer about a delayed product switch on mortgage account [ACCOUNT_1].",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "I write on behalf of my client",
+            "quote": "I write on behalf of my client, [CUSTOMER], whose signed letter of authority is enclosed.",
             "result": "verified"
           }
         ]
       },
       {
         "path": "summary.1",
-        "text": "The customer's five year fix expired on 31 August 2026 and the account reverted to SVR 7.49% from 1 September 2026.",
+        "text": "The five year fix at 2.19% ended on 31 August 2026 and the account reverted to the SVR at 7.49% from 1 September 2026.",
         "supported": true,
         "citations": [
           {
             "source": "D3",
-            "quote": "reverted to SVR 7.49%",
+            "quote": "01/09/2026 reverted to SVR 7.49%.",
             "result": "verified"
           }
         ]
       },
       {
         "path": "summary.2",
-        "text": "The product transfer to a 2 year fix at 4.34% was offered 02/10/2026, accepted 05/10/2026, completed 06/10/2026 and effective 01/11/2026.",
+        "text": "The 2 year fix at 4.34% was completed on 6 October 2026 and took effect on 1 November 2026.",
         "supported": true,
         "citations": [
           {
             "source": "D3",
-            "quote": "accepted 05/10/2026, completed 06/10/2026, effective 01/11/2026",
+            "quote": "completed 06/10/2026, effective 01/11/2026",
             "result": "verified"
           }
         ]
       },
       {
         "path": "summary.3",
-        "text": "The application date conflicts: the broker states 4 August 2026 but the mortgage system shows receipt on 19/08/2026.",
+        "text": "The date the product transfer was submitted is disputed: the broker says 4 August 2026, while the CRM shows it received on 19 August 2026.",
         "supported": true,
         "citations": [
           {
             "source": "D2",
-            "quote": "not 04/08 as broker states",
+            "quote": "PT application on mortgage system shows RECEIVED 19/08/2026, not 04/08 as broker states.",
             "result": "verified"
           }
         ]
       },
       {
         "path": "summary.4",
-        "text": "The representative asks for a refund of the difference between the SVR and the agreed product rate and backdating of the new product to 1 September 2026.",
+        "text": "The broker estimates an overpayment of about £410 over September and October.",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "We ask that you refund the difference between the SVR and the agreed product rate for the affected period",
+            "quote": "an overpayment of roughly £410 across the two months",
             "result": "verified"
           }
         ]
       },
       {
         "path": "timeline.0",
-        "text": "2026-08-04: Broker states product transfer submitted via intermediary portal (portal reference not found on portal search).",
+        "text": "2026-08-04: Broker states the product transfer was submitted through the intermediary portal. The CRM records a different date (see conflicts).",
         "supported": true,
         "citations": [
           {
@@ -699,7 +726,7 @@
       },
       {
         "path": "timeline.1",
-        "text": "2026-08-19: Mortgage system records product transfer application as received.",
+        "text": "2026-08-19: CRM records the product transfer application as received.",
         "supported": true,
         "citations": [
           {
@@ -711,48 +738,48 @@
       },
       {
         "path": "timeline.2",
-        "text": "2026-08-31: Five year fixed rate of 2.19% expired.",
+        "text": "2026-08-31: Five year fixed rate of 2.19% ended.",
         "supported": true,
         "citations": [
           {
-            "source": "D1",
-            "quote": "expired on 31 August 2026",
+            "source": "D3",
+            "quote": "Product: 5yr fixed 2.19% to 31/08/2026.",
             "result": "verified"
           }
         ]
       },
       {
         "path": "timeline.3",
-        "text": "2026-09-01: Account reverted to SVR 7.49%; monthly payment 1,391.48 recorded.",
+        "text": "2026-09-01: Account reverted to the SVR at 7.49%.",
         "supported": true,
         "citations": [
           {
             "source": "D3",
-            "quote": "01/09/2026 reverted to SVR 7.49%",
+            "quote": "01/09/2026 reverted to SVR 7.49%.",
             "result": "verified"
           }
         ]
       },
       {
         "path": "timeline.4",
-        "text": "2026-09-02: Broker chased the switch by phone.",
+        "text": "2026-09-02: Broker says they chased the switch by phone. No matching CRM record was supplied.",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "chasing by phone on 2 and 23 September",
+            "quote": "Despite chasing by phone on 2 and 23 September",
             "result": "verified"
           }
         ]
       },
       {
         "path": "timeline.5",
-        "text": "2026-09-23: Broker chased the switch by phone.",
+        "text": "2026-09-23: Broker says they chased the switch by phone again. No matching CRM record was supplied.",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "chasing by phone on 2 and 23 September",
+            "quote": "Despite chasing by phone on 2 and 23 September",
             "result": "verified"
           }
         ]
@@ -764,7 +791,7 @@
         "citations": [
           {
             "source": "D3",
-            "quote": "offer issued 02/10/2026",
+            "quote": "offer issued 02/10/2026, accepted 05/10/2026",
             "result": "verified"
           }
         ]
@@ -776,7 +803,7 @@
         "citations": [
           {
             "source": "D3",
-            "quote": "accepted 05/10/2026",
+            "quote": "offer issued 02/10/2026, accepted 05/10/2026",
             "result": "verified"
           }
         ]
@@ -788,26 +815,38 @@
         "citations": [
           {
             "source": "D3",
-            "quote": "completed 06/10/2026",
+            "quote": "completed 06/10/2026, effective 01/11/2026",
             "result": "verified"
           }
         ]
       },
       {
         "path": "timeline.9",
-        "text": "2026-10-09: Letter of authority signed by the customer.",
+        "text": "2026-10-09: Customer signed the letter of authority for the broker.",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "Letter of authority signed [CUSTOMER] 09/10/2026",
+            "quote": "Enc. Letter of authority signed [CUSTOMER] 09/10/2026",
             "result": "verified"
           }
         ]
       },
       {
         "path": "timeline.10",
-        "text": "2026-10-16: Complaint received by post from the broker and logged.",
+        "text": "2026-10-14: Broker letter of complaint dated.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "14 October 2026",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.11",
+        "text": "2026-10-16: Complaint received by post and logged.",
         "supported": true,
         "citations": [
           {
@@ -818,13 +857,13 @@
         ]
       },
       {
-        "path": "timeline.11",
-        "text": "2026-11-01: New 2 year fixed product takes effect.",
+        "path": "timeline.12",
+        "text": "2026-11-01: New 2 year fix at 4.34% takes effect.",
         "supported": true,
         "citations": [
           {
             "source": "D3",
-            "quote": "effective 01/11/2026",
+            "quote": "completed 06/10/2026, effective 01/11/2026",
             "result": "verified"
           }
         ]
@@ -836,86 +875,67 @@
         "citations": [
           {
             "source": "D1",
-            "quote": "We ask that you refund the difference between the SVR and the agreed product rate for the affected period",
+            "quote": "We ask that you refund the difference between the SVR and the agreed product rate",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "backdate the new product to 1 September 2026",
             "result": "verified"
           }
         ]
       },
       {
         "path": "relevant_policy.0",
-        "text": "CP-1.2: Complaint is made by a representative; written authority must be checked to cover this complaint.",
+        "text": "CP-1.2: The complaint is made by a broker, so the written authority must be checked to cover this complaint.",
         "supported": true,
         "citations": [
           {
             "source": "CP-1.2",
-            "quote": "a representative the customer has authorised in writing",
+            "quote": "by a representative the customer has authorised in writing",
             "result": "verified"
           }
         ]
       },
       {
         "path": "relevant_policy.1",
-        "text": "CP-2.1: Acknowledgement is due if the complaint is not resolved by the third business day.",
+        "text": "CP-4.2: The broker's application date and the CRM received date differ, and both must be recorded.",
         "supported": true,
         "citations": [
           {
-            "source": "CP-2.1",
-            "quote": "If a complaint is not resolved by the close of the third business day",
+            "source": "CP-4.2",
+            "quote": "Where system records disagree, for example on the date of a call or a payment",
             "result": "verified"
           }
         ]
       },
       {
         "path": "relevant_policy.2",
-        "text": "CP-2.4: Earlier or linked complaints must be checked before investigating.",
+        "text": "CP-4.3: The customer's requested outcome must be recorded.",
         "supported": true,
         "citations": [
           {
-            "source": "CP-2.4",
-            "quote": "check for earlier complaints from the same customer on the same subject in the last twelve months",
+            "source": "CP-4.3",
+            "quote": "The handler must record, in the customer's own words where possible, the outcome the customer is seeking.",
             "result": "verified"
           }
         ]
       },
       {
         "path": "relevant_policy.3",
-        "text": "CP-3.1: Sets the final response deadline of eight weeks from receipt.",
+        "text": "CP-4.5: No documented customer contact is on file before handover.",
         "supported": true,
         "citations": [
           {
-            "source": "CP-3.1",
-            "quote": "We must send a final response within eight weeks of receiving the complaint",
+            "source": "CP-4.5",
+            "quote": "the handler must make at least one documented attempt to contact the customer before a case is passed to a specialist team",
             "result": "verified"
           }
         ]
       },
       {
         "path": "relevant_policy.4",
-        "text": "CP-4.2: Application date conflicts between the broker and the mortgage system and both must be recorded.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "CP-4.2",
-            "quote": "record both versions and the source of each, and must not choose between them without evidence",
-            "result": "verified"
-          }
-        ]
-      },
-      {
-        "path": "relevant_policy.5",
-        "text": "CP-4.3: The customer's requested outcome must be recorded in their words.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "CP-4.3",
-            "quote": "record, in the customer's own words where possible, the outcome the customer is seeking",
-            "result": "verified"
-          }
-        ]
-      },
-      {
-        "path": "relevant_policy.6",
-        "text": "CP-6.1: The complaint falls within the mortgages team remit and must be passed on.",
+        "text": "CP-6.1: The complaint falls within the mortgages team's remit and must be handed over with its checklist.",
         "supported": true,
         "citations": [
           {
@@ -926,32 +946,44 @@
         ]
       },
       {
-        "path": "relevant_policy.7",
-        "text": "CP-6.2: The handover is complete only when every required checklist item is filled in or marked with a reason.",
+        "path": "relevant_policy.5",
+        "text": "CP-6.2: The handover is incomplete until every required checklist item is filled in or marked with a reason.",
         "supported": true,
         "citations": [
           {
             "source": "CP-6.2",
-            "quote": "A handover is complete only when every required checklist item is filled in or marked as not available with a reason",
+            "quote": "A handover is complete only when every required checklist item is filled in or marked as not available with a reason.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.6",
+        "text": "CP-3.1: Sets the final response deadline, eight weeks from receipt on 16 October 2026.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-3.1",
+            "quote": "We must send a final response within eight weeks of receiving the complaint",
             "result": "verified"
           }
         ]
       },
       {
         "path": "handover_checklist.outcome_sought",
-        "text": "outcome_sought: Refund of the SVR to agreed product rate difference for the affected period; backdate new product to 1 September 2026.",
+        "text": "outcome_sought: Refund of SVR versus agreed product rate for affected period, and backdating to 1 September 2026.",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "We ask that you refund the difference between the SVR and the agreed product rate for the affected period",
+            "quote": "We ask that you refund the difference between the SVR and the agreed product rate",
             "result": "verified"
           }
         ]
       },
       {
         "path": "handover_checklist.mortgage_account_status",
-        "text": "mortgage_account_status: 5yr fixed 2.19% to 31/08/2026; 2yr fixed 4.34% effective 01/11/2026; capital and interest; balance GBP 214,880.15.",
+        "text": "mortgage_account_status: 5 year fix at 2.19% to 31/08/2026; now 2 year fix at 4.34% from 01/11/2026; capital and interest repayment.",
         "supported": true,
         "citations": [
           {
@@ -968,38 +1000,43 @@
       },
       {
         "path": "handover_checklist.key_dates",
-        "text": "key_dates: Application received 19/08/2026 per mortgage system; submitted 04/08/2026 per broker. Completed 06/10/2026; effective 01/11/2026.",
+        "text": "key_dates: Product transfer submission or receipt: 4 August 2026 per broker; 19 August 2026 per CRM.",
         "supported": true,
         "citations": [
           {
-            "source": "D2",
-            "quote": "PT application on mortgage system shows RECEIVED 19/08/2026",
+            "source": "D1",
+            "quote": "on 4 August 2026",
             "result": "verified"
           },
           {
-            "source": "D1",
-            "quote": "I submitted a product transfer to your 2 year fix at 4.34% through your intermediary portal on 4 August 2026",
+            "source": "D2",
+            "quote": "RECEIVED 19/08/2026",
             "result": "verified"
           }
         ]
       },
       {
         "path": "handover_checklist.amount_in_dispute",
-        "text": "amount_in_dispute: Representative states roughly £410 overpaid across September and October; not verified.",
+        "text": "amount_in_dispute: Broker estimates about £410 overpaid over September and October.",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "an overpayment of roughly £410 across the two months.",
+            "quote": "an overpayment of roughly £410 across the two months",
             "result": "verified"
           }
         ]
       },
       {
         "path": "handover_checklist.broker_involved",
-        "text": "broker_involved: Kestrel Mortgage Solutions, acting under a letter of authority.",
+        "text": "broker_involved: Yes. Kestrel Mortgage Solutions acting for the customer under a signed letter of authority.",
         "supported": true,
         "citations": [
+          {
+            "source": "D2",
+            "quote": "Broker complaint rec'd by post for",
+            "result": "verified"
+          },
           {
             "source": "D1",
             "quote": "I write on behalf of my client",
@@ -1009,7 +1046,7 @@
       },
       {
         "path": "conflicts.0",
-        "text": "Product transfer application date: broker states submitted 4 August 2026; mortgage system records receipt on 19 August 2026. Both versions are recorded; no choice made.",
+        "text": "Product transfer application date: broker states 4 August 2026; CRM shows the application received on 19 August 2026.",
         "supported": true,
         "citations": [
           {
@@ -1019,28 +1056,21 @@
           },
           {
             "source": "D2",
-            "quote": "PT application on mortgage system shows RECEIVED 19/08/2026, not 04/08 as broker states",
+            "quote": "PT application on mortgage system shows RECEIVED 19/08/2026, not 04/08 as broker states.",
             "result": "verified"
           }
         ]
       },
       {
-        "path": "flags.0",
-        "text": "third_party_authority: Letter of authority is recorded as scanned and covering this complaint, but the letter itself is not among the documents supplied. Handler must check it before discussing the case with the representative.",
+        "path": "conflicts.1",
+        "text": "Portal reference PT-0804-77612: broker quotes it as the submission reference; the CRM handler could not find it on the intermediary portal search.",
         "supported": true,
         "citations": [
           {
-            "source": "D2",
-            "quote": "LOA enclosed, signed by cust 09/10/26",
+            "source": "D1",
+            "quote": "portal ref PT-0804-77612",
             "result": "verified"
-          }
-        ]
-      },
-      {
-        "path": "flags.1",
-        "text": "data_quality: Portal reference PT-0804-77612 not found on intermediary portal search; possible archive issue raised with IT.",
-        "supported": true,
-        "citations": [
+          },
           {
             "source": "D2",
             "quote": "Portal ref PT-0804-77612 not found on intermediary portal search",
@@ -1049,15 +1079,46 @@
         ]
       },
       {
-        "path": "flags.2",
-        "text": "deadline_risk: Complaint received 16 October 2026. If not resolved, acknowledgement is due by close of 21 October 2026 and the final response by 11 December 2026.",
+        "path": "flags.0",
+        "text": "third_party_authority: Letter of authority signed 09/10/2026 is recorded as covering the product switch delay complaint. Its scope has not been checked against the complaint by the handler.",
         "supported": true,
         "citations": [
           {
-            "source": "CP-2.1",
-            "quote": "If a complaint is not resolved by the close of the third business day",
+            "source": "D2",
+            "quote": "covers 'my complaint about the delay to my product switch'",
             "result": "verified"
-          },
+          }
+        ]
+      },
+      {
+        "path": "flags.1",
+        "text": "data_quality: Portal reference not found on intermediary portal search; possible archive issue raised with IT.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "possible archive issue, raised with IT",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.2",
+        "text": "other: Handler notes a known product transfer backlog in August to September with an approximate three-week SLA breach.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "PT backlog Aug-Sep known (approx 3 wk SLA breach)",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.3",
+        "text": "deadline_risk: Final response due eight weeks from receipt on 16 October 2026, which is 11 December 2026.",
+        "supported": true,
+        "citations": [
           {
             "source": "CP-3.1",
             "quote": "We must send a final response within eight weeks of receiving the complaint",
@@ -1066,7 +1127,7 @@
         ]
       }
     ],
-    "supportedCount": 38,
+    "supportedCount": 40,
     "unsupportedCount": 0,
     "inventedPlaceholders": [],
     "checklist": {
@@ -1097,10 +1158,10 @@
   },
   "usage": {
     "inputTokens": 1163,
-    "outputTokens": 11359,
-    "cacheReadTokens": 9362,
+    "outputTokens": 10985,
+    "cacheReadTokens": 9468,
     "cacheWriteTokens": 0,
-    "costUsd": 0.00588942,
-    "latencyMs": 43020
+    "costUsd": 0.00570348,
+    "latencyMs": 39495
   }
 }

@@ -46,7 +46,7 @@
       },
       {
         "id": "payee_details",
-        "label": "Payee name and receiving bank",
+        "label": "Payee name and receiving bank (scams the customer authorised only)",
         "short": "who was paid"
       },
       {
@@ -56,7 +56,7 @@
       },
       {
         "id": "warnings_shown",
-        "label": "Warnings shown at the time of payment",
+        "label": "Warnings shown at the time of payment (scams the customer authorised only)",
         "short": "warnings shown"
       },
       {

@@ -1,4 +1,5 @@
-.titleRow { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; flex-wrap: wrap; margin-bottom: 16px; }
+.titleRow { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; flex-wrap: wrap; margin-bottom: 12px; }
+.complainant { font-size: 19px; margin: 0 0 4px; }
 .titleRow h1 { margin-bottom: 4px; }
 .modeBox { border-left: 4px solid var(--border); padding: 4px 0 4px 12px; max-width: 420px; }
 .modeButtons { display: flex; align-items: center; gap: 12px; margin-top: 8px; flex-wrap: wrap; }
@@ -27,8 +28,8 @@
 .redText { color: var(--red); }
 .statement { border-left: 4px solid var(--green); padding: 8px 0 8px 12px; margin: 8px 0; }
 .statement.red { border-left-color: var(--red); background: var(--red-bg); padding-right: 8px; }
-.statement.rejected { opacity: 0.55; }
-.statement.rejected .statementText { text-decoration: line-through; }
+.statement.rejected { border-left-color: var(--border); }
+.statement.rejected .statementText { text-decoration: line-through; color: var(--text-secondary); }
 .statementText { overflow-wrap: anywhere; }
 .statementText :global(.tag) { margin-left: 4px; }
 .statementMeta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; margin-top: 4px; }
@@ -68,3 +69,21 @@
 .fold > summary::before { content: "▸ "; color: var(--link); }
 .fold[open] > summary::before { content: "▾ "; }
 .fold > summary:hover h3 { color: var(--link); }
+
+.summaryBar { display: flex; flex-wrap: wrap; gap: 0; margin: 0 0 20px; border-top: 2px solid var(--text); border-bottom: 1px solid var(--border); }
+.summaryBar > div { padding: 10px 24px 10px 0; margin-right: 24px; }
+.summaryBar dt { font-size: 14px; color: var(--text-secondary); }
+.summaryBar dd { margin: 2px 0 0; font-size: 17px; font-weight: 700; }
+.summaryBar dd :global(.tag) { margin-left: 4px; vertical-align: 2px; }
+.barNote { display: block; font-size: 14px; font-weight: 400; color: var(--text-secondary); }
+.statusAnchor:focus { outline: none; }
+.statusAnchor:empty { display: none; }
+.found { color: var(--green); font-size: 14px; }
+.notFound { color: var(--red); font-size: 14px; }
+.gapActions { display: flex; gap: 14px; margin-top: 2px; }
+.gapEditor { display: grid; gap: 4px; margin-top: 6px; }
+.gapEditor input { font: inherit; padding: 6px; border: 2px solid var(--text); width: 100%; }
+.specialist input { font: inherit; padding: 6px; border: 2px solid var(--text); width: 100%; }
+.tasks { list-style: none; padding: 0; margin: 0 0 12px; border-top: 1px solid var(--border-light); }
+.tasks li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--border-light); }
+.panel h2:focus { outline: none; }

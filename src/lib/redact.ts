@@ -36,6 +36,8 @@ export interface RedactedDocument {
 }
 
 export interface RedactedCase {
+  /** Placeholder to the proper value shown to the handler, for example [CUSTOMER] to "Mrs Margaret Ellison". */
+  display?: Record<string, string>;
   id: string;
   received: string;
   channel: string;
@@ -359,9 +361,34 @@ export function findInventedPlaceholders(output: string, known: string[]): strin
   return [...new Set(found.filter((p) => !knownSet.has(p)))];
 }
 
-/** Puts real values back for display to the handler. Uses the first original seen for each placeholder. */
-export function restore(text: string, replacements: Replacement[]): string {
-  const map = new Map<string, string>();
+/**
+ * The proper value to show the handler for each placeholder. People get their full name from the bank's record
+ * (not whatever spelling a note used), accounts their number. Pattern finds fall back to the first value seen.
+ */
+export function buildDisplay(record: CaseRecord, replacements: Replacement[]): Record<string, string> {
+  const display: Record<string, string> = {};
+  for (const r of replacements) if (!(r.placeholder in display)) display[r.placeholder] = r.original;
+  const people = buildEntities(record);
+  const named = [
+    ...record.other_parties.filter((p) => p.name && !(p.role === "DECEASED" && p.name === record.customer.name)).map((p) => p.name!),
+    `${record.customer.title ? record.customer.title + " " : ""}${record.customer.name}`,
+    ...record.staff.map((s) => s.name),
+  ];
+  people.forEach((e, i) => { display[e.placeholder] = named[i]; });
+  record.accounts.forEach((a, i) => {
+    const tag = record.accounts.length > 1 ? `[ACCOUNT_${i + 1}]` : "[ACCOUNT]";
+    if (a.number) display[tag] = a.number;
+    if (a.card_last4) display["[CARD]"] = a.card_last4;
+    if (a.sort_code) display["[SORT_CODE]"] = a.sort_code;
+  });
+  if (record.customer.phone) display["[CUSTOMER_PHONE]"] = record.customer.phone;
+  if (record.customer.email) display["[CUSTOMER_EMAIL]"] = record.customer.email;
+  return display;
+}
+
+/** Puts real values back for display to the handler. */
+export function restore(text: string, replacements: Replacement[], display?: Record<string, string>): string {
+  const map = new Map<string, string>(Object.entries(display ?? {}));
   for (const r of replacements) if (!map.has(r.placeholder)) map.set(r.placeholder, r.original);
   return text.replace(/\[[A-Z][A-Z_]*(?:_\d+)?\]/g, (p) => map.get(p) ?? p);
 }

@@ -63,6 +63,21 @@ describe("computeDeadlines", () => {
   });
 });
 
+describe("unauthorised payment refund duty (CP-7.1)", () => {
+  it("is due by the end of the next business day and flags when passed", () => {
+    const d = computeDeadlines("2026-11-02", "15_business_days", "2026-11-09", { refundDuty: true });
+    expect(d.refundDue).toBe("2026-11-03");
+    expect(d.refundOverdue).toBe(true);
+    expect(d.status).toBe("overdue");
+  });
+  it("skips the weekend", () => {
+    expect(computeDeadlines("2026-11-06", "15_business_days", "2026-11-06", { refundDuty: true }).refundDue).toBe("2026-11-09");
+  });
+  it("does not apply unless asked", () => {
+    expect(computeDeadlines("2026-11-02", "15_business_days", "2026-11-09").refundDue).toBeUndefined();
+  });
+});
+
 describe("Ombudsman referral window", () => {
   it("is 6 months from the final response, clamped at month end", () => {
     expect(ombudsmanReferralDeadline("2026-11-20")).toBe("2027-05-20");

@@ -110,9 +110,9 @@ export default function HowItWorks() {
             <li>Set compensation or redress</li>
             <li>Write to the customer</li>
             <li>Calculate deadlines (code does this)</li>
-            <li>See names, account numbers or contact details</li>
+            <li>Get sent the names, account numbers or contact details that redaction catches (measured below)</li>
           </ul>
-          <p className="small muted">The AI&apos;s answer must fit a fixed form with no field for an outcome or compensation, so it cannot supply one even if a complaint tells it to.</p>
+          <p className="small muted">The AI&apos;s answer must fit a fixed form with no field for an outcome or compensation, so it cannot supply one even if a complaint tells it to. Hidden instructions could still try to nudge fields the form does have, such as routing, which is why a person confirms routing and the deadline rule.</p>
         </section>
       </div>
 
@@ -122,7 +122,8 @@ export default function HowItWorks() {
         <tbody>
           <tr><td>Customer data reaches the AI</td><td>Three-layer redaction before every call: the bank&apos;s own record, patterns, near-matches for misspelt names</td><td>Measured on planted names and numbers (below). Never claimed to be perfect</td></tr>
           <tr><td>AI makes things up</td><td>Every statement must quote its source. Code checks each quote</td><td>Unit tests. Unsupported lines are red and block sign-off</td></tr>
-          <tr><td>AI decides the outcome</td><td>No outcome or compensation field exists in the form the AI fills in</td><td>Injection test case. Schema review</td></tr>
+          <tr><td>Incomplete handovers</td><td>Every gap in the specialist team&apos;s checklist must be filled or marked not available with a reason before sign-off (policy CP-6.2). Specialists can send a case back with a coded reason</td><td>End-to-end test of the handover and send-back</td></tr>
+          <tr><td>AI decides the outcome</td><td>No outcome or compensation field exists in the form the AI fills in. Routing and the deadline rule, which injected text could still influence, are confirmed by a person</td><td>Injection test case. Schema review</td></tr>
           <tr><td>Wrong deadline</td><td>Deadlines are plain code (8 weeks, or 15 and 35 business days for payment services). Unclear cases default to the shorter one and ask the handler</td><td>Unit tests with hand-counted dates, including bank holidays</td></tr>
           <tr><td>Over-trusting the AI</td><td>A verified quote proves the words exist, not that they support the statement. The handler judges relevance</td><td>Stated on screen and in training</td></tr>
           <tr><td>Results tuned to look good</td><td>Answer key written before the prompt. Ten test cases held back until the end</td><td>Held-back results reported separately</td></tr>
@@ -137,7 +138,7 @@ export default function HowItWorks() {
       </p>
       <table className={styles.table}>
         <thead>
-          <tr><th scope="col">Measure</th><th scope="col">Held-back set (reported)</th><th scope="col">Development set (tuned on)</th></tr>
+          <tr><th scope="col">Measure</th>{h && <th scope="col">Held-back set (reported)</th>}<th scope="col">Development set (tuned on)</th></tr>
         </thead>
         <tbody>
           {[
@@ -153,7 +154,7 @@ export default function HowItWorks() {
           ].map(([label, hv, dv]) => (
             <tr key={label as string}>
               <td>{label}</td>
-              <td>{hv ?? <span className="muted">Run at the end</span>}</td>
+              {h && <td>{hv ?? "n/a"}</td>}
               <td>{dv ?? "n/a"}</td>
             </tr>
           ))}
@@ -161,8 +162,8 @@ export default function HowItWorks() {
       </table>
       <p className="small muted">
         {dev && <>Development results: {modelName(dev.model)}, prompt {dev.promptVersion}, scored {formatDate(dev.generated.slice(0, 10))}. </>}
-        The development set flatters the tool because the prompt and redaction rules were improved on it. The held-back column is the one
-        to judge it by.
+        The development set flatters the tool because the prompt and redaction rules were improved on it.{" "}
+        {h ? "The held-back column is the one to judge it by." : "The 10 held-back cases are run once, at the end of the build, and their results will be added here as the figures to judge it by."}
       </p>
 
       <h2>Known limitations</h2>

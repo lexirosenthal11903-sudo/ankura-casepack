@@ -1,0 +1,437 @@
+{
+  "caseId": "HV-015",
+  "createdAt": "2026-11-06T10:40:17.837Z",
+  "model": "claude-haiku-5-5",
+  "promptVersion": "casepack-v3",
+  "redacted": {
+    "id": "HV-015",
+    "received": "2026-11-05",
+    "channel": "web_form",
+    "documents": [
+      {
+        "id": "D1",
+        "system": "WEBFORM",
+        "type": "web_form",
+        "date": "2026-11-05",
+        "author_role": "customer",
+        "text": "Complaint form (logged-in session) | Name: [CUSTOMER] P | Account: [not selected] | What happened: you have taken money from me AGAIN, sort it out or Im leaving | What would put it right: [blank]"
+      }
+    ],
+    "replacements": [
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Craig",
+        "layer": "record",
+        "documentId": "D1"
+      }
+    ],
+    "placeholders": [
+      "[CUSTOMER]"
+    ]
+  },
+  "pack": {
+    "enough_information": {
+      "sufficient": false,
+      "what_is_needed": "Confirm the product and account, what money was taken and when, whether the customer authorised it, and what outcome they want. Contact the customer to obtain these (CP-4.5)."
+    },
+    "intake": {
+      "issues": [],
+      "suggested_team": "frontline",
+      "team_reason": {
+        "text": "The product and problem cannot yet be identified, so the first handler should establish the facts before any specialist handover.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "you have taken money from me AGAIN"
+          }
+        ]
+      },
+      "payment_services": "unclear",
+      "payment_services_reason": {
+        "text": "The documents do not show whether the money taken was authorised or correctly executed.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "you have taken money from me AGAIN"
+          }
+        ]
+      },
+      "already_with_ombudsman": false,
+      "linked_to_earlier_complaint": false
+    },
+    "summary": [
+      {
+        "text": "Customer submitted a complaint through the web form on 2026-11-05 from a logged-in session.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Complaint form (logged-in session)"
+          }
+        ]
+      },
+      {
+        "text": "Customer says money has been taken from them again.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "you have taken money from me AGAIN"
+          }
+        ]
+      },
+      {
+        "text": "No account was selected on the form.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Account: [not selected]"
+          }
+        ]
+      },
+      {
+        "text": "The customer has not stated what would put things right.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "What would put it right: [blank]"
+          }
+        ]
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-11-05",
+        "event": "Complaint received by web form.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Complaint form (logged-in session)"
+          }
+        ]
+      }
+    ],
+    "outcome_sought": {
+      "text": "Not stated. The 'what would put it right' field is blank.",
+      "citations": [
+        {
+          "source": "D1",
+          "quote": "What would put it right: [blank]"
+        }
+      ]
+    },
+    "vulnerability": [],
+    "relevant_policy": [
+      {
+        "policy_id": "CP-1.3",
+        "why_relevant": "The complaint must be logged in the CRM on the day it was received.",
+        "citations": [
+          {
+            "source": "CP-1.3",
+            "quote": "Every complaint must be logged in the CRM on the day it is received"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-2.1",
+        "why_relevant": "An acknowledgement naming the handler is due if the complaint is not resolved by the third business day, which is 2026-11-10.",
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "by the close of the third business day after it was received"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.3",
+        "why_relevant": "The outcome the customer is seeking must be recorded, and it is currently blank.",
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "the outcome the customer is seeking"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.5",
+        "why_relevant": "Missing information requires at least one documented contact attempt before any specialist handover.",
+        "citations": [
+          {
+            "source": "CP-4.5",
+            "quote": "the handler must make at least one documented attempt to contact the customer"
+          }
+        ]
+      }
+    ],
+    "handover_checklist": [
+      {
+        "item_id": "outcome_sought",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "customer_contact_attempted",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "customer_told_of_handover",
+        "status": "not_applicable",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "vulnerability_recorded",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "linked_complaints_checked",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      }
+    ],
+    "conflicts": [],
+    "flags": [
+      {
+        "type": "data_quality",
+        "description": "Account not selected, product and problem unclear, and the name field contains a stray character after the placeholder.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Account: [not selected]"
+          },
+          {
+            "source": "D1",
+            "quote": "Name: [CUSTOMER] P"
+          }
+        ]
+      },
+      {
+        "type": "deadline_risk",
+        "description": "The acknowledgement is due by the close of 2026-11-10 if the complaint is not resolved by then.",
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "by the close of the third business day after it was received"
+          }
+        ]
+      }
+    ]
+  },
+  "checks": {
+    "statements": [
+      {
+        "path": "intake.team_reason",
+        "text": "The product and problem cannot yet be identified, so the first handler should establish the facts before any specialist handover.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "you have taken money from me AGAIN",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.payment_services_reason",
+        "text": "The documents do not show whether the money taken was authorised or correctly executed.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "you have taken money from me AGAIN",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.0",
+        "text": "Customer submitted a complaint through the web form on 2026-11-05 from a logged-in session.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Complaint form (logged-in session)",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.1",
+        "text": "Customer says money has been taken from them again.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "you have taken money from me AGAIN",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.2",
+        "text": "No account was selected on the form.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Account: [not selected]",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.3",
+        "text": "The customer has not stated what would put things right.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "What would put it right: [blank]",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.0",
+        "text": "2026-11-05: Complaint received by web form.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Complaint form (logged-in session)",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "outcome_sought",
+        "text": "Not stated. The 'what would put it right' field is blank.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "What would put it right: [blank]",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.0",
+        "text": "CP-1.3: The complaint must be logged in the CRM on the day it was received.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-1.3",
+            "quote": "Every complaint must be logged in the CRM on the day it is received",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.1",
+        "text": "CP-2.1: An acknowledgement naming the handler is due if the complaint is not resolved by the third business day, which is 2026-11-10.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "by the close of the third business day after it was received",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.2",
+        "text": "CP-4.3: The outcome the customer is seeking must be recorded, and it is currently blank.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "the outcome the customer is seeking",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.3",
+        "text": "CP-4.5: Missing information requires at least one documented contact attempt before any specialist handover.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.5",
+            "quote": "the handler must make at least one documented attempt to contact the customer",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.0",
+        "text": "data_quality: Account not selected, product and problem unclear, and the name field contains a stray character after the placeholder.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Account: [not selected]",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "Name: [CUSTOMER] P",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.1",
+        "text": "deadline_risk: The acknowledgement is due by the close of 2026-11-10 if the complaint is not resolved by then.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "by the close of the third business day after it was received",
+            "result": "verified"
+          }
+        ]
+      }
+    ],
+    "supportedCount": 14,
+    "unsupportedCount": 0,
+    "inventedPlaceholders": [],
+    "checklist": {
+      "required": 4,
+      "present": 0,
+      "missing": [
+        "outcome_sought",
+        "customer_contact_attempted",
+        "vulnerability_recorded",
+        "linked_complaints_checked"
+      ],
+      "conflicting": []
+    }
+  },
+  "clock": "confirm",
+  "deadlines": {
+    "received": "2026-11-05",
+    "clock": "confirm",
+    "summaryResolutionWindowCloses": "2026-11-10",
+    "eightWeekDue": "2026-12-31",
+    "psrDue": "2026-11-26",
+    "psrExceptionalDue": "2026-12-24",
+    "workingDue": "2026-11-26",
+    "needsHandlerConfirmation": true,
+    "calendarDaysLeft": 17,
+    "businessDaysLeft": 13,
+    "status": "on_track"
+  },
+  "usage": {
+    "inputTokens": 173,
+    "outputTokens": 3239,
+    "cacheReadTokens": 9468,
+    "cacheWriteTokens": 0,
+    "costUsd": 0.00173148,
+    "latencyMs": 12578
+  }
+}

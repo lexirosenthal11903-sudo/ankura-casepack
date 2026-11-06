@@ -5,6 +5,7 @@ import { deadlineTag, formatDate } from "@/lib/format";
 import styles from "./queue.module.css";
 
 export const dynamic = "force-static";
+export const metadata = { title: "All complaints | Harbour & Vale (fictional bank)" };
 
 const CHANNEL: Record<string, string> = { phone: "Phone", email: "Email", web_form: "Web form", branch: "Branch", letter: "Letter", social: "Social media" };
 
@@ -32,8 +33,8 @@ export default function QueuePage() {
           needed, hands it to a specialist team. The AI never decides the outcome.
         </p>
         <p className="small muted">
-          {rows.length} open complaints. {overdue} past deadline, {dueSoon} due within five business days. Deadlines are calculated by code
-          under the FCA complaint rules, not by the AI.
+          {rows.length} open complaints. {overdue} overdue, {dueSoon} due within five business days. Only urgent cases are coloured.
+          Deadlines are worked out by code under the FCA complaint rules, not by the AI.
         </p>
       </div>
 
@@ -56,15 +57,22 @@ export default function QueuePage() {
               return (
                 <tr key={c.id}>
                   <td className={styles.deadline}>
-                    <span className={`tag ${d.status === "overdue" ? "tag-red" : d.status === "due_soon" ? "tag-amber" : "tag-green"}`}>
-                      {deadlineTag(d.status, d.businessDaysLeft, d.calendarDaysLeft)}
-                    </span>
+                    {d.refundOverdue ? (
+                      <span className="tag tag-red">Refund decision overdue</span>
+                    ) : d.status === "overdue" ? (
+                      <span className="tag tag-red">{deadlineTag(d.status, d.businessDaysLeft, d.calendarDaysLeft)}</span>
+                    ) : d.status === "due_soon" ? (
+                      <span className="tag tag-amber">{deadlineTag(d.status, d.businessDaysLeft, d.calendarDaysLeft)}</span>
+                    ) : (
+                      <span className={styles.plainDays}>{deadlineTag(d.status, d.businessDaysLeft, d.calendarDaysLeft)}</span>
+                    )}
                     <div className="small muted">Due {formatDate(d.workingDue)}</div>
                   </td>
                   <td>
                     <Link href={`/case/${c.id}`} className={styles.caseLink}>
-                      {c.record.customer.title ? `${c.record.customer.title} ` : ""}
-                      {c.record.customer.name}
+                      {c.record.other_parties.some((x) => x.role === "DECEASED" && x.name === c.record.customer.name)
+                        ? `Estate of ${c.record.customer.name}`
+                        : `${c.record.customer.title ? c.record.customer.title + " " : ""}${c.record.customer.name}`}
                     </Link>
                     <div className="small muted">
                       {c.id} · {CHANNEL[c.channel]} · received {formatDate(c.received)}
@@ -77,8 +85,8 @@ export default function QueuePage() {
                   <td>
                     <div className={styles.flags}>
                     {p.vulnerability.length > 0 && <span className="tag tag-blue">Vulnerability</span>}
-                    {d.needsHandlerConfirmation && <span className="tag tag-amber">Confirm deadline rule</span>}
-                    {d.clock === "15_business_days" && <span className="tag">Payment services, 15 days</span>}
+                    {d.needsHandlerConfirmation && <span className="tag tag-amber">Deadline rule to confirm</span>}
+                    {d.clock === "15_business_days" && <span className="tag">15-day payment rule</span>}
                     {p.intake.already_with_ombudsman && <span className="tag">With Ombudsman</span>}
                     {p.intake.linked_to_earlier_complaint && <span className="tag">Repeat complaint</span>}
                     {p.flags.some((f) => f.type === "instruction_in_customer_text") && <span className="tag tag-red">Instruction in text</span>}

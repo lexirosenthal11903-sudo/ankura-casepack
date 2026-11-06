@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Fragment, useEffect, useRef, useState } from "react";
+import { checkCitation } from "@/lib/provenance";
 import styles from "./walkthrough.module.css";
 
 export interface WalkthroughData {
@@ -92,7 +93,7 @@ const injectionStart = (email: string) => {
 
 export default function Walkthrough({ data }: { data: WalkthroughData }) {
   const [step, setStep] = useState(0);
-  const [approved, setApproved] = useState(false);
+  const [showFail, setShowFail] = useState(false);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const first = useRef(true);
 
@@ -108,6 +109,9 @@ export default function Walkthrough({ data }: { data: WalkthroughData }) {
 
   const injection = injectionStart(data.email);
   const go = (n: number) => setStep(Math.max(0, Math.min(STEPS.length - 1, n)));
+  // A deliberately altered quote, checked by the real provenance code in the browser.
+  const tampered = data.check.quote.replace(/\bdid not\b|\bnot\b/i, "definitely").replace(/\s+$/, "") + " and was refunded";
+  const failResult = checkCitation({ source: "doc", quote: tampered }, { doc: data.check.sourceText }).result;
   const cost = data.costPence < 1 ? "less than 1p" : `about ${data.costPence.toFixed(1)}p`;
 
   return (
@@ -116,7 +120,7 @@ export default function Walkthrough({ data }: { data: WalkthroughData }) {
         <ol>
           {STEPS.map((s, i) => (
             <li key={s} className={i === step ? styles.current : i < step ? styles.done : ""}>
-              <button onClick={() => go(i)} aria-current={i === step ? "step" : undefined}>
+              <button onClick={() => go(i)} aria-current={i === step ? "step" : undefined} aria-label={`Step ${i + 1}: ${s}`}>
                 <span className={styles.num}>{i + 1}</span>
                 <span className={styles.stepLabel}>{s}</span>
               </button>
@@ -155,8 +159,8 @@ export default function Walkthrough({ data }: { data: WalkthroughData }) {
         {step === 1 && (
           <>
             <p className={styles.lede}>
-              Before anything is sent to the AI, the tool swaps names, account numbers and phone numbers for labels. The AI never
-              learns who {data.firstName} is.
+              Before anything is sent to the AI, the tool swaps names, account numbers and phone numbers for labels. The AI is not
+              given {data.firstName}&apos;s name, account or phone number.
             </p>
             <div className={styles.compare}>
               <div className={styles.doc}>
@@ -178,8 +182,8 @@ export default function Walkthrough({ data }: { data: WalkthroughData }) {
               </tbody>
             </table>
             <p className="small muted">
-              Dates and amounts stay, because the deadline and the facts depend on them. Hiding details is never perfect, so we measure
-              it: across our test complaints we report what share of planted names and numbers it caught.
+              Dates and amounts stay, because the deadline and the facts depend on them. Hiding details is never perfect, so it is
+              measured. Across the test complaints we report what share of planted names and numbers it caught, on the How this works page.
             </p>
           </>
         )}
@@ -225,12 +229,28 @@ export default function Walkthrough({ data }: { data: WalkthroughData }) {
               <strong>{data.verified} of {data.totalStatements}</strong> sentences in this case passed the check. Any sentence that fails is
               shown in red and cannot be approved until a person fixes or deletes it.
             </p>
+            {!showFail ? (
+              <button className="btn btn-secondary" onClick={() => setShowFail(true)}>See what a failed check looks like</button>
+            ) : (
+              <div className={styles.failCard}>
+                <p className={styles.checkLabel}>Example: we changed the AI&apos;s quote to words that are not in the email</p>
+                <p className={styles.checkStatement}>&ldquo;{tampered}&rdquo;</p>
+                <p className={styles.failed}>
+                  {failResult === "verified" ? "✓ Quote found" : "✗ Quote not found in the source."} The same checking code ran just now, in
+                  your browser. In the workspace this sentence would be red and could not be approved until a person fixed or deleted it.
+                </p>
+              </div>
+            )}
             <h2 className={styles.h2}>And the £5,000 trick?</h2>
             <p>
-              The AI&apos;s answer has to fit a fixed form, and that form has no box for an outcome or compensation. So the instruction has
-              nowhere to go. Instead the AI reported it:
+              The AI&apos;s answer has to fit a fixed form, and that form has no box for an outcome or compensation. So the instruction cannot
+              award anything. The AI reported it instead:
             </p>
             {data.injectionFlag && <blockquote className={styles.flag}>{data.injectionFlag}</blockquote>}
+            <p className="small muted">
+              A trick like this could still try to nudge things the form does contain, such as which team gets the case. That is why a
+              person confirms the routing and the deadline rule before anything happens.
+            </p>
           </>
         )}
 
@@ -264,14 +284,11 @@ export default function Walkthrough({ data }: { data: WalkthroughData }) {
                 </dd>
               </div>
             </dl>
-            {!approved ? (
-              <button className="btn" onClick={() => setApproved(true)}>Approve and send to {data.team}</button>
-            ) : (
-              <div className={styles.sentBox} role="status">
-                <strong>Sent to {data.team}.</strong> Their team can now accept it, or send it back saying what is missing. Every step is
-                recorded in an audit trail.
-              </div>
-            )}
+            <div className={styles.sentBox}>
+              <strong>The handler cannot send it yet.</strong> Each missing item must be filled in or marked &ldquo;not available&rdquo; with a
+              reason (policy CP-6.2). Only then does the case go to {data.team}, who can accept it or send it back saying what is missing.
+              Every step is recorded in an audit trail.
+            </div>
           </>
         )}
 
@@ -281,7 +298,7 @@ export default function Walkthrough({ data }: { data: WalkthroughData }) {
             <button className="btn" onClick={() => go(step + 1)}>Next: {STEPS[step + 1].replace(/^\w/, (ch) => ch.toLowerCase())}</button>
           ) : (
             <span className={styles.endLinks}>
-              <Link href={`/case/${data.caseId}`}>Open this case in the full workspace</Link>
+              <Link href={`/case/${data.caseId}`}>Try the review yourself in the full workspace</Link>
               <Link href="/queue">See all 15 complaints</Link>
               <Link href="/how-it-works">How this works</Link>
             </span>

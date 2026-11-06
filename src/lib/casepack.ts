@@ -6,9 +6,10 @@ import Anthropic from "@anthropic-ai/sdk";
 import { zodOutputFormat } from "@anthropic-ai/sdk/helpers/zod";
 import { checklistFor, loadCase, policy } from "./data";
 import { computeDeadlines, type Clock, type Deadlines } from "./deadlines";
-import { buildUserMessage, PROMPT_VERSION, SYSTEM_PROMPT } from "./prompts/casepack-v2";
+import { buildUserMessage, PROMPT_VERSION, SYSTEM_PROMPT } from "./prompts/casepack-v3";
 import { checkItem, type CheckedCitation, type Citation } from "./provenance";
-import { findInventedPlaceholders, redactCase, type RedactedCase } from "./redact";
+import { buildDisplay, findInventedPlaceholders, redactCase, type RedactedCase } from "./redact";
+import { clockFromPack, refundDutyApplies } from "./rules";
 import { CasePackSchema, type CasePack } from "./schema";
 
 export const MODELS = {
@@ -51,9 +52,7 @@ export interface CasePackRun {
   usage: { inputTokens: number; outputTokens: number; cacheReadTokens: number; cacheWriteTokens: number; costUsd: number; latencyMs: number };
 }
 
-export function clockFromPack(pack: CasePack): Clock {
-  return pack.intake.payment_services === "yes" ? "15_business_days" : pack.intake.payment_services === "unclear" ? "confirm" : "8_weeks";
-}
+export { clockFromPack } from "./rules";
 
 /** Runs every code check on a pack. Pure, so it is unit-tested and reused by the evaluation. */
 export function checkPack(pack: CasePack, redacted: RedactedCase): CasePackChecks {
@@ -110,8 +109,10 @@ export class CasePackError extends Error {
 
 export async function generateCasePack(caseId: string, opts: { model?: ModelKey; asOf: string; client?: Anthropic }): Promise<CasePackRun> {
   const model = MODELS[opts.model ?? "haiku"];
-  const client = opts.client ?? new Anthropic();
-  const redacted = redactCase(loadCase(caseId));
+  // Short timeout and one retry, so a slow call fails inside the 120-second hosting limit and falls back to the saved result.
+  const client = opts.client ?? new Anthropic({ timeout: 100_000, maxRetries: 1 });
+  const caseFile = loadCase(caseId);
+  const redacted = redactCase(caseFile);
   const started = Date.now();
 
   let response;
@@ -147,11 +148,11 @@ export async function generateCasePack(caseId: string, opts: { model?: ModelKey;
     createdAt: new Date().toISOString(),
     model,
     promptVersion: PROMPT_VERSION,
-    redacted,
+    redacted: { ...redacted, display: buildDisplay(caseFile.record, redacted.replacements) },
     pack,
     checks: checkPack(pack, redacted),
     clock,
-    deadlines: computeDeadlines(redacted.received, clock, opts.asOf),
+    deadlines: computeDeadlines(redacted.received, clock, opts.asOf, { refundDuty: refundDutyApplies(pack) }),
     usage: { inputTokens: u.input_tokens, outputTokens: u.output_tokens, cacheReadTokens: cacheRead, cacheWriteTokens: cacheWrite, costUsd, latencyMs },
   };
 }

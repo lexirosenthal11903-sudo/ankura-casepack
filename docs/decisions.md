@@ -39,3 +39,22 @@ Each disagreement was checked before anything changed, to decide whether the AI 
 v2 on the same cases: team 93%, clock 93%, vulnerability 100%, policy 71%, missing information 93%, quotes verified 100%. These are the cases the prompt was improved on, so they overstate real performance. The held-back set gives the reported figures.
 
 **Not changed, deliberately.** HV-013 (an outage that blocked a card purchase) was routed to Payments and Disputes rather than frontline. Both are defensible, and tuning the prompt for one case would be overfitting.
+
+## 6 Nov 2026
+
+**Guided walkthrough as the landing page.** Lexi found the full workspace overwhelming ("a lot of information and not very clear"). If it overwhelmed her, it would overwhelm an assessor with 15 minutes. So the first screen is now a five-step walkthrough of one real case, one idea per screen (the GOV.UK "one thing per page" rule), with the full workspace one click away.
+
+**Eight-reviewer app review.** Full notes and the summary are in docs/reviews-app/. Every major finding was checked against the code first, and all held up. What changed:
+- **Handover gate.** Three clicks could send an incomplete case to Fraud (found by four reviewers). The handler must now fill each checklist gap or mark it not available with a reason before sign-off, which is what policy CP-6.2 already said. A case sent back can only be signed off again after something changes.
+- **Unauthorised card payments.** The deadline rule was wrong ("unclear" instead of the 15-day payment services rule), the next-business-day refund duty was not shown, and the fraud checklist asked for scam-only fields. Fixed with prompt v3, a refund deadline calculated by code, and checklist items marked "scams the customer authorised only".
+- **Claims made precise.** "The AI never learns who Kieran is" became "is not given his name, account or phone number". "Injection impossible" became "cannot award an outcome. It could still try to nudge routing, which a person confirms."
+- **Display bugs.** Restored names now come from the bank's record, not the first spelling found in the notes ("J Mrs Ellison SAFE" was a real bug). Edits now show on screen. "Accept all" no longer counts checklist items it does not display.
+- **A failed check you can see.** No saved run has a red statement, so the walkthrough shows a deliberately altered quote failing, checked live in the browser by the same code, and labelled as an altered example.
+- **Security.** Live mode is limited per visitor and per day, a recent live result is reused, AI calls time out inside the hosting limit, and empty or oversized requests are rejected.
+- **Accessibility.** Visible skip link, keyboard focus kept in place after actions, readable rejected items, a separate page title for each page, current-page marker in the navigation.
+
+**Not adopted, and why.** Suggestions to pause collections or refer adviser conduct (HV-014) are outcome decisions, so the tool leaves them to people. A full move to GOV.UK Frontend components is too big for the time left. The most visible patterns were adopted instead (summary bar, task list).
+
+**Prompt v3 (development set only).** Team 100%, deadline rule 100%, missing information found 95% (precision 92%), quotes verified 100%, $0.0056 per case. These are tuned figures. The held-back set gives the reported ones.
+
+**Intake connection deferred (Lexi's decision).** Both the assessor and the brief challenger said the deck matters more. The deck starts first, and the connection is built on Monday only if the deck is on track.

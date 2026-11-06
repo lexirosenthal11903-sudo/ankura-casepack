@@ -88,12 +88,18 @@ export interface Deadlines {
   /** The date the handler works to. For "confirm" this is the shorter clock until a person decides. */
   workingDue: string;
   needsHandlerConfirmation: boolean;
+  /**
+   * Refund decision for an unauthorised payment: end of the next business day (PSRs reg 76, policy CP-7.1).
+   * Counted from the date the complaint was received, which is the latest the bank can have known.
+   */
+  refundDue?: string;
+  refundOverdue?: boolean;
   calendarDaysLeft: number;
   businessDaysLeft: number;
   status: DeadlineStatus;
 }
 
-export function computeDeadlines(received: string, clock: Clock, asOf: string): Deadlines {
+export function computeDeadlines(received: string, clock: Clock, asOf: string, opts: { refundDuty?: boolean } = {}): Deadlines {
   toDate(received);
   toDate(asOf);
   const eightWeekDue = addDays(received, 56);
@@ -103,7 +109,9 @@ export function computeDeadlines(received: string, clock: Clock, asOf: string): 
   const workingDue = psrDue && psrDue < eightWeekDue ? psrDue : eightWeekDue;
   const calendarDaysLeft = Math.round((toDate(workingDue).getTime() - toDate(asOf).getTime()) / DAY_MS);
   const businessDaysLeft = businessDaysBetween(asOf, workingDue);
-  const status: DeadlineStatus = calendarDaysLeft < 0 ? "overdue" : businessDaysLeft <= 5 ? "due_soon" : "on_track";
+  const refundDue = opts.refundDuty ? addBusinessDays(received, 1) : undefined;
+  const refundOverdue = refundDue ? refundDue < asOf : undefined;
+  const status: DeadlineStatus = calendarDaysLeft < 0 || refundOverdue ? "overdue" : businessDaysLeft <= 5 ? "due_soon" : "on_track";
 
   return {
     received,
@@ -114,6 +122,8 @@ export function computeDeadlines(received: string, clock: Clock, asOf: string): 
     psrExceptionalDue,
     workingDue,
     needsHandlerConfirmation: clock === "confirm",
+    refundDue,
+    refundOverdue,
     calendarDaysLeft,
     businessDaysLeft,
     status,
