@@ -87,3 +87,9 @@
 .tasks { list-style: none; padding: 0; margin: 0 0 12px; border-top: 1px solid var(--border-light); }
 .tasks li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--border-light); }
 .panel h2:focus { outline: none; }
+
+.caseNav { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 20px; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border-light); }
+.prevNext { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-left: auto; }
+.role { border-left: 5px solid var(--brand); background: var(--blue-bg); padding: 10px 14px; margin-bottom: 16px; }
+.handedOver { display: grid; gap: 10px; justify-items: start; background: var(--blue-bg); padding: 12px; }
+.handedOver p { margin: 0; }

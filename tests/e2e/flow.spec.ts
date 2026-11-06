@@ -24,10 +24,15 @@ test("handler fills every gap before handover; a send-back must be fixed before 
   }
 
   await page.getByRole("button", { name: /^Sign off and hand to Fraud and Scams/ }).click();
-  await expect(page.getByText("Could you act on this without contacting anyone?")).toBeVisible();
-  await page.getByLabel("No, send it back").check();
-  await page.getByLabel("Reason").selectOption({ label: "No customer contact attempted" });
-  await page.getByRole("button", { name: "Confirm" }).click();
+
+  // The specialist has their own screen with the handover pack.
+  await page.getByRole("link", { name: "Switch to the Fraud and Scams view" }).click();
+  await expect(page.getByText("You are now the Fraud and Scams team.")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Handover checklist" })).toBeVisible();
+  await page.getByLabel("No, send it back to the handler").check();
+  await page.getByLabel("What is missing?").selectOption({ label: "No customer contact attempted" });
+  await page.getByRole("button", { name: "Confirm decision" }).click();
+  await page.getByRole("link", { name: "Switch to the handler's view to fix it" }).click();
   await expect(page.getByText(/Sent back by Fraud and Scams/)).toBeVisible();
 
   // Signing off again needs a real change first.
@@ -36,9 +41,11 @@ test("handler fills every gap before handover; a send-back must be fixed before 
   await page.getByLabel("Why it is not available").fill("Called customer 9 Nov, no answer, voicemail left");
   await page.getByRole("button", { name: "Save", exact: true }).click();
   await page.getByRole("button", { name: /Sign off again and hand to Fraud and Scams/ }).click();
+  await page.getByRole("link", { name: "Switch to the Fraud and Scams view" }).click();
+  await expect(page.getByText("Called customer 9 Nov, no answer, voicemail left")).toBeVisible();
   await page.getByLabel("Yes, accept the handover").check();
-  await page.getByRole("button", { name: "Confirm" }).click();
-  await expect(page.getByText("Accepted by Fraud and Scams").first()).toBeVisible();
+  await page.getByRole("button", { name: "Confirm decision" }).click();
+  await expect(page.getByText("You accepted the handover.")).toBeVisible();
 });
 
 test("walkthrough shows a failed quote check", async ({ page }) => {

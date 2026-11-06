@@ -1,0 +1,79 @@
+.page { max-width: 1040px; }
+.page h2 { margin-top: 40px; }
+.intro { max-width: 760px; margin-bottom: 24px; }
+.lede { font-size: 19px; }
+
+/* Headline numbers: plain figures in a row, colour only when something is urgent */
+.stats {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; margin: 0;
+  border-top: 2px solid var(--border); border-bottom: 1px solid var(--border-light);
+}
+.stats > div { padding: 14px 16px 14px 0; border-left: 0; }
+.stats > div + div { padding-left: 16px; border-left: 1px solid var(--border-light); }
+.stats dt { font-size: 14px; font-weight: 700; color: var(--text-secondary); }
+.stats dd { margin: 0; }
+.statNum { font-size: 36px; font-weight: 700; line-height: 1.15; margin-top: 4px !important; }
+.statOf { font-size: 17px; font-weight: 400; color: var(--text-secondary); }
+.statNote { font-size: 14px; color: var(--text-secondary); }
+.statRed { border-top: 4px solid var(--red); margin-top: -2px; }
+.statRed .statNum { color: #942514; }
+.statAmber { border-top: 4px solid #f47738; margin-top: -2px; }
+.statAmber .statNum { color: var(--amber); }
+@media (max-width: 900px) {
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stats > div, .stats > div + div { padding: 12px 12px 12px 0; border-left: 0; border-bottom: 1px solid var(--border-light); }
+  .stats > div:nth-child(even) { padding-left: 12px; border-left: 1px solid var(--border-light); }
+  .stats > div:last-child { border-bottom: 0; }
+  .stats > div:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .statNum { font-size: 30px; }
+}
+
+/* Deadlines at risk */
+.tableWrap { overflow-x: auto; }
+.deadline { white-space: nowrap; width: 200px; }
+.caseLink { font-weight: 700; font-size: 17px; }
+.plainDays { font-size: 15px; font-weight: 700; }
+@media (max-width: 700px) {
+  .riskTable, .riskTable thead, .riskTable tbody, .riskTable tr, .riskTable td { display: block; }
+  .riskTable thead { position: absolute; left: -9999px; }
+  .riskTable tr { border-bottom: 2px solid var(--border); padding: 12px 0; }
+  .riskTable td { border: 0; padding: 4px 0; }
+  .deadline { width: auto; white-space: normal; }
+}
+
+/* Patterns */
+.insight {
+  border-left: 6px solid var(--brand); background: var(--surface-alt);
+  padding: 16px 20px; margin: 12px 0 20px; max-width: 820px;
+}
+.insightHead { font-size: 21px; font-weight: 700; line-height: 1.3; }
+.insight p:last-child { margin-bottom: 0; }
+.caseList { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px 24px; font-weight: 700; }
+.why { max-width: 820px; }
+
+.twoCol { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 24px; }
+.twoCol h3 { margin-bottom: 4px; }
+@media (max-width: 800px) { .twoCol { grid-template-columns: 1fr; gap: 24px; } }
+.narrow { max-width: 620px; }
+
+/* Bars: plain HTML, the number is always shown as text */
+.bars { margin: 8px 0 12px; }
+.bars th[scope="row"] { font-size: 15px; font-weight: 700; color: var(--text); border-bottom: 1px solid var(--border-light); padding-right: 12px; }
+.barIds { font-size: 13px; font-weight: 400; margin-top: 2px; }
+.num { width: 1%; white-space: nowrap; text-align: right !important; font-weight: 700; padding-right: 12px; }
+td.num { font-size: 17px; }
+.barCol { width: 38%; }
+.bar { display: block; height: 14px; margin-top: 4px; background: var(--brand); min-width: 4px; }
+@media (max-width: 500px) { .barCol { width: 28%; } }
+
+/* Monitoring */
+.monitor { font-size: 15px; max-width: 900px; margin-bottom: 16px; }
+.monitor th[scope="row"] { width: 34%; color: var(--text); font-size: 15px; border-bottom: 1px solid var(--border-light); padding-right: 16px; }
+@media (max-width: 600px) {
+  .monitor, .monitor tbody, .monitor tr, .monitor th, .monitor td { display: block; width: auto !important; }
+  .monitor tr { border-bottom: 1px solid var(--border-light); padding: 10px 0; }
+  .monitor th, .monitor td { border: 0; padding: 2px 0; }
+}
+
+.note { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 14px; color: var(--text-secondary); max-width: 820px; }
+.nowrap { white-space: nowrap; }

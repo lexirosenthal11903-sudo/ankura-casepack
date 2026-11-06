@@ -74,3 +74,4 @@
 
 .failCard { border: 2px solid var(--red); background: var(--red-bg); padding: 16px; margin: 0 0 20px; }
 .failed { color: #942514; font-weight: 700; margin: 0; }
+.role { border-left: 5px solid var(--brand); background: var(--blue-bg); padding: 12px 16px; margin: 0 0 20px; font-size: 17px; }

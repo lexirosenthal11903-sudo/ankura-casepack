@@ -108,3 +108,10 @@ th { font-size: 14px; color: var(--text-secondary); font-weight: 700; border-bot
 
 .muted { color: var(--text-secondary); }
 .small { font-size: 14px; }
+
+/* Printing (the handover pack PDF): show only the document. */
+@media print {
+  header, footer, nav, .no-print, [aria-label="Prototype notice"], .skip-link { display: none !important; }
+  body { font-size: 12pt; }
+  a { color: inherit; text-decoration: none; }
+}

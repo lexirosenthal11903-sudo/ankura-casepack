@@ -135,8 +135,12 @@ export default function Walkthrough({ data }: { data: WalkthroughData }) {
 
         {step === 0 && (
           <>
+            <p className={styles.role}>
+              <strong>Imagine you are a complaints handler at Harbour &amp; Vale Bank</strong>, a fictional UK bank. A new complaint has just
+              come in. These five steps show what the tool does for you, and what is left for you to decide.
+            </p>
             <p className={styles.lede}>
-              {data.customer} emailed Harbour &amp; Vale Bank on {data.received}. He says three payments on his card were not made by
+              {data.customer} emailed the bank on {data.received}. He says three payments on his card were not made by
               him, and he wants his money back.
             </p>
             <p>

@@ -8,6 +8,8 @@ import { deadlineTag, formatDate, modelName } from "@/lib/format";
 import { restore } from "@/lib/redact";
 import { refundDutyApplies } from "@/lib/rules";
 import type { CaseFile } from "@/lib/types";
+import Link from "next/link";
+import { clearState, now, readState, writeState, type AuditEntry, type Decision, type GapFix, type ReviewState, type Stage } from "./state";
 import styles from "./workspace.module.css";
 
 type Labels = {
@@ -25,20 +27,11 @@ export interface CaseHeading {
   complainant: string | null;
 }
 
-type Decision = { status: "accepted" | "rejected" | "edited"; text?: string };
-type GapFix = { status: "added" | "not_available"; text: string };
-type Stage = "review" | "signed_off" | "with_specialist" | "returned" | "accepted_by_specialist";
-type AuditEntry = { at: string; actor: "System" | "Handler" | "Specialist"; action: string };
-
-interface Saved {
-  decisions: Record<string, Decision>;
-  gapFixes: Record<string, GapFix>;
-  clockChoice: Clock | null;
-  stage: Stage;
-  audit: AuditEntry[];
-  clicks: number;
-  returnReason?: string;
-  changesSinceReturn?: number;
+export interface CaseNav {
+  prev: { id: string; name: string } | null;
+  next: { id: string; name: string } | null;
+  position: number;
+  total: number;
 }
 
 const CHANNEL: Record<string, string> = { phone: "phone", email: "email", web_form: "web form", branch: "branch", letter: "letter", social: "social media" };
@@ -56,18 +49,6 @@ const STAGE_LABEL: Record<Stage, string> = {
   accepted_by_specialist: "Accepted by specialist team",
 };
 
-const now = () => new Date().toISOString();
-const storageKey = (id: string) => `casepack:${id}`;
-
-function readSaved(id: string): Saved | null {
-  try {
-    const raw = window.localStorage.getItem(storageKey(id));
-    return raw ? (JSON.parse(raw) as Saved) : null;
-  } catch {
-    return null;
-  }
-}
-
 /** Shows placeholder tokens such as [CUSTOMER] as highlighted chips. */
 function Redacted({ text }: { text: string }) {
   return (
@@ -82,12 +63,14 @@ function Redacted({ text }: { text: string }) {
 export default function Workspace({
   caseFile,
   heading,
+  nav,
   initialRun,
   liveAvailable,
   labels,
 }: {
   caseFile: CaseFile;
   heading: CaseHeading;
+  nav: CaseNav;
   initialRun: CasePackRun;
   liveAvailable: boolean;
   labels: Labels;
@@ -110,9 +93,6 @@ export default function Workspace({
   const [draft, setDraft] = useState("");
   const [gapEditing, setGapEditing] = useState<{ id: string; status: GapFix["status"] } | null>(null);
   const [gapDraft, setGapDraft] = useState("");
-  const [canAct, setCanAct] = useState<"yes" | "no" | null>(null);
-  const [sendBackReason, setSendBackReason] = useState("");
-  const [sendBackText, setSendBackText] = useState("");
   const signOffRef = useRef<HTMLHeadingElement>(null);
   const statusRef = useRef<HTMLDivElement>(null);
   const focusAfter = useRef<"signoff" | "status" | string | null>(null);
@@ -122,7 +102,7 @@ export default function Workspace({
   const editable = stage === "review" || stage === "returned";
 
   useEffect(() => {
-    const s = readSaved(caseFile.id);
+    const s = readState(caseFile.id);
     if (s) {
       setDecisions(s.decisions ?? {});
       setGapFixes(s.gapFixes ?? {});
@@ -141,12 +121,8 @@ export default function Workspace({
   }, [caseFile.id, initialRun]);
 
   useEffect(() => {
-    try {
-      const s: Saved = { decisions, gapFixes, clockChoice, stage, audit, clicks, returnReason, changesSinceReturn };
-      window.localStorage.setItem(storageKey(caseFile.id), JSON.stringify(s));
-    } catch {
-      /* storage unavailable: the review still works for this visit */
-    }
+    const s: ReviewState = { decisions, gapFixes, clockChoice, stage, audit, clicks, returnReason, changesSinceReturn };
+    writeState(caseFile.id, s);
   }, [caseFile.id, decisions, gapFixes, clockChoice, stage, audit, clicks, returnReason, changesSinceReturn]);
 
   // Keep keyboard focus somewhere sensible after an action removes or disables the focused control.
@@ -259,33 +235,11 @@ export default function Workspace({
       setStage("signed_off");
       log("Handler", "Signed off the case pack. The frontline handler continues the complaint.");
     }
-    setCanAct(null);
-    setSendBackReason("");
-    setSendBackText("");
-    focusAfter.current = "status";
-  }
-
-  function specialistDecision() {
-    if (canAct === "yes") {
-      setStage("accepted_by_specialist");
-      log("Specialist", `${team.label} accepted the handover: able to act without contacting anyone.`);
-    } else if (canAct === "no" && sendBackReason) {
-      const base = labels.sendBack.find((r) => r.id === sendBackReason)?.label ?? sendBackReason;
-      const reason = sendBackReason === "other" ? sendBackText.trim() : base;
-      setReturnReason(reason);
-      setChangesSinceReturn(0);
-      setStage("returned");
-      log("Specialist", `${team.label} sent the case back: ${reason}.`);
-    }
     focusAfter.current = "status";
   }
 
   function reset() {
-    try {
-      window.localStorage.removeItem(storageKey(caseFile.id));
-    } catch {
-      /* ignore */
-    }
+    clearState(caseFile.id);
     setRun(initialRun);
     setSource("saved");
     setNote(null);
@@ -298,9 +252,6 @@ export default function Workspace({
     setChangesSinceReturn(0);
     setEditing(null);
     setGapEditing(null);
-    setCanAct(null);
-    setSendBackReason("");
-    setSendBackText("");
     setAudit([{ at: now(), actor: "System", action: "Review reset." }]);
   }
 
@@ -398,6 +349,18 @@ export default function Workspace({
 
   return (
     <div>
+      <nav className={styles.caseNav} aria-label="Complaints">
+        <Link href="/queue">All complaints</Link>
+        <span className="small muted">Complaint {nav.position} of {nav.total}, most urgent first</span>
+        <span className={styles.prevNext}>
+          {nav.prev && <Link href={`/case/${nav.prev.id}`} rel="prev">Previous: {nav.prev.name}</Link>}
+          {nav.next && <Link href={`/case/${nav.next.id}`} rel="next">Next: {nav.next.name}</Link>}
+        </span>
+      </nav>
+      <p className={styles.role}>
+        <strong>You are the complaints handler.</strong> The AI has prepared this case pack. Check it, fill any gaps, then sign it off
+        {team.handover ? ` and hand it to ${team.label}` : ""}. You make every decision.
+      </p>
       <div className={styles.titleRow}>
         <div>
           <h1>{heading.title}</h1>
@@ -687,36 +650,14 @@ export default function Workspace({
             )}
             {stage === "signed_off" && <p className="small"><span className="tag tag-green">Signed off</span> The frontline handler continues the complaint.</p>}
             {stage === "with_specialist" && (
-              <div className={styles.specialist}>
-                <p className="small"><strong>Specialist view: {team.label}.</strong> {presentCount} of {requiredCount} checklist items in place. Gaps the handler explained are shown in the checklist above.</p>
-                <fieldset>
-                  <legend className="small"><strong>Could you act on this without contacting anyone?</strong></legend>
-                  <label className="small"><input type="radio" name="canact" checked={canAct === "yes"} onChange={() => setCanAct("yes")} /> Yes, accept the handover</label>
-                  <label className="small"><input type="radio" name="canact" checked={canAct === "no"} onChange={() => setCanAct("no")} /> No, send it back</label>
-                </fieldset>
-                {canAct === "no" && (
-                  <>
-                    <label className="small" htmlFor="sendback">Reason</label>
-                    <select id="sendback" value={sendBackReason} onChange={(e) => setSendBackReason(e.target.value)}>
-                      <option value="">Choose a reason</option>
-                      {labels.sendBack.map((r) => <option key={r.id} value={r.id}>{r.label}</option>)}
-                    </select>
-                    {sendBackReason === "other" && (
-                      <>
-                        <label className="small" htmlFor="sendback-text">Describe what is missing</label>
-                        <input id="sendback-text" value={sendBackText} onChange={(e) => setSendBackText(e.target.value)} />
-                      </>
-                    )}
-                  </>
-                )}
-                <button className="btn btn-small" onClick={specialistDecision}
-                  disabled={!canAct || (canAct === "no" && (!sendBackReason || (sendBackReason === "other" && !sendBackText.trim())))}>
-                  Confirm
-                </button>
-                <p className="small muted">Send-backs measure the process, never an individual handler.</p>
+              <div className={styles.handedOver}>
+                <p><strong>Sent to {team.label}.</strong> Now see it from their side: they decide whether the handover is complete enough to act on.</p>
+                <Link href={`/case/${caseFile.id}/handover`} className="btn">Switch to the {team.label} view</Link>
               </div>
             )}
-            {stage === "accepted_by_specialist" && <p className="small"><span className="tag tag-green">Accepted by {team.label}</span></p>}
+            {stage === "accepted_by_specialist" && (
+              <p className="small"><span className="tag tag-green">Accepted by {team.label}</span> <Link href={`/case/${caseFile.id}/handover`}>See their view</Link></p>
+            )}
             <p className="small muted">{clicks} review actions on this case.</p>
           </section>
 
