@@ -26,6 +26,8 @@ export interface Bank {
 export interface ChecklistItem {
   id: string;
   label: string;
+  /** Plain-English name for summaries, such as "who was paid". */
+  short?: string;
 }
 
 export interface Checklists {

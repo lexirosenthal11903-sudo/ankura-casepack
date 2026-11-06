@@ -263,7 +263,7 @@ export default function Workspace({
           {d?.status === "edited" && <span className="tag tag-blue">Edited by handler</span>}
         </div>
         <div className={styles.statementMeta}>
-          {s.supported ? <span className="tag tag-green">Source verified</span> : <span className="tag tag-red">Quote not found in source</span>}
+          {s.supported ? <span className={styles.tick}>✓ verified</span> : <span className="tag tag-red">Quote not found in source</span>}
           {d?.status === "accepted" && <span className="small muted">Accepted</span>}
           {d?.status === "rejected" && <span className="small muted">Rejected</span>}
           <details className={styles.sources}>
@@ -434,7 +434,8 @@ export default function Workspace({
           <h3>What the customer wants</h3>
           {renderStatement("outcome_sought")}
 
-          <h3>Routing</h3>
+          <details className={styles.fold}>
+            <summary><h3>Routing: {team.label}</h3></summary>
           {pack.intake.issues.map((iss, i) => (
             renderStatement(`intake.issues.${i}`, <>
               <strong>{labels.products[iss.product]}: {labels.causes[iss.cause]}.</strong> {show(iss.description)}
@@ -446,17 +447,21 @@ export default function Workspace({
           {renderStatement("intake.payment_services_reason", <>
             <strong>Payment services rules: {pack.intake.payment_services}.</strong> {show(pack.intake.payment_services_reason.text)}
           </>)}
+          </details>
 
           <h3>Vulnerability</h3>
           {pack.vulnerability.length === 0 && <p className="small muted">No signs found. Check the documents yourself before relying on this.</p>}
           {pack.vulnerability.map((_, i) => renderStatement(`vulnerability.${i}`, undefined, i))}
 
-          <h3>Timeline</h3>
+          <details className={styles.fold}>
+            <summary><h3>Timeline ({pack.timeline.length} events)</h3></summary>
           {pack.timeline.map((t, i) => (
             renderStatement(`timeline.${i}`, <>
               <strong>{formatDate(t.date)}</strong> {show(t.event)}
             </>, i)
           ))}
+
+          </details>
 
           {pack.conflicts.length > 0 && (
             <>
@@ -465,12 +470,14 @@ export default function Workspace({
             </>
           )}
 
-          <h3>Relevant policy</h3>
+          <details className={styles.fold}>
+            <summary><h3>Relevant policy ({pack.relevant_policy.length} paragraphs)</h3></summary>
           {pack.relevant_policy.map((rp, i) => (
             renderStatement(`relevant_policy.${i}`, <>
               <strong>{rp.policy_id} {labels.policy[rp.policy_id]?.heading}.</strong> {show(rp.why_relevant)}
             </>, i)
           ))}
+          </details>
         </section>
 
         {/* Right: deadlines, checklist, sign-off, audit */}

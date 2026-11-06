@@ -59,3 +59,12 @@
 .specialist select { display: block; margin-top: 4px; font: inherit; padding: 6px; border: 2px solid var(--text); width: 100%; }
 .audit { padding-left: 18px; margin: 0; max-height: 320px; overflow-y: auto; }
 .audit li { margin-bottom: 6px; }
+
+.tick { color: var(--green); font-size: 14px; font-weight: 700; }
+.fold { margin-top: 24px; }
+.fold > summary { cursor: pointer; list-style: none; border-bottom: 1px solid var(--border); padding-bottom: 4px; }
+.fold > summary::-webkit-details-marker { display: none; }
+.fold > summary h3 { display: inline; margin: 0; padding: 0; border: 0; }
+.fold > summary::before { content: "▸ "; color: var(--link); }
+.fold[open] > summary::before { content: "▾ "; }
+.fold > summary:hover h3 { color: var(--link); }

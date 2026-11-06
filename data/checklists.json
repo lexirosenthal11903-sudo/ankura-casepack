@@ -3,142 +3,174 @@
   "common": [
     {
       "id": "outcome_sought",
-      "label": "Outcome the customer wants, in their words"
+      "label": "Outcome the customer wants, in their words",
+      "short": "what the customer wants"
     },
     {
       "id": "customer_contact_attempted",
-      "label": "Contact with the customer made or attempted and documented (a call from the customer counts)"
+      "label": "Contact with the customer made or attempted and documented (a call from the customer counts)",
+      "short": "contact with the customer"
     },
     {
       "id": "customer_told_of_handover",
-      "label": "What the customer has been told about the handover"
+      "label": "What the customer has been told about the handover",
+      "short": "what the customer was told"
     },
     {
       "id": "vulnerability_recorded",
-      "label": "Vulnerability formally recorded on the case with any support needs (CP-5.2), or a note that none was seen. Signs mentioned in passing do not count"
+      "label": "Vulnerability formally recorded on the case with any support needs (CP-5.2), or a note that none was seen. Signs mentioned in passing do not count",
+      "short": "vulnerability formally recorded"
     },
     {
       "id": "linked_complaints_checked",
-      "label": "Earlier or linked complaints checked"
+      "label": "Earlier or linked complaints checked",
+      "short": "check for earlier complaints"
     }
   ],
   "teams": {
     "fraud_scams": [
       {
         "id": "payment_date",
-        "label": "Date of each payment"
+        "label": "Date of each payment",
+        "short": "payment dates"
       },
       {
         "id": "payment_amount",
-        "label": "Amount of each payment"
+        "label": "Amount of each payment",
+        "short": "payment amounts"
       },
       {
         "id": "payment_method",
-        "label": "Payment method (Faster Payment, card, standing order)"
+        "label": "Payment method (Faster Payment, card, standing order)",
+        "short": "payment method"
       },
       {
         "id": "payee_details",
-        "label": "Payee name and receiving bank"
+        "label": "Payee name and receiving bank",
+        "short": "who was paid"
       },
       {
         "id": "date_reported",
-        "label": "When the customer reported it"
+        "label": "When the customer reported it",
+        "short": "when it was reported"
       },
       {
         "id": "warnings_shown",
-        "label": "Warnings shown at the time of payment"
+        "label": "Warnings shown at the time of payment",
+        "short": "warnings shown"
       },
       {
         "id": "customer_account_of_events",
-        "label": "Customer's account of events in their own words"
+        "label": "Customer's account of events in their own words",
+        "short": "customer's account"
       },
       {
         "id": "authorised_or_not",
-        "label": "Whether the customer says they authorised the payment"
+        "label": "Whether the customer says they authorised the payment",
+        "short": "whether the customer authorised it"
       }
     ],
     "bereavement_poa": [
       {
         "id": "date_of_death",
-        "label": "Date of death (bereavement cases)"
+        "label": "Date of death (bereavement cases)",
+        "short": "date of death"
       },
       {
         "id": "authority_type",
-        "label": "Type of authority (executor, administrator, attorney, deputy)"
+        "label": "Type of authority (executor, administrator, attorney, deputy)",
+        "short": "type of authority"
       },
       {
         "id": "authority_evidence_status",
-        "label": "Whether the authority documents are received and checked"
+        "label": "Whether the authority documents are received and checked",
+        "short": "authority documents checked"
       },
       {
         "id": "accounts_affected",
-        "label": "Accounts affected"
+        "label": "Accounts affected",
+        "short": "accounts affected"
       },
       {
         "id": "relationship_to_customer",
-        "label": "Complainant's relationship to the customer"
+        "label": "Complainant's relationship to the customer",
+        "short": "relationship to the customer"
       }
     ],
     "financial_support": [
       {
         "id": "balance_and_arrears",
-        "label": "Current balance and arrears"
+        "label": "Current balance and arrears",
+        "short": "balance and arrears"
       },
       {
         "id": "income_expenditure",
-        "label": "Income and expenditure, or why not available"
+        "label": "Income and expenditure, or why not available",
+        "short": "income and spending"
       },
       {
         "id": "forbearance_history",
-        "label": "Forbearance offered or in place"
+        "label": "Forbearance offered or in place",
+        "short": "support already offered"
       },
       {
         "id": "collections_status",
-        "label": "Collections activity and whether it is paused"
+        "label": "Collections activity and whether it is paused",
+        "short": "collections activity"
       },
       {
         "id": "debt_advice_signposted",
-        "label": "Whether free debt advice was signposted"
+        "label": "Whether free debt advice was signposted",
+        "short": "debt advice offered"
       }
     ],
     "mortgages": [
       {
         "id": "mortgage_account_status",
-        "label": "Mortgage product, rate and term"
+        "label": "Mortgage product, rate and term",
+        "short": "mortgage details"
       },
       {
         "id": "key_dates",
-        "label": "Key dates (offer, switch, redemption, rate change)"
+        "label": "Key dates (offer, switch, redemption, rate change)",
+        "short": "key dates"
       },
       {
         "id": "amount_in_dispute",
-        "label": "Amount in dispute"
+        "label": "Amount in dispute",
+        "short": "amount in dispute"
       },
       {
         "id": "broker_involved",
-        "label": "Whether a broker was involved"
+        "label": "Whether a broker was involved",
+        "short": "broker involvement"
       }
     ],
     "payments_disputes": [
       {
         "id": "transaction_reference",
-        "label": "Transaction date, amount and reference"
+        "label": "Transaction date, amount and reference",
+        "short": "transaction details"
       },
       {
         "id": "payment_type",
-        "label": "Payment type (Faster Payment, CHAPS, Direct Debit, card)"
+        "label": "Payment type (Faster Payment, CHAPS, Direct Debit, card)",
+        "short": "payment type"
       },
       {
         "id": "expected_vs_actual",
-        "label": "What the customer expected and what happened"
+        "label": "What the customer expected and what happened",
+        "short": "what went wrong"
       },
       {
         "id": "merchant_or_payee",
-        "label": "Merchant or payee"
+        "label": "Merchant or payee",
+        "short": "merchant or payee"
       },
       {
         "id": "customer_loss",
-        "label": "Any loss or extra cost the customer says they suffered"
+        "label": "Any loss or extra cost the customer says they suffered",
+        "short": "customer's losses"
       }
     ]
   },

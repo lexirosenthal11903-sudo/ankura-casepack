@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 
 // One full journey through a case in saved mode. No API key and no cost.
 test("handler reviews, signs off and hands over; specialist sends it back", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/queue");
   await expect(page.getByRole("heading", { name: "Complaints queue" })).toBeVisible();
   await page.getByRole("link", { name: "Mr Kieran Doyle" }).click();
 

@@ -1,95 +1,67 @@
-import Link from "next/link";
-import { bank, listCaseIds, loadCase } from "@/lib/data";
+import { bank, checklists, loadCase } from "@/lib/data";
+import { formatDate, modelName } from "@/lib/format";
+import { restore } from "@/lib/redact";
 import { loadSavedRun } from "@/lib/saved-runs";
-import { deadlineTag, formatDate } from "@/lib/format";
-import styles from "./queue.module.css";
+import Walkthrough, { type WalkthroughData } from "./Walkthrough";
 
 export const dynamic = "force-static";
 
-const CHANNEL: Record<string, string> = { phone: "Phone", email: "Email", web_form: "Web form", branch: "Branch", letter: "Letter", social: "Social media" };
+// The walkthrough follows one real case from the saved runs, so every number on screen is genuine.
+const CASE_ID = "HV-007";
 
-export default function QueuePage() {
-  const rows = listCaseIds("dev")
-    .map((id) => {
-      const c = loadCase(id);
-      const run = loadSavedRun(id);
-      return { c, run };
-    })
-    .filter((r) => r.run)
-    .sort((a, b) => a.run!.deadlines.workingDue.localeCompare(b.run!.deadlines.workingDue));
+export default function Home() {
+  const c = loadCase(CASE_ID);
+  const run = loadSavedRun(CASE_ID)!;
+  const r = run.redacted.replacements;
+  const email = c.documents[0];
+  const emailRedacted = run.redacted.documents[0];
 
-  const teamLabel = (id: string) => bank.teams.find((t) => t.id === id)?.label ?? id;
-  const causeLabel = (id: string) => bank.causes.find((t) => t.id === id)?.label ?? id;
-  const overdue = rows.filter((r) => r.run!.deadlines.status === "overdue").length;
-  const dueSoon = rows.filter((r) => r.run!.deadlines.status === "due_soon").length;
-
-  return (
-    <>
-      <div className={styles.intro}>
-        <h1>Complaints queue</h1>
-        <p className={styles.lede}>
-          Each complaint has a case pack prepared from its notes and the bank&apos;s policy. A handler reviews it, signs it off and, if
-          needed, hands it to a specialist team. The AI never decides the outcome.
-        </p>
-        <p className="small muted">
-          {rows.length} open complaints. {overdue} past deadline, {dueSoon} due within five business days. Deadlines are calculated by code
-          under the FCA complaint rules, not by the AI.
-        </p>
-      </div>
-
-      <div className={styles.tableWrap}>
-        <table>
-          <caption className="visually-hidden">Open complaints, most urgent first</caption>
-          <thead>
-            <tr>
-              <th scope="col">Deadline</th>
-              <th scope="col">Complaint</th>
-              <th scope="col">Issue</th>
-              <th scope="col">Suggested team</th>
-              <th scope="col">Flags</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map(({ c, run }) => {
-              const d = run!.deadlines;
-              const p = run!.pack;
-              return (
-                <tr key={c.id}>
-                  <td className={styles.deadline}>
-                    <span className={`tag ${d.status === "overdue" ? "tag-red" : d.status === "due_soon" ? "tag-amber" : "tag-green"}`}>
-                      {deadlineTag(d.status, d.businessDaysLeft, d.calendarDaysLeft)}
-                    </span>
-                    <div className="small muted">Due {formatDate(d.workingDue)}</div>
-                  </td>
-                  <td>
-                    <Link href={`/case/${c.id}`} className={styles.caseLink}>
-                      {c.record.customer.title ? `${c.record.customer.title} ` : ""}
-                      {c.record.customer.name}
-                    </Link>
-                    <div className="small muted">
-                      {c.id} · {CHANNEL[c.channel]} · received {formatDate(c.received)}
-                    </div>
-                  </td>
-                  <td className="small">
-                    {p.intake.issues.length ? p.intake.issues.map((i) => causeLabel(i.cause)).join("; ") : <em>Not enough information</em>}
-                  </td>
-                  <td className="small">{teamLabel(p.intake.suggested_team)}</td>
-                  <td>
-                    <div className={styles.flags}>
-                    {p.vulnerability.length > 0 && <span className="tag tag-blue">Vulnerability</span>}
-                    {d.needsHandlerConfirmation && <span className="tag tag-amber">Confirm deadline rule</span>}
-                    {d.clock === "15_business_days" && <span className="tag">Payment services, 15 days</span>}
-                    {p.intake.already_with_ombudsman && <span className="tag">With Ombudsman</span>}
-                    {p.intake.linked_to_earlier_complaint && <span className="tag">Repeat complaint</span>}
-                    {p.flags.some((f) => f.type === "instruction_in_customer_text") && <span className="tag tag-red">Instruction in text</span>}
-                    </div>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-    </>
+  const hidden = [...new Map(r.filter((x) => x.documentId === email.id).map((x) => [x.original, x.placeholder])).entries()].map(
+    ([original, placeholder]) => ({ original, placeholder }),
   );
+
+  // An example of the checking: the first summary sentence that quotes a case document.
+  const statement = run.checks.statements.find((s) => s.path.startsWith("summary.") && s.citations.some((x) => /^D\d+$/.test(x.source)))!;
+  const cite = statement.citations.find((x) => /^D\d+$/.test(x.source))!;
+  const sourceDoc = c.documents.find((d) => d.id === cite.source)!;
+
+  const injection = run.pack.flags.find((f) => f.type === "instruction_in_customer_text");
+  const checklistLabels = Object.fromEntries([...checklists.common, ...Object.values(checklists.teams).flat()].map((i) => [i.id, i.short ?? i.label]));
+  const team = bank.teams.find((t) => t.id === run.pack.intake.suggested_team)!;
+
+  const data: WalkthroughData = {
+    caseId: CASE_ID,
+    customer: `${c.record.customer.title ? c.record.customer.title + " " : ""}${c.record.customer.name}`,
+    firstName: c.record.customer.name.split(" ")[0],
+    received: formatDate(c.received, true),
+    email: email.text,
+    emailRedacted: emailRedacted.text,
+    hidden,
+    totalHidden: r.length,
+    summary: run.pack.summary.map((s) => restore(s.text, r)),
+    wants: restore(run.pack.outcome_sought.text, r),
+    model: modelName(run.model),
+    seconds: Math.round(run.usage.latencyMs / 1000),
+    // Rough conversion at 79p to the dollar, only for a plain-English "under 1p" label.
+    costPence: run.usage.costUsd * 79,
+    check: {
+      statement: restore(statement.text, r),
+      sourceLabel: `${sourceDoc.id}, ${sourceDoc.system === "CARDS" ? "the bank's card records" : sourceDoc.system === "EMAIL" ? "the customer's email" : sourceDoc.system === "CRM" ? "the bank's case notes" : sourceDoc.system}`,
+      quote: restore(cite.quote, r),
+      sourceText: sourceDoc.text,
+    },
+    verified: run.checks.supportedCount,
+    totalStatements: run.checks.supportedCount + run.checks.unsupportedCount,
+    injectionFlag: injection ? restore(injection.description, r) : null,
+    team: team.label,
+    workingDue: formatDate(run.deadlines.workingDue, true),
+    businessDaysLeft: run.deadlines.businessDaysLeft,
+    needsClock: run.deadlines.needsHandlerConfirmation,
+    eightWeekDue: formatDate(run.deadlines.eightWeekDue, true),
+    missing: run.checks.checklist.missing.map((m) => checklistLabels[m] ?? m),
+    present: run.checks.checklist.present,
+    required: run.checks.checklist.required,
+  };
+
+  return <Walkthrough data={data} />;
 }

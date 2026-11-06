@@ -24,7 +24,7 @@ export default async function CasePage({ params }: { params: Promise<{ id: strin
   return (
     <>
       <p className="small">
-        <Link href="/">Back to queue</Link>
+        <Link href="/queue">Back to all complaints</Link>
       </p>
       <Workspace
         caseFile={c}

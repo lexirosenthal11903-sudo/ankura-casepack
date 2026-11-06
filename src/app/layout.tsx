@@ -24,7 +24,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               Harbour &amp; Vale <span className={styles.brandSub}>Complaints workspace</span>
             </Link>
             <nav aria-label="Main" className={styles.nav}>
-              <Link href="/">Queue</Link>
+              <Link href="/">Walkthrough</Link>
+              <Link href="/queue">All complaints</Link>
               <Link href="/how-it-works">How this works</Link>
             </nav>
           </div>
