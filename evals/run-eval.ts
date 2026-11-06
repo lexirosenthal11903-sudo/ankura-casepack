@@ -8,7 +8,8 @@
  */
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
-import { generateCasePack, type CasePackRun, type ModelKey } from "../src/lib/casepack";
+import { generateCasePack, MODELS as MODEL_IDS, type CasePackRun, type ModelKey } from "../src/lib/casepack";
+import { PROMPT_VERSION } from "../src/lib/prompts/casepack-v2";
 import { listCaseIds } from "../src/lib/data";
 import { formatSummary, scoreRun, summarise, type AnswerKey, type CaseScore } from "./score";
 
@@ -36,6 +37,11 @@ async function pool<T, R>(items: T[], limit: number, fn: (t: T) => Promise<R>): 
     }),
   );
   return out;
+}
+
+/** Machine-readable summary for the "How this works" page. Only the first repeat's per-measure results. */
+function writeSummaryJson(file: string, meta: Record<string, unknown>, byRepeat: CaseScore[][]) {
+  writeFileSync(file, JSON.stringify({ ...meta, generated: new Date().toISOString(), repeats: byRepeat.map(summarise) }, null, 2));
 }
 
 function report(title: string, runsDir: string, byRepeat: CaseScore[][], failures: string[]): string {
@@ -77,6 +83,9 @@ async function main() {
       }),
     );
     const md = report(`Re-scored: ${path.basename(dir)}`, dir, byRepeat, []);
+    const [split, model] = path.basename(dir).split("-");
+    const first: CasePackRun = JSON.parse(readFileSync(path.join(dir, files[0]), "utf8"));
+    writeSummaryJson(path.join(ROOT, "evals/results", `summary-${split}-${model}.json`), { split, model: first.model, promptVersion: first.promptVersion, runs: path.relative(ROOT, dir) }, byRepeat);
     writeFileSync(path.join(dir, "..", "..", `eval-${path.basename(dir)}.md`), md);
     console.log(md);
     return;
@@ -119,6 +128,7 @@ async function main() {
   }
   const md = report(`Evaluation: ${split} set on ${model}, ${repeats} repeat(s)`, runsDir, byRepeat, failures);
   writeFileSync(path.join(ROOT, "evals/results", `eval-${label}.md`), md);
+  writeSummaryJson(path.join(ROOT, "evals/results", `summary-${split}-${model}.json`), { split, model: MODEL_IDS[model], promptVersion: PROMPT_VERSION, runs: path.relative(ROOT, runsDir) }, byRepeat);
   console.log(md);
 }
 
