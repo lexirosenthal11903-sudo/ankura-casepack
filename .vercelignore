@@ -1,0 +1,9 @@
+.env
+.env.*
+!.env.example
+.git
+node_modules
+.next
+evals/results/*.raw.json
+test-results
+playwright-report

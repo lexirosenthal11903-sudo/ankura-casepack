@@ -11,3 +11,4 @@ coverage/
 evals/results/*.raw.json
 test-results/
 playwright-report/
+.vercel
