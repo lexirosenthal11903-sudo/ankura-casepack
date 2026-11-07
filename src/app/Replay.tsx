@@ -62,6 +62,16 @@ const CLOCK_LABEL: Record<Clock, string> = {
 };
 
 const GAP_TEXT = "Asked the customer on 9 Nov, awaiting reply";
+/** A breath before each stage, and how much slower than a demo-speed run the whole thing plays. */
+const PAUSE = 900;
+const PACE = 1.35;
+
+function slow<T>(x: T): T {
+  if (typeof x === "number") return (x * PACE) as T;
+  if (Array.isArray(x)) return x.map(slow) as T;
+  if (x && typeof x === "object") return Object.fromEntries(Object.entries(x).map(([k, v]) => [k, slow(v)])) as T;
+  return x;
+}
 
 /** Every moment in the replay, in milliseconds, worked out from the size of the case. */
 function buildCues(d: ReplayData) {
@@ -70,9 +80,11 @@ function buildCues(d: ReplayData) {
   let t = 400;
   const paragraphAt = Array.from({ length: paragraphs }, (_, i) => t + i * 320);
   t += paragraphs * 320 + 900;
+  t += PAUSE;
   const phase1 = t;
   const hideAt = Array.from({ length: hiddenCount }, (_, i) => t + i * 850);
   t += hiddenCount * 850 + 700;
+  t += PAUSE;
   const phase2 = t;
   const thinkingUntil = t + 2600;
   t = thinkingUntil + 300;
@@ -84,17 +96,20 @@ function buildCues(d: ReplayData) {
     return at;
   });
   t += 500;
+  t += PAUSE;
   const phase3 = t;
   const tickAt = d.rows.map((_, i) => phase3 + 300 + i * 130);
   t = phase3 + 300 + d.rows.length * 130 + 500;
   const injectionAt = t;
   t += 1500;
+  t += PAUSE;
   const phase4 = t;
   const dueAt = t + 300;
   const refundAt = t + 1100;
   t += 2300;
 
   // The person's part. Each move is where the cursor goes, each click is when it presses.
+  t += PAUSE;
   const phase5 = t;
   const acceptMove = t + 900;
   const acceptClick = t + 1700;
@@ -106,27 +121,30 @@ function buildCues(d: ReplayData) {
   const saveClick = saveMove + 600;
   const otherGapAt = Array.from({ length: Math.max(0, d.missingLabels.length - 1) }, (_, i) => saveClick + 900 + i * 800);
   t = saveClick + 900 + Math.max(0, d.missingLabels.length - 1) * 800 + 600;
+  t += PAUSE;
   const phase6 = t;
   const signMove = t + 500;
   const signClick = t + 1300;
   const sentAt = t + 1600;
   const auditAt = [t + 2000, t + 2350, t + 2700];
   t += 4000;
+  t += PAUSE;
   const phase7 = t;
   const inboxAt = t + 300;
   const specMove = t + 1200;
   const specClick = t + 2000;
   const acceptedAt = t + 2300;
   t += 3800;
+  t += PAUSE;
   const phase8 = t;
   const tileAt = [t + 300, t + 700, t + 1100, t + 1500];
   const patternAt = [t + 2200, t + 2800];
   const total = t + 3600;
-  return {
+  return slow({
     paragraphAt, phase1, hideAt, phase2, thinkingUntil, routingAt, rowAt, phase3, tickAt, injectionAt, phase4, dueAt, refundAt,
     phase5, acceptMove, acceptClick, gapsAt, gapMove, gapClick, typeAt, saveMove, saveClick, otherGapAt,
     phase6, signMove, signClick, sentAt, auditAt, phase7, inboxAt, specMove, specClick, acceptedAt, phase8, tileAt, patternAt, total,
-  };
+  });
 }
 
 type Target = "accept" | "gap0" | "gap1" | "gap2" | "gap3" | "save" | "sign" | "spec" | null;
@@ -135,6 +153,9 @@ export default function Replay({ data }: { data: ReplayData }) {
   const cues = useMemo(() => buildCues(data), [data]);
   const [elapsed, setElapsed] = useState(0);
   const [playing, setPlaying] = useState(false);
+  const [stepMode, setStepMode] = useState(false);
+  const stepModeRef = useRef(false);
+  stepModeRef.current = stepMode;
   const [ready, setReady] = useState(false);
   const [cursor, setCursor] = useState<{ x: number; y: number } | null>(null);
   const startRef = useRef(0);
@@ -156,11 +177,14 @@ export default function Replay({ data }: { data: ReplayData }) {
   useEffect(() => {
     if (!playing) return;
     startRef.current = performance.now() - elapsed;
+    // In one-stage-at-a-time mode, play up to the next stage boundary and stop there.
+    const boundaries = [cues.phase1, cues.phase2, cues.phase3, cues.phase4, cues.phase5, cues.phase6, cues.phase7, cues.phase8, cues.total];
+    const stopAt = stepModeRef.current ? (boundaries.map((b) => (b === cues.total ? b : b - 1)).find((b) => b > elapsed + 50) ?? cues.total) : cues.total;
     let frame = 0;
     const tick = () => {
       const e = performance.now() - startRef.current;
-      if (e >= cues.total) {
-        setElapsed(cues.total);
+      if (e >= stopAt) {
+        setElapsed(stopAt);
         setPlaying(false);
         return;
       }
@@ -230,6 +254,12 @@ export default function Replay({ data }: { data: ReplayData }) {
     setPlaying(false);
     setElapsed(cues.total);
   };
+  const choosePace = (step: boolean) => {
+    setStepMode(step);
+    setPlaying(false);
+  };
+  // Which side the action is on, so the other side can dim.
+  const activeSide: "left" | "right" = phase <= 1 || phase === 7 ? "left" : "right";
 
   // Email paragraphs and hidden details.
   let paragraphIndex = 0;
@@ -309,7 +339,7 @@ export default function Replay({ data }: { data: ReplayData }) {
           </div>
         )}
 
-        <section className={styles.pane} aria-label={phase >= 7 ? `${data.team} team inbox` : "The complaint"}>
+        <section className={`${styles.pane} ${activeSide !== "left" ? styles.dim : ""}`} aria-label={phase >= 7 ? `${data.team} team inbox` : "The complaint"}>
           {phase < 7 ? (
             <>
               <div className={styles.paneHead}>
@@ -352,7 +382,7 @@ export default function Replay({ data }: { data: ReplayData }) {
           )}
         </section>
 
-        <section className={styles.pane} aria-label={phase >= 8 ? "Team leader board" : "The case pack"}>
+        <section className={`${styles.pane} ${activeSide !== "right" ? styles.dim : ""}`} aria-label={phase >= 8 ? "Team leader board" : "The case pack"}>
           <div className={styles.paneHead}>
             <span>{rightHead}</span>
             {phase < 8 && at(cues.phase3) && (
@@ -513,12 +543,16 @@ export default function Replay({ data }: { data: ReplayData }) {
       <div className={styles.controls}>
         {finished ? (
           <button className="btn btn-secondary" onClick={replay}>Play again</button>
+        ) : stepMode && !playing ? (
+          <button className="btn btn-secondary" onClick={() => setPlaying(true)}>{elapsed === 0 ? "Start" : `Next: ${PHASES[Math.min(phase + 1, PHASES.length - 1)]}`}</button>
         ) : (
-          <>
-            <button className="btn btn-secondary" onClick={() => setPlaying((p) => !p)}>{playing ? "Pause" : "Play"}</button>
-            <button className="link-button" onClick={skip}>Skip to the end</button>
-          </>
+          <button className="btn btn-secondary" onClick={() => setPlaying((p) => !p)}>{playing ? "Pause" : "Play"}</button>
         )}
+        {!finished && <button className="link-button" onClick={skip}>Skip to the end</button>}
+        <span className={styles.pace} role="group" aria-label="Pace">
+          <button className={!stepMode ? styles.paceOn : ""} onClick={() => choosePace(false)} aria-pressed={!stepMode}>Auto play</button>
+          <button className={stepMode ? styles.paceOn : ""} onClick={() => choosePace(true)} aria-pressed={stepMode}>One stage at a time</button>
+        </span>
         <Link href={`/case/${data.caseId}`} className="btn">Do the review yourself</Link>
         <Link href="/team">Open the team leader view</Link>
         {data.liveAvailable ? (

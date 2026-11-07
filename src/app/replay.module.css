@@ -15,7 +15,7 @@
 .phaseNow .phaseNum { background: var(--brand); border-color: var(--brand); color: #fff; }
 .phaseDone { color: var(--green); }
 
-.status { min-height: 24px; font-size: 17px; margin: 0 0 12px; }
+.status { min-height: 28px; font-size: 19px; font-weight: 700; margin: 0 0 12px; }
 
 .stage { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 16px; align-items: start; }
 @media (max-width: 860px) { .stage { grid-template-columns: minmax(0, 1fr); } }
@@ -110,3 +110,11 @@
 .redText { color: #942514; }
 .pattern { margin-top: 10px; padding: 10px 12px; border-left: 5px solid var(--brand); background: var(--blue-bg); }
 @media (prefers-reduced-motion: reduce) { .cursor { transition: none; } .caret { animation: none; } }
+
+/* Spotlight: the side nothing is happening on fades back. */
+.dim { opacity: 0.45; transition: opacity 500ms ease; }
+.pane { transition: opacity 500ms ease; }
+.pace { display: inline-flex; border: 2px solid var(--text); }
+.pace button { background: #fff; border: 0; padding: 6px 12px; font-size: 14px; cursor: pointer; color: var(--text); }
+.pace button + button { border-left: 2px solid var(--text); }
+.paceOn { background: var(--text) !important; color: #fff !important; }
