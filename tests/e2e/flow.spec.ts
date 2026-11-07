@@ -48,12 +48,12 @@ test("handler fills every gap before handover; a send-back must be fixed before 
   await expect(page.getByText("You accepted the handover.")).toBeVisible();
 });
 
-test("front page replays a real run and ends with every quote checked", async ({ page }) => {
+test("front page replays a real run through to the team leader board", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "Skip to the end" }).click();
-  await expect(page.getByText("34 of 34 quotes found")).toBeVisible();
-  await expect(page.getByText("Final response due")).toBeVisible();
-  await expect(page.getByRole("link", { name: "Review this case yourself" })).toBeVisible();
+  await expect(page.getByText("Pattern spotted")).toBeVisible();
+  await expect(page.getByText("accepted the handover")).toBeVisible();
+  await expect(page.getByRole("link", { name: "Do the review yourself" })).toBeVisible();
 });
 
 test("walkthrough shows a failed quote check", async ({ page }) => {

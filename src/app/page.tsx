@@ -1,4 +1,5 @@
-import { bank, listCaseIds, loadCase, policy } from "@/lib/data";
+import { bank, checklists, listCaseIds, loadCase, policy } from "@/lib/data";
+import { sharedIncidents } from "@/lib/insights";
 import { liveModeAvailable } from "@/lib/demo";
 import { formatDate, modelName } from "@/lib/format";
 import { restore } from "@/lib/redact";
@@ -56,6 +57,25 @@ export default function Home() {
     hiddenDetails: devRuns.reduce((n, x) => n + x.redacted.replacements.length, 0),
   };
 
+  // What the handler still has to fill in, in plain words.
+  const allItems = [...checklists.common, ...Object.values(checklists.teams).flat()];
+  const missingLabels = run.checks.checklist.missing.map((id) => {
+    const item = allItems.find((x) => x.id === id);
+    return item?.short ? item.short.charAt(0).toUpperCase() + item.short.slice(1) : (item?.label ?? id);
+  });
+
+  // The team leader's headline numbers, worked out the same way as the team page.
+  const devCases = listCaseIds("dev").map((id) => ({ c: loadCase(id), run: loadSavedRun(id)! }));
+  const incident = sharedIncidents(devCases.map(({ c }) => ({ id: c.id, text: c.documents.map((d) => d.text).join("\n") })))[0];
+  const vulnerable = devCases.filter(({ run: x }) => x.pack.vulnerability.length > 0);
+  const board = {
+    open: devCases.length,
+    overdue: devCases.filter(({ run: x }) => x.deadlines.status === "overdue").length,
+    vulnerable: vulnerable.length,
+    vulnNotRecorded: vulnerable.filter(({ run: x }) => x.checks.checklist.missing.includes("vulnerability_recorded")).length,
+    incident: incident ? { count: incident.caseIds.length, date: incident.date ? formatDate(incident.date) : null, ref: incident.key } : null,
+  };
+
   const data: ReplayData = {
     caseId: CASE_ID,
     customer: `${c.record.customer.title ? c.record.customer.title + " " : ""}${c.record.customer.name}`,
@@ -81,6 +101,8 @@ export default function Home() {
     refundOverdue: Boolean(run.deadlines.refundOverdue),
     morePolicy: Math.max(0, run.pack.relevant_policy.length - 3),
     missing: run.checks.checklist.required - run.checks.checklist.present,
+    missingLabels,
+    board,
     required: run.checks.checklist.required,
     liveAvailable: liveModeAvailable(),
     proof,

@@ -77,3 +77,36 @@
   .in { animation: none; }
   .bar > div { transition: none; }
 }
+
+/* The person's part: a cursor that moves between real-looking controls. */
+.stage { position: relative; }
+.cursor { position: absolute; top: 0; left: 0; z-index: 5; pointer-events: none; transition: transform 650ms cubic-bezier(0.3, 0.7, 0.3, 1); filter: drop-shadow(0 1px 1px rgba(0,0,0,0.35)); }
+.cursorPress svg { transform: scale(0.82); transform-origin: 2px 2px; }
+.pressed { transform: translateY(2px); box-shadow: none !important; filter: brightness(0.9); }
+.acceptRow { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--border-light); }
+.rowsAccepted .tickOk { background: var(--green); color: #fff; border-radius: 50%; display: inline-grid; place-items: center; width: 18px; height: 18px; font-size: 12px; }
+.gaps { margin-top: 12px; border-top: 2px solid var(--amber); padding-top: 10px; }
+.gaps ul { list-style: none; margin: 0; padding: 0; }
+.gap { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding: 8px 0; border-bottom: 1px solid var(--border-light); }
+.gapDone { font-size: 14px; }
+.gapDone .tag { margin-right: 6px; }
+.gapInput { display: flex; align-items: center; gap: 8px; }
+.fakeInput { display: inline-block; min-width: 240px; min-height: 32px; padding: 4px 8px; border: 2px solid var(--text); font-size: 14px; background: #fff; }
+.caret { display: inline-block; width: 1px; height: 16px; background: var(--text); vertical-align: -3px; margin-left: 1px; animation: blink 1s steps(2) infinite; }
+@keyframes blink { to { opacity: 0; } }
+.btnRow { display: flex; gap: 8px; flex-wrap: wrap; }
+.signRow { margin-top: 12px; }
+.sent { margin-bottom: 12px; padding: 10px 12px; border-left: 5px solid var(--green); background: var(--green-bg); }
+.sent .tag { margin-right: 6px; }
+.audit { margin-top: 12px; border-top: 1px solid var(--border); padding-top: 8px; font-size: 14px; }
+.audit ul { margin: 0; padding-left: 18px; }
+.audit li { margin-bottom: 4px; }
+.inboxCard { border: 1px solid var(--border); padding: 12px; background: var(--surface-alt); }
+.inboxCard p { margin-bottom: 8px; }
+.tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 0 0 12px; }
+.tiles > div { border-left: 4px solid var(--brand); padding-left: 10px; }
+.tiles dd { margin: 0; font-size: 30px; font-weight: 700; line-height: 1.1; }
+.tiles dt { font-size: 14px; color: var(--text-secondary); }
+.redText { color: #942514; }
+.pattern { margin-top: 10px; padding: 10px 12px; border-left: 5px solid var(--brand); background: var(--blue-bg); }
+@media (prefers-reduced-motion: reduce) { .cursor { transition: none; } .caret { animation: none; } }
