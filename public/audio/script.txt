@@ -1,0 +1,9 @@
+0|A new complaint has just arrived by email. Watch the left side. The customer says three card payments were not his, and the email even tries to trick the AI.
+1|Before anything leaves the bank, code hides the personal details. Watch the name, account number and phone number turn into labels. The AI never sees them.
+2|Now the AI reads the hidden-name version and the bank's complaint policy. Watch the right side. The case pack builds itself: who it goes to, a summary, a timeline, and the policy that applies.
+3|Every sentence has to quote where it came from. Code checks that each quote really exists in the source. Watch the ticks appear. The five thousand pound trick is caught and flagged.
+4|The deadlines are worked out by code, not by the AI, from the date the complaint arrived. The refund decision is already overdue, so a person needs to act today.
+5|A complaints handler takes over. Watch the cursor. They accept the checked sentences, then fill in the three things the AI could not find.
+6|Only now does the sign-off button appear. One click hands the case to Fraud and Scams, and every step is recorded in the audit trail.
+7|The Fraud and Scams team see the handover pack on their own screen, on the left. They can act on it without chasing anyone, so they accept.
+8|Finally, the team leader's board updates on its own, on the right. Open complaints, overdue cases, and a pattern: three complaints trace back to the same incident. Nobody typed a report.

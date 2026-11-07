@@ -118,3 +118,5 @@
 .pace button { background: #fff; border: 0; padding: 6px 12px; font-size: 14px; cursor: pointer; color: var(--text); }
 .pace button + button { border-left: 2px solid var(--text); }
 .paceOn { background: var(--text) !important; color: #fff !important; }
+.soundBtn { background: #fff; border: 2px solid var(--text); padding: 6px 12px; font-size: 14px; cursor: pointer; color: var(--text); }
+.soundOn { background: var(--text); color: #fff; }

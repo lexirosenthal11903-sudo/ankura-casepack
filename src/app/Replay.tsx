@@ -65,6 +65,9 @@ const GAP_TEXT = "Asked the customer on 9 Nov, awaiting reply";
 /** A breath before each stage, and how much slower than a demo-speed run the whole thing plays. */
 const PAUSE = 900;
 const PACE = 1.35;
+/** Narration clip lengths in seconds. Each stage lasts at least this long, so the voice never overruns. */
+const CLIP_SECONDS = [9.4, 9.8, 12.2, 10.6, 9.7, 8.2, 8.0, 8.5, 12.2];
+const minStage = (n: number) => (CLIP_SECONDS[n] * 1000 + 600) / PACE;
 
 function slow<T>(x: T): T {
   if (typeof x === "number") return (x * PACE) as T;
@@ -80,11 +83,11 @@ function buildCues(d: ReplayData) {
   let t = 400;
   const paragraphAt = Array.from({ length: paragraphs }, (_, i) => t + i * 320);
   t += paragraphs * 320 + 900;
-  t += PAUSE;
+  t = Math.max(t + PAUSE, minStage(0));
   const phase1 = t;
   const hideAt = Array.from({ length: hiddenCount }, (_, i) => t + i * 850);
   t += hiddenCount * 850 + 700;
-  t += PAUSE;
+  t = Math.max(t + PAUSE, phase1 + minStage(1));
   const phase2 = t;
   const thinkingUntil = t + 2600;
   t = thinkingUntil + 300;
@@ -96,20 +99,20 @@ function buildCues(d: ReplayData) {
     return at;
   });
   t += 500;
-  t += PAUSE;
+  t = Math.max(t + PAUSE, phase2 + minStage(2));
   const phase3 = t;
   const tickAt = d.rows.map((_, i) => phase3 + 300 + i * 130);
   t = phase3 + 300 + d.rows.length * 130 + 500;
   const injectionAt = t;
   t += 1500;
-  t += PAUSE;
+  t = Math.max(t + PAUSE, phase3 + minStage(3));
   const phase4 = t;
   const dueAt = t + 300;
   const refundAt = t + 1100;
   t += 2300;
 
   // The person's part. Each move is where the cursor goes, each click is when it presses.
-  t += PAUSE;
+  t = Math.max(t + PAUSE, phase4 + minStage(4));
   const phase5 = t;
   const acceptMove = t + 900;
   const acceptClick = t + 1700;
@@ -121,25 +124,25 @@ function buildCues(d: ReplayData) {
   const saveClick = saveMove + 600;
   const otherGapAt = Array.from({ length: Math.max(0, d.missingLabels.length - 1) }, (_, i) => saveClick + 900 + i * 800);
   t = saveClick + 900 + Math.max(0, d.missingLabels.length - 1) * 800 + 600;
-  t += PAUSE;
+  t = Math.max(t + PAUSE, phase5 + minStage(5));
   const phase6 = t;
   const signMove = t + 500;
   const signClick = t + 1300;
   const sentAt = t + 1600;
   const auditAt = [t + 2000, t + 2350, t + 2700];
   t += 4000;
-  t += PAUSE;
+  t = Math.max(t + PAUSE, phase6 + minStage(6));
   const phase7 = t;
   const inboxAt = t + 300;
   const specMove = t + 1200;
   const specClick = t + 2000;
   const acceptedAt = t + 2300;
   t += 3800;
-  t += PAUSE;
+  t = Math.max(t + PAUSE, phase7 + minStage(7));
   const phase8 = t;
   const tileAt = [t + 300, t + 700, t + 1100, t + 1500];
   const patternAt = [t + 2200, t + 2800];
-  const total = t + 3600;
+  const total = Math.max(t + 3600, phase8 + minStage(8));
   return slow({
     paragraphAt, phase1, hideAt, phase2, thinkingUntil, routingAt, rowAt, phase3, tickAt, injectionAt, phase4, dueAt, refundAt,
     phase5, acceptMove, acceptClick, gapsAt, gapMove, gapClick, typeAt, saveMove, saveClick, otherGapAt,
@@ -154,6 +157,9 @@ export default function Replay({ data }: { data: ReplayData }) {
   const [elapsed, setElapsed] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [stepMode, setStepMode] = useState(false);
+  const [sound, setSound] = useState(false);
+  const voiceRef = useRef<HTMLAudioElement | null>(null);
+  const padRef = useRef<HTMLAudioElement | null>(null);
   const stepModeRef = useRef(false);
   stepModeRef.current = stepMode;
   const [ready, setReady] = useState(false);
@@ -245,6 +251,36 @@ export default function Replay({ data }: { data: ReplayData }) {
       if (last instanceof HTMLElement) last.scrollIntoView({ block: "nearest", behavior: "smooth" });
     }
   }, [shownCount, playing, target]);
+
+  // Narration: one clip per stage, started when the stage starts. Music loops quietly underneath while playing.
+  useEffect(() => {
+    if (!sound) {
+      voiceRef.current?.pause();
+      padRef.current?.pause();
+      return;
+    }
+    if (!padRef.current) {
+      padRef.current = new Audio("/audio/pad.m4a");
+      padRef.current.loop = true;
+      padRef.current.volume = 0.18;
+    }
+    if (playing) padRef.current.play().catch(() => {});
+    else padRef.current.pause();
+  }, [sound, playing]);
+  // In one-stage-at-a-time mode the clock sits just before the next boundary, so do not restart the old line there.
+  const nextBoundary = [cues.phase1, cues.phase2, cues.phase3, cues.phase4, cues.phase5, cues.phase6, cues.phase7, cues.phase8, cues.total][phase];
+  const atStageEnd = nextBoundary - elapsed < 80;
+  useEffect(() => {
+    if (!sound || !playing || atStageEnd) return;
+    voiceRef.current?.pause();
+    const clip = new Audio(`/audio/stage-${phase}.m4a`);
+    clip.volume = 1;
+    voiceRef.current = clip;
+    clip.play().catch(() => {});
+    return () => clip.pause();
+    // atStageEnd is deliberately left out: it only gates the start, it should not stop a line that is playing.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase, sound, playing]);
 
   const replay = () => {
     setElapsed(0);
@@ -549,6 +585,9 @@ export default function Replay({ data }: { data: ReplayData }) {
           <button className="btn btn-secondary" onClick={() => setPlaying((p) => !p)}>{playing ? "Pause" : "Play"}</button>
         )}
         {!finished && <button className="link-button" onClick={skip}>Skip to the end</button>}
+        <button className={`${styles.soundBtn} ${sound ? styles.soundOn : ""}`} onClick={() => setSound((v) => !v)} aria-pressed={sound}>
+          {sound ? "Sound on" : "Sound off"}
+        </button>
         <span className={styles.pace} role="group" aria-label="Pace">
           <button className={!stepMode ? styles.paceOn : ""} onClick={() => choosePace(false)} aria-pressed={!stepMode}>Auto play</button>
           <button className={stepMode ? styles.paceOn : ""} onClick={() => choosePace(true)} aria-pressed={stepMode}>One stage at a time</button>
