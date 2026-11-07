@@ -159,7 +159,6 @@ export default function Replay({ data }: { data: ReplayData }) {
   const [stepMode, setStepMode] = useState(false);
   const [sound, setSound] = useState(false);
   const voiceRef = useRef<HTMLAudioElement | null>(null);
-  const padRef = useRef<HTMLAudioElement | null>(null);
   const stepModeRef = useRef(false);
   stepModeRef.current = stepMode;
   const [ready, setReady] = useState(false);
@@ -252,21 +251,10 @@ export default function Replay({ data }: { data: ReplayData }) {
     }
   }, [shownCount, playing, target]);
 
-  // Narration: one clip per stage, started when the stage starts. Music loops quietly underneath while playing.
+  // Narration: one clip per stage, started when the stage starts.
   useEffect(() => {
-    if (!sound) {
-      voiceRef.current?.pause();
-      padRef.current?.pause();
-      return;
-    }
-    if (!padRef.current) {
-      padRef.current = new Audio("/audio/pad.m4a");
-      padRef.current.loop = true;
-      padRef.current.volume = 0.18;
-    }
-    if (playing) padRef.current.play().catch(() => {});
-    else padRef.current.pause();
-  }, [sound, playing]);
+    if (!sound) voiceRef.current?.pause();
+  }, [sound]);
   // In one-stage-at-a-time mode the clock sits just before the next boundary, so do not restart the old line there.
   const nextBoundary = [cues.phase1, cues.phase2, cues.phase3, cues.phase4, cues.phase5, cues.phase6, cues.phase7, cues.phase8, cues.total][phase];
   const atStageEnd = nextBoundary - elapsed < 80;
