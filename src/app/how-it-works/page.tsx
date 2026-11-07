@@ -176,7 +176,7 @@ export default function HowItWorks() {
       </ul>
 
       <p className={styles.next}>
-        <Link href="/">Take the five-step walkthrough</Link>
+        <Link href="/walkthrough">Take the five-step walkthrough</Link>
         <Link href="/queue">See all complaints</Link>
       </p>
     </div>
