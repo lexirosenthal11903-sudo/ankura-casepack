@@ -97,3 +97,5 @@
 .sectionHead { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-top: 18px; }
 .sectionHead h3 { margin: 0; }
 .sectionHead span { font-weight: 700; }
+
+.btnRow { display: inline-flex; gap: 12px; align-items: baseline; }

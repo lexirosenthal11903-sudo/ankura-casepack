@@ -122,3 +122,12 @@ th { font-size: 14px; color: var(--text-secondary); font-weight: 700; border-bot
   .btn-small { padding: 8px 12px; font-size: 15px; }
   a.small, button.linklike, .small button { min-height: 44px; display: inline-flex; align-items: center; }
 }
+
+/* The audit record prints on its own when "Download record (PDF)" is pressed. */
+.audit-print { display: none; }
+@media print {
+  body.print-audit main > *:not(.audit-print) { display: none !important; }
+  body.print-audit .audit-print { display: block; font-size: 11pt; }
+  body.print-audit .audit-print h1 { font-size: 18pt; }
+  body.print-audit .audit-print h2 { font-size: 13pt; margin-top: 14pt; }
+}

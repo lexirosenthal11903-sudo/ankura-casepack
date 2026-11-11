@@ -281,6 +281,15 @@ export default function Workspace({
     setAudit([{ at: now(), actor: "System", action: "Review reset." }]);
   }
 
+  /** Prints only the audit record, which the browser's print window saves as a PDF. */
+  function printAudit() {
+    document.body.classList.add("print-audit");
+    const done = () => document.body.classList.remove("print-audit");
+    window.addEventListener("afterprint", done, { once: true });
+    window.print();
+    window.setTimeout(done, 2000);
+  }
+
   function exportAudit() {
     const record = {
       caseId: caseFile.id,
@@ -689,7 +698,10 @@ export default function Workspace({
           <section className={styles.panel}>
             <div className={styles.packHead}>
               <h2>Audit trail</h2>
-              <button className="link-button small" onClick={exportAudit}>Download record</button>
+              <span className={styles.btnRow}>
+                <button className="link-button small" onClick={printAudit}>Download record (PDF)</button>
+                <button className="link-button small" onClick={exportAudit}>Data (JSON)</button>
+              </span>
             </div>
             <ol className={styles.audit} tabIndex={0} aria-label="Audit trail entries">
               {audit.map((a, i) => (
@@ -699,6 +711,27 @@ export default function Workspace({
           </section>
         </aside>
       </div>
+      <section className="audit-print" aria-hidden="true">
+        <h1>Audit record, complaint {caseFile.id}</h1>
+        <p>{heading.title}{heading.complainant ? `, complaint by ${heading.complainant}` : ""}. Received {formatDate(caseFile.received)}. Suggested team {team.label}. Stage: {stage.replaceAll("_", " ")}.</p>
+        <p>AI run: {modelName(run.model)}, prompt {run.promptVersion}, {run.createdAt.slice(0, 10)}, {source}. {run.redacted.replacements.length} personal details replaced before the AI call. Deadline rule: {clock.replaceAll("_", " ")}.</p>
+        <h2>Handler decisions</h2>
+        <p>{Object.values(decisions).filter((d) => d.status === "accepted").length} accepted, {Object.values(decisions).filter((d) => d.status === "edited").length} edited, {Object.values(decisions).filter((d) => d.status === "rejected").length} rejected, of {run.checks.statements.length} AI statements.</p>
+        {Object.entries(decisions).filter(([, d]) => d.status !== "accepted").map(([path, d]) => (
+          <p key={path}><strong>{path}</strong>: {d.status}{d.text ? `, now reads: ${d.text}` : ""}</p>
+        ))}
+        <h2>Handover gaps</h2>
+        {Object.keys(gapFixes).length === 0 ? <p>None filled yet.</p> : Object.entries(gapFixes).map(([id, g]) => (
+          <p key={id}><strong>{labels.checklist[id] ?? id}</strong>: {g.status === "added" ? "detail added" : "not available"}. {g.text}</p>
+        ))}
+        <h2>Every action, in order</h2>
+        <ol>
+          {audit.map((a, i) => (
+            <li key={i}>{a.at.replace("T", " ").slice(0, 19)} {a.actor}. {a.action}</li>
+          ))}
+        </ol>
+        <p>Handler edits may contain real names, because handlers are authorised to see them. Generated from the prototype at {new Date().toISOString().slice(0, 16).replace("T", " ")} UTC.</p>
+      </section>
       <Tour />
     </div>
   );

@@ -4,13 +4,24 @@ import { loadSavedRun } from "@/lib/saved-runs";
 import { deadlineTag, formatDate } from "@/lib/format";
 import styles from "./queue.module.css";
 
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 export const metadata = { title: "All complaints | Harbour & Vale (fictional bank)" };
 
 const CHANNEL: Record<string, string> = { phone: "Phone", email: "Email", web_form: "Web form", branch: "Branch", letter: "Letter", social: "Social media" };
 
-export default function QueuePage() {
-  const rows = listCaseIds("dev")
+const FILTERS = [
+  { key: "all", label: "All", test: () => true },
+  { key: "overdue", label: "Overdue", test: (r: Row) => r.run!.deadlines.status === "overdue" },
+  { key: "due", label: "Due within 5 business days", test: (r: Row) => r.run!.deadlines.status === "due_soon" },
+  { key: "vulnerable", label: "Signs of vulnerability", test: (r: Row) => r.run!.pack.vulnerability.length > 0 },
+  { key: "ready", label: "Ready to hand over", test: (r: Row) => r.run!.checks.checklist.missing.length === 0 },
+  { key: "gaps", label: "Gaps to fill", test: (r: Row) => r.run!.checks.checklist.missing.length > 0 },
+] as const;
+type Row = { c: ReturnType<typeof loadCase>; run: ReturnType<typeof loadSavedRun> };
+
+export default async function QueuePage({ searchParams }: { searchParams: Promise<{ show?: string }> }) {
+  const { show } = await searchParams;
+  const allRows: Row[] = listCaseIds("dev")
     .map((id) => {
       const c = loadCase(id);
       const run = loadSavedRun(id);
@@ -18,11 +29,13 @@ export default function QueuePage() {
     })
     .filter((r) => r.run)
     .sort((a, b) => a.run!.deadlines.workingDue.localeCompare(b.run!.deadlines.workingDue));
+  const active = FILTERS.find((f) => f.key === show) ?? FILTERS[0];
+  const rows = allRows.filter(active.test);
 
   const teamLabel = (id: string) => bank.teams.find((t) => t.id === id)?.label ?? id;
   const causeLabel = (id: string) => bank.causes.find((t) => t.id === id)?.label ?? id;
-  const overdue = rows.filter((r) => r.run!.deadlines.status === "overdue").length;
-  const dueSoon = rows.filter((r) => r.run!.deadlines.status === "due_soon").length;
+  const overdue = allRows.filter((r) => r.run!.deadlines.status === "overdue").length;
+  const dueSoon = allRows.filter((r) => r.run!.deadlines.status === "due_soon").length;
 
   return (
     <>
@@ -36,10 +49,23 @@ export default function QueuePage() {
           New here? Start with <Link href="/case/HV-007">Mr Kieran Doyle</Link>: a disputed card payment with a hidden instruction in the email, a refund deadline already passed and four gaps to fill. Or <Link href="/case/HV-007?tour=1">take the guided tour</Link> first.
         </p>
         <p className="small muted">
-          {rows.length} open complaints. {overdue} overdue, {dueSoon} due within five business days. Only urgent cases are coloured.
+          {allRows.length} open complaints. {overdue} overdue, {dueSoon} due within five business days. Only urgent cases are coloured.
           Deadlines are worked out by code under the FCA complaint rules, not by the AI.
         </p>
       </div>
+
+      <nav className={styles.filters} aria-label="Show">
+        <span className="small muted">Show:</span>
+        {FILTERS.map((f) => {
+          const n = allRows.filter(f.test).length;
+          return (
+            <Link key={f.key} href={f.key === "all" ? "/queue" : `/queue?show=${f.key}`} aria-current={f.key === active.key ? "page" : undefined} className={f.key === active.key ? styles.filterOn : ""}>
+              {f.label} ({n})
+            </Link>
+          );
+        })}
+      </nav>
+      {rows.length === 0 && <p>No complaints match. <Link href="/queue">Show all</Link>.</p>}
 
       <div className={styles.tableWrap}>
         <table>

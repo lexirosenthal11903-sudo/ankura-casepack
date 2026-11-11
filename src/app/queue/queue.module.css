@@ -12,3 +12,7 @@
   .deadline { width: auto; }
 }
 .plainDays { font-size: 15px; font-weight: 700; }
+
+.filters { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; margin: 0 0 16px; }
+.filters a { padding: 4px 0; }
+.filterOn { font-weight: 700; text-decoration: none; border-bottom: 3px solid #0b0c0c; }
