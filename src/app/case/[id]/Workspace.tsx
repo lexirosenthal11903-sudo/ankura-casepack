@@ -461,7 +461,7 @@ export default function Workspace({
           <h2 id="docs-h">Case documents</h2>
           <div className={styles.toggle} role="group" aria-label="Document view">
             <button aria-pressed={docView === "redacted"} onClick={() => setDocView("redacted")} data-tour="ai-saw">What the AI saw</button>
-            <button aria-pressed={docView === "original"} onClick={() => setDocView("original")}>As received</button>
+            <button aria-pressed={docView === "original"} onClick={() => setDocView("original")} data-tour="as-received">As received</button>
           </div>
           <p className="small muted">
             {docView === "redacted"
