@@ -38,7 +38,7 @@ def table(s, x, y, w, cols, rows=None, size=SZ, lh=LH, pad=0.05, shade=None, las
     y += hh + 0.06; keep(hline(s, x, y, w, DARK, 1), "table header"); y += 0.03
     for ri, row in enumerate(rows):
         h = max(text_h(c, size, wd - 2 * pad, lh) for c, wd in zip(row, widths)) + 2 * pad
-        if shade and ri in shade: rect(s, x, y, w, h, TINT)
+        pass
         for c, cx, wd in zip(row, xs, widths):
             tb(s, cx + pad, y + pad, wd - 2 * pad, h - 2 * pad, c, size, INK, lh=lh)
         y += h
