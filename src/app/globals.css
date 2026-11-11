@@ -115,3 +115,10 @@ th { font-size: 14px; color: var(--text-secondary); font-weight: 700; border-bot
   body { font-size: 12pt; }
   a { color: inherit; text-decoration: none; }
 }
+
+/* Touch targets on small screens: every button and inline action is at least 44px tall (WCAG 2.5.8 and GOV.UK guidance). */
+@media (max-width: 640px) {
+  .btn, .btn-small, button { min-height: 44px; }
+  .btn-small { padding: 8px 12px; font-size: 15px; }
+  a.small, button.linklike, .small button { min-height: 44px; display: inline-flex; align-items: center; }
+}

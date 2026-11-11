@@ -8,6 +8,7 @@ const LINKS = [
   { href: "/walkthrough", label: "Step by step" },
   { href: "/queue", label: "All complaints" },
   { href: "/team", label: "Team leader view" },
+  { href: "/try", label: "Try your own" },
   { href: "/how-it-works", label: "How this works" },
 ];
 

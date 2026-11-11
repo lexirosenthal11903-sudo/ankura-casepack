@@ -2,6 +2,7 @@
  * Builds a case pack: redact -> one AI call -> code checks -> deadlines.
  * The AI never sees the unredacted case, the answer key or the outcome of any check.
  */
+import type { CaseFile } from "./types";
 import { tidyPackCurrency } from "./format";
 import Anthropic from "@anthropic-ai/sdk";
 import { zodOutputFormat } from "@anthropic-ai/sdk/helpers/zod";
@@ -109,10 +110,15 @@ export class CasePackError extends Error {
 }
 
 export async function generateCasePack(caseId: string, opts: { model?: ModelKey; asOf: string; client?: Anthropic }): Promise<CasePackRun> {
+  return generateCasePackForFile(loadCase(caseId), opts);
+}
+
+/** The same run for a case file that is not on disk, used by "Try your own complaint". */
+export async function generateCasePackForFile(caseFile: CaseFile, opts: { model?: ModelKey; asOf: string; client?: Anthropic }): Promise<CasePackRun> {
+  const caseId = caseFile.id;
   const model = MODELS[opts.model ?? "haiku"];
   // Short timeout and one retry, so a slow call fails inside the 120-second hosting limit and falls back to the saved result.
   const client = opts.client ?? new Anthropic({ timeout: 100_000, maxRetries: 1 });
-  const caseFile = loadCase(caseId);
   const redacted = redactCase(caseFile);
   const started = Date.now();
 

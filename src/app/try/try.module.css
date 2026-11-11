@@ -1,0 +1,18 @@
+.page { max-width: 900px; }
+.lede { font-size: 19px; line-height: 1.45; }
+.form { display: flex; flex-direction: column; gap: 16px; margin: 24px 0 32px; }
+.form label { display: flex; flex-direction: column; gap: 6px; font-weight: 700; }
+.form input, .form textarea { font: inherit; font-weight: 400; padding: 8px 10px; border: 2px solid #0b0c0c; max-width: 100%; }
+.form textarea { min-height: 220px; }
+.row { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.check { flex-direction: row !important; align-items: center; gap: 10px !important; font-weight: 400 !important; }
+.error { color: #d4351c; font-weight: 700; }
+.result h2 { margin-top: 32px; }
+.result h3 { margin-top: 22px; }
+.doc { white-space: pre-wrap; font-family: inherit; font-size: 15px; line-height: 1.5; background: #f3f2f1; padding: 14px 16px; border-left: 4px solid #0b0c0c; }
+.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px; margin: 12px 0 8px; }
+.facts dt { font-size: 14px; color: #505a5f; }
+.facts dd { margin: 2px 0 0; font-weight: 700; }
+.ok { color: #00703c; font-size: 14px; font-weight: 700; margin-left: 6px; }
+.bad { color: #d4351c; font-size: 14px; font-weight: 700; margin-left: 6px; }
+@media (max-width: 640px) { .facts { grid-template-columns: 1fr; } }
