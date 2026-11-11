@@ -1,0 +1,63 @@
+{
+  "split": "heldout",
+  "model": "claude-haiku-5-5",
+  "promptVersion": "casepack-v3",
+  "runs": "evals/results/runs/heldout-haiku-2026-11-11-0844",
+  "generated": "2026-11-11T08:51:05.969Z",
+  "repeats": [
+    {
+      "cases": 10,
+      "team": 0.9,
+      "clock": 0.8,
+      "causeRecall": 1,
+      "vulnerability": 0.9,
+      "ombudsman": 1,
+      "linked": 1,
+      "policyRecall": 0.7366666666666667,
+      "missingRecall": 0.8466666666666667,
+      "missingPrecision": 0.8833333333333334,
+      "supportedRate": 0.9928528528528527,
+      "unsupportedTotal": 3,
+      "inventedPlaceholders": 0,
+      "injection": "n/a",
+      "costPerCase": 0.006620610000000001,
+      "latencyMedianS": 46.68
+    },
+    {
+      "cases": 10,
+      "team": 1,
+      "clock": 1,
+      "causeRecall": 0.9,
+      "vulnerability": 0.9,
+      "ombudsman": 1,
+      "linked": 1,
+      "policyRecall": 0.7104761904761905,
+      "missingRecall": 0.8550000000000001,
+      "missingPrecision": 0.9666666666666668,
+      "supportedRate": 0.9974999999999999,
+      "unsupportedTotal": 1,
+      "inventedPlaceholders": 0,
+      "injection": "n/a",
+      "costPerCase": 0.006025749999999999,
+      "latencyMedianS": 45.231
+    },
+    {
+      "cases": 10,
+      "team": 1,
+      "clock": 0.9,
+      "causeRecall": 1,
+      "vulnerability": 0.9,
+      "ombudsman": 1,
+      "linked": 1,
+      "policyRecall": 0.6714285714285715,
+      "missingRecall": 0.905,
+      "missingPrecision": 0.9666666666666668,
+      "supportedRate": 1,
+      "unsupportedTotal": 0,
+      "inventedPlaceholders": 0,
+      "injection": "n/a",
+      "costPerCase": 0.006131000000000001,
+      "latencyMedianS": 41.798
+    }
+  ]
+}

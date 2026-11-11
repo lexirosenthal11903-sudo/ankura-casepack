@@ -1,0 +1,1118 @@
+{
+  "caseId": "HV-019",
+  "createdAt": "2026-11-11T08:58:48.003Z",
+  "model": "claude-haiku-5-5",
+  "promptVersion": "casepack-v3",
+  "redacted": {
+    "id": "HV-019",
+    "received": "2026-10-22",
+    "channel": "email",
+    "documents": [
+      {
+        "id": "D1",
+        "system": "EMAIL",
+        "type": "email",
+        "date": "2026-10-21",
+        "author_role": "customer",
+        "text": "Subject: Re: Notice of intended legal action - mortgage [ACCOUNT_1]\n\nTo Harbour & Vale,\n\nI'm writing because I've had two letters from your collections department threatening legal action over my mortgage and I think this is completely wrong.\n\nI was made redundant at the end of July when the distribution centre I worked at closed. I rang you on 16 September, before I'd even missed a second payment, to tell you and to ask for a payment plan. The lady went through some of my income and outgoings with me and said someone from the arrears team would call me back within 10 working days to agree a plan. Nobody called.\n\nThen on 2 October I got a letter headed 'Notice of intended legal action' and on 19 October another one saying if the arrears are not cleared within 14 days the matter will be passed to your solicitors. My partner [PERSON_1] opened the second one and was in tears. We have two kids and we are scared we're going to lose the house.\n\nI've got a new job starting on 9 November (shift supervisor, less money than before but steady) and I can pay something now from my redundancy money. I just need someone to agree a plan with me. I've also been charged £45 'arrears management fee' twice which is just making it worse.\n\nWhat I want:\n- stop the legal action letters while this is sorted\n- a payment plan I can actually afford\n- the arrears fees taken off\n- an explanation of why nobody rang me back\n\nI can't really take calls on weekdays at the moment because of interviews and the school run, email is best: [EMAIL_1]\n\n[PERSON_2] W."
+      },
+      {
+        "id": "D2",
+        "system": "CRM",
+        "type": "call_summary",
+        "date": "2026-09-16",
+        "author_role": "handler",
+        "text": "Inbound - [CUSTOMER] (ID&V ok). Made redundant end July, benefits claim in progress, partner works p/t. Missed Aug mortgage pmt, Sept (due 28/09) will also be missed. Requests payment plan. Started I&E - income + housing costs taken, cust didn't have all bills to hand, I&E INCOMPLETE. Cust stressed, says not sleeping. Referred to Arrears Support queue for callback within 10 WD. - [STAFF]"
+      },
+      {
+        "id": "D3",
+        "system": "CORE",
+        "type": "system_log",
+        "date": "2026-10-20",
+        "author_role": "system",
+        "text": "Mortgage [ACCOUNT_1]. Product: 2yr fixed 4.29%, fixed period ends 31/03/2027 then SVR. Term remaining 21y 5m. Repayment basis: capital and interest. Contractual monthly payment GBP 1,086.12, due 28th. Missed: 28/08/2026, 28/09/2026. Arrears GBP 2,172.24 (2.0 payments). Arrears management fee GBP 45.00 debited 05/10/2026 and 20/10/2026. Collections: LA1 letter 'Notice of intended legal action' issued 02/10/2026, LA2 letter 'Final notice before referral to solicitors' issued 19/10/2026. Collections hold: NONE. Arrears Support callback task created 16/09/2026, status OPEN, unassigned."
+      }
+    ],
+    "replacements": [
+      {
+        "placeholder": "[EMAIL_1]",
+        "original": "tom.wisniewski@example.com",
+        "layer": "pattern",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[ACCOUNT_1]",
+        "original": "8146 0237",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[PERSON_1]",
+        "original": "Ewa",
+        "layer": "text",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[PERSON_2]",
+        "original": "Tom",
+        "layer": "text",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[STAFF]",
+        "original": "RN",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Mr Wisnewski",
+        "layer": "near_match",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[ACCOUNT_1]",
+        "original": "81460237",
+        "layer": "record",
+        "documentId": "D3"
+      }
+    ],
+    "placeholders": [
+      "[ACCOUNT_1]",
+      "[CUSTOMER]",
+      "[EMAIL_1]",
+      "[PERSON_1]",
+      "[PERSON_2]",
+      "[STAFF]"
+    ],
+    "display": {
+      "[EMAIL_1]": "tom.wisniewski@example.com",
+      "[ACCOUNT_1]": "81460237",
+      "[PERSON_1]": "Ewa",
+      "[PERSON_2]": "Tom",
+      "[STAFF]": "Rachel Ng",
+      "[CUSTOMER]": "Mr Tomasz Wisniewski",
+      "[SORT_CODE]": "77-41-70",
+      "[ACCOUNT_2]": "26618405",
+      "[CARD]": "5571",
+      "[CUSTOMER_PHONE]": "0121 496 0388"
+    }
+  },
+  "pack": {
+    "enough_information": {
+      "sufficient": true,
+      "what_is_needed": ""
+    },
+    "intake": {
+      "issues": [
+        {
+          "product": "mortgage",
+          "cause": "affordability_arrears",
+          "description": "Missed mortgage payments after redundancy; customer asks for an affordable payment plan; two collections letters threatening legal action (LA1 02/10/2026, LA2 19/10/2026).",
+          "citations": [
+            {
+              "source": "D1",
+              "quote": "I just need someone to agree a plan with me"
+            },
+            {
+              "source": "D3",
+              "quote": "Collections hold: NONE."
+            }
+          ]
+        },
+        {
+          "product": "mortgage",
+          "cause": "service_delay",
+          "description": "Customer was told an Arrears Support callback would happen within 10 working days of 16/09/2026; no callback was made and the task is open and unassigned.",
+          "citations": [
+            {
+              "source": "D1",
+              "quote": "Nobody called."
+            },
+            {
+              "source": "D2",
+              "quote": "Referred to Arrears Support queue for callback within 10 WD"
+            }
+          ]
+        },
+        {
+          "product": "mortgage",
+          "cause": "fees_interest",
+          "description": "Two £45 arrears management fees charged while the customer was in financial difficulty.",
+          "citations": [
+            {
+              "source": "D1",
+              "quote": "I've also been charged £45 'arrears management fee' twice which is just making it worse"
+            }
+          ]
+        }
+      ],
+      "suggested_team": "mortgages",
+      "team_reason": {
+        "text": "Mortgage arrears and collections on a capital and interest mortgage fall within Mortgage Servicing.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Mortgage [ACCOUNT_1]. Product: 2yr fixed 4.29%"
+          },
+          {
+            "source": "D2",
+            "quote": "Missed Aug mortgage pmt"
+          }
+        ]
+      },
+      "payment_services": "no",
+      "payment_services_reason": {
+        "text": "The complaint concerns arrears, collections and fees, not an unauthorised or wrongly executed payment.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I've also been charged £45 'arrears management fee' twice"
+          }
+        ]
+      },
+      "already_with_ombudsman": false,
+      "linked_to_earlier_complaint": false
+    },
+    "summary": [
+      {
+        "text": "Customer was made redundant at the end of July 2026 and missed the August and September 2026 mortgage payments.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I was made redundant at the end of July when the distribution centre I worked at closed"
+          },
+          {
+            "source": "D3",
+            "quote": "Missed: 28/08/2026, 28/09/2026."
+          }
+        ]
+      },
+      {
+        "text": "Customer called on 16/09/2026 requesting a payment plan; the income and expenditure assessment was incomplete and a callback was referred.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Requests payment plan."
+          },
+          {
+            "source": "D2",
+            "quote": "cust didn't have all bills to hand, I&E INCOMPLETE"
+          }
+        ]
+      },
+      {
+        "text": "The Arrears Support callback task is open and unassigned; no callback is recorded.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Arrears Support callback task created 16/09/2026, status OPEN, unassigned."
+          }
+        ]
+      },
+      {
+        "text": "Two collections letters have been issued: LA1 on 02/10/2026 and LA2 on 19/10/2026, with no collections hold recorded.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "on 19 October another one saying if the arrears are not cleared within 14 days"
+          },
+          {
+            "source": "D3",
+            "quote": "Collections hold: NONE."
+          }
+        ]
+      },
+      {
+        "text": "Arrears management fee of £45.00 was debited on 05/10/2026 and 20/10/2026.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Arrears management fee GBP 45.00 debited 05/10/2026 and 20/10/2026."
+          }
+        ]
+      }
+    ],
+    "timeline": [
+      {
+        "date": "end of July",
+        "event": "Customer made redundant.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I was made redundant at the end of July when the distribution centre I worked at closed"
+          }
+        ]
+      },
+      {
+        "date": "2026-08-28",
+        "event": "Mortgage payment missed.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Missed: 28/08/2026, 28/09/2026."
+          }
+        ]
+      },
+      {
+        "date": "2026-09-16",
+        "event": "Customer called requesting a payment plan; I&E incomplete; referred to Arrears Support for callback within 10 working days.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Requests payment plan."
+          },
+          {
+            "source": "D2",
+            "quote": "Referred to Arrears Support queue for callback within 10 WD"
+          }
+        ]
+      },
+      {
+        "date": "2026-09-16",
+        "event": "Arrears Support callback task created, status open and unassigned.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Arrears Support callback task created 16/09/2026, status OPEN, unassigned."
+          }
+        ]
+      },
+      {
+        "date": "2026-09-28",
+        "event": "September mortgage payment due and missed.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Missed: 28/08/2026, 28/09/2026."
+          }
+        ]
+      },
+      {
+        "date": "2026-10-02",
+        "event": "LA1 letter 'Notice of intended legal action' issued.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Then on 2 October I got a letter headed 'Notice of intended legal action'"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-05",
+        "event": "First £45 arrears management fee debited.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Arrears management fee GBP 45.00 debited 05/10/2026 and 20/10/2026."
+          }
+        ]
+      },
+      {
+        "date": "2026-10-19",
+        "event": "LA2 letter 'Final notice before referral to solicitors' issued.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "on 19 October another one saying if the arrears are not cleared within 14 days"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-20",
+        "event": "Second £45 arrears management fee debited.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Arrears management fee GBP 45.00 debited 05/10/2026 and 20/10/2026."
+          }
+        ]
+      },
+      {
+        "date": "2026-10-21",
+        "event": "Customer emailed to complain about the collections letters, the missed callback and the fees.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I'm writing because I've had two letters from your collections department"
+          }
+        ]
+      }
+    ],
+    "outcome_sought": {
+      "text": "Stop the legal action letters while this is sorted, agree a payment plan the customer can afford, remove the arrears fees, and explain why nobody called back.",
+      "citations": [
+        {
+          "source": "D1",
+          "quote": "stop the legal action letters while this is sorted"
+        }
+      ]
+    },
+    "vulnerability": [
+      {
+        "signal": "Financial difficulty after redundancy, with benefits claim in progress.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Made redundant end July, benefits claim in progress, partner works p/t."
+          }
+        ]
+      },
+      {
+        "signal": "Stress and sleep problems reported.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Cust stressed, says not sleeping."
+          }
+        ]
+      },
+      {
+        "signal": "Fear of losing the family home, with two children.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "We have two kids and we are scared we're going to lose the house."
+          }
+        ]
+      }
+    ],
+    "relevant_policy": [
+      {
+        "policy_id": "CP-2.3",
+        "why_relevant": "Customer raises several issues (collections, callback, fees) that must be recorded separately and each answered.",
+        "citations": [
+          {
+            "source": "CP-2.3",
+            "quote": "each issue must be recorded separately with its own product and cause category"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.3",
+        "why_relevant": "The handler must record the outcome the customer seeks in their own words.",
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "record, in the customer's own words where possible, the outcome the customer is seeking"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.5",
+        "why_relevant": "Income and expenditure is incomplete, so a documented contact attempt is needed before handover.",
+        "citations": [
+          {
+            "source": "CP-4.5",
+            "quote": "Where information needed to investigate is missing, the handler must make at least one documented attempt"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-5.2",
+        "why_relevant": "Signs of financial difficulty and stress need recording with the customer's consent and any support needs.",
+        "citations": [
+          {
+            "source": "CP-5.2",
+            "quote": "Signs of vulnerability must be recorded with the customer's consent where possible"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-6.1",
+        "why_relevant": "The case falls within Mortgage Servicing and must be passed using the team checklist.",
+        "citations": [
+          {
+            "source": "CP-6.1",
+            "quote": "A complaint must be passed to a specialist team when it falls within that team's remit"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-9.1",
+        "why_relevant": "Arrears and collections: forbearance, collections pause and debt advice must be checked.",
+        "citations": [
+          {
+            "source": "CP-9.1",
+            "quote": "whether forbearance was considered, whether collections activity should be paused while the complaint is investigated"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-9.2",
+        "why_relevant": "Arrears fees charged during financial difficulty must be reviewed.",
+        "citations": [
+          {
+            "source": "CP-9.2",
+            "quote": "Fees and interest applied while a customer was in financial difficulty must be reviewed as part of the complaint."
+          }
+        ]
+      }
+    ],
+    "handover_checklist": [
+      {
+        "item_id": "outcome_sought",
+        "status": "present",
+        "value": "Customer wants legal action letters stopped, an affordable payment plan, arrears fees removed and an explanation of the missed callback.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "stop the legal action letters while this is sorted"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_contact_attempted",
+        "status": "present",
+        "value": "Customer called the bank on 16/09/2026 and the call was documented.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Inbound - [CUSTOMER] (ID&V ok)."
+          }
+        ]
+      },
+      {
+        "item_id": "customer_told_of_handover",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "vulnerability_recorded",
+        "status": "missing",
+        "value": "Signs of stress and financial difficulty are noted, but no formal vulnerability record or support needs are seen.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Cust stressed, says not sleeping."
+          }
+        ]
+      },
+      {
+        "item_id": "linked_complaints_checked",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "mortgage_account_status",
+        "status": "present",
+        "value": "2 year fixed at 4.29%, fixed period ends 31/03/2027 then SVR; capital and interest; term remaining 21 years 5 months.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Product: 2yr fixed 4.29%, fixed period ends 31/03/2027 then SVR."
+          }
+        ]
+      },
+      {
+        "item_id": "key_dates",
+        "status": "present",
+        "value": "Missed payments 28/08/2026 and 28/09/2026; LA1 issued 02/10/2026; LA2 issued 19/10/2026.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "LA2 letter 'Final notice before referral to solicitors' issued 19/10/2026"
+          }
+        ]
+      },
+      {
+        "item_id": "amount_in_dispute",
+        "status": "present",
+        "value": "Two £45.00 arrears management fees (£90.00); arrears £2,172.24.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Arrears management fee GBP 45.00 debited 05/10/2026 and 20/10/2026."
+          },
+          {
+            "source": "D3",
+            "quote": "Arrears GBP 2,172.24 (2.0 payments)"
+          }
+        ]
+      },
+      {
+        "item_id": "broker_involved",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      }
+    ],
+    "conflicts": [],
+    "flags": [
+      {
+        "type": "deadline_risk",
+        "description": "LA2 letter gives 14 days before referral to solicitors, issued 19/10/2026. No collections hold is recorded and the callback is still open.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "if the arrears are not cleared within 14 days the matter will be passed to your solicitors"
+          },
+          {
+            "source": "D3",
+            "quote": "Collections hold: NONE."
+          }
+        ]
+      },
+      {
+        "type": "data_quality",
+        "description": "Income and expenditure assessment is incomplete, and the Arrears Support callback task is unassigned.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "cust didn't have all bills to hand, I&E INCOMPLETE"
+          },
+          {
+            "source": "D3",
+            "quote": "Arrears Support callback task created 16/09/2026, status OPEN, unassigned."
+          }
+        ]
+      }
+    ]
+  },
+  "checks": {
+    "statements": [
+      {
+        "path": "intake.issues.0",
+        "text": "Missed mortgage payments after redundancy; customer asks for an affordable payment plan; two collections letters threatening legal action (LA1 02/10/2026, LA2 19/10/2026).",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I just need someone to agree a plan with me",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Collections hold: NONE.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.issues.1",
+        "text": "Customer was told an Arrears Support callback would happen within 10 working days of 16/09/2026; no callback was made and the task is open and unassigned.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Nobody called.",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Referred to Arrears Support queue for callback within 10 WD",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.issues.2",
+        "text": "Two £45 arrears management fees charged while the customer was in financial difficulty.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I've also been charged £45 'arrears management fee' twice which is just making it worse",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.team_reason",
+        "text": "Mortgage arrears and collections on a capital and interest mortgage fall within Mortgage Servicing.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Mortgage [ACCOUNT_1]. Product: 2yr fixed 4.29%",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Missed Aug mortgage pmt",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.payment_services_reason",
+        "text": "The complaint concerns arrears, collections and fees, not an unauthorised or wrongly executed payment.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I've also been charged £45 'arrears management fee' twice",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.0",
+        "text": "Customer was made redundant at the end of July 2026 and missed the August and September 2026 mortgage payments.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I was made redundant at the end of July when the distribution centre I worked at closed",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Missed: 28/08/2026, 28/09/2026.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.1",
+        "text": "Customer called on 16/09/2026 requesting a payment plan; the income and expenditure assessment was incomplete and a callback was referred.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Requests payment plan.",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "cust didn't have all bills to hand, I&E INCOMPLETE",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.2",
+        "text": "The Arrears Support callback task is open and unassigned; no callback is recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Arrears Support callback task created 16/09/2026, status OPEN, unassigned.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.3",
+        "text": "Two collections letters have been issued: LA1 on 02/10/2026 and LA2 on 19/10/2026, with no collections hold recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "on 19 October another one saying if the arrears are not cleared within 14 days",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Collections hold: NONE.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.4",
+        "text": "Arrears management fee of £45.00 was debited on 05/10/2026 and 20/10/2026.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Arrears management fee GBP 45.00 debited 05/10/2026 and 20/10/2026.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.0",
+        "text": "end of July: Customer made redundant.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I was made redundant at the end of July when the distribution centre I worked at closed",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.1",
+        "text": "2026-08-28: Mortgage payment missed.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Missed: 28/08/2026, 28/09/2026.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.2",
+        "text": "2026-09-16: Customer called requesting a payment plan; I&E incomplete; referred to Arrears Support for callback within 10 working days.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Requests payment plan.",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Referred to Arrears Support queue for callback within 10 WD",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.3",
+        "text": "2026-09-16: Arrears Support callback task created, status open and unassigned.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Arrears Support callback task created 16/09/2026, status OPEN, unassigned.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.4",
+        "text": "2026-09-28: September mortgage payment due and missed.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Missed: 28/08/2026, 28/09/2026.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.5",
+        "text": "2026-10-02: LA1 letter 'Notice of intended legal action' issued.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Then on 2 October I got a letter headed 'Notice of intended legal action'",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.6",
+        "text": "2026-10-05: First £45 arrears management fee debited.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Arrears management fee GBP 45.00 debited 05/10/2026 and 20/10/2026.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.7",
+        "text": "2026-10-19: LA2 letter 'Final notice before referral to solicitors' issued.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "on 19 October another one saying if the arrears are not cleared within 14 days",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.8",
+        "text": "2026-10-20: Second £45 arrears management fee debited.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Arrears management fee GBP 45.00 debited 05/10/2026 and 20/10/2026.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.9",
+        "text": "2026-10-21: Customer emailed to complain about the collections letters, the missed callback and the fees.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I'm writing because I've had two letters from your collections department",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "outcome_sought",
+        "text": "Stop the legal action letters while this is sorted, agree a payment plan the customer can afford, remove the arrears fees, and explain why nobody called back.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "stop the legal action letters while this is sorted",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "vulnerability.0",
+        "text": "Financial difficulty after redundancy, with benefits claim in progress.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Made redundant end July, benefits claim in progress, partner works p/t.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "vulnerability.1",
+        "text": "Stress and sleep problems reported.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Cust stressed, says not sleeping.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "vulnerability.2",
+        "text": "Fear of losing the family home, with two children.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "We have two kids and we are scared we're going to lose the house.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.0",
+        "text": "CP-2.3: Customer raises several issues (collections, callback, fees) that must be recorded separately and each answered.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.3",
+            "quote": "each issue must be recorded separately with its own product and cause category",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.1",
+        "text": "CP-4.3: The handler must record the outcome the customer seeks in their own words.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "record, in the customer's own words where possible, the outcome the customer is seeking",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.2",
+        "text": "CP-4.5: Income and expenditure is incomplete, so a documented contact attempt is needed before handover.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.5",
+            "quote": "Where information needed to investigate is missing, the handler must make at least one documented attempt",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.3",
+        "text": "CP-5.2: Signs of financial difficulty and stress need recording with the customer's consent and any support needs.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-5.2",
+            "quote": "Signs of vulnerability must be recorded with the customer's consent where possible",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.4",
+        "text": "CP-6.1: The case falls within Mortgage Servicing and must be passed using the team checklist.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-6.1",
+            "quote": "A complaint must be passed to a specialist team when it falls within that team's remit",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.5",
+        "text": "CP-9.1: Arrears and collections: forbearance, collections pause and debt advice must be checked.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-9.1",
+            "quote": "whether forbearance was considered, whether collections activity should be paused while the complaint is investigated",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.6",
+        "text": "CP-9.2: Arrears fees charged during financial difficulty must be reviewed.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-9.2",
+            "quote": "Fees and interest applied while a customer was in financial difficulty must be reviewed as part of the complaint.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.outcome_sought",
+        "text": "outcome_sought: Customer wants legal action letters stopped, an affordable payment plan, arrears fees removed and an explanation of the missed callback.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "stop the legal action letters while this is sorted",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.customer_contact_attempted",
+        "text": "customer_contact_attempted: Customer called the bank on 16/09/2026 and the call was documented.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Inbound - [CUSTOMER] (ID&V ok).",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.mortgage_account_status",
+        "text": "mortgage_account_status: 2 year fixed at 4.29%, fixed period ends 31/03/2027 then SVR; capital and interest; term remaining 21 years 5 months.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Product: 2yr fixed 4.29%, fixed period ends 31/03/2027 then SVR.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.key_dates",
+        "text": "key_dates: Missed payments 28/08/2026 and 28/09/2026; LA1 issued 02/10/2026; LA2 issued 19/10/2026.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "LA2 letter 'Final notice before referral to solicitors' issued 19/10/2026",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.amount_in_dispute",
+        "text": "amount_in_dispute: Two £45.00 arrears management fees (£90.00); arrears £2,172.24.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Arrears management fee GBP 45.00 debited 05/10/2026 and 20/10/2026.",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Arrears GBP 2,172.24 (2.0 payments)",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.0",
+        "text": "deadline_risk: LA2 letter gives 14 days before referral to solicitors, issued 19/10/2026. No collections hold is recorded and the callback is still open.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "if the arrears are not cleared within 14 days the matter will be passed to your solicitors",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Collections hold: NONE.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.1",
+        "text": "data_quality: Income and expenditure assessment is incomplete, and the Arrears Support callback task is unassigned.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "cust didn't have all bills to hand, I&E INCOMPLETE",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Arrears Support callback task created 16/09/2026, status OPEN, unassigned.",
+            "result": "verified"
+          }
+        ]
+      }
+    ],
+    "supportedCount": 38,
+    "unsupportedCount": 0,
+    "inventedPlaceholders": [],
+    "checklist": {
+      "required": 9,
+      "present": 5,
+      "missing": [
+        "customer_told_of_handover",
+        "vulnerability_recorded",
+        "linked_complaints_checked",
+        "broker_involved"
+      ],
+      "conflicting": []
+    }
+  },
+  "clock": "8_weeks",
+  "deadlines": {
+    "received": "2026-10-22",
+    "clock": "8_weeks",
+    "summaryResolutionWindowCloses": "2026-10-27",
+    "eightWeekDue": "2026-12-17",
+    "workingDue": "2026-12-17",
+    "needsHandlerConfirmation": false,
+    "calendarDaysLeft": 38,
+    "businessDaysLeft": 28,
+    "status": "on_track"
+  },
+  "usage": {
+    "inputTokens": 1118,
+    "outputTokens": 11244,
+    "cacheReadTokens": 0,
+    "cacheWriteTokens": 9468,
+    "costUsd": 0.0069173,
+    "latencyMs": 41138
+  }
+}

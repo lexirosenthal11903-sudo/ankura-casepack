@@ -8,6 +8,10 @@
  *    staff sign-offs, for identifiers that are NOT in the record (an executor's email, a son's mobile).
  * 3. Near matches. A title followed by a name ("Mr Hussian") or a capitalised word one or two letters away from
  *    a known name is treated as that person, because call notes misspell names.
+ * 4. People the record does not know. A boyfriend, a scammer, a carer or a child who is only ever named in the
+ *    text. Found from how people are introduced ("my partner Ewa", "a lady called Bev", "his name was Ryan",
+ *    "payee R HOLLIS", a sign-off), then every later mention of that name is hidden too. Added after the
+ *    held-back test showed 23 of 101 planted identifiers missed, all of this kind. See docs/decisions.md.
  *
  * Dates and amounts are kept, because deadlines and the case facts need them.
  * Placeholders are role-typed ([CUSTOMER], [EXECUTOR], [STAFF_1]) so the AI can still follow who did what.
@@ -17,7 +21,7 @@
  */
 import type { CaseFile, CaseRecord, PartyRole } from "./types";
 
-export type Layer = "record" | "pattern" | "near_match";
+export type Layer = "record" | "pattern" | "near_match" | "text";
 
 export interface Replacement {
   placeholder: string;
@@ -59,7 +63,7 @@ interface Entity {
 
 const NICKNAMES: Record<string, string[]> = {
   agnieszka: ["Aga", "Agnes"], alexander: ["Alex", "Sandy"], alexandra: ["Alex", "Lexi", "Sandra"],
-  andrew: ["Andy", "Drew"], anthony: ["Tony"], benjamin: ["Ben"], catherine: ["Cath", "Kate", "Cathy"],
+  andrew: ["Andy", "Drew"], beverley: ["Bev"], beverly: ["Bev"], maureen: ["Mo"], mohammed: ["Mo"], mohammad: ["Mo"], muhammad: ["Mo"], anthony: ["Tony"], benjamin: ["Ben"], catherine: ["Cath", "Kate", "Cathy"],
   charles: ["Charlie"], christopher: ["Chris"], daniel: ["Dan", "Danny"], david: ["Dave"], deborah: ["Debbie", "Deb"],
   edward: ["Ed", "Eddie", "Ted"], elizabeth: ["Liz", "Beth", "Lizzie", "Betty"], francesca: ["Fran", "Frankie"],
   frances: ["Fran"], gregory: ["Greg"], jacqueline: ["Jackie"], james: ["Jim", "Jimmy", "Jamie"], jennifer: ["Jen", "Jenny"],
@@ -119,6 +123,7 @@ function personVariants(name: string, title: string | undefined, isStaff: boolea
     exact.add(`${first[0]}${last[0]}`.toUpperCase()); // initials such as "PR" in a sign-off
   }
   variants.add(first);
+  if (first.length >= 4) variants.add(first.slice(0, -1)); // "Kof" for Kofi in a rushed note (matched capitalised only, see below)
   for (const nick of NICKNAMES[fold(first)] ?? []) variants.add(nick);
   if (!isStaff && last && title) variants.add(`${title} ${last[0]}`); // "Mrs H"
   return { variants: [...variants].filter((v) => v.length >= 2), exact: [...exact], names: [first, last].filter(Boolean) };
@@ -234,12 +239,43 @@ const PATTERNS: { kind: string; source: string; flags: string; group?: number }[
   // Not joined by a hyphen, so reference numbers such as INC-2026-1030-01 are left alone.
   { kind: "ACCOUNT_NUMBER", source: "(?<![\\p{L}\\d-])\\d{4}\\s?\\d{4}(?![\\p{L}\\d-])", flags: "gu" },
   { kind: "CARD_DIGITS", source: "(?:ending(?: in)?|ends in|last (?:4|four)(?: digits)?(?: of [\\w ]{1,20}?)?|card|acc(?:oun)?t)[:\\s]+(?:no\\.?\\s*)?(\\d{4})(?!\\d)", flags: "giu", group: 1 },
-  { kind: "ADDRESS", source: `${WORD_BEFORE}(?:Flat \\d+[A-Za-z]?,?\\s+)?\\d{1,4}[A-Za-z]?\\s+(?:[A-Z][a-z]+\\s){1,3}(?:Road|Rd|Street|St|Lane|Ln|Avenue|Ave|Close|Drive|Dr|Way|Court|Ct|Place|Crescent|Gardens|Terrace|Grove|Mews|Row|Walk|Square|Hill|Park)\\b`, flags: "gu" },
+  { kind: "ADDRESS", source: `${WORD_BEFORE}(?:Flat \\d+[A-Za-z]?,?\\s+)?\\d{1,4}[A-Za-z]?\\s+(?:(?:[A-Z][a-z]+|[A-Z]{3,})\\s){1,3}(?:Road|Rd|Street|St|Lane|Ln|Avenue|Ave|Close|Cl|Drive|Dr|Way|Court|Ct|Place|Pl|Crescent|Cres|Gardens|Gdns|Terrace|Grove|Mews|Row|Walk|Square|Sq|Hill|Park|ROAD|RD|STREET|ST|LANE|LN|AVENUE|AVE|CLOSE|CL|DRIVE|DR|WAY|COURT|CT|PLACE|PL|CRESCENT|CRES|GARDENS|GDNS|TERRACE|GROVE|MEWS|ROW|WALK|SQUARE|SQ|HILL|PARK)\\b`, flags: "gu" },
   { kind: "STAFF", source: "(?:^|\\s)[-–]\\s?([A-Z]{2,3})\\.?\\s*$", flags: "gmu", group: 1 },
   { kind: "STAFF", source: "\\b(?:user|by|agent|handler)[:\\s]+([A-Z]{5,})\\b", flags: "gu", group: 1 },
 ];
 
 const EMAIL_PATTERN: (typeof PATTERNS)[number] = { kind: "EMAIL", source: "[\\w.+-]+@[\\w-]+(?:\\.[\\w-]+)+", flags: "giu" };
+
+
+// Layer 4. People the record does not know, found from how they are introduced in the text.
+const RELATIONS = "boyfriend|girlfriend|partner|husband|wife|ex|son|daughter|sister|brother|mum|mother|dad|father|parents|friend|carer|neighbour|neighbor|grandson|granddaughter|grandmother|grandfather|nan|grandad|nephew|niece|cousin|aunt|auntie|uncle|flatmate|housemate|lodger|colleague|boss|landlord|solicitor|accountant|doctor|GP|nurse|support worker|social worker|children|kids";
+const NAME = "([A-Z][\\p{L}'’-]{1,})";
+const NAME_STOP = new Set(["I", "It", "Its", "This", "That", "These", "Those", "He", "She", "They", "We", "You", "The", "There", "Which", "What", "When", "Who", "Why", "How", "And", "But", "So", "Then", "Now", "Also", "If", "As", "At", "In", "On", "For", "From", "With", "My", "Our", "Your", "His", "Her", "Their", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", "Bank", "Branch", "Customer", "Agent", "Caller", "Subject", "Dear", "Hi", "Hello", "Thanks", "Regards", "Please", "Sorry", "Yes", "No", "Not", "Nothing", "Everything", "Someone", "Nobody", "Harbour", "Vale", "GBP", "CHAPS", "FP", "DD", "CRM", "ID"]);
+const PERSON_INTROS: string[] = [
+  // "my boyfriend Josh", "our daughter Abena", "my late father Brendan", "my carer Joyce", "my partner Sami took"
+  `(?:[Mm]y|[Oo]ur|[Hh]is|[Hh]er|[Tt]heir)\\s+(?:late\\s+|younger\\s+|older\\s+|elder\\s+|eldest\\s+|youngest\\s+|ex-?\\s*)?(?:${RELATIONS})(?:,)?\\s+(?:called\\s+|named\\s+)?${NAME}`,
+  // "a lady called Bev", "someone called Dave", "a man named Paul", "the agent, Lewis,"
+  `(?:[Cc]alled|[Nn]amed|by the name of)\\s+${NAME}`,
+  // "his name was Ryan", "he calls himself Richard", "she goes by Mo"
+  `(?:[Hh]is|[Hh]er|[Tt]heir|[Mm]y)\\s+name\\s+(?:is|was)\\s+${NAME}`,
+  `calls?\\s+(?:himself|herself|themselves)\\s+${NAME}`,
+  // "(Niamh is 9 and Cathal is 6" -- children listed with ages
+  `${NAME}\\s+is\\s+\\d{1,2}(?![\\d.,]\\d)`,
+  // "Craig deals with the money" -- someone else controlling the finances is also a coercion sign
+  `${NAME}\\s+(?:deals with|looks after|handles|controls|manages|sorts out)\\s+(?:the|our|my|her|his|all the)\\s+(?:money|finances|accounts?|bills)`,
+  // "the money Dennis left her when he died"
+  `${NAME}\\s+left\\s+(?:her|him|them|me|us)\\b`,
+];
+// Payee names as a bank system writes them: "payee R HOLLIS", "to C ASHWORTH", "actual name RICHARD CALLOWAY", "account name was R HOLLIS".
+// Two words at most: an initial or first name, then a surname. Three capitalised words is nearly always a company,
+// and a company name is evidence (a care home, a firm of solicitors), so it stays.
+const PAYEE_INTRO = `(?:[Pp]ayee|to|from|[Aa]ccount name(?: was| is)?|actual name|in the name of|name on the account|beneficiary)[:\\s]+'?((?:[A-Z]\\s|[A-Z]{3,}\\s)[A-Z]{3,})'?(?![\\p{L}\\p{N}*]|\\s[A-Z]{2,})`;
+const ORG_WORDS = /\b(?:LTD|LIMITED|PLC|LLP|INC|CO|SERVICES|SOLICITORS|LETTINGS|PROPERTY|PROPERTIES|HOME|HOMES|CARE|BANK|DIGITAL|GROUP|HOLDINGS|TRADING|STORE|STORES|SHOP|COUNCIL|ENERGY|INSURANCE|CLIENT|ACCOUNT|TOPUP|MOTORS|TRAVEL|HOTEL|HOTELS|FINANCE|CAPITAL|PAYMENTS|DIRECT|ONLINE|UK|GB)\b/;
+// A date of birth read out on a call: "Fourteenth of May, nineteen fifty-two".
+const SPOKEN_DOB = "\\b(?:first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|eleventh|twelfth|thirteenth|fourteenth|fifteenth|sixteenth|seventeenth|eighteenth|nineteenth|twentieth|twenty-(?:first|second|third|fourth|fifth|sixth|seventh|eighth|ninth)|thirtieth|thirty-first)\\s+(?:of\\s+)?(?:January|February|March|April|May|June|July|August|September|October|November|December),?\\s+(?:nineteen|twenty)(?:[\\s-][\\p{L}-]+){1,2}";
+// A sign-off on its own line at the end of a message: "Thanks\\nChloe", "Kind regards,\\n\\nTom W."
+const LAST_LINE = "\\n[ \\t]*\\n[ \\t]*([A-Z][\\p{L}'’-]+(?:[ \\t]+[A-Z][\\p{L}'’.-]*)?)\\.?[ \\t]*\\n?[ \\t]*$";
+const SIGN_OFF = "(?:Thanks|Thank you|Many thanks|Regards|Kind regards|Best regards|Best wishes|Best|Cheers|Yours sincerely|Yours faithfully|Yours|Sincerely),?\\s*\\n+\\s*([A-Z][\\p{L}'’-]+(?:\\s+[A-Z][\\p{L}'’.-]*)?)\\.?\\s*$";
 
 function levenshtein(a: string, b: string): number {
   const dp = Array.from({ length: a.length + 1 }, (_, i) => [i, ...Array(b.length).fill(0)]);
@@ -259,7 +295,8 @@ function closestEntity(word: string, entities: Entity[], maxDistance: number): E
     for (const n of e.names) {
       if (n.length < 4) continue;
       const d = levenshtein(w, fold(n));
-      if (d <= maxDistance && (!best || d < best.d)) best = { e, d };
+      // On a tie the customer wins, so "Mrs Mensha" is the customer and not her late husband who shares the surname.
+      if (d <= maxDistance && (!best || d < best.d || (d === best.d && e.isCustomer))) best = { e, d };
     }
   }
   return best?.e;
@@ -297,6 +334,44 @@ export function redactCase(c: CaseFile): RedactedCase {
     return r.text;
   };
 
+  // Layer 4, first pass: people the record does not know, found from how the text introduces them.
+  // Found once for the whole case, so "Ryan" in the email and "Ryan" in the notes get the same placeholder.
+  const textPeople = new Map<string, string>(); // folded name -> placeholder
+  let personCount = 0;
+  const knownNames = new Set(entities.flatMap((e) => e.names.concat(e.variants)).map(fold));
+  const addPerson = (raw: string) => {
+    const name = raw.replace(/[.,'’]+$/, "").trim();
+    const parts0 = name.split(/\s+/).map((x) => x.replace(/[.']+$/, ""));
+    const first = parts0.find((x) => x.length >= 2) ?? "";
+    if (!first || NAME_STOP.has(first) || parts0.some((x) => NAME_STOP.has(x))) return;
+    if (knownNames.has(fold(name)) || knownNames.has(fold(first))) return; // the record layer already covers them
+    if (closestEntity(first, entities, first.length >= 8 ? 2 : 1)) return; // a misspelling of someone known, left to layer 3
+    for (const part of name.split(/\s+/)) {
+      const key = fold(part.replace(/[.']+$/, ""));
+      if (key.length < 2 || NAME_STOP.has(part)) continue;
+      if (!textPeople.has(key)) textPeople.set(key, "");
+    }
+    const key = fold(first);
+    if (textPeople.get(key) === "") {
+      // "RICHARD CALLOWAY" after "R CALLOWAY" is the same person, so the surname's placeholder is reused.
+      const existing = name.split(/\s+/).map((x) => textPeople.get(fold(x.replace(/[.']+$/, "")))).find((t) => t);
+      const tag = existing ?? `[PERSON_${(personCount += 1)}]`;
+      for (const part of name.split(/\s+/)) {
+        const k = fold(part.replace(/[.']+$/, ""));
+        if (textPeople.get(k) === "") textPeople.set(k, tag);
+      }
+    }
+  };
+  for (const doc of c.documents) {
+    for (const source of PERSON_INTROS) {
+      for (const m of doc.text.matchAll(new RegExp(WORD_BEFORE + source, "gu"))) if (m[1]) addPerson(m[1]);
+    }
+    for (const m of doc.text.matchAll(new RegExp(PAYEE_INTRO, "gu"))) if (m[1] && !ORG_WORDS.test(m[1])) addPerson(m[1]);
+    for (const m of doc.text.matchAll(new RegExp(SIGN_OFF, "gu"))) if (m[1]) addPerson(m[1]);
+    if (doc.author_role === "customer" || doc.author_role === "third_party") for (const m of doc.text.matchAll(new RegExp(LAST_LINE, "gu"))) if (m[1]) addPerson(m[1]);
+  }
+  const textPeopleList = [...textPeople.entries()].filter(([, tag]) => tag).sort((a, b) => b[0].length - a[0].length);
+
   const documents = c.documents.map((doc) => {
     // Emails first, so a name inside an address does not split it in two.
     let text = runPattern(doc.text, EMAIL_PATTERN, doc.id);
@@ -328,7 +403,7 @@ export function redactCase(c: CaseFile): RedactedCase {
 
     // Layer 3: near matches. A title plus a name, or a capitalised word close to a known name.
     const near: Match[] = [];
-    const titled = new RegExp(`${WORD_BEFORE}(?:${TITLES.join("|")}|${TITLES.map((t) => t.toUpperCase()).join("|")})\\.?\\s+(?:[A-Z]\\.?\\s+)?([A-Z][\\p{L}'’-]{2,})`, "gu");
+    const titled = new RegExp(`${WORD_BEFORE}(?:${TITLES.join("|")}|${TITLES.map((t) => t.toUpperCase()).join("|")})\\.?[ \\t]+(?:[A-Z]\\.?[ \\t]+)?([A-Z][\\p{L}'’-]{2,})`, "gu");
     for (const m of text.matchAll(titled)) {
       if (m.index === undefined || m[0].includes("[")) continue;
       const e = closestEntity(m[1], entities, 3);
@@ -346,6 +421,19 @@ export function redactCase(c: CaseFile): RedactedCase {
     const r3 = applyMatches(text, near);
     for (const m of r3.applied) replacements.push({ placeholder: m.placeholder, original: before3.slice(m.start, m.end), layer: "near_match", documentId: doc.id });
     text = r3.text;
+
+    // Layer 4, second pass: every mention of a person found in the text, and a date of birth read out on a call.
+    const layer4: Match[] = [];
+    for (const [name, tag] of textPeopleList) {
+      // Capitalised only, so "Mo" the sister does not hide "mo" in "a month or so" and "Will" the nephew does not hide "will".
+      const cap = name[0].toUpperCase() + name.slice(1);
+      layer4.push(...findAll(text, `${WORD_BEFORE}(?:${escapeRegex(cap[0])}${variantPattern(name.slice(1))}|${escapeRegex(name.toUpperCase())})${WORD_AFTER}`, "gu", tag, "text"));
+    }
+    layer4.push(...findAll(text, SPOKEN_DOB, "giu", "[DATE_OF_BIRTH]", "text"));
+    const before4 = text;
+    const r4 = applyMatches(text, layer4.filter((m) => !/\[[A-Z_0-9]+\]/.test(text.slice(m.start, m.end))));
+    for (const m of r4.applied) replacements.push({ placeholder: m.placeholder, original: before4.slice(m.start, m.end), layer: "text", documentId: doc.id });
+    text = r4.text;
 
     return { id: doc.id, system: doc.system, type: doc.type, date: doc.date, author_role: doc.author_role, text };
   });

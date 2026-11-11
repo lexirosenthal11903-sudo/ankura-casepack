@@ -20,9 +20,20 @@ interface Summary {
   }[];
 }
 
-function readSummary(split: string): Summary | null {
-  const file = path.join(process.cwd(), "evals/results", `summary-${split}-haiku.json`);
+function readSummary(name: string): Summary | null {
+  const file = path.join(process.cwd(), "evals/results", `summary-${name}.json`);
   return existsSync(file) ? (JSON.parse(readFileSync(file, "utf8")) as Summary) : null;
+}
+
+/** The held-back redaction score from the blind run on 11 Nov 2026, before the fourth redaction layer existed. See docs/decisions.md. */
+const HELDOUT_REDACTION_BLIND = { caught: 78, planted: 101 };
+
+/** Lowest to highest across the repeats, because the AI's answers vary a little each run. */
+function range(s: Summary, key: "team" | "clock" | "vulnerability" | "missingRecall" | "policyRecall" | "supportedRate"): string {
+  const vals = s.repeats.map((r) => r[key]);
+  const lo = Math.min(...vals);
+  const hi = Math.max(...vals);
+  return lo === hi ? pct(lo) : `${pct(lo)} to ${pct(hi)}`;
 }
 
 /** Redaction measured the same way as evals/redaction.ts: a planted identifier is caught if it no longer appears. */
@@ -44,9 +55,10 @@ function redactionScore(split: "dev" | "heldout") {
 const pct = (x: number) => `${Math.round(100 * x)}%`;
 
 export default function HowItWorks() {
-  const dev = readSummary("dev");
-  const held = readSummary("heldout");
+  const dev = readSummary("dev-haiku");
+  const held = readSummary("heldout-haiku-blind") ?? readSummary("heldout-haiku");
   const devRedaction = redactionScore("dev");
+  const heldRedactionNow = held ? redactionScore("heldout") : null;
   const d = dev?.repeats[0];
   const h = held?.repeats[0];
 
@@ -138,18 +150,18 @@ export default function HowItWorks() {
       </p>
       <table className={styles.table}>
         <thead>
-          <tr><th scope="col">Measure</th>{h && <th scope="col">Held-back set (reported)</th>}<th scope="col">Development set (tuned on)</th></tr>
+          <tr><th scope="col">Measure</th>{h && <th scope="col">Held-back set, run once at the end, 3 repeats</th>}<th scope="col">Development set (tuned on)</th></tr>
         </thead>
         <tbody>
           {[
-            ["Routed to the right team", h && pct(h.team), d && pct(d.team)],
-            ["Right deadline rule", h && pct(h.clock), d && pct(d.clock)],
-            ["Signs of vulnerability flagged correctly", h && pct(h.vulnerability), d && pct(d.vulnerability)],
-            ["Missing information found", h && pct(h.missingRecall), d && pct(d.missingRecall)],
-            ["Expected policy paragraphs cited", h && pct(h.policyRecall), d && pct(d.policyRecall)],
-            ["AI statements whose quotes verified", h && pct(h.supportedRate), d && pct(d.supportedRate)],
+            ["Routed to the right team", held && range(held, "team"), d && pct(d.team)],
+            ["Right deadline rule", held && range(held, "clock"), d && pct(d.clock)],
+            ["Signs of vulnerability flagged correctly", held && range(held, "vulnerability"), d && pct(d.vulnerability)],
+            ["Missing information found", held && range(held, "missingRecall"), d && pct(d.missingRecall)],
+            ["Expected policy paragraphs cited", held && range(held, "policyRecall"), d && pct(d.policyRecall)],
+            ["AI statements whose quotes verified", held && range(held, "supportedRate"), d && pct(d.supportedRate)],
             ["Injection attempts flagged", h?.injection, d?.injection],
-            ["Planted personal details hidden", null, `${devRedaction.caught} of ${devRedaction.planted}`],
+            ["Planted personal details hidden", heldRedactionNow && `${HELDOUT_REDACTION_BLIND.caught} of ${HELDOUT_REDACTION_BLIND.planted} blind, then ${heldRedactionNow.caught} of ${heldRedactionNow.planted} after the fix`, `${devRedaction.caught} of ${devRedaction.planted}`],
             ["Cost per case", h && `$${h.costPerCase.toFixed(4)}`, d && `$${d.costPerCase.toFixed(4)}`],
           ].map(([label, hv, dv]) => (
             <tr key={label as string}>
@@ -165,6 +177,15 @@ export default function HowItWorks() {
         The development set flatters the tool because the prompt and redaction rules were improved on it.{" "}
         {h ? "The held-back column is the one to judge it by." : "The 10 held-back cases are run once, at the end of the build, and their results will be added here as the figures to judge it by."}
       </p>
+      {heldRedactionNow && (
+        <p>
+          <strong>What the held-back set found.</strong> The AI side held up, but hiding personal details caught only {HELDOUT_REDACTION_BLIND.caught} of {HELDOUT_REDACTION_BLIND.planted} planted
+          identifiers. Every miss was a person the bank&apos;s record does not know: a boyfriend, a scammer&apos;s name, children named in an email, a carer, a nickname.
+          The first three layers work from the record, so they could not see them. A fourth layer that finds people from how the text introduces them was added the same day,
+          and the held-back set now scores {heldRedactionNow.caught} of {heldRedactionNow.planted}. That second figure is not blind, and this page says so rather than showing only the clean number.
+          Full account in docs/decisions.md.
+        </p>
+      )}
 
       <h2>Known limitations</h2>
       <ul className={styles.limits}>

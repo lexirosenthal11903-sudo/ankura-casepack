@@ -1,0 +1,1204 @@
+{
+  "caseId": "HV-018",
+  "createdAt": "2026-11-11T08:58:57.196Z",
+  "model": "claude-haiku-5-5",
+  "promptVersion": "casepack-v3",
+  "redacted": {
+    "id": "HV-018",
+    "received": "2026-11-03",
+    "channel": "phone",
+    "documents": [
+      {
+        "id": "D1",
+        "system": "CRM",
+        "type": "call_summary",
+        "date": "2026-11-03",
+        "author_role": "handler",
+        "text": "Call transcript (automatic transcription, inbound 03/11/2026 14:26, duration 11m 40s)\n\nAgent: Good afternoon, Harbour and Vale Bank, you're speaking with [STAFF]. How can I help?\nCaller: Hello. Yes. Sorry. I'm ringing because my card isn't working and I... my husband passed away.\nAgent: Oh, I'm so sorry to hear that. Please take your time. Can I take your name?\nCaller: [CUSTOMER]. Mrs.\nAgent: Thank you, [CUSTOMER]. And just for security, can I take your date of birth and your postcode?\nCaller: [DATE_OF_BIRTH]. [CUSTOMER].\nAgent: Thank you, that's all fine. Now tell me what's happened.\nCaller: My husband [DECEASED] died on the eighteenth. Of October. It was very sudden, his heart. Our daughter [PERSON_1] rang you the week after to tell you, she thought she was doing the right thing. And now everything's stopped. It's our joint account, it's always been our joint account, forty years. My pension goes in there. And the card says declined at the supermarket, and the gas and the council tax have come back unpaid, I got a letter from the council this morning. I've got forty pounds in my purse.\nAgent: That must be awful on top of everything else. Let me have a look for you. ... Right, I can see the account was restricted on the twenty-second of October, when we were told about [CUSTOMER]'s death.\nCaller: But it's my account too. [DECEASED] always said if anything happened it all comes to me. Nobody told me it would be frozen. Nobody asked me anything.\nAgent: I understand. With a joint account the money would normally pass to the surviving account holder, so I'm not sure why the whole account has been blocked. I'm afraid I can't lift it myself from here.\nCaller: [crying] I'm sorry. I just can't... I can't do the funeral and this as well. The funeral director wants a deposit and I don't know what to tell him.\nAgent: Please don't apologise. I'm going to raise this as a complaint for you today and mark it urgent, and I'm passing it to our bereavement team, they deal with exactly this. Someone from that team will call you, I'm asking for within two working days. Is this the best number to reach you?\nCaller: Yes, the house phone. Or my mobile, it's [PHONE_1], I don't always hear the house phone.\nAgent: Thank you. Is there anything that would make it easier for you when they call?\nCaller: Afternoons are better. [PERSON_1] can be with me if they ring after four.\nAgent: I'll put that on your record. And I'll ask the team to look at sorting out the payments that have come back unpaid because of this.\nCaller: I just want my account back so I can pay my bills. And somebody to say sorry would be nice. That's all.\nAgent: Of course. I'm really sorry, [CUSTOMER]. You'll hear from the bereavement team, and if you don't, please call us back and quote the complaint reference I'm going to give you now."
+      },
+      {
+        "id": "D2",
+        "system": "CORE",
+        "type": "system_log",
+        "date": "2026-11-03",
+        "author_role": "system",
+        "text": "Account [ACCOUNT] (JOINT, 2 holders). 22/10/2026 10:17 Deceased party notified (holder 2), source: telephone, notifier: third party. 22/10/2026 10:19 Restriction applied: ALL DEBITS BLOCKED, reason DEC-NOTIF. Card [CARD] status: BLOCKED. Death certificate: NOT SEEN. 30/10/2026 State pension credit GBP 1,186.40 received. 01/11/2026 Direct Debit HARROWDENE CITY COUNCIL CTAX GBP 148.00 RETURNED (account restricted). 02/11/2026 Direct Debit NORTHERN GAS SUPPLY GBP 84.50 RETURNED (account restricted). Balance 03/11/2026 GBP 6,412.77 CR."
+      },
+      {
+        "id": "D3",
+        "system": "CRM",
+        "type": "crm_note",
+        "date": "2026-11-03",
+        "author_role": "handler",
+        "text": "[CUSTOMER] called re jnt acct ending [ACCOUNT] frozen after DoD notification (h/band [DECEASED], DoD 18/10/26, notified by daughter 22/10). Pension paid in but cust can't access, 2x DD returned (CT + gas). Cust unaware acct would be restricted. VULN: recent bereavement, very distressed, crying throughout. Support needs: prefers calls after 4pm when daughter can be present, try mobile first. Raised complaint + passed to Bereavement & PoA, marked URGENT, cust has approx £40 cash. Told cust B&P will call within 2 working days. [STAFF]"
+      }
+    ],
+    "replacements": [
+      {
+        "placeholder": "[STAFF]",
+        "original": "Lewis",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Shirley Mensah",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Mrs Mensah",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "LS8 2JR",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[DECEASED]",
+        "original": "Kofi",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Mr Mensah",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[DECEASED]",
+        "original": "Kof",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Mrs Mensah",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[PHONE_1]",
+        "original": "07700 900 734",
+        "layer": "pattern",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[DATE_OF_BIRTH]",
+        "original": "Fourteenth of May, nineteen fifty-two",
+        "layer": "text",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[PERSON_1]",
+        "original": "Abena",
+        "layer": "text",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[PERSON_1]",
+        "original": "Abena",
+        "layer": "text",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[ACCOUNT]",
+        "original": "39250876",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[CARD]",
+        "original": "2284",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[ACCOUNT]",
+        "original": "0876",
+        "layer": "record",
+        "documentId": "D3"
+      },
+      {
+        "placeholder": "[DECEASED]",
+        "original": "Kofi",
+        "layer": "record",
+        "documentId": "D3"
+      },
+      {
+        "placeholder": "[STAFF]",
+        "original": "LH",
+        "layer": "record",
+        "documentId": "D3"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Mrs Mensha",
+        "layer": "near_match",
+        "documentId": "D3"
+      }
+    ],
+    "placeholders": [
+      "[ACCOUNT]",
+      "[CARD]",
+      "[CUSTOMER]",
+      "[DATE_OF_BIRTH]",
+      "[DECEASED]",
+      "[PERSON_1]",
+      "[PHONE_1]",
+      "[STAFF]"
+    ],
+    "display": {
+      "[STAFF]": "Lewis Hartley",
+      "[CUSTOMER]": "Mrs Shirley Mensah",
+      "[DECEASED]": "Kofi Mensah",
+      "[PHONE_1]": "07700 900 734",
+      "[DATE_OF_BIRTH]": "Fourteenth of May, nineteen fifty-two",
+      "[PERSON_1]": "Abena",
+      "[ACCOUNT]": "39250876",
+      "[CARD]": "2284",
+      "[SORT_CODE]": "77-41-63",
+      "[CUSTOMER_PHONE]": "0113 496 0217"
+    }
+  },
+  "pack": {
+    "enough_information": {
+      "sufficient": true,
+      "what_is_needed": ""
+    },
+    "intake": {
+      "issues": [
+        {
+          "product": "current_account",
+          "cause": "bereavement_poa",
+          "description": "Joint account restricted after a third party reported a joint holder's death. All debits blocked; customer cannot access the account.",
+          "citations": [
+            {
+              "source": "D2",
+              "quote": "Restriction applied: ALL DEBITS BLOCKED, reason DEC-NOTIF"
+            },
+            {
+              "source": "D1",
+              "quote": "Nobody told me it would be frozen."
+            }
+          ]
+        },
+        {
+          "product": "current_account",
+          "cause": "payment_problem",
+          "description": "Council tax and gas Direct Debits returned unpaid while the account was restricted.",
+          "citations": [
+            {
+              "source": "D2",
+              "quote": "02/11/2026 Direct Debit NORTHERN GAS SUPPLY GBP 84.50 RETURNED (account restricted)"
+            },
+            {
+              "source": "D1",
+              "quote": "the gas and the council tax have come back unpaid"
+            }
+          ]
+        }
+      ],
+      "suggested_team": "bereavement_poa",
+      "team_reason": {
+        "text": "Joint account restricted after notification of a holder's death; complaint passed to the bereavement team.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "passed to Bereavement & PoA, marked URGENT"
+          }
+        ]
+      },
+      "payment_services": "no",
+      "payment_services_reason": {
+        "text": "No unauthorised or wrongly executed payment is alleged. The complaint concerns an account restriction and returned Direct Debits.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "the gas and the council tax have come back unpaid"
+          }
+        ]
+      },
+      "already_with_ombudsman": false,
+      "linked_to_earlier_complaint": false
+    },
+    "summary": [
+      {
+        "text": "Joint current account restricted on 22/10/2026 after a third party reported a joint holder's death; all debits blocked.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Restriction applied: ALL DEBITS BLOCKED, reason DEC-NOTIF"
+          }
+        ]
+      },
+      {
+        "text": "Pension credit of GBP 1,186.40 received on 30/10/2026, but council tax and gas Direct Debits were returned on 01/11 and 02/11/2026.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "30/10/2026 State pension credit GBP 1,186.40 received"
+          },
+          {
+            "source": "D2",
+            "quote": "02/11/2026 Direct Debit NORTHERN GAS SUPPLY GBP 84.50 RETURNED (account restricted)"
+          }
+        ]
+      },
+      {
+        "text": "Customer says she was not told the account would be restricted and cannot pay a funeral deposit.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Cust unaware acct would be restricted"
+          },
+          {
+            "source": "D1",
+            "quote": "The funeral director wants a deposit"
+          }
+        ]
+      },
+      {
+        "text": "Customer is the surviving joint holder. The death certificate is recorded as not seen.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Death certificate: NOT SEEN"
+          },
+          {
+            "source": "D1",
+            "quote": "But it's my account too."
+          }
+        ]
+      },
+      {
+        "text": "Complaint logged as urgent and passed to Bereavement and PoA. Customer told to expect a call within two working days.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "passed to Bereavement & PoA, marked URGENT"
+          }
+        ]
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-18",
+        "event": "Customer's husband died.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "died on the eighteenth. Of October"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-22",
+        "event": "Death notified by telephone by a third party (daughter). Restriction applied at 10:19 and all debits blocked.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "22/10/2026 10:17 Deceased party notified (holder 2)"
+          },
+          {
+            "source": "D2",
+            "quote": "Restriction applied: ALL DEBITS BLOCKED, reason DEC-NOTIF"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-30",
+        "event": "State pension credit GBP 1,186.40 received into the joint account.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "30/10/2026 State pension credit GBP 1,186.40 received"
+          }
+        ]
+      },
+      {
+        "date": "2026-11-01",
+        "event": "Council tax Direct Debit GBP 148.00 returned (account restricted).",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "01/11/2026 Direct Debit HARROWDENE CITY COUNCIL CTAX GBP 148.00 RETURNED"
+          }
+        ]
+      },
+      {
+        "date": "2026-11-02",
+        "event": "Gas Direct Debit GBP 84.50 returned (account restricted).",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "02/11/2026 Direct Debit NORTHERN GAS SUPPLY GBP 84.50 RETURNED (account restricted)"
+          }
+        ]
+      },
+      {
+        "date": "2026-11-03",
+        "event": "Customer called at 14:26. Complaint logged as urgent and passed to Bereavement and PoA.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "inbound 03/11/2026 14:26"
+          },
+          {
+            "source": "D3",
+            "quote": "passed to Bereavement & PoA, marked URGENT"
+          }
+        ]
+      }
+    ],
+    "outcome_sought": {
+      "text": "Wants the account back so she can pay her bills, and an apology.",
+      "citations": [
+        {
+          "source": "D1",
+          "quote": "I just want my account back so I can pay my bills"
+        },
+        {
+          "source": "D1",
+          "quote": "somebody to say sorry would be nice"
+        }
+      ]
+    },
+    "vulnerability": [
+      {
+        "signal": "Recent bereavement",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "my husband passed away"
+          }
+        ]
+      },
+      {
+        "signal": "Acute distress; crying during the call",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "[crying] I'm sorry. I just can't"
+          }
+        ]
+      },
+      {
+        "signal": "Financial difficulty: about GBP 40 cash, pension paid in but inaccessible, bills unpaid",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I've got forty pounds in my purse"
+          }
+        ]
+      },
+      {
+        "signal": "Support needs: calls after 4pm, mobile first, daughter may be present",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "prefers calls after 4pm when daughter can be present, try mobile first"
+          }
+        ]
+      }
+    ],
+    "relevant_policy": [
+      {
+        "policy_id": "CP-2.3",
+        "why_relevant": "Two issues raised: the account restriction and the returned Direct Debits. Each needs its own record and answer.",
+        "citations": [
+          {
+            "source": "CP-2.3",
+            "quote": "each issue must be recorded separately with its own product and cause category"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-2.4",
+        "why_relevant": "Linked complaints must be checked before investigating. No check is recorded.",
+        "citations": [
+          {
+            "source": "CP-2.4",
+            "quote": "Before investigating, the handler must check for earlier complaints"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.3",
+        "why_relevant": "The customer's outcome must be recorded in her own words.",
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "record, in the customer's own words where possible, the outcome the customer is seeking"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-5.2",
+        "why_relevant": "Vulnerability signs and the customer's support needs must be recorded.",
+        "citations": [
+          {
+            "source": "CP-5.2",
+            "quote": "Signs of vulnerability must be recorded with the customer's consent where possible"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-5.3",
+        "why_relevant": "Handling must be adapted. A vulnerable customer must not be passed between teams without a warm handover.",
+        "citations": [
+          {
+            "source": "CP-5.3",
+            "quote": "must not pass a vulnerable customer between teams without a warm handover"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-6.1",
+        "why_relevant": "The case falls within the bereavement team's remit and must be passed on using its checklist.",
+        "citations": [
+          {
+            "source": "CP-6.1",
+            "quote": "passed to a specialist team when it falls within that team's remit"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-6.2",
+        "why_relevant": "The handover is complete only when every required checklist item is filled in or marked with a reason.",
+        "citations": [
+          {
+            "source": "CP-6.2",
+            "quote": "A handover is complete only when every required checklist item is filled in"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-8.1",
+        "why_relevant": "Authority to act must be confirmed before account information is shared. The caller is a joint holder and the death certificate has not been seen.",
+        "citations": [
+          {
+            "source": "CP-8.1",
+            "quote": "Staff must confirm who has authority to act, such as the executor or administrator"
+          }
+        ]
+      }
+    ],
+    "handover_checklist": [
+      {
+        "item_id": "outcome_sought",
+        "status": "present",
+        "value": "Account back so she can pay her bills; an apology.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I just want my account back so I can pay my bills"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_contact_attempted",
+        "status": "present",
+        "value": "Customer called in on 03/11/2026 and spoke to the handler.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I'm ringing because my card isn't working"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_told_of_handover",
+        "status": "present",
+        "value": "Told the bereavement team will call within two working days.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Told cust B&P will call within 2 working days"
+          }
+        ]
+      },
+      {
+        "item_id": "vulnerability_recorded",
+        "status": "present",
+        "value": "Recent bereavement and distress recorded; support needs noted (call after 4pm, mobile first).",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "VULN: recent bereavement, very distressed, crying throughout"
+          }
+        ]
+      },
+      {
+        "item_id": "linked_complaints_checked",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "date_of_death",
+        "status": "present",
+        "value": "18/10/2026 per CRM. Death certificate not seen.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "DoD 18/10/26, notified by daughter 22/10"
+          }
+        ]
+      },
+      {
+        "item_id": "authority_type",
+        "status": "not_applicable",
+        "value": "",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "But it's my account too."
+          }
+        ]
+      },
+      {
+        "item_id": "authority_evidence_status",
+        "status": "not_applicable",
+        "value": "",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "But it's my account too."
+          }
+        ]
+      },
+      {
+        "item_id": "accounts_affected",
+        "status": "present",
+        "value": "Joint current account with two holders.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Account [ACCOUNT] (JOINT, 2 holders)"
+          }
+        ]
+      },
+      {
+        "item_id": "relationship_to_customer",
+        "status": "present",
+        "value": "Spouse of the deceased and surviving joint account holder.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "My husband [DECEASED] died on the eighteenth"
+          }
+        ]
+      }
+    ],
+    "conflicts": [
+      {
+        "text": "Timing of the death notification: the caller says her daughter rang the bank 'the week after' the death. The system log records notification on 22/10/2026, four days after 18/10/2026. Both versions are shown; not resolved.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "rang you the week after to tell you"
+          },
+          {
+            "source": "D2",
+            "quote": "22/10/2026 10:17 Deceased party notified (holder 2)"
+          }
+        ]
+      }
+    ],
+    "flags": [
+      {
+        "type": "deadline_risk",
+        "description": "Urgent case. Bereavement team call promised within two working days. Acknowledgement due if not resolved by the close of the third business day.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Told cust B&P will call within 2 working days"
+          },
+          {
+            "source": "CP-2.1",
+            "quote": "not resolved by the close of the third business day after it was received"
+          }
+        ]
+      },
+      {
+        "type": "data_quality",
+        "description": "Death certificate not seen on the system, yet the restriction was applied on a third-party notification.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Death certificate: NOT SEEN"
+          }
+        ]
+      },
+      {
+        "type": "third_party_authority",
+        "description": "Daughter reported the death and may attend calls. No written authority for her to act is recorded.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "[PERSON_1] can be with me if they ring after four"
+          }
+        ]
+      }
+    ]
+  },
+  "checks": {
+    "statements": [
+      {
+        "path": "intake.issues.0",
+        "text": "Joint account restricted after a third party reported a joint holder's death. All debits blocked; customer cannot access the account.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Restriction applied: ALL DEBITS BLOCKED, reason DEC-NOTIF",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "Nobody told me it would be frozen.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.issues.1",
+        "text": "Council tax and gas Direct Debits returned unpaid while the account was restricted.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "02/11/2026 Direct Debit NORTHERN GAS SUPPLY GBP 84.50 RETURNED (account restricted)",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "the gas and the council tax have come back unpaid",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.team_reason",
+        "text": "Joint account restricted after notification of a holder's death; complaint passed to the bereavement team.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "passed to Bereavement & PoA, marked URGENT",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.payment_services_reason",
+        "text": "No unauthorised or wrongly executed payment is alleged. The complaint concerns an account restriction and returned Direct Debits.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "the gas and the council tax have come back unpaid",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.0",
+        "text": "Joint current account restricted on 22/10/2026 after a third party reported a joint holder's death; all debits blocked.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Restriction applied: ALL DEBITS BLOCKED, reason DEC-NOTIF",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.1",
+        "text": "Pension credit of GBP 1,186.40 received on 30/10/2026, but council tax and gas Direct Debits were returned on 01/11 and 02/11/2026.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "30/10/2026 State pension credit GBP 1,186.40 received",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "02/11/2026 Direct Debit NORTHERN GAS SUPPLY GBP 84.50 RETURNED (account restricted)",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.2",
+        "text": "Customer says she was not told the account would be restricted and cannot pay a funeral deposit.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Cust unaware acct would be restricted",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "The funeral director wants a deposit",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.3",
+        "text": "Customer is the surviving joint holder. The death certificate is recorded as not seen.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Death certificate: NOT SEEN",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "But it's my account too.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.4",
+        "text": "Complaint logged as urgent and passed to Bereavement and PoA. Customer told to expect a call within two working days.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "passed to Bereavement & PoA, marked URGENT",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.0",
+        "text": "2026-10-18: Customer's husband died.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "died on the eighteenth. Of October",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.1",
+        "text": "2026-10-22: Death notified by telephone by a third party (daughter). Restriction applied at 10:19 and all debits blocked.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "22/10/2026 10:17 Deceased party notified (holder 2)",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Restriction applied: ALL DEBITS BLOCKED, reason DEC-NOTIF",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.2",
+        "text": "2026-10-30: State pension credit GBP 1,186.40 received into the joint account.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "30/10/2026 State pension credit GBP 1,186.40 received",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.3",
+        "text": "2026-11-01: Council tax Direct Debit GBP 148.00 returned (account restricted).",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "01/11/2026 Direct Debit HARROWDENE CITY COUNCIL CTAX GBP 148.00 RETURNED",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.4",
+        "text": "2026-11-02: Gas Direct Debit GBP 84.50 returned (account restricted).",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "02/11/2026 Direct Debit NORTHERN GAS SUPPLY GBP 84.50 RETURNED (account restricted)",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.5",
+        "text": "2026-11-03: Customer called at 14:26. Complaint logged as urgent and passed to Bereavement and PoA.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "inbound 03/11/2026 14:26",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "passed to Bereavement & PoA, marked URGENT",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "outcome_sought",
+        "text": "Wants the account back so she can pay her bills, and an apology.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I just want my account back so I can pay my bills",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "somebody to say sorry would be nice",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "vulnerability.0",
+        "text": "Recent bereavement",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "my husband passed away",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "vulnerability.1",
+        "text": "Acute distress; crying during the call",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "[crying] I'm sorry. I just can't",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "vulnerability.2",
+        "text": "Financial difficulty: about GBP 40 cash, pension paid in but inaccessible, bills unpaid",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I've got forty pounds in my purse",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "vulnerability.3",
+        "text": "Support needs: calls after 4pm, mobile first, daughter may be present",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "prefers calls after 4pm when daughter can be present, try mobile first",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.0",
+        "text": "CP-2.3: Two issues raised: the account restriction and the returned Direct Debits. Each needs its own record and answer.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.3",
+            "quote": "each issue must be recorded separately with its own product and cause category",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.1",
+        "text": "CP-2.4: Linked complaints must be checked before investigating. No check is recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.4",
+            "quote": "Before investigating, the handler must check for earlier complaints",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.2",
+        "text": "CP-4.3: The customer's outcome must be recorded in her own words.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "record, in the customer's own words where possible, the outcome the customer is seeking",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.3",
+        "text": "CP-5.2: Vulnerability signs and the customer's support needs must be recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-5.2",
+            "quote": "Signs of vulnerability must be recorded with the customer's consent where possible",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.4",
+        "text": "CP-5.3: Handling must be adapted. A vulnerable customer must not be passed between teams without a warm handover.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-5.3",
+            "quote": "must not pass a vulnerable customer between teams without a warm handover",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.5",
+        "text": "CP-6.1: The case falls within the bereavement team's remit and must be passed on using its checklist.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-6.1",
+            "quote": "passed to a specialist team when it falls within that team's remit",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.6",
+        "text": "CP-6.2: The handover is complete only when every required checklist item is filled in or marked with a reason.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-6.2",
+            "quote": "A handover is complete only when every required checklist item is filled in",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.7",
+        "text": "CP-8.1: Authority to act must be confirmed before account information is shared. The caller is a joint holder and the death certificate has not been seen.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-8.1",
+            "quote": "Staff must confirm who has authority to act, such as the executor or administrator",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.outcome_sought",
+        "text": "outcome_sought: Account back so she can pay her bills; an apology.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I just want my account back so I can pay my bills",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.customer_contact_attempted",
+        "text": "customer_contact_attempted: Customer called in on 03/11/2026 and spoke to the handler.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I'm ringing because my card isn't working",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.customer_told_of_handover",
+        "text": "customer_told_of_handover: Told the bereavement team will call within two working days.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Told cust B&P will call within 2 working days",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.vulnerability_recorded",
+        "text": "vulnerability_recorded: Recent bereavement and distress recorded; support needs noted (call after 4pm, mobile first).",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "VULN: recent bereavement, very distressed, crying throughout",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.date_of_death",
+        "text": "date_of_death: 18/10/2026 per CRM. Death certificate not seen.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "DoD 18/10/26, notified by daughter 22/10",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.accounts_affected",
+        "text": "accounts_affected: Joint current account with two holders.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Account [ACCOUNT] (JOINT, 2 holders)",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.relationship_to_customer",
+        "text": "relationship_to_customer: Spouse of the deceased and surviving joint account holder.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "My husband [DECEASED] died on the eighteenth",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "conflicts.0",
+        "text": "Timing of the death notification: the caller says her daughter rang the bank 'the week after' the death. The system log records notification on 22/10/2026, four days after 18/10/2026. Both versions are shown; not resolved.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "rang you the week after to tell you",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "22/10/2026 10:17 Deceased party notified (holder 2)",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.0",
+        "text": "deadline_risk: Urgent case. Bereavement team call promised within two working days. Acknowledgement due if not resolved by the close of the third business day.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Told cust B&P will call within 2 working days",
+            "result": "verified"
+          },
+          {
+            "source": "CP-2.1",
+            "quote": "not resolved by the close of the third business day after it was received",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.1",
+        "text": "data_quality: Death certificate not seen on the system, yet the restriction was applied on a third-party notification.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Death certificate: NOT SEEN",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.2",
+        "text": "third_party_authority: Daughter reported the death and may attend calls. No written authority for her to act is recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "[PERSON_1] can be with me if they ring after four",
+            "result": "verified"
+          }
+        ]
+      }
+    ],
+    "supportedCount": 39,
+    "unsupportedCount": 0,
+    "inventedPlaceholders": [],
+    "checklist": {
+      "required": 8,
+      "present": 7,
+      "missing": [
+        "linked_complaints_checked"
+      ],
+      "conflicting": []
+    }
+  },
+  "clock": "8_weeks",
+  "deadlines": {
+    "received": "2026-11-03",
+    "clock": "8_weeks",
+    "summaryResolutionWindowCloses": "2026-11-06",
+    "eightWeekDue": "2026-12-29",
+    "workingDue": "2026-12-29",
+    "needsHandlerConfirmation": false,
+    "calendarDaysLeft": 50,
+    "businessDaysLeft": 34,
+    "status": "on_track"
+  },
+  "usage": {
+    "inputTokens": 1705,
+    "outputTokens": 13343,
+    "cacheReadTokens": 0,
+    "cacheWriteTokens": 9468,
+    "costUsd": 0.0080255,
+    "latencyMs": 50363
+  }
+}

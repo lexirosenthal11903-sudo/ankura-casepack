@@ -1,0 +1,1062 @@
+{
+  "caseId": "HV-016",
+  "createdAt": "2026-11-11T08:50:09.314Z",
+  "model": "claude-haiku-5-5",
+  "promptVersion": "casepack-v3",
+  "redacted": {
+    "id": "HV-016",
+    "received": "2026-10-04",
+    "channel": "email",
+    "documents": [
+      {
+        "id": "D1",
+        "system": "EMAIL",
+        "type": "email",
+        "date": "2026-10-04",
+        "author_role": "customer",
+        "text": "Subject: scam - puppy - need my money back pls\n\nHello,\n\nI want to make a complaint about a payment I made on Thursday 1st October. I paid £650 to someone selling a cockapoo puppy on social media (a page called 'Malvern Hills Cockapoos'). They had loads of photos and videos of the puppies with the mum and he said I had to pay to hold her because 3 other people were interested. He said his name was Ryan and the account name was R HOLLIS. I sent it by bank transfer in your app.\n\nHe said we could collect her on Saturday from an address near Ledbury. My boyfriend Josh drove us there and it was just a farm track, there was no house with that number. Ryan stopped answering my messages and by Saturday night the page had been deleted. I feel so stupid, we'd already bought her a bed and everything.\n\nWhen I paid, the app showed a message asking if I was sure but it was just the usual 'could this be a scam' thing, it didn't say anything about pets or paying deposits to people you don't know. It also said the name matched so I thought it was fine.\n\nI reported it on the app chat on Saturday night (3rd) and got a reference but nobody has called me. I've seen on the news that banks have to pay back scams now. I want the £650 back please.\n\nMy number has changed, please use [PHONE_1] not the old one.\n\nThanks\n[CUSTOMER]"
+      },
+      {
+        "id": "D2",
+        "system": "CORE",
+        "type": "system_log",
+        "date": "2026-10-03",
+        "author_role": "system",
+        "text": "01/10/2026 19:47 Faster Payment out CA [ACCOUNT] GBP 650.00 payee 'R HOLLIS' receiving bank Tallis Street Bank. Confirmation of Payee result: MATCH. Payment reason selected: 'Something else'. Warning shown: general scam warning v2 ('Could this be a scam? Fraudsters can pretend to be anyone'). Customer selected 'I understand, continue'. 03/10/2026 22:14 Scam claim raised via in-app chat, claim ref SC-2026-118204, type PURCHASE. Beneficiary bank notified 03/10/2026 22:31, funds recovery: PENDING."
+      },
+      {
+        "id": "D3",
+        "system": "CRM",
+        "type": "crm_note",
+        "date": "2026-10-05",
+        "author_role": "handler",
+        "text": "Complaint logged from email rec'd Sun 04/10. APP scam - purchase (puppy, social media advert). Called cust on [CUSTOMER_PHONE] (on file) 05/10 11:20, number not in service. Tried [PHONE_1] from her email, no answer, VM left asking her to call back, no acct details left. Contact details to be updated once ID&V done. Referring to F&S. - [STAFF]"
+      }
+    ],
+    "replacements": [
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Chloe",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[PHONE_1]",
+        "original": "07700 900 862",
+        "layer": "pattern",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[ACCOUNT]",
+        "original": "52837190",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[CUSTOMER_PHONE]",
+        "original": "07700 900 147",
+        "layer": "record",
+        "documentId": "D3"
+      },
+      {
+        "placeholder": "[STAFF]",
+        "original": "AK",
+        "layer": "record",
+        "documentId": "D3"
+      },
+      {
+        "placeholder": "[PHONE_1]",
+        "original": "07700 900 862",
+        "layer": "pattern",
+        "documentId": "D3"
+      }
+    ],
+    "placeholders": [
+      "[ACCOUNT]",
+      "[CUSTOMER]",
+      "[CUSTOMER_PHONE]",
+      "[PHONE_1]",
+      "[STAFF]"
+    ],
+    "display": {
+      "[CUSTOMER]": "Miss Chloe Brennan",
+      "[PHONE_1]": "07700 900 862",
+      "[ACCOUNT]": "52837190",
+      "[CUSTOMER_PHONE]": "07700 900 147",
+      "[STAFF]": "Amir Khalid",
+      "[CARD]": "6620",
+      "[SORT_CODE]": "77-41-14",
+      "[CUSTOMER_EMAIL]": "chloe.brennan@example.com"
+    }
+  },
+  "pack": {
+    "enough_information": {
+      "sufficient": true,
+      "what_is_needed": ""
+    },
+    "intake": {
+      "issues": [
+        {
+          "product": "current_account",
+          "cause": "app_scam",
+          "description": "Customer paid £650 by Faster Payment in the app to a seller of a puppy advertised on social media. The puppy was not supplied and the customer says it was a scam.",
+          "citations": [
+            {
+              "source": "D1",
+              "quote": "I want to make a complaint about a payment I made on Thursday 1st October"
+            }
+          ]
+        }
+      ],
+      "suggested_team": "fraud_scams",
+      "team_reason": {
+        "text": "Authorised app scam (customer says they paid the seller), so the Fraud and Scams team applies.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Referring to F&S"
+          },
+          {
+            "source": "D1",
+            "quote": "Subject: scam - puppy - need my money back pls"
+          }
+        ]
+      },
+      "payment_services": "no",
+      "payment_services_reason": {
+        "text": "Customer says they made the payment themselves after being tricked, which is an authorised scam, not an unauthorised payment.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I paid £650 to someone selling a cockapoo puppy on social media"
+          }
+        ]
+      },
+      "already_with_ombudsman": false,
+      "linked_to_earlier_complaint": false
+    },
+    "summary": [
+      {
+        "text": "Customer paid £650 by Faster Payment on 1 October 2026 to payee R HOLLIS for a puppy advertised on social media.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I paid £650 to someone selling a cockapoo puppy on social media"
+          },
+          {
+            "source": "D2",
+            "quote": "01/10/2026 19:47 Faster Payment out CA"
+          }
+        ]
+      },
+      {
+        "text": "Customer says the collection address was not a house and the seller's page was deleted by the Saturday night.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "there was no house with that number."
+          },
+          {
+            "source": "D1",
+            "quote": "by Saturday night the page had been deleted."
+          }
+        ]
+      },
+      {
+        "text": "A general scam warning was shown before payment. Customer says it did not mention pets or deposits.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Warning shown: general scam warning v2"
+          },
+          {
+            "source": "D1",
+            "quote": "it didn't say anything about pets or paying deposits to people you don't know."
+          }
+        ]
+      },
+      {
+        "text": "Scam claim SC-2026-118204 was raised on 3 October 2026. Beneficiary bank notified, funds recovery pending.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Scam claim raised via in-app chat, claim ref SC-2026-118204"
+          },
+          {
+            "source": "D2",
+            "quote": "Beneficiary bank notified 03/10/2026 22:31, funds recovery: PENDING"
+          }
+        ]
+      },
+      {
+        "text": "Bank contact attempts on 5 October 2026 were not successful; a voicemail was left asking the customer to call back.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "VM left asking her to call back"
+          }
+        ]
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-01",
+        "event": "Faster Payment of £650 sent to payee R HOLLIS at 19:47 after a general scam warning.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "01/10/2026 19:47 Faster Payment out CA"
+          },
+          {
+            "source": "D1",
+            "quote": "a payment I made on Thursday 1st October"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-03",
+        "event": "Customer and partner visited the stated collection address near Ledbury; no house found.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "there was no house with that number."
+          }
+        ]
+      },
+      {
+        "date": "2026-10-03",
+        "event": "Seller stopped responding and the page was deleted by Saturday night.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "by Saturday night the page had been deleted."
+          }
+        ]
+      },
+      {
+        "date": "2026-10-03",
+        "event": "Scam claim SC-2026-118204 raised via in-app chat at 22:14.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Scam claim raised via in-app chat, claim ref SC-2026-118204"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-03",
+        "event": "Beneficiary bank notified at 22:31; funds recovery pending.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Beneficiary bank notified 03/10/2026 22:31, funds recovery: PENDING"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-04",
+        "event": "Complaint logged from email.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Complaint logged from email rec'd Sun 04/10."
+          }
+        ]
+      },
+      {
+        "date": "2026-10-05",
+        "event": "Call to number on file at 11:20 failed because the number was not in service.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Called cust on [CUSTOMER_PHONE] (on file) 05/10 11:20, number not in service."
+          }
+        ]
+      },
+      {
+        "date": "2026-10-05",
+        "event": "Call to the number given in the customer's email went unanswered; voicemail left.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "VM left asking her to call back"
+          }
+        ]
+      }
+    ],
+    "outcome_sought": {
+      "text": "Customer wants the £650 returned.",
+      "citations": [
+        {
+          "source": "D1",
+          "quote": "I want the £650 back please"
+        }
+      ]
+    },
+    "vulnerability": [],
+    "relevant_policy": [
+      {
+        "policy_id": "CP-6.1",
+        "why_relevant": "The case falls within the Fraud and Scams team's remit and must be handed over using its checklist.",
+        "citations": [
+          {
+            "source": "CP-6.1",
+            "quote": "A complaint must be passed to a specialist team when it falls within that team's remit"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-6.3",
+        "why_relevant": "The customer must be told which team now holds the complaint, and this must be recorded.",
+        "citations": [
+          {
+            "source": "CP-6.3",
+            "quote": "The handler must tell the customer which team now has their complaint"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-7.2",
+        "why_relevant": "The customer says they were tricked into sending a Faster Payment, so APP scam reimbursement rules apply.",
+        "citations": [
+          {
+            "source": "CP-7.2",
+            "quote": "Where a customer was tricked into sending a Faster Payment to a fraudster"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-7.3",
+        "why_relevant": "The APP claim has a five business day decision limit, which may be stopped while information is gathered.",
+        "citations": [
+          {
+            "source": "CP-7.3",
+            "quote": "APP scam claims must be decided within five business days."
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-7.4",
+        "why_relevant": "Lists the evidence the Fraud and Scams team needs, which the handover checklist must cover.",
+        "citations": [
+          {
+            "source": "CP-7.4",
+            "quote": "The Fraud and Scams team needs the payment details, when the scam was reported"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.5",
+        "why_relevant": "A documented contact attempt must exist before handover. Attempts on 5 October are recorded but no contact has been made.",
+        "citations": [
+          {
+            "source": "CP-4.5",
+            "quote": "must make at least one documented attempt to contact the customer before a case is passed to a specialist team"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-2.4",
+        "why_relevant": "The check for linked earlier complaints has not been recorded.",
+        "citations": [
+          {
+            "source": "CP-2.4",
+            "quote": "Before investigating, the handler must check for earlier complaints from the same customer on the same subject"
+          }
+        ]
+      }
+    ],
+    "handover_checklist": [
+      {
+        "item_id": "outcome_sought",
+        "status": "present",
+        "value": "Customer wants the £650 returned.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I want the £650 back please"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_contact_attempted",
+        "status": "present",
+        "value": "Calls on 5 October 2026: number on file not in service; voicemail left on number from email.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "VM left asking her to call back"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_told_of_handover",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "vulnerability_recorded",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "linked_complaints_checked",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "payment_date",
+        "status": "present",
+        "value": "2026-10-01 19:47",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "01/10/2026 19:47 Faster Payment out CA"
+          }
+        ]
+      },
+      {
+        "item_id": "payment_amount",
+        "status": "present",
+        "value": "GBP 650.00",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "GBP 650.00 payee 'R HOLLIS'"
+          }
+        ]
+      },
+      {
+        "item_id": "payment_method",
+        "status": "present",
+        "value": "Faster Payment, made in the app",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I sent it by bank transfer in your app"
+          }
+        ]
+      },
+      {
+        "item_id": "payee_details",
+        "status": "present",
+        "value": "R HOLLIS; receiving bank Tallis Street Bank",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "payee 'R HOLLIS' receiving bank Tallis Street Bank"
+          }
+        ]
+      },
+      {
+        "item_id": "date_reported",
+        "status": "present",
+        "value": "2026-10-03 via in-app chat, ref SC-2026-118204",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Scam claim raised via in-app chat, claim ref SC-2026-118204"
+          }
+        ]
+      },
+      {
+        "item_id": "warnings_shown",
+        "status": "present",
+        "value": "General scam warning v2; payment reason selected 'Something else'",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Warning shown: general scam warning v2"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_account_of_events",
+        "status": "present",
+        "value": "Seller showed photos and videos, asked for a deposit to hold the puppy, and did not deliver; collection address did not exist.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "They had loads of photos and videos of the puppies with the mum"
+          }
+        ]
+      },
+      {
+        "item_id": "authorised_or_not",
+        "status": "present",
+        "value": "Customer says they made the payment.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I paid £650 to someone selling a cockapoo puppy on social media"
+          }
+        ]
+      }
+    ],
+    "conflicts": [
+      {
+        "text": "Contact number differs. Number on file is recorded as not in service; the customer's email asks us to use a new number. Both versions recorded, not resolved.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "number not in service"
+          },
+          {
+            "source": "D1",
+            "quote": "please use [PHONE_1] not the old one"
+          }
+        ]
+      }
+    ],
+    "flags": [
+      {
+        "type": "data_quality",
+        "description": "Number on file is not in service and contact details are not yet updated; CRM note says update once ID&V is done.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Contact details to be updated once ID&V done"
+          }
+        ]
+      },
+      {
+        "type": "deadline_risk",
+        "description": "APP scam claim raised 3 October 2026; five business day decision limit may apply, and any stop-the-clock must be recorded.",
+        "citations": [
+          {
+            "source": "CP-7.3",
+            "quote": "APP scam claims must be decided within five business days."
+          },
+          {
+            "source": "D2",
+            "quote": "Scam claim raised via in-app chat, claim ref SC-2026-118204"
+          }
+        ]
+      }
+    ]
+  },
+  "checks": {
+    "statements": [
+      {
+        "path": "intake.issues.0",
+        "text": "Customer paid £650 by Faster Payment in the app to a seller of a puppy advertised on social media. The puppy was not supplied and the customer says it was a scam.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I want to make a complaint about a payment I made on Thursday 1st October",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.team_reason",
+        "text": "Authorised app scam (customer says they paid the seller), so the Fraud and Scams team applies.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Referring to F&S",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "Subject: scam - puppy - need my money back pls",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.payment_services_reason",
+        "text": "Customer says they made the payment themselves after being tricked, which is an authorised scam, not an unauthorised payment.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I paid £650 to someone selling a cockapoo puppy on social media",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.0",
+        "text": "Customer paid £650 by Faster Payment on 1 October 2026 to payee R HOLLIS for a puppy advertised on social media.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I paid £650 to someone selling a cockapoo puppy on social media",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "01/10/2026 19:47 Faster Payment out CA",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.1",
+        "text": "Customer says the collection address was not a house and the seller's page was deleted by the Saturday night.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "there was no house with that number.",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "by Saturday night the page had been deleted.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.2",
+        "text": "A general scam warning was shown before payment. Customer says it did not mention pets or deposits.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Warning shown: general scam warning v2",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "it didn't say anything about pets or paying deposits to people you don't know.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.3",
+        "text": "Scam claim SC-2026-118204 was raised on 3 October 2026. Beneficiary bank notified, funds recovery pending.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Scam claim raised via in-app chat, claim ref SC-2026-118204",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Beneficiary bank notified 03/10/2026 22:31, funds recovery: PENDING",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.4",
+        "text": "Bank contact attempts on 5 October 2026 were not successful; a voicemail was left asking the customer to call back.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "VM left asking her to call back",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.0",
+        "text": "2026-10-01: Faster Payment of £650 sent to payee R HOLLIS at 19:47 after a general scam warning.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "01/10/2026 19:47 Faster Payment out CA",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "a payment I made on Thursday 1st October",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.1",
+        "text": "2026-10-03: Customer and partner visited the stated collection address near Ledbury; no house found.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "there was no house with that number.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.2",
+        "text": "2026-10-03: Seller stopped responding and the page was deleted by Saturday night.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "by Saturday night the page had been deleted.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.3",
+        "text": "2026-10-03: Scam claim SC-2026-118204 raised via in-app chat at 22:14.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Scam claim raised via in-app chat, claim ref SC-2026-118204",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.4",
+        "text": "2026-10-03: Beneficiary bank notified at 22:31; funds recovery pending.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Beneficiary bank notified 03/10/2026 22:31, funds recovery: PENDING",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.5",
+        "text": "2026-10-04: Complaint logged from email.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Complaint logged from email rec'd Sun 04/10.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.6",
+        "text": "2026-10-05: Call to number on file at 11:20 failed because the number was not in service.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Called cust on [CUSTOMER_PHONE] (on file) 05/10 11:20, number not in service.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.7",
+        "text": "2026-10-05: Call to the number given in the customer's email went unanswered; voicemail left.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "VM left asking her to call back",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "outcome_sought",
+        "text": "Customer wants the £650 returned.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I want the £650 back please",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.0",
+        "text": "CP-6.1: The case falls within the Fraud and Scams team's remit and must be handed over using its checklist.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-6.1",
+            "quote": "A complaint must be passed to a specialist team when it falls within that team's remit",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.1",
+        "text": "CP-6.3: The customer must be told which team now holds the complaint, and this must be recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-6.3",
+            "quote": "The handler must tell the customer which team now has their complaint",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.2",
+        "text": "CP-7.2: The customer says they were tricked into sending a Faster Payment, so APP scam reimbursement rules apply.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-7.2",
+            "quote": "Where a customer was tricked into sending a Faster Payment to a fraudster",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.3",
+        "text": "CP-7.3: The APP claim has a five business day decision limit, which may be stopped while information is gathered.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-7.3",
+            "quote": "APP scam claims must be decided within five business days.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.4",
+        "text": "CP-7.4: Lists the evidence the Fraud and Scams team needs, which the handover checklist must cover.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-7.4",
+            "quote": "The Fraud and Scams team needs the payment details, when the scam was reported",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.5",
+        "text": "CP-4.5: A documented contact attempt must exist before handover. Attempts on 5 October are recorded but no contact has been made.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.5",
+            "quote": "must make at least one documented attempt to contact the customer before a case is passed to a specialist team",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.6",
+        "text": "CP-2.4: The check for linked earlier complaints has not been recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.4",
+            "quote": "Before investigating, the handler must check for earlier complaints from the same customer on the same subject",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.outcome_sought",
+        "text": "outcome_sought: Customer wants the £650 returned.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I want the £650 back please",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.customer_contact_attempted",
+        "text": "customer_contact_attempted: Calls on 5 October 2026: number on file not in service; voicemail left on number from email.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "VM left asking her to call back",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.payment_date",
+        "text": "payment_date: 2026-10-01 19:47",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "01/10/2026 19:47 Faster Payment out CA",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.payment_amount",
+        "text": "payment_amount: GBP 650.00",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "GBP 650.00 payee 'R HOLLIS'",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.payment_method",
+        "text": "payment_method: Faster Payment, made in the app",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I sent it by bank transfer in your app",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.payee_details",
+        "text": "payee_details: R HOLLIS; receiving bank Tallis Street Bank",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "payee 'R HOLLIS' receiving bank Tallis Street Bank",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.date_reported",
+        "text": "date_reported: 2026-10-03 via in-app chat, ref SC-2026-118204",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Scam claim raised via in-app chat, claim ref SC-2026-118204",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.warnings_shown",
+        "text": "warnings_shown: General scam warning v2; payment reason selected 'Something else'",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Warning shown: general scam warning v2",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.customer_account_of_events",
+        "text": "customer_account_of_events: Seller showed photos and videos, asked for a deposit to hold the puppy, and did not deliver; collection address did not exist.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "They had loads of photos and videos of the puppies with the mum",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.authorised_or_not",
+        "text": "authorised_or_not: Customer says they made the payment.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I paid £650 to someone selling a cockapoo puppy on social media",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "conflicts.0",
+        "text": "Contact number differs. Number on file is recorded as not in service; the customer's email asks us to use a new number. Both versions recorded, not resolved.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "number not in service",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "please use [PHONE_1] not the old one",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.0",
+        "text": "data_quality: Number on file is not in service and contact details are not yet updated; CRM note says update once ID&V is done.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Contact details to be updated once ID&V done",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.1",
+        "text": "deadline_risk: APP scam claim raised 3 October 2026; five business day decision limit may apply, and any stop-the-clock must be recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-7.3",
+            "quote": "APP scam claims must be decided within five business days.",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Scam claim raised via in-app chat, claim ref SC-2026-118204",
+            "result": "verified"
+          }
+        ]
+      }
+    ],
+    "supportedCount": 37,
+    "unsupportedCount": 0,
+    "inventedPlaceholders": [],
+    "checklist": {
+      "required": 13,
+      "present": 10,
+      "missing": [
+        "customer_told_of_handover",
+        "vulnerability_recorded",
+        "linked_complaints_checked"
+      ],
+      "conflicting": []
+    }
+  },
+  "clock": "8_weeks",
+  "deadlines": {
+    "received": "2026-10-04",
+    "clock": "8_weeks",
+    "summaryResolutionWindowCloses": "2026-10-07",
+    "eightWeekDue": "2026-11-29",
+    "workingDue": "2026-11-29",
+    "needsHandlerConfirmation": false,
+    "calendarDaysLeft": 20,
+    "businessDaysLeft": 14,
+    "status": "on_track"
+  },
+  "usage": {
+    "inputTokens": 989,
+    "outputTokens": 10561,
+    "cacheReadTokens": 9468,
+    "cacheWriteTokens": 0,
+    "costUsd": 0.00547408,
+    "latencyMs": 40534
+  }
+}

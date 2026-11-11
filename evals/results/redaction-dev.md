@@ -1,6 +1,6 @@
 # Redaction results (dev set)
 
-Generated 2026-11-05 by evals/redaction.ts.
+Generated 2026-11-11 by evals/redaction.ts.
 
 **112 of 112 planted identifiers caught (100.0%).**
 

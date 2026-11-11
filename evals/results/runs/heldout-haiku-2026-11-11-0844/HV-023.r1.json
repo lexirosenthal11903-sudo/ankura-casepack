@@ -1,0 +1,1073 @@
+{
+  "caseId": "HV-023",
+  "createdAt": "2026-11-11T08:46:15.910Z",
+  "model": "claude-haiku-5-5",
+  "promptVersion": "casepack-v3",
+  "redacted": {
+    "id": "HV-023",
+    "received": "2026-10-12",
+    "channel": "letter",
+    "documents": [
+      {
+        "id": "D1",
+        "system": "LETTER",
+        "type": "letter",
+        "date": "2026-10-08",
+        "author_role": "customer",
+        "text": "[Scanned letter, handwritten, received in post room 12/10/2026. Transcribed by complaints admin. Words in square brackets could not be read clearly.]\n\n[CUSTOMER]\nWakefield\n[CUSTOMER]\nTel [PHONE_1]\n8th October 2026\n\nDear Sir or Madam,\n\nI am writing to complain about your Westgate branch in Wakefield and the way I was treated there.\n\nI have used a wheelchair since an accident in 2009. I bank at Westgate because it is the nearest branch to me and until recently the ramp at the side door meant I could get in on my own. At the beginning of September a sign went up saying the ramp was 'out of service' and to 'ask for assistance'. There is no bell and no way of asking for anything when you cannot get up the three steps at the front.\n\nOn Tuesday 15th September I needed to pay in cash and a cheque. My carer Joyce went in and asked if someone could come out to me. She was told by a young man that staff could not leave the counter and I should use the app or go to another branch. I do not use the app, my hands are not good enough for small screens. I sat outside in the [rain] for twenty minutes while Joyce queued. In the end she paid the cheque in for me but they would not take the cash without me there.\n\nI went back on 29th September hoping it would be fixed. It was not. This time I asked a lady going in to fetch somebody and the same young man came to the door and said 'sorry mate, rules' and went back inside. Since then I have had to take a taxi to the Leeds Road branch three times at £16.50 each way.\n\nIt is now over five weeks. I would like:\n1. The ramp repaired, or a proper temporary ramp put in.\n2. An apology, and for staff to be told they must help disabled customers.\n3. My taxi fares paid back (£99).\n\nI do not want to change banks after 30 years but I will.\n\nYours faithfully,\n\nH. S. [CUSTOMER] (Mr)"
+      },
+      {
+        "id": "D2",
+        "system": "CRM",
+        "type": "crm_note",
+        "date": "2026-10-13",
+        "author_role": "handler",
+        "text": "Letter complaint logged (rec'd 12/10). Acknowledgement letter sent 13/10 naming handler. Profile check: no accessibility or support needs recorded. No contact number on profile, landline given in letter, not yet called. Previous complaints last 12m: none. Branch asked for response."
+      },
+      {
+        "id": "D3",
+        "system": "BRANCH",
+        "type": "branch_note",
+        "date": "2026-10-14",
+        "author_role": "branch_staff",
+        "text": "Branch response for complaints - Westgate, Wakefield. Side ramp failed H&S inspection 02/09/2026, taped off. Contractor booked twice, both visits cancelled by contractor, new date 30/10. No portable ramp held at branch. Staff guidance during closure: 'assist customers at the door where possible'. Spoke to [STAFF_1] (CSA) re [CUSTOMER]. [STAFF_1] says he understood he could not leave the counter when he is the only cashier on, and did not realise it was the same customer both times. [STAFF_1] reminded of guidance. - [STAFF_2], BM"
+      }
+    ],
+    "replacements": [
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "71 Thornhill Road",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "WF1 3PB",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Sandhu",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[PHONE_1]",
+        "original": "0113 496 0745\n",
+        "layer": "pattern",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[STAFF_1]",
+        "original": "KP",
+        "layer": "record",
+        "documentId": "D3"
+      },
+      {
+        "placeholder": "[STAFF_1]",
+        "original": "KP",
+        "layer": "record",
+        "documentId": "D3"
+      },
+      {
+        "placeholder": "[STAFF_1]",
+        "original": "KP",
+        "layer": "record",
+        "documentId": "D3"
+      },
+      {
+        "placeholder": "[STAFF_2]",
+        "original": "M Barker",
+        "layer": "record",
+        "documentId": "D3"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Mr Sandu",
+        "layer": "near_match",
+        "documentId": "D3"
+      }
+    ],
+    "placeholders": [
+      "[CUSTOMER]",
+      "[PHONE_1]",
+      "[STAFF_1]",
+      "[STAFF_2]"
+    ],
+    "display": {
+      "[CUSTOMER]": "Mr Harjit Sandhu",
+      "[PHONE_1]": "0113 496 0745\n",
+      "[STAFF_1]": "Karl Pearson",
+      "[STAFF_2]": "Michelle Barker",
+      "[ACCOUNT]": "47205613",
+      "[CARD]": "1907",
+      "[SORT_CODE]": "77-41-38"
+    }
+  },
+  "pack": {
+    "enough_information": {
+      "sufficient": false,
+      "what_is_needed": "Confirm which Harbour & Vale product the customer holds with Westgate. The letter describes branch banking (paying in cash and a cheque) but does not name an account, so the product entered is an inference."
+    },
+    "intake": {
+      "issues": [
+        {
+          "product": "current_account",
+          "cause": "service_delay",
+          "description": "Side ramp at Westgate out of service since early September, with no way to call for assistance. On 15 Sept the carer could not get staff to come out, and cash was refused without the customer present. Customer says taxi fares of £99 were paid to reach another branch.",
+          "citations": [
+            {
+              "source": "D1",
+              "quote": "There is no bell and no way of asking for anything"
+            },
+            {
+              "source": "D3",
+              "quote": "Side ramp failed H&S inspection 02/09/2026, taped off."
+            },
+            {
+              "source": "D1",
+              "quote": "they would not take the cash without me there"
+            }
+          ]
+        },
+        {
+          "product": "current_account",
+          "cause": "staff_conduct",
+          "description": "On 29 Sept a member of staff reportedly told the customer 'sorry mate, rules' and went back inside rather than assisting at the door.",
+          "citations": [
+            {
+              "source": "D1",
+              "quote": "sorry mate, rules"
+            }
+          ]
+        }
+      ],
+      "suggested_team": "frontline",
+      "team_reason": {
+        "text": "Branch service and staff conduct complaint with no specialist remit identified. The first handler can resolve it with the branch response and the ramp repair plan.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Branch response for complaints - Westgate, Wakefield."
+          }
+        ]
+      },
+      "payment_services": "no",
+      "payment_services_reason": {
+        "text": "Concerns physical access and staff service, not the execution or authorisation of a payment.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I needed to pay in cash and a cheque"
+          }
+        ]
+      },
+      "already_with_ombudsman": false,
+      "linked_to_earlier_complaint": false
+    },
+    "summary": [
+      {
+        "text": "Customer uses a wheelchair. The Westgate side ramp has been out of service since early September and was taped off after failing a health and safety inspection on 02/09/2026.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I have used a wheelchair since an accident in 2009"
+          },
+          {
+            "source": "D3",
+            "quote": "Side ramp failed H&S inspection 02/09/2026, taped off."
+          }
+        ]
+      },
+      {
+        "text": "On 15 Sept the customer's carer could not get staff to come out. The cheque was paid in, but the cash was refused without the customer present.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "She was told by a young man that staff could not leave the counter"
+          },
+          {
+            "source": "D1",
+            "quote": "they would not take the cash without me there"
+          }
+        ]
+      },
+      {
+        "text": "On 29 Sept the customer says a member of staff said 'sorry mate, rules' and did not come out to assist.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "sorry mate, rules"
+          }
+        ]
+      },
+      {
+        "text": "The customer says they have taken a taxi to the Leeds Road branch three times at £16.50 each way and seeks £99 back.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "at £16.50 each way"
+          },
+          {
+            "source": "D1",
+            "quote": "My taxi fares paid back (£99)."
+          }
+        ]
+      },
+      {
+        "text": "The branch confirms no portable ramp is held. The contractor cancelled two visits, and a new date of 30/10 is given.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "No portable ramp held at branch."
+          },
+          {
+            "source": "D3",
+            "quote": "both visits cancelled by contractor, new date 30/10"
+          }
+        ]
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-09-02",
+        "event": "Side ramp failed health and safety inspection and was taped off.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Side ramp failed H&S inspection 02/09/2026, taped off."
+          }
+        ]
+      },
+      {
+        "date": "2026-09-15",
+        "event": "Customer's carer attended the branch to pay in a cheque and cash. Staff would not come out, and the cash was refused without the customer present.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "On Tuesday 15th September I needed to pay in cash and a cheque."
+          },
+          {
+            "source": "D1",
+            "quote": "they would not take the cash without me there"
+          }
+        ]
+      },
+      {
+        "date": "2026-09-29",
+        "event": "Customer attended again. A member of staff reportedly said 'sorry mate, rules' and went back inside.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I went back on 29th September hoping it would be fixed."
+          },
+          {
+            "source": "D1",
+            "quote": "sorry mate, rules"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-08",
+        "event": "Customer wrote the complaint letter.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I am writing to complain about your Westgate branch in Wakefield"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-12",
+        "event": "Complaint letter received and logged.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Letter complaint logged (rec'd 12/10)."
+          }
+        ]
+      },
+      {
+        "date": "2026-10-13",
+        "event": "Acknowledgement letter sent, naming the handler.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Acknowledgement letter sent 13/10 naming handler."
+          }
+        ]
+      },
+      {
+        "date": "2026-10-14",
+        "event": "Branch response received.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Branch response for complaints - Westgate, Wakefield."
+          }
+        ]
+      },
+      {
+        "date": "2026-10-30",
+        "event": "Contractor's new date for ramp work, not confirmed.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "new date 30/10"
+          }
+        ]
+      }
+    ],
+    "outcome_sought": {
+      "text": "Ramp repaired or a proper temporary ramp put in; an apology; staff told they must help disabled customers; taxi fares of £99 paid back.",
+      "citations": [
+        {
+          "source": "D1",
+          "quote": "The ramp repaired, or a proper temporary ramp put in."
+        },
+        {
+          "source": "D1",
+          "quote": "An apology, and for staff to be told they must help disabled customers."
+        },
+        {
+          "source": "D1",
+          "quote": "My taxi fares paid back (£99)."
+        }
+      ]
+    },
+    "vulnerability": [
+      {
+        "signal": "Mobility impairment: uses a wheelchair and cannot manage the front steps.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I have used a wheelchair since an accident in 2009"
+          },
+          {
+            "source": "D1",
+            "quote": "when you cannot get up the three steps at the front"
+          }
+        ]
+      },
+      {
+        "signal": "Relies on a carer who acted for the customer at the branch.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "My carer Joyce went in and asked if someone could come out to me."
+          }
+        ]
+      },
+      {
+        "signal": "Difficulty using the app or small screens, so cannot use digital channels as an alternative.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "my hands are not good enough for small screens"
+          }
+        ]
+      }
+    ],
+    "relevant_policy": [
+      {
+        "policy_id": "CP-2.3",
+        "why_relevant": "The customer raises more than one issue (ramp and assistance, and staff conduct), so each must be recorded separately and answered.",
+        "citations": [
+          {
+            "source": "CP-2.3",
+            "quote": "Where a customer raises more than one issue, each issue must be recorded separately"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-3.1",
+        "why_relevant": "Sets the final response deadline of eight weeks from receipt on 12 Oct, which is 7 Dec 2026.",
+        "citations": [
+          {
+            "source": "CP-3.1",
+            "quote": "We must send a final response within eight weeks of receiving the complaint"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.3",
+        "why_relevant": "The handler must record the outcome the customer seeks, in their words.",
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "the outcome the customer is seeking"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.5",
+        "why_relevant": "Customer contact details are missing and the customer has not yet been called, so a documented contact attempt is needed.",
+        "citations": [
+          {
+            "source": "CP-4.5",
+            "quote": "make at least one documented attempt to contact the customer"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-5.1",
+        "why_relevant": "Signs of vulnerability are present: mobility impairment, carer reliance and difficulty with digital channels.",
+        "citations": [
+          {
+            "source": "CP-5.1",
+            "quote": "Staff must look for signs that a customer may be in vulnerable circumstances"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-5.2",
+        "why_relevant": "Vulnerability signs and support needs must be recorded, but the profile currently shows none.",
+        "citations": [
+          {
+            "source": "CP-5.2",
+            "quote": "Signs of vulnerability must be recorded with the customer's consent where possible"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-5.3",
+        "why_relevant": "Vulnerability changes how the complaint is handled, including communication, and the ramp issue can be put right straight away where possible.",
+        "citations": [
+          {
+            "source": "CP-5.3",
+            "quote": "Vulnerability changes how a complaint is handled, not whether it is handled quickly."
+          }
+        ]
+      }
+    ],
+    "handover_checklist": [
+      {
+        "item_id": "outcome_sought",
+        "status": "present",
+        "value": "Ramp repair or temporary ramp, apology, staff training, £99 taxi fares.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I would like:"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_contact_attempted",
+        "status": "present",
+        "value": "Acknowledgement letter sent 13/10. Phone call not yet made.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Acknowledgement letter sent 13/10 naming handler."
+          }
+        ]
+      },
+      {
+        "item_id": "customer_told_of_handover",
+        "status": "not_applicable",
+        "value": "",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Letter complaint logged (rec'd 12/10)."
+          }
+        ]
+      },
+      {
+        "item_id": "vulnerability_recorded",
+        "status": "missing",
+        "value": "",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "no accessibility or support needs recorded"
+          }
+        ]
+      },
+      {
+        "item_id": "linked_complaints_checked",
+        "status": "present",
+        "value": "No previous complaints in the last 12 months.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Previous complaints last 12m: none."
+          }
+        ]
+      }
+    ],
+    "conflicts": [
+      {
+        "text": "Staff guidance: the branch note says staff were told to assist at the door, while the customer reports staff said 'rules' and went back inside. Both versions are recorded and not resolved.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "assist customers at the door where possible"
+          },
+          {
+            "source": "D1",
+            "quote": "sorry mate, rules"
+          }
+        ]
+      }
+    ],
+    "flags": [
+      {
+        "type": "data_quality",
+        "description": "Customer profile has no accessibility or support needs and no contact number. The landline in the letter has not been used yet.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "no accessibility or support needs recorded"
+          },
+          {
+            "source": "D2",
+            "quote": "No contact number on profile, landline given in letter, not yet called."
+          }
+        ]
+      },
+      {
+        "type": "deadline_risk",
+        "description": "The contractor has cancelled twice, and the new ramp date of 30/10 is not confirmed.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "both visits cancelled by contractor, new date 30/10"
+          }
+        ]
+      },
+      {
+        "type": "third_party_authority",
+        "description": "Carer Joyce acted for the customer at the branch on 15 Sept. No written authority or consent to share information is recorded.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "In the end she paid the cheque in for me"
+          }
+        ]
+      }
+    ]
+  },
+  "checks": {
+    "statements": [
+      {
+        "path": "intake.issues.0",
+        "text": "Side ramp at Westgate out of service since early September, with no way to call for assistance. On 15 Sept the carer could not get staff to come out, and cash was refused without the customer present. Customer says taxi fares of £99 were paid to reach another branch.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "There is no bell and no way of asking for anything",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Side ramp failed H&S inspection 02/09/2026, taped off.",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "they would not take the cash without me there",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.issues.1",
+        "text": "On 29 Sept a member of staff reportedly told the customer 'sorry mate, rules' and went back inside rather than assisting at the door.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "sorry mate, rules",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.team_reason",
+        "text": "Branch service and staff conduct complaint with no specialist remit identified. The first handler can resolve it with the branch response and the ramp repair plan.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Branch response for complaints - Westgate, Wakefield.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.payment_services_reason",
+        "text": "Concerns physical access and staff service, not the execution or authorisation of a payment.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I needed to pay in cash and a cheque",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.0",
+        "text": "Customer uses a wheelchair. The Westgate side ramp has been out of service since early September and was taped off after failing a health and safety inspection on 02/09/2026.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I have used a wheelchair since an accident in 2009",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Side ramp failed H&S inspection 02/09/2026, taped off.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.1",
+        "text": "On 15 Sept the customer's carer could not get staff to come out. The cheque was paid in, but the cash was refused without the customer present.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "She was told by a young man that staff could not leave the counter",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "they would not take the cash without me there",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.2",
+        "text": "On 29 Sept the customer says a member of staff said 'sorry mate, rules' and did not come out to assist.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "sorry mate, rules",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.3",
+        "text": "The customer says they have taken a taxi to the Leeds Road branch three times at £16.50 each way and seeks £99 back.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "at £16.50 each way",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "My taxi fares paid back (£99).",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.4",
+        "text": "The branch confirms no portable ramp is held. The contractor cancelled two visits, and a new date of 30/10 is given.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "No portable ramp held at branch.",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "both visits cancelled by contractor, new date 30/10",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.0",
+        "text": "2026-09-02: Side ramp failed health and safety inspection and was taped off.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Side ramp failed H&S inspection 02/09/2026, taped off.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.1",
+        "text": "2026-09-15: Customer's carer attended the branch to pay in a cheque and cash. Staff would not come out, and the cash was refused without the customer present.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "On Tuesday 15th September I needed to pay in cash and a cheque.",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "they would not take the cash without me there",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.2",
+        "text": "2026-09-29: Customer attended again. A member of staff reportedly said 'sorry mate, rules' and went back inside.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I went back on 29th September hoping it would be fixed.",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "sorry mate, rules",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.3",
+        "text": "2026-10-08: Customer wrote the complaint letter.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I am writing to complain about your Westgate branch in Wakefield",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.4",
+        "text": "2026-10-12: Complaint letter received and logged.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Letter complaint logged (rec'd 12/10).",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.5",
+        "text": "2026-10-13: Acknowledgement letter sent, naming the handler.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Acknowledgement letter sent 13/10 naming handler.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.6",
+        "text": "2026-10-14: Branch response received.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Branch response for complaints - Westgate, Wakefield.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.7",
+        "text": "2026-10-30: Contractor's new date for ramp work, not confirmed.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "new date 30/10",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "outcome_sought",
+        "text": "Ramp repaired or a proper temporary ramp put in; an apology; staff told they must help disabled customers; taxi fares of £99 paid back.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "The ramp repaired, or a proper temporary ramp put in.",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "An apology, and for staff to be told they must help disabled customers.",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "My taxi fares paid back (£99).",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "vulnerability.0",
+        "text": "Mobility impairment: uses a wheelchair and cannot manage the front steps.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I have used a wheelchair since an accident in 2009",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "when you cannot get up the three steps at the front",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "vulnerability.1",
+        "text": "Relies on a carer who acted for the customer at the branch.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "My carer Joyce went in and asked if someone could come out to me.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "vulnerability.2",
+        "text": "Difficulty using the app or small screens, so cannot use digital channels as an alternative.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "my hands are not good enough for small screens",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.0",
+        "text": "CP-2.3: The customer raises more than one issue (ramp and assistance, and staff conduct), so each must be recorded separately and answered.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.3",
+            "quote": "Where a customer raises more than one issue, each issue must be recorded separately",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.1",
+        "text": "CP-3.1: Sets the final response deadline of eight weeks from receipt on 12 Oct, which is 7 Dec 2026.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-3.1",
+            "quote": "We must send a final response within eight weeks of receiving the complaint",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.2",
+        "text": "CP-4.3: The handler must record the outcome the customer seeks, in their words.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "the outcome the customer is seeking",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.3",
+        "text": "CP-4.5: Customer contact details are missing and the customer has not yet been called, so a documented contact attempt is needed.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.5",
+            "quote": "make at least one documented attempt to contact the customer",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.4",
+        "text": "CP-5.1: Signs of vulnerability are present: mobility impairment, carer reliance and difficulty with digital channels.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-5.1",
+            "quote": "Staff must look for signs that a customer may be in vulnerable circumstances",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.5",
+        "text": "CP-5.2: Vulnerability signs and support needs must be recorded, but the profile currently shows none.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-5.2",
+            "quote": "Signs of vulnerability must be recorded with the customer's consent where possible",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.6",
+        "text": "CP-5.3: Vulnerability changes how the complaint is handled, including communication, and the ramp issue can be put right straight away where possible.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-5.3",
+            "quote": "Vulnerability changes how a complaint is handled, not whether it is handled quickly.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.outcome_sought",
+        "text": "outcome_sought: Ramp repair or temporary ramp, apology, staff training, £99 taxi fares.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I would like:",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.customer_contact_attempted",
+        "text": "customer_contact_attempted: Acknowledgement letter sent 13/10. Phone call not yet made.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Acknowledgement letter sent 13/10 naming handler.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.linked_complaints_checked",
+        "text": "linked_complaints_checked: No previous complaints in the last 12 months.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Previous complaints last 12m: none.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "conflicts.0",
+        "text": "Staff guidance: the branch note says staff were told to assist at the door, while the customer reports staff said 'rules' and went back inside. Both versions are recorded and not resolved.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "assist customers at the door where possible",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "sorry mate, rules",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.0",
+        "text": "data_quality: Customer profile has no accessibility or support needs and no contact number. The landline in the letter has not been used yet.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "no accessibility or support needs recorded",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "No contact number on profile, landline given in letter, not yet called.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.1",
+        "text": "deadline_risk: The contractor has cancelled twice, and the new ramp date of 30/10 is not confirmed.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "both visits cancelled by contractor, new date 30/10",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.2",
+        "text": "third_party_authority: Carer Joyce acted for the customer at the branch on 15 Sept. No written authority or consent to share information is recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "In the end she paid the cheque in for me",
+            "result": "verified"
+          }
+        ]
+      }
+    ],
+    "supportedCount": 35,
+    "unsupportedCount": 0,
+    "inventedPlaceholders": [],
+    "checklist": {
+      "required": 4,
+      "present": 3,
+      "missing": [
+        "vulnerability_recorded"
+      ],
+      "conflicting": []
+    }
+  },
+  "clock": "8_weeks",
+  "deadlines": {
+    "received": "2026-10-12",
+    "clock": "8_weeks",
+    "summaryResolutionWindowCloses": "2026-10-15",
+    "eightWeekDue": "2026-12-07",
+    "workingDue": "2026-12-07",
+    "needsHandlerConfirmation": false,
+    "calendarDaysLeft": 28,
+    "businessDaysLeft": 20,
+    "status": "on_track"
+  },
+  "usage": {
+    "inputTokens": 1125,
+    "outputTokens": 11512,
+    "cacheReadTokens": 9468,
+    "cacheWriteTokens": 0,
+    "costUsd": 0.00596318,
+    "latencyMs": 44924
+  }
+}

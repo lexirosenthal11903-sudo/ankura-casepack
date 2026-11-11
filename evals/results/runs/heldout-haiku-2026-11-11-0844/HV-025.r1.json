@@ -1,0 +1,1198 @@
+{
+  "caseId": "HV-025",
+  "createdAt": "2026-11-11T08:46:32.125Z",
+  "model": "claude-haiku-5-5",
+  "promptVersion": "casepack-v3",
+  "redacted": {
+    "id": "HV-025",
+    "received": "2026-09-29",
+    "channel": "email",
+    "documents": [
+      {
+        "id": "D1",
+        "system": "EMAIL",
+        "type": "email",
+        "date": "2026-09-29",
+        "author_role": "customer",
+        "text": "Subject: Account blocked with NO warning - where are my wages??\n\nHi,\n\nOn Thursday (24th) my card was declined at the petrol station and when I logged into the app it said my account is 'restricted' and to call you. I rang on Saturday and the man ([STAFF_1] I think) said a decision had been made to close my account and that I was sent a letter at the start of August giving me 60 days notice. I NEVER got any letter. I've lived at the same flat for 3 years and I get all my other post fine.\n\nMy wages went in on the 25th (£1,742) and I can't touch them. I've had to borrow money off my mum for food and petrol and my rent is due on the 1st. Nobody will tell me why my account is being closed, he just said it was 'a business decision' and he couldn't say any more.\n\nI've banked with you since I was 16. I haven't done anything wrong.\n\nI want:\n1. my wages released to me now. I've opened an account with another bank and can give you the details\n2. a copy of this so called letter\n3. to know why, and if you are closing it, to be given the proper notice like you're supposed to\n\n[CUSTOMER]\n[CUSTOMER_PHONE]"
+      },
+      {
+        "id": "D2",
+        "system": "CRM",
+        "type": "crm_note",
+        "date": "2026-09-29",
+        "author_role": "handler",
+        "text": "30/07/26 Account review outcome: EXIT - business decision (ref ER-2207). Notice period 60 days. CL60 closure notice letter sent 01/08/2026 to address on file. Account to close 30/09/2026. - Customer Review team\n26/09/26 Inbound call, [CUSTOMER]. Cust disputes receiving closure letter. Advised decision stands, CL60 sent 01/08 per CRM. Cust upset re wages. Advised cannot disclose reasons. - [STAFF_1]\n29/09/26 Email complaint logged. Called cust [CUSTOMER_PHONE] at 14:10, no answer, VM left. - [STAFF_2]"
+      },
+      {
+        "id": "D3",
+        "system": "CORE",
+        "type": "system_log",
+        "date": "2026-09-28",
+        "author_role": "system",
+        "text": "Account [ACCOUNT] event history 01/07/2026 - 28/09/2026:\n29/07/2026 REVIEW FLAG SET (CR)\n25/08/2026 FP IN GBP 1,738.90 BLAKEMORE CARE LTD PAYROLL\n24/09/2026 08:41 STATUS CHANGE OPEN -> RESTRICTED (DEBITS + CREDITS HELD) reason EXIT-BD user [STAFF_1]\n24/09/2026 08:41 CARD [CARD] BLOCKED\n25/09/2026 06:02 FP IN GBP 1,742.18 BLAKEMORE CARE LTD PAYROLL - HELD (account restricted)\nCorrespondence events in period: none\nScheduled closure date: 24/11/2026"
+      }
+    ],
+    "replacements": [
+      {
+        "placeholder": "[STAFF_1]",
+        "original": "Dean",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Sofia",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[CUSTOMER_PHONE]",
+        "original": "07700 900 381",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[STAFF_1]",
+        "original": "D Fowler",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[CUSTOMER_PHONE]",
+        "original": "07700 900 381",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[STAFF_2]",
+        "original": "H Brandt",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Ms Marquez",
+        "layer": "near_match",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[ACCOUNT]",
+        "original": "29467031",
+        "layer": "record",
+        "documentId": "D3"
+      },
+      {
+        "placeholder": "[CARD]",
+        "original": "8813",
+        "layer": "record",
+        "documentId": "D3"
+      },
+      {
+        "placeholder": "[STAFF_1]",
+        "original": "BATCH",
+        "layer": "pattern",
+        "documentId": "D3"
+      }
+    ],
+    "placeholders": [
+      "[ACCOUNT]",
+      "[CARD]",
+      "[CUSTOMER]",
+      "[CUSTOMER_PHONE]",
+      "[STAFF_1]",
+      "[STAFF_2]"
+    ],
+    "display": {
+      "[STAFF_1]": "Dean Fowler",
+      "[CUSTOMER]": "Ms Sofia Marques",
+      "[CUSTOMER_PHONE]": "07700 900 381",
+      "[STAFF_2]": "Hollie Brandt",
+      "[ACCOUNT]": "29467031",
+      "[CARD]": "8813",
+      "[SORT_CODE]": "77-41-84",
+      "[CUSTOMER_EMAIL]": "sofia.marques@example.com"
+    }
+  },
+  "pack": {
+    "enough_information": {
+      "sufficient": true,
+      "what_is_needed": ""
+    },
+    "intake": {
+      "issues": [
+        {
+          "product": "current_account",
+          "cause": "account_opening_closure",
+          "description": "Account restricted on 24/09/2026 and card blocked after an exit decision. Customer disputes receiving the 60-day closure letter and has not been given reasons.",
+          "citations": [
+            {
+              "source": "D2",
+              "quote": "EXIT - business decision (ref ER-2207)"
+            },
+            {
+              "source": "D1",
+              "quote": "I NEVER got any letter."
+            }
+          ]
+        },
+        {
+          "product": "current_account",
+          "cause": "payment_problem",
+          "description": "Incoming wages of £1,742.18 received 25/09/2026 are held on the restricted account, so the customer cannot access them.",
+          "citations": [
+            {
+              "source": "D3",
+              "quote": "FP IN GBP 1,742.18 BLAKEMORE CARE LTD PAYROLL - HELD"
+            }
+          ]
+        }
+      ],
+      "suggested_team": "payments_disputes",
+      "team_reason": {
+        "text": "Held incoming Faster Payment wages on a restricted account is a payment problem, which this team handles.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "FP IN GBP 1,742.18 BLAKEMORE CARE LTD PAYROLL - HELD"
+          }
+        ]
+      },
+      "payment_services": "unclear",
+      "payment_services_reason": {
+        "text": "Held incoming wages may raise a Parts 6-7 execution question alongside the closure issue, so a team leader must confirm the time limit.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "FP IN GBP 1,742.18 BLAKEMORE CARE LTD PAYROLL - HELD"
+          },
+          {
+            "source": "CP-3.3",
+            "quote": "the handler must confirm with a team leader whether the whole complaint will be answered within the payment services time limit"
+          }
+        ]
+      },
+      "already_with_ombudsman": false,
+      "linked_to_earlier_complaint": false
+    },
+    "summary": [
+      {
+        "text": "The current account was restricted on 24/09/2026 and the card blocked. Wages of £1,742.18 received on 25/09/2026 are held.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "STATUS CHANGE OPEN -> RESTRICTED (DEBITS + CREDITS HELD)"
+          },
+          {
+            "source": "D3",
+            "quote": "HELD (account restricted)"
+          }
+        ]
+      },
+      {
+        "text": "The bank records an exit decision with 60 days' notice and says a CL60 closure letter was sent on 01/08/2026.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "EXIT - business decision (ref ER-2207)"
+          },
+          {
+            "source": "D2",
+            "quote": "CL60 closure notice letter sent 01/08/2026 to address on file."
+          }
+        ]
+      },
+      {
+        "text": "The customer says they never received the letter and has not been given reasons for the closure.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I NEVER got any letter."
+          },
+          {
+            "source": "D2",
+            "quote": "Advised cannot disclose reasons."
+          }
+        ]
+      },
+      {
+        "text": "The closure date differs between records: 30/09/2026 in the CRM and 24/11/2026 in the system log.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Account to close 30/09/2026."
+          },
+          {
+            "source": "D3",
+            "quote": "Scheduled closure date: 24/11/2026"
+          }
+        ]
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-07-29",
+        "event": "Review flag set on the account in the system log.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "29/07/2026 REVIEW FLAG SET (CR)"
+          }
+        ]
+      },
+      {
+        "date": "2026-07-30",
+        "event": "Account review outcome recorded as EXIT, business decision, with 60 days' notice.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Account review outcome: EXIT - business decision (ref ER-2207)"
+          }
+        ]
+      },
+      {
+        "date": "2026-08-01",
+        "event": "CRM records CL60 closure letter sent to address on file. Customer says they never received it.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "CL60 closure notice letter sent 01/08/2026 to address on file."
+          },
+          {
+            "source": "D1",
+            "quote": "I NEVER got any letter."
+          }
+        ]
+      },
+      {
+        "date": "2026-08-25",
+        "event": "Faster Payment of £1,738.90 from Blakemore Care Ltd payroll received.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "25/08/2026 FP IN GBP 1,738.90 BLAKEMORE CARE LTD PAYROLL"
+          }
+        ]
+      },
+      {
+        "date": "2026-09-24",
+        "event": "Account status changed from open to restricted with debits and credits held, and the card blocked. Customer's card declined at a petrol station.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "STATUS CHANGE OPEN -> RESTRICTED (DEBITS + CREDITS HELD)"
+          },
+          {
+            "source": "D3",
+            "quote": "24/09/2026 08:41 CARD [CARD] BLOCKED"
+          },
+          {
+            "source": "D1",
+            "quote": "my card was declined at the petrol station"
+          }
+        ]
+      },
+      {
+        "date": "2026-09-25",
+        "event": "Wages of £1,742.18 received and held because the account is restricted.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "FP IN GBP 1,742.18 BLAKEMORE CARE LTD PAYROLL - HELD"
+          }
+        ]
+      },
+      {
+        "date": "2026-09-26",
+        "event": "Customer called, disputed receiving the closure letter, and was told the decision stands and reasons cannot be disclosed.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Cust disputes receiving closure letter. Advised decision stands"
+          },
+          {
+            "source": "D2",
+            "quote": "Advised cannot disclose reasons."
+          }
+        ]
+      },
+      {
+        "date": "2026-09-29",
+        "event": "Email complaint logged. Staff called the customer at 14:10, no answer, voicemail left.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Email complaint logged."
+          },
+          {
+            "source": "D2",
+            "quote": "Called cust [CUSTOMER_PHONE] at 14:10, no answer, VM left."
+          }
+        ]
+      }
+    ],
+    "outcome_sought": {
+      "text": "Wages released now; a copy of the letter; the reasons for the closure; and proper notice if the account is to be closed.",
+      "citations": [
+        {
+          "source": "D1",
+          "quote": "my wages released to me now"
+        },
+        {
+          "source": "D1",
+          "quote": "to be given the proper notice like you're supposed to"
+        }
+      ]
+    },
+    "vulnerability": [
+      {
+        "signal": "Financial difficulty: customer has borrowed money to buy food and fuel, with rent due, and cannot access wages.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I've had to borrow money off my mum for food and petrol"
+          }
+        ]
+      }
+    ],
+    "relevant_policy": [
+      {
+        "policy_id": "CP-2.3",
+        "why_relevant": "The complaint raises closure and held-funds issues, which must each be recorded separately.",
+        "citations": [
+          {
+            "source": "CP-2.3",
+            "quote": "each issue must be recorded separately with its own product and cause category"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-3.3",
+        "why_relevant": "The complaint may mix a payment services issue with other issues, so a team leader must confirm the time limit.",
+        "citations": [
+          {
+            "source": "CP-3.3",
+            "quote": "the handler must confirm with a team leader whether the whole complaint will be answered within the payment services time limit"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.2",
+        "why_relevant": "CRM and system records disagree on the letter and the closure date, so both versions must be recorded.",
+        "citations": [
+          {
+            "source": "CP-4.2",
+            "quote": "the handler must record both versions and the source of each"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.3",
+        "why_relevant": "The customer's outcome must be recorded in their own words.",
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "the outcome the customer is seeking"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-5.1",
+        "why_relevant": "The customer shows signs of financial difficulty.",
+        "citations": [
+          {
+            "source": "CP-5.1",
+            "quote": "Staff must look for signs that a customer may be in vulnerable circumstances"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-5.2",
+        "why_relevant": "Vulnerability signs must be recorded with support needs, which are not yet recorded.",
+        "citations": [
+          {
+            "source": "CP-5.2",
+            "quote": "Signs of vulnerability must be recorded with the customer's consent where possible"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-5.3",
+        "why_relevant": "Vulnerability needs a warm handover between teams.",
+        "citations": [
+          {
+            "source": "CP-5.3",
+            "quote": "must not pass a vulnerable customer between teams without a warm handover"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-6.1",
+        "why_relevant": "The held-payment issue falls within the payments_disputes remit and needs its checklist.",
+        "citations": [
+          {
+            "source": "CP-6.1",
+            "quote": "A complaint must be passed to a specialist team when it falls within that team's remit"
+          }
+        ]
+      }
+    ],
+    "handover_checklist": [
+      {
+        "item_id": "outcome_sought",
+        "status": "present",
+        "value": "Wages released now; copy of letter; reasons and proper notice",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "my wages released to me now"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_contact_attempted",
+        "status": "present",
+        "value": "Customer called 26/09/2026; staff call 29/09/2026 unanswered, voicemail left",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Cust disputes receiving closure letter."
+          },
+          {
+            "source": "D2",
+            "quote": "Called cust [CUSTOMER_PHONE] at 14:10, no answer, VM left."
+          }
+        ]
+      },
+      {
+        "item_id": "customer_told_of_handover",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "vulnerability_recorded",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "linked_complaints_checked",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "transaction_reference",
+        "status": "present",
+        "value": "25/09/2026, GBP 1,742.18, incoming Faster Payment",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "FP IN GBP 1,742.18 BLAKEMORE CARE LTD PAYROLL - HELD"
+          }
+        ]
+      },
+      {
+        "item_id": "payment_type",
+        "status": "present",
+        "value": "Faster Payment (incoming)",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "FP IN GBP 1,742.18 BLAKEMORE CARE LTD PAYROLL - HELD"
+          }
+        ]
+      },
+      {
+        "item_id": "expected_vs_actual",
+        "status": "present",
+        "value": "Customer expected wages to be available; they are held on restricted account",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "My wages went in on the 25th (£1,742) and I can't touch them."
+          }
+        ]
+      },
+      {
+        "item_id": "merchant_or_payee",
+        "status": "present",
+        "value": "Payer: Blakemore Care Ltd (payroll)",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "FP IN GBP 1,742.18 BLAKEMORE CARE LTD PAYROLL - HELD"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_loss",
+        "status": "present",
+        "value": "Borrowed money from mother for food and petrol",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I've had to borrow money off my mum for food and petrol"
+          }
+        ]
+      }
+    ],
+    "conflicts": [
+      {
+        "text": "Closure date: CRM says the account is to close on 30/09/2026; system log says the scheduled closure date is 24/11/2026.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Account to close 30/09/2026."
+          },
+          {
+            "source": "D3",
+            "quote": "Scheduled closure date: 24/11/2026"
+          }
+        ]
+      },
+      {
+        "text": "Letter: CRM says the CL60 letter was sent 01/08/2026; system log shows no correspondence events in the period; customer says they never received it.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "CL60 closure notice letter sent 01/08/2026 to address on file."
+          },
+          {
+            "source": "D3",
+            "quote": "Correspondence events in period: none"
+          },
+          {
+            "source": "D1",
+            "quote": "I NEVER got any letter."
+          }
+        ]
+      },
+      {
+        "text": "Review date: CRM records the review outcome on 30/07/26; system log records a review flag set on 29/07/2026. These may be different events and are not yet confirmed.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "30/07/26 Account review outcome: EXIT"
+          },
+          {
+            "source": "D3",
+            "quote": "29/07/2026 REVIEW FLAG SET (CR)"
+          }
+        ]
+      }
+    ],
+    "flags": [
+      {
+        "type": "deadline_risk",
+        "description": "CRM gives a closure date of 30/09/2026, the day after the complaint was logged, while the system log gives 24/11/2026. Customer's rent is due on the 1st.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Account to close 30/09/2026."
+          },
+          {
+            "source": "D1",
+            "quote": "my rent is due on the 1st"
+          }
+        ]
+      },
+      {
+        "type": "data_quality",
+        "description": "CRM and system log disagree on whether correspondence was sent and on the closure date. See conflicts.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Correspondence events in period: none"
+          }
+        ]
+      }
+    ]
+  },
+  "checks": {
+    "statements": [
+      {
+        "path": "intake.issues.0",
+        "text": "Account restricted on 24/09/2026 and card blocked after an exit decision. Customer disputes receiving the 60-day closure letter and has not been given reasons.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "EXIT - business decision (ref ER-2207)",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "I NEVER got any letter.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.issues.1",
+        "text": "Incoming wages of £1,742.18 received 25/09/2026 are held on the restricted account, so the customer cannot access them.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "FP IN GBP 1,742.18 BLAKEMORE CARE LTD PAYROLL - HELD",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.team_reason",
+        "text": "Held incoming Faster Payment wages on a restricted account is a payment problem, which this team handles.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "FP IN GBP 1,742.18 BLAKEMORE CARE LTD PAYROLL - HELD",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.payment_services_reason",
+        "text": "Held incoming wages may raise a Parts 6-7 execution question alongside the closure issue, so a team leader must confirm the time limit.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "FP IN GBP 1,742.18 BLAKEMORE CARE LTD PAYROLL - HELD",
+            "result": "verified"
+          },
+          {
+            "source": "CP-3.3",
+            "quote": "the handler must confirm with a team leader whether the whole complaint will be answered within the payment services time limit",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.0",
+        "text": "The current account was restricted on 24/09/2026 and the card blocked. Wages of £1,742.18 received on 25/09/2026 are held.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "STATUS CHANGE OPEN -> RESTRICTED (DEBITS + CREDITS HELD)",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "HELD (account restricted)",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.1",
+        "text": "The bank records an exit decision with 60 days' notice and says a CL60 closure letter was sent on 01/08/2026.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "EXIT - business decision (ref ER-2207)",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "CL60 closure notice letter sent 01/08/2026 to address on file.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.2",
+        "text": "The customer says they never received the letter and has not been given reasons for the closure.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I NEVER got any letter.",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Advised cannot disclose reasons.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.3",
+        "text": "The closure date differs between records: 30/09/2026 in the CRM and 24/11/2026 in the system log.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Account to close 30/09/2026.",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Scheduled closure date: 24/11/2026",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.0",
+        "text": "2026-07-29: Review flag set on the account in the system log.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "29/07/2026 REVIEW FLAG SET (CR)",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.1",
+        "text": "2026-07-30: Account review outcome recorded as EXIT, business decision, with 60 days' notice.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Account review outcome: EXIT - business decision (ref ER-2207)",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.2",
+        "text": "2026-08-01: CRM records CL60 closure letter sent to address on file. Customer says they never received it.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "CL60 closure notice letter sent 01/08/2026 to address on file.",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "I NEVER got any letter.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.3",
+        "text": "2026-08-25: Faster Payment of £1,738.90 from Blakemore Care Ltd payroll received.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "25/08/2026 FP IN GBP 1,738.90 BLAKEMORE CARE LTD PAYROLL",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.4",
+        "text": "2026-09-24: Account status changed from open to restricted with debits and credits held, and the card blocked. Customer's card declined at a petrol station.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "STATUS CHANGE OPEN -> RESTRICTED (DEBITS + CREDITS HELD)",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "24/09/2026 08:41 CARD [CARD] BLOCKED",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "my card was declined at the petrol station",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.5",
+        "text": "2026-09-25: Wages of £1,742.18 received and held because the account is restricted.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "FP IN GBP 1,742.18 BLAKEMORE CARE LTD PAYROLL - HELD",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.6",
+        "text": "2026-09-26: Customer called, disputed receiving the closure letter, and was told the decision stands and reasons cannot be disclosed.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Cust disputes receiving closure letter. Advised decision stands",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Advised cannot disclose reasons.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.7",
+        "text": "2026-09-29: Email complaint logged. Staff called the customer at 14:10, no answer, voicemail left.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Email complaint logged.",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Called cust [CUSTOMER_PHONE] at 14:10, no answer, VM left.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "outcome_sought",
+        "text": "Wages released now; a copy of the letter; the reasons for the closure; and proper notice if the account is to be closed.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "my wages released to me now",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "to be given the proper notice like you're supposed to",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "vulnerability.0",
+        "text": "Financial difficulty: customer has borrowed money to buy food and fuel, with rent due, and cannot access wages.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I've had to borrow money off my mum for food and petrol",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.0",
+        "text": "CP-2.3: The complaint raises closure and held-funds issues, which must each be recorded separately.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.3",
+            "quote": "each issue must be recorded separately with its own product and cause category",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.1",
+        "text": "CP-3.3: The complaint may mix a payment services issue with other issues, so a team leader must confirm the time limit.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-3.3",
+            "quote": "the handler must confirm with a team leader whether the whole complaint will be answered within the payment services time limit",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.2",
+        "text": "CP-4.2: CRM and system records disagree on the letter and the closure date, so both versions must be recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.2",
+            "quote": "the handler must record both versions and the source of each",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.3",
+        "text": "CP-4.3: The customer's outcome must be recorded in their own words.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "the outcome the customer is seeking",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.4",
+        "text": "CP-5.1: The customer shows signs of financial difficulty.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-5.1",
+            "quote": "Staff must look for signs that a customer may be in vulnerable circumstances",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.5",
+        "text": "CP-5.2: Vulnerability signs must be recorded with support needs, which are not yet recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-5.2",
+            "quote": "Signs of vulnerability must be recorded with the customer's consent where possible",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.6",
+        "text": "CP-5.3: Vulnerability needs a warm handover between teams.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-5.3",
+            "quote": "must not pass a vulnerable customer between teams without a warm handover",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.7",
+        "text": "CP-6.1: The held-payment issue falls within the payments_disputes remit and needs its checklist.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-6.1",
+            "quote": "A complaint must be passed to a specialist team when it falls within that team's remit",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.outcome_sought",
+        "text": "outcome_sought: Wages released now; copy of letter; reasons and proper notice",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "my wages released to me now",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.customer_contact_attempted",
+        "text": "customer_contact_attempted: Customer called 26/09/2026; staff call 29/09/2026 unanswered, voicemail left",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Cust disputes receiving closure letter.",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Called cust [CUSTOMER_PHONE] at 14:10, no answer, VM left.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.transaction_reference",
+        "text": "transaction_reference: 25/09/2026, GBP 1,742.18, incoming Faster Payment",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "FP IN GBP 1,742.18 BLAKEMORE CARE LTD PAYROLL - HELD",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.payment_type",
+        "text": "payment_type: Faster Payment (incoming)",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "FP IN GBP 1,742.18 BLAKEMORE CARE LTD PAYROLL - HELD",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.expected_vs_actual",
+        "text": "expected_vs_actual: Customer expected wages to be available; they are held on restricted account",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "My wages went in on the 25th (£1,742) and I can't touch them.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.merchant_or_payee",
+        "text": "merchant_or_payee: Payer: Blakemore Care Ltd (payroll)",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "FP IN GBP 1,742.18 BLAKEMORE CARE LTD PAYROLL - HELD",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.customer_loss",
+        "text": "customer_loss: Borrowed money from mother for food and petrol",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I've had to borrow money off my mum for food and petrol",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "conflicts.0",
+        "text": "Closure date: CRM says the account is to close on 30/09/2026; system log says the scheduled closure date is 24/11/2026.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Account to close 30/09/2026.",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Scheduled closure date: 24/11/2026",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "conflicts.1",
+        "text": "Letter: CRM says the CL60 letter was sent 01/08/2026; system log shows no correspondence events in the period; customer says they never received it.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "CL60 closure notice letter sent 01/08/2026 to address on file.",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Correspondence events in period: none",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "I NEVER got any letter.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "conflicts.2",
+        "text": "Review date: CRM records the review outcome on 30/07/26; system log records a review flag set on 29/07/2026. These may be different events and are not yet confirmed.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "30/07/26 Account review outcome: EXIT",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "29/07/2026 REVIEW FLAG SET (CR)",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.0",
+        "text": "deadline_risk: CRM gives a closure date of 30/09/2026, the day after the complaint was logged, while the system log gives 24/11/2026. Customer's rent is due on the 1st.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Account to close 30/09/2026.",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "my rent is due on the 1st",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.1",
+        "text": "data_quality: CRM and system log disagree on whether correspondence was sent and on the closure date. See conflicts.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Correspondence events in period: none",
+            "result": "verified"
+          }
+        ]
+      }
+    ],
+    "supportedCount": 38,
+    "unsupportedCount": 0,
+    "inventedPlaceholders": [],
+    "checklist": {
+      "required": 10,
+      "present": 7,
+      "missing": [
+        "customer_told_of_handover",
+        "vulnerability_recorded",
+        "linked_complaints_checked"
+      ],
+      "conflicting": []
+    }
+  },
+  "clock": "confirm",
+  "deadlines": {
+    "received": "2026-09-29",
+    "clock": "confirm",
+    "summaryResolutionWindowCloses": "2026-10-02",
+    "eightWeekDue": "2026-11-24",
+    "psrDue": "2026-10-20",
+    "psrExceptionalDue": "2026-11-17",
+    "workingDue": "2026-10-20",
+    "needsHandlerConfirmation": true,
+    "calendarDaysLeft": -20,
+    "businessDaysLeft": -14,
+    "status": "overdue"
+  },
+  "usage": {
+    "inputTokens": 1054,
+    "outputTokens": 12291,
+    "cacheReadTokens": 9468,
+    "cacheWriteTokens": 0,
+    "costUsd": 0.00634558,
+    "latencyMs": 46680
+  }
+}

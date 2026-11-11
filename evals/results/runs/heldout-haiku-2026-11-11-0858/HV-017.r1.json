@@ -1,0 +1,1227 @@
+{
+  "caseId": "HV-017",
+  "createdAt": "2026-11-11T08:59:05.279Z",
+  "model": "claude-haiku-5-5",
+  "promptVersion": "casepack-v3",
+  "redacted": {
+    "id": "HV-017",
+    "received": "2026-10-19",
+    "channel": "email",
+    "documents": [
+      {
+        "id": "D1",
+        "system": "EMAIL",
+        "type": "email",
+        "date": "2026-10-19",
+        "author_role": "customer",
+        "text": "Subject: Complaint - CHAPS payment for our house completion sent a day late - costs incurred\n\nDear Sir or Madam,\n\nI am writing to make a formal complaint, and I apologise in advance because this is going to be a long email, but I want you to have the full picture because frankly I have had to explain it to four different people on the phone already and I am not doing it again.\n\nFirst of all some background. I have been a customer of Harbour & Vale since 1998 when I opened a student account at the old branch on the High Street in Harrogate (which you closed in 2021, which I was not happy about at the time either, but that is another story). My late father [PERSON_1] banked with you for over forty years before that. I have always recommended you to friends. I even put up with the app redesign last year which, to be honest, made it much harder to find anything. I mention all of this so you understand I am not someone who complains for the sake of it. The only other time I have ever complained was in 2019 when my card was cloned in Spain and that was sorted out very quickly and I was happy with how it was handled.\n\nSo. My wife [PERSON_2] and I have been buying a house at [ADDRESS_1], Knaresborough, [POSTCODE_1], for most of this year. It has been a long process with a chain of four and we finally had completion fixed for Thursday 15th October. Our solicitor, [PERSON] at Wetherby Lane Solicitors, told us very clearly that the balance of the purchase money from us (£74,250, which was the proceeds from our savings and a gift from [PERSON_2]'s parents) had to be in their client account by 12 noon on the Thursday at the latest, otherwise completion could not happen that day.\n\nOn the Tuesday (13th) I phoned your helpline to ask how to send such a large amount, because the online banking limit for normal transfers is lower than that. I was told to use the CHAPS option in online banking, that it would arrive the same day as long as it was set up before the cut-off, and that it might be checked by your security team. I said fine, that makes sense.\n\nOn Wednesday 14th at about 3.20pm I set up the CHAPS payment in online banking with the value date of Thursday 15th, exactly as I had been told. I triple checked the sort code and account number with the solicitor's letter. The screen said 'Your payment is being reviewed. We may call you to confirm it.' Nobody called me on the Wednesday. I assumed that meant everything was fine.\n\nOn Thursday morning at about 9am [PERSON] emailed to say nothing had arrived. I rang you at 9.15 and spoke to a lady called [STAFF_2] who said the payment was 'with the payments team for checks' and it 'should go today'. I asked if I could do anything to speed it up, confirm it was me, anything, and she said no, the team would call me. I rang again at 12.40 and was told the same thing. I rang again at 2.10pm and was told that the cut-off for the day had now passed and it would go first thing Friday. At no point did anybody from your payments team actually call me, even though I was sitting by the phone all day with my passport and every document you could possibly want.\n\nThe money finally left at about 10am on Friday 16th, after someone from your team rang me at 9.50 and asked me two questions which took less than a minute. Two questions! That could have happened on Wednesday afternoon.\n\nBecause the money was late, we could not complete on the Thursday. The removal firm, Dalesway Removals, had already loaded the van on the Thursday morning (we had to be out of our old house at [CUSTOMER] because our buyers were completing too), so they had to keep everything in the van overnight in their depot and come back on Friday, which they charged us for. We had nowhere to sleep on the Thursday night, so we had to book two rooms at a hotel off the A1 for us and the children ([PERSON_4] is 9 and [PERSON_5] is 6, they were in bits about it, they had been so excited about their new bedrooms). We also had to put our dog in kennels for the night because the hotel would not take dogs. And we had to buy all our meals out because everything we owned was in a van.\n\nThe costs are as follows:\n- Dalesway Removals, extra day and overnight storage: £585.00\n- Hotel, two rooms, Thursday night: £342.00\n- Kennels, one night (emergency booking): £95.00\n- Meals and essentials on Thursday and Friday: £118.00\nTotal: £1,140.00\n\nI have receipts for all of these and I can send them to you.\n\nWe eventually completed at about 3.30pm on the Friday. [PERSON] has also told me that the sellers' solicitors could, in theory, have charged us interest for late completion under the contract. Thankfully they have not done so, but it was another worry on top of everything else.\n\nI want to be absolutely clear that this was not my fault. I followed your instructions exactly. I set the payment up the day before, well before the cut-off. You told me you might call me and you did not. When I rang you three times on the Thursday, nobody was able to do anything. It feels like the payment was just sitting in somebody's queue.\n\nI also want to say that the stress this caused my family on what should have been one of the best days of our lives was enormous. [PERSON_2] was in tears in the car outside the old house. My son kept asking if we were homeless now. I know you cannot put a price on that but I think you should at least recognise it.\n\nWhat I would like from you:\n1. The £1,140 of costs refunded to me.\n2. An explanation of why the payment was held for two days when the check took one minute, and why nobody called me on the Wednesday as the screen said they might.\n3. Some compensation for the stress and inconvenience.\n4. An apology.\n\nAs I say, I have been a loyal customer for nearly thirty years and my father before me, and I would like to stay one, but I need to know this has been taken seriously. Please do not send me a standard letter saying you are 'sorry to hear about my experience'. I have had enough of those from the solicitors, the estate agents and the removal firm over the past few months.\n\nFor reference, the payment came from my current account, [ACCOUNT]. My phone number is [CUSTOMER_PHONE] and my personal email is [EMAIL_1], which is better than post because we are still waiting for our mail redirection to start working properly.\n\nThank you for reading this far.\n\nYours faithfully,\n\n[CUSTOMER]"
+      },
+      {
+        "id": "D2",
+        "system": "CORE",
+        "type": "system_log",
+        "date": "2026-10-16",
+        "author_role": "system",
+        "text": "14/10/2026 15:22 CHAPS instruction via OLB, CA [ACCOUNT], GBP 74,250.00, beneficiary WETHERBY LANE SOLICITORS CLIENT A/C, receiving bank Copthorne & Reed Bank, ref [CUSTOMER] [ADDRESS_2], requested value date 15/10/2026. 14/10/2026 15:22 Status: HELD - high value payment review (rule HVP-3). 14/10/2026 15:41 Task created: outbound verification call to customer, queue PAYOPS-VERIFY, SLA 4 business hrs. 15/10/2026 09:24 Task note added by contact centre: 'cust called chasing, pls call asap'. Task status: OPEN, unassigned. 15/10/2026 16:00 CHAPS cut-off passed, payment rolled to next business day. 16/10/2026 09:51 Verification call completed, customer confirmed payment. 16/10/2026 10:04 CHAPS sent. Status: COMPLETE."
+      },
+      {
+        "id": "D3",
+        "system": "CRM",
+        "type": "crm_note",
+        "date": "2026-10-20",
+        "author_role": "handler",
+        "text": "Complaint rec'd by email 19/10 from [CUSTOMER] re late CHAPS for house completion. Very long email, key pts: CHAPS £74,250 set up in OLB Weds 14/10 for value Thurs 15/10, held for HVP review, verif call task not actioned till Fri 16/10, completion slipped a day. Claims £1,140 costs (removals, hotel, kennels, meals), receipts available. Also wants explanation, compensation for distress, apology. Called [CUSTOMER_PHONE] on 20/10 14:05 no answer, VM left. - [STAFF_1]"
+      }
+    ],
+    "replacements": [
+      {
+        "placeholder": "[EMAIL_1]",
+        "original": "owen.gallagher79@example.com",
+        "layer": "pattern",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[STAFF_2]",
+        "original": "Bev",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "11 Hawthorn Rise",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[ACCOUNT]",
+        "original": "4471 2093",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[CUSTOMER_PHONE]",
+        "original": "0113 496 0582",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Owen Gallagher",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[POSTCODE_1]",
+        "original": "HG5 0TW",
+        "layer": "pattern",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[ADDRESS_1]",
+        "original": "27 Bramley Close",
+        "layer": "pattern",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[PERSON]",
+        "original": "Mrs Okonedo",
+        "layer": "near_match",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[PERSON]",
+        "original": "Mrs Okonedo",
+        "layer": "near_match",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[PERSON]",
+        "original": "Mrs Okonedo",
+        "layer": "near_match",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[PERSON_1]",
+        "original": "Brendan",
+        "layer": "text",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[PERSON_2]",
+        "original": "Siobhan",
+        "layer": "text",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[PERSON_2]",
+        "original": "Siobhan",
+        "layer": "text",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[PERSON_4]",
+        "original": "Niamh",
+        "layer": "text",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[PERSON_5]",
+        "original": "Cathal",
+        "layer": "text",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[PERSON_2]",
+        "original": "Siobhan",
+        "layer": "text",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[ACCOUNT]",
+        "original": "44712093",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "GALLAGHER",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[ADDRESS_2]",
+        "original": "27 BRAMLEY CL",
+        "layer": "pattern",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[CUSTOMER_PHONE]",
+        "original": "0113 496 0582",
+        "layer": "record",
+        "documentId": "D3"
+      },
+      {
+        "placeholder": "[STAFF_1]",
+        "original": "L Whitmore",
+        "layer": "record",
+        "documentId": "D3"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Mr Gallager",
+        "layer": "near_match",
+        "documentId": "D3"
+      }
+    ],
+    "placeholders": [
+      "[ACCOUNT]",
+      "[ADDRESS_1]",
+      "[ADDRESS_2]",
+      "[CUSTOMER]",
+      "[CUSTOMER_PHONE]",
+      "[EMAIL_1]",
+      "[PERSON]",
+      "[PERSON_1]",
+      "[PERSON_2]",
+      "[PERSON_4]",
+      "[PERSON_5]",
+      "[POSTCODE_1]",
+      "[STAFF_1]",
+      "[STAFF_2]"
+    ],
+    "display": {
+      "[EMAIL_1]": "owen.gallagher79@example.com",
+      "[STAFF_2]": "Beverley Nolan",
+      "[CUSTOMER]": "Mr Owen Gallagher",
+      "[ACCOUNT]": "44712093",
+      "[CUSTOMER_PHONE]": "0113 496 0582",
+      "[POSTCODE_1]": "HG5 0TW",
+      "[ADDRESS_1]": "27 Bramley Close",
+      "[PERSON]": "Mrs Okonedo",
+      "[PERSON_1]": "Brendan",
+      "[PERSON_2]": "Siobhan",
+      "[PERSON_4]": "Niamh",
+      "[PERSON_5]": "Cathal",
+      "[ADDRESS_2]": "27 BRAMLEY CL",
+      "[STAFF_1]": "Laura Whitmore",
+      "[CARD]": "3368",
+      "[SORT_CODE]": "77-41-52"
+    }
+  },
+  "pack": {
+    "enough_information": {
+      "sufficient": true,
+      "what_is_needed": ""
+    },
+    "intake": {
+      "issues": [
+        {
+          "product": "current_account",
+          "cause": "payment_problem",
+          "description": "Customer's £74,250 CHAPS payment was held for review and sent a day late, delaying house completion. Customer claims £1,140 in costs plus distress, and says no verification call was made when the screen said one might be.",
+          "citations": [
+            {
+              "source": "D1",
+              "quote": "The money finally left at about 10am on Friday 16th"
+            },
+            {
+              "source": "D2",
+              "quote": "Status: HELD - high value payment review (rule HVP-3)"
+            }
+          ]
+        }
+      ],
+      "suggested_team": "payments_disputes",
+      "team_reason": {
+        "text": "Single issue: a CHAPS payment executed late after a hold. This matches the payments and disputes remit for delayed payments.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "CHAPS sent. Status: COMPLETE"
+          },
+          {
+            "source": "D1",
+            "quote": "The money finally left at about 10am on Friday 16th"
+          }
+        ]
+      },
+      "payment_services": "yes",
+      "payment_services_reason": {
+        "text": "The customer authorised the payment, but the bank executed it late. Late execution falls under Parts 6 and 7. The costs claimed stem from that same payment.",
+        "citations": [
+          {
+            "source": "CP-3.2",
+            "quote": "such as an unauthorised or wrongly executed payment"
+          },
+          {
+            "source": "D2",
+            "quote": "CHAPS sent. Status: COMPLETE"
+          }
+        ]
+      },
+      "already_with_ombudsman": false,
+      "linked_to_earlier_complaint": false
+    },
+    "summary": [
+      {
+        "text": "Customer set up a £74,250 CHAPS payment on 14/10/2026 for value date 15/10/2026 to a solicitor's client account for a house completion.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "CHAPS instruction via OLB, CA [ACCOUNT], GBP 74,250.00"
+          },
+          {
+            "source": "D2",
+            "quote": "beneficiary WETHERBY LANE SOLICITORS CLIENT A/C"
+          }
+        ]
+      },
+      {
+        "text": "The payment was held for high value review and was sent on 16/10/2026 at 10:04, so completion moved from 15/10 to 16/10.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Status: HELD - high value payment review (rule HVP-3)"
+          },
+          {
+            "source": "D2",
+            "quote": "CHAPS sent. Status: COMPLETE"
+          }
+        ]
+      },
+      {
+        "text": "The verification call task was open and unassigned at 09:24 on 15/10. The verification call was completed on 16/10 at 09:51.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Task status: OPEN, unassigned"
+          },
+          {
+            "source": "D2",
+            "quote": "Verification call completed, customer confirmed payment"
+          }
+        ]
+      },
+      {
+        "text": "Customer claims £1,140.00 in costs and asks for compensation for distress and an apology. Customer offers to send receipts.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Total: £1,140.00"
+          },
+          {
+            "source": "D1",
+            "quote": "I have receipts for all of these and I can send them to you"
+          }
+        ]
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-13",
+        "event": "Customer phoned helpline and was told to use CHAPS in online banking.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I was told to use the CHAPS option in online banking"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-14",
+        "event": "CHAPS instruction for £74,250 set up at 15:22 and placed on hold for high value payment review.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Status: HELD - high value payment review (rule HVP-3)"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-14",
+        "event": "Verification call task created with a four business hour SLA.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Task created: outbound verification call to customer, queue PAYOPS-VERIFY"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-15",
+        "event": "Solicitor reported nothing had arrived; customer rang the bank that morning.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "On Thursday morning at about 9am"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-15",
+        "event": "Contact centre note added to task: customer chasing and asked for a call.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "cust called chasing, pls call asap"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-15",
+        "event": "Customer says at 14:10 they were told the cut-off had passed. The system records the cut-off at 16:00.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I rang again at 2.10pm and was told that the cut-off for the day had now passed"
+          },
+          {
+            "source": "D2",
+            "quote": "CHAPS cut-off passed, payment rolled to next business day"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-16",
+        "event": "Verification call completed and CHAPS sent at 10:04.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Verification call completed, customer confirmed payment"
+          },
+          {
+            "source": "D2",
+            "quote": "CHAPS sent. Status: COMPLETE"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-16",
+        "event": "Completion took place at about 3.30pm.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "We eventually completed at about 3.30pm on the Friday"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-19",
+        "event": "Complaint received by email.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Complaint rec'd by email 19/10 from"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-20",
+        "event": "Handler called customer, no answer, voicemail left.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Called [CUSTOMER_PHONE] on 20/10 14:05 no answer, VM left"
+          }
+        ]
+      }
+    ],
+    "outcome_sought": {
+      "text": "Refund of £1,140 costs, an explanation of why the payment was held and why no call was made, compensation for stress and inconvenience, and an apology.",
+      "citations": [
+        {
+          "source": "D1",
+          "quote": "The £1,140 of costs refunded to me."
+        },
+        {
+          "source": "D1",
+          "quote": "Some compensation for the stress and inconvenience"
+        }
+      ]
+    },
+    "vulnerability": [
+      {
+        "signal": "Significant distress reported by customer and family, including children. No vulnerability assessment is recorded.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "[PERSON_2] was in tears in the car outside the old house"
+          }
+        ]
+      }
+    ],
+    "relevant_policy": [
+      {
+        "policy_id": "CP-3.2",
+        "why_relevant": "Late execution of a CHAPS payment sets a fifteen business day final response time limit.",
+        "citations": [
+          {
+            "source": "CP-3.2",
+            "quote": "the final response is due within fifteen business days"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-2.1",
+        "why_relevant": "No acknowledgement is recorded, and the complaint is unlikely to be resolved by the third business day.",
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "by the close of the third business day after it was received"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-2.4",
+        "why_relevant": "Linked complaint check is not recorded.",
+        "citations": [
+          {
+            "source": "CP-2.4",
+            "quote": "check for earlier complaints from the same customer on the same subject in the last twelve months"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.2",
+        "why_relevant": "The cut-off time conflicts between the customer's account and the system record and must be recorded as both versions.",
+        "citations": [
+          {
+            "source": "CP-4.2",
+            "quote": "record both versions and the source of each"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.3",
+        "why_relevant": "The customer's outcome request must be recorded in their own words.",
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "record, in the customer's own words where possible, the outcome the customer is seeking"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-6.1",
+        "why_relevant": "The case falls within the payments and disputes remit and must be handed over using the checklist.",
+        "citations": [
+          {
+            "source": "CP-6.1",
+            "quote": "A complaint must be passed to a specialist team when it falls within that team's remit"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-6.3",
+        "why_relevant": "The customer must be told which team now has the complaint.",
+        "citations": [
+          {
+            "source": "CP-6.3",
+            "quote": "The handler must tell the customer which team now has their complaint"
+          }
+        ]
+      }
+    ],
+    "handover_checklist": [
+      {
+        "item_id": "outcome_sought",
+        "status": "present",
+        "value": "Refund of £1,140 costs, explanation, compensation and apology.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "The £1,140 of costs refunded to me."
+          }
+        ]
+      },
+      {
+        "item_id": "customer_contact_attempted",
+        "status": "present",
+        "value": "Customer called helpline 13 to 15 October. Handler called 20/10, no answer, voicemail left.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Called [CUSTOMER_PHONE] on 20/10 14:05 no answer, VM left"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_told_of_handover",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "vulnerability_recorded",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "linked_complaints_checked",
+        "status": "missing",
+        "value": "Customer says the only other complaint was in 2019. No check is recorded.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "The only other time I have ever complained was in 2019"
+          }
+        ]
+      },
+      {
+        "item_id": "transaction_reference",
+        "status": "present",
+        "value": "CHAPS £74,250.00 set up 14/10/2026, sent 16/10/2026 10:04.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "CHAPS instruction via OLB, CA [ACCOUNT], GBP 74,250.00"
+          },
+          {
+            "source": "D2",
+            "quote": "CHAPS sent. Status: COMPLETE"
+          }
+        ]
+      },
+      {
+        "item_id": "payment_type",
+        "status": "present",
+        "value": "CHAPS",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "CHAPS instruction via OLB"
+          }
+        ]
+      },
+      {
+        "item_id": "expected_vs_actual",
+        "status": "present",
+        "value": "Expected same-day arrival 15/10 before cut-off. Sent 16/10 after a hold.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "it would arrive the same day as long as it was set up before the cut-off"
+          },
+          {
+            "source": "D2",
+            "quote": "Status: HELD - high value payment review (rule HVP-3)"
+          }
+        ]
+      },
+      {
+        "item_id": "merchant_or_payee",
+        "status": "present",
+        "value": "Wetherby Lane Solicitors client account.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "beneficiary WETHERBY LANE SOLICITORS CLIENT A/C"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_loss",
+        "status": "present",
+        "value": "Claimed £1,140.00: removals £585.00, hotel £342.00, kennels £95.00, meals and essentials £118.00. Receipts offered, not yet received.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Total: £1,140.00"
+          },
+          {
+            "source": "D1",
+            "quote": "I have receipts for all of these and I can send them to you"
+          }
+        ]
+      }
+    ],
+    "conflicts": [
+      {
+        "text": "Cut-off time: the customer says they were told at 2.10pm on 15/10 that the cut-off had passed. The system records the cut-off as passing at 16:00 on 15/10. Both versions are recorded; no choice is made.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I rang again at 2.10pm and was told that the cut-off for the day had now passed"
+          },
+          {
+            "source": "D2",
+            "quote": "CHAPS cut-off passed, payment rolled to next business day"
+          }
+        ]
+      }
+    ],
+    "flags": [
+      {
+        "type": "deadline_risk",
+        "description": "Acknowledgement is due by close of 22/10/2026 if not resolved (CP-2.1). Payment services final response is due fifteen business days from 19/10/2026, about 09/11/2026. Confirm the date.",
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "by the close of the third business day after it was received"
+          },
+          {
+            "source": "CP-3.2",
+            "quote": "the final response is due within fifteen business days"
+          }
+        ]
+      },
+      {
+        "type": "data_quality",
+        "description": "The old house address is replaced by the CUSTOMER placeholder in the customer's email, so it cannot be verified.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "we had to be out of our old house at [CUSTOMER]"
+          }
+        ]
+      }
+    ]
+  },
+  "checks": {
+    "statements": [
+      {
+        "path": "intake.issues.0",
+        "text": "Customer's £74,250 CHAPS payment was held for review and sent a day late, delaying house completion. Customer claims £1,140 in costs plus distress, and says no verification call was made when the screen said one might be.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "The money finally left at about 10am on Friday 16th",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Status: HELD - high value payment review (rule HVP-3)",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.team_reason",
+        "text": "Single issue: a CHAPS payment executed late after a hold. This matches the payments and disputes remit for delayed payments.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "CHAPS sent. Status: COMPLETE",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "The money finally left at about 10am on Friday 16th",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.payment_services_reason",
+        "text": "The customer authorised the payment, but the bank executed it late. Late execution falls under Parts 6 and 7. The costs claimed stem from that same payment.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-3.2",
+            "quote": "such as an unauthorised or wrongly executed payment",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "CHAPS sent. Status: COMPLETE",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.0",
+        "text": "Customer set up a £74,250 CHAPS payment on 14/10/2026 for value date 15/10/2026 to a solicitor's client account for a house completion.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "CHAPS instruction via OLB, CA [ACCOUNT], GBP 74,250.00",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "beneficiary WETHERBY LANE SOLICITORS CLIENT A/C",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.1",
+        "text": "The payment was held for high value review and was sent on 16/10/2026 at 10:04, so completion moved from 15/10 to 16/10.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Status: HELD - high value payment review (rule HVP-3)",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "CHAPS sent. Status: COMPLETE",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.2",
+        "text": "The verification call task was open and unassigned at 09:24 on 15/10. The verification call was completed on 16/10 at 09:51.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Task status: OPEN, unassigned",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Verification call completed, customer confirmed payment",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.3",
+        "text": "Customer claims £1,140.00 in costs and asks for compensation for distress and an apology. Customer offers to send receipts.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Total: £1,140.00",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "I have receipts for all of these and I can send them to you",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.0",
+        "text": "2026-10-13: Customer phoned helpline and was told to use CHAPS in online banking.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I was told to use the CHAPS option in online banking",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.1",
+        "text": "2026-10-14: CHAPS instruction for £74,250 set up at 15:22 and placed on hold for high value payment review.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Status: HELD - high value payment review (rule HVP-3)",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.2",
+        "text": "2026-10-14: Verification call task created with a four business hour SLA.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Task created: outbound verification call to customer, queue PAYOPS-VERIFY",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.3",
+        "text": "2026-10-15: Solicitor reported nothing had arrived; customer rang the bank that morning.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "On Thursday morning at about 9am",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.4",
+        "text": "2026-10-15: Contact centre note added to task: customer chasing and asked for a call.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "cust called chasing, pls call asap",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.5",
+        "text": "2026-10-15: Customer says at 14:10 they were told the cut-off had passed. The system records the cut-off at 16:00.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I rang again at 2.10pm and was told that the cut-off for the day had now passed",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "CHAPS cut-off passed, payment rolled to next business day",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.6",
+        "text": "2026-10-16: Verification call completed and CHAPS sent at 10:04.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Verification call completed, customer confirmed payment",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "CHAPS sent. Status: COMPLETE",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.7",
+        "text": "2026-10-16: Completion took place at about 3.30pm.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "We eventually completed at about 3.30pm on the Friday",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.8",
+        "text": "2026-10-19: Complaint received by email.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Complaint rec'd by email 19/10 from",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.9",
+        "text": "2026-10-20: Handler called customer, no answer, voicemail left.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Called [CUSTOMER_PHONE] on 20/10 14:05 no answer, VM left",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "outcome_sought",
+        "text": "Refund of £1,140 costs, an explanation of why the payment was held and why no call was made, compensation for stress and inconvenience, and an apology.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "The £1,140 of costs refunded to me.",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "Some compensation for the stress and inconvenience",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "vulnerability.0",
+        "text": "Significant distress reported by customer and family, including children. No vulnerability assessment is recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "[PERSON_2] was in tears in the car outside the old house",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.0",
+        "text": "CP-3.2: Late execution of a CHAPS payment sets a fifteen business day final response time limit.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-3.2",
+            "quote": "the final response is due within fifteen business days",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.1",
+        "text": "CP-2.1: No acknowledgement is recorded, and the complaint is unlikely to be resolved by the third business day.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "by the close of the third business day after it was received",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.2",
+        "text": "CP-2.4: Linked complaint check is not recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.4",
+            "quote": "check for earlier complaints from the same customer on the same subject in the last twelve months",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.3",
+        "text": "CP-4.2: The cut-off time conflicts between the customer's account and the system record and must be recorded as both versions.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.2",
+            "quote": "record both versions and the source of each",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.4",
+        "text": "CP-4.3: The customer's outcome request must be recorded in their own words.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "record, in the customer's own words where possible, the outcome the customer is seeking",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.5",
+        "text": "CP-6.1: The case falls within the payments and disputes remit and must be handed over using the checklist.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-6.1",
+            "quote": "A complaint must be passed to a specialist team when it falls within that team's remit",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.6",
+        "text": "CP-6.3: The customer must be told which team now has the complaint.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-6.3",
+            "quote": "The handler must tell the customer which team now has their complaint",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.outcome_sought",
+        "text": "outcome_sought: Refund of £1,140 costs, explanation, compensation and apology.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "The £1,140 of costs refunded to me.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.customer_contact_attempted",
+        "text": "customer_contact_attempted: Customer called helpline 13 to 15 October. Handler called 20/10, no answer, voicemail left.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Called [CUSTOMER_PHONE] on 20/10 14:05 no answer, VM left",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.transaction_reference",
+        "text": "transaction_reference: CHAPS £74,250.00 set up 14/10/2026, sent 16/10/2026 10:04.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "CHAPS instruction via OLB, CA [ACCOUNT], GBP 74,250.00",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "CHAPS sent. Status: COMPLETE",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.payment_type",
+        "text": "payment_type: CHAPS",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "CHAPS instruction via OLB",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.expected_vs_actual",
+        "text": "expected_vs_actual: Expected same-day arrival 15/10 before cut-off. Sent 16/10 after a hold.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "it would arrive the same day as long as it was set up before the cut-off",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Status: HELD - high value payment review (rule HVP-3)",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.merchant_or_payee",
+        "text": "merchant_or_payee: Wetherby Lane Solicitors client account.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "beneficiary WETHERBY LANE SOLICITORS CLIENT A/C",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.customer_loss",
+        "text": "customer_loss: Claimed £1,140.00: removals £585.00, hotel £342.00, kennels £95.00, meals and essentials £118.00. Receipts offered, not yet received.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Total: £1,140.00",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "I have receipts for all of these and I can send them to you",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "conflicts.0",
+        "text": "Cut-off time: the customer says they were told at 2.10pm on 15/10 that the cut-off had passed. The system records the cut-off as passing at 16:00 on 15/10. Both versions are recorded; no choice is made.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I rang again at 2.10pm and was told that the cut-off for the day had now passed",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "CHAPS cut-off passed, payment rolled to next business day",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.0",
+        "text": "deadline_risk: Acknowledgement is due by close of 22/10/2026 if not resolved (CP-2.1). Payment services final response is due fifteen business days from 19/10/2026, about 09/11/2026. Confirm the date.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "by the close of the third business day after it was received",
+            "result": "verified"
+          },
+          {
+            "source": "CP-3.2",
+            "quote": "the final response is due within fifteen business days",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.1",
+        "text": "data_quality: The old house address is replaced by the CUSTOMER placeholder in the customer's email, so it cannot be verified.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "we had to be out of our old house at [CUSTOMER]",
+            "result": "verified"
+          }
+        ]
+      }
+    ],
+    "supportedCount": 36,
+    "unsupportedCount": 0,
+    "inventedPlaceholders": [],
+    "checklist": {
+      "required": 10,
+      "present": 7,
+      "missing": [
+        "customer_told_of_handover",
+        "vulnerability_recorded",
+        "linked_complaints_checked"
+      ],
+      "conflicting": []
+    }
+  },
+  "clock": "15_business_days",
+  "deadlines": {
+    "received": "2026-10-19",
+    "clock": "15_business_days",
+    "summaryResolutionWindowCloses": "2026-10-22",
+    "eightWeekDue": "2026-12-14",
+    "psrDue": "2026-11-09",
+    "psrExceptionalDue": "2026-12-07",
+    "workingDue": "2026-11-09",
+    "needsHandlerConfirmation": false,
+    "calendarDaysLeft": 0,
+    "businessDaysLeft": 0,
+    "status": "due_soon"
+  },
+  "usage": {
+    "inputTokens": 2790,
+    "outputTokens": 14995,
+    "cacheReadTokens": 0,
+    "cacheWriteTokens": 9468,
+    "costUsd": 0.00896,
+    "latencyMs": 58485
+  }
+}

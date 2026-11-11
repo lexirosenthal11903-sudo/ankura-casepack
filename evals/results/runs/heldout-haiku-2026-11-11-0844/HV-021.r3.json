@@ -1,0 +1,1226 @@
+{
+  "caseId": "HV-021",
+  "createdAt": "2026-11-11T08:51:00.508Z",
+  "model": "claude-haiku-5-5",
+  "promptVersion": "casepack-v3",
+  "redacted": {
+    "id": "HV-021",
+    "received": "2026-10-14",
+    "channel": "email",
+    "documents": [
+      {
+        "id": "D1",
+        "system": "EMAIL",
+        "type": "email",
+        "date": "2026-10-13",
+        "author_role": "third_party",
+        "text": "Subject: My sister is being scammed - please help\n\nDear Sir/Madam,\n\nI am writing about my younger sister, [CUSTOMER], who banks with you. I am not on her account and I know you probably can't tell me anything, but I am desperate and I didn't know who else to write to.\n\nSince the summer of last year [CUSTOMER] has been 'in a relationship' with a man she met on a word game app. He calls himself Richard. He says he is an engineer on an oil platform off Norway and that he is going to come and live with her when his contract finishes. She has never met him. They have never even done a video call, there is always an excuse, the signal on the rig, his camera is broken.\n\nOver the past year he has needed money for one thing after another. Customs fees for a parcel he sent her, a hospital bill, his daughter's school fees, a lawyer to get his wages released. I found a notebook in her kitchen where she has written down what she has sent him and it comes to over twenty-three thousand pounds. That is most of the money Dennis left her when he died.\n\nShe has changed so much. She has stopped coming to church, she doesn't answer when her friends ring, and she told me 'Richard says you're jealous and I shouldn't listen to you'. Last week she asked me if I knew how to get a loan because he needs £8,000 for a flight and a visa. I am so frightened she is going to do it.\n\nWhen I tried to talk to her about it she cried and said he is the only one who understands her. The next day she said 'maybe you're right, Mo, I don't know what's real any more'. Then on Sunday she was defending him again.\n\nPlease can you stop any more money going to this man and try to get back what she has lost. I can come into the branch with her if that would help.\n\n[THIRD_PARTY]\n[PHONE_1]"
+      },
+      {
+        "id": "D2",
+        "system": "CRM",
+        "type": "crm_note",
+        "date": "2026-10-15",
+        "author_role": "handler",
+        "text": "14/10/26 09:40 Email rec'd from sister ([THIRD_PARTY]) re suspected romance scam. NOT a party to the acct, no authority on file. Acct not discussed. Logged as concern, complaint pending cust contact. [STAFF_1]\n14/10/26 11:05 Outbound to cust on [CUSTOMER_PHONE], no answer. Tried again 15:30, no answer. [STAFF_1]\n15/10/26 10:12 Outbound, spoke to [CUSTOMER], ID&V passed. Cust initially said 'there's nothing wrong, my sister doesn't like him'. Confirmed she made all the payments herself to 'Richard' and his 'business account'. Said 'I sent it, it's my money'. Became upset when I explained common signs of romance scams. Later said 'he did ask me not to tell anyone, he said the bank wouldn't understand'. Asked about loan - cust said he had asked her to look into one. Cust did not want to go through everything today, asked if we could call back with her sister there. Agreed we can look into the payments. Did not ask what outcome she wants, cust not in a place for that. VULNERABLE CUSTOMER flag added: suspected ongoing romance scam, isolation, possible coercive control, bereaved (husband 2024). Support: call afternoons, cust happy for sister [THIRD_PARTY] to join calls - verbal only, no written third party authority. Payment block + fraud marker requested. [STAFF_1]\n15/10/26 10:40 F&S notified for urgent intervention (live scam risk, loan request). [STAFF_2]"
+      },
+      {
+        "id": "D3",
+        "system": "CORE",
+        "type": "system_log",
+        "date": "2026-10-15",
+        "author_role": "system",
+        "text": "Payment history extract, CA [ACCOUNT_1], payees flagged by F&S:\n14/07/2025 FP out GBP 800.00 payee R CALLOWAY, receiving bank Fenmoor Digital Bank. Reason: Friends and family. CoP: CLOSE MATCH (actual name RICHARD CALLOWAY). Generic warning v2 shown, continued.\n02/09/2025 FP out GBP 1,500.00 payee R CALLOWAY. Reason: Friends and family. CoP: MATCH. Generic warning v2 shown, continued.\n21/10/2025 FP out GBP 2,000.00 payee R CALLOWAY. Reason: Friends and family. Generic warning v2 shown, continued.\n09/12/2025 FP out GBP 2,500.00 payee VARRICK MARITIME SERVICES LTD, receiving bank Ardley Bank plc. Reason: Paying an invoice. CoP: NO MATCH. Invoice warning v3 shown, continued.\n03/02/2026 FP out GBP 3,000.00 payee VARRICK MARITIME SERVICES LTD. Reason: Paying an invoice. Invoice warning v3 shown, continued.\n17/04/2026 FP out GBP 3,200.00 payee R CALLOWAY. HELD for review. Outbound call 17/04 14:20, cust stated 'paying my nephew back for a car'. Released 14:31.\n26/06/2026 FP out GBP 3,400.00 payee R CALLOWAY. Reason: Friends and family. Romance scam warning v1 (dynamic) shown, continued.\n11/08/2026 FP out GBP 3,500.00 payee R CALLOWAY. Romance scam warning v1 shown, continued.\n29/09/2026 FP out GBP 3,500.00 payee R CALLOWAY. Romance scam warning v1 shown, continued.\nTotal 9 payments GBP 23,400.00. Internal transfers from SAV [ACCOUNT_2] to CA preceded 6 of the 9 payments. Fraud marker added 15/10/2026 10:44. Outbound payments block: ACTIVE."
+      }
+    ],
+    "replacements": [
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Patricia Halloran",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Trish",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[THIRD_PARTY]",
+        "original": "Maureen Doherty",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[PHONE_1]",
+        "original": "07700 900 609",
+        "layer": "pattern",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[THIRD_PARTY]",
+        "original": "M Doherty",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[STAFF_1]",
+        "original": "SM",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[CUSTOMER_PHONE]",
+        "original": "01632 960 584",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[STAFF_1]",
+        "original": "SM",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Mrs Halloran",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[THIRD_PARTY]",
+        "original": "Maureen",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[STAFF_1]",
+        "original": "SM",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[STAFF_2]",
+        "original": "GO",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[ACCOUNT_1]",
+        "original": "15840962",
+        "layer": "record",
+        "documentId": "D3"
+      },
+      {
+        "placeholder": "[ACCOUNT_2]",
+        "original": "58114307",
+        "layer": "record",
+        "documentId": "D3"
+      }
+    ],
+    "placeholders": [
+      "[ACCOUNT_1]",
+      "[ACCOUNT_2]",
+      "[CUSTOMER]",
+      "[CUSTOMER_PHONE]",
+      "[PHONE_1]",
+      "[STAFF_1]",
+      "[STAFF_2]",
+      "[THIRD_PARTY]"
+    ],
+    "display": {
+      "[CUSTOMER]": "Mrs Patricia Halloran",
+      "[THIRD_PARTY]": "Maureen Doherty",
+      "[PHONE_1]": "07700 900 609",
+      "[STAFF_1]": "Sanjay Mistry",
+      "[CUSTOMER_PHONE]": "01632 960 584",
+      "[STAFF_2]": "Grace Owusu",
+      "[ACCOUNT_1]": "15840962",
+      "[ACCOUNT_2]": "58114307",
+      "[CARD]": "8046",
+      "[SORT_CODE]": "77-41-27"
+    }
+  },
+  "pack": {
+    "enough_information": {
+      "sufficient": true,
+      "what_is_needed": ""
+    },
+    "intake": {
+      "issues": [
+        {
+          "product": "current_account",
+          "cause": "app_scam",
+          "description": "Customer-authorised Faster Payments to suspected romance scam payees, nine payments totalling GBP 23,400.00 from 14/07/2025 to 29/09/2026. Raised by the customer's sister, who has no authority on file.",
+          "citations": [
+            {
+              "source": "D3",
+              "quote": "Total 9 payments GBP 23,400.00"
+            },
+            {
+              "source": "D2",
+              "quote": "NOT a party to the acct, no authority on file"
+            }
+          ]
+        }
+      ],
+      "suggested_team": "fraud_scams",
+      "team_reason": {
+        "text": "Customer authorised the payments to a suspected romance scam payee, and F&S has been notified for urgent intervention.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "F&S notified for urgent intervention"
+          }
+        ]
+      },
+      "payment_services": "no",
+      "payment_services_reason": {
+        "text": "The customer confirmed she made the payments herself, so this is an authorised scam, not an unauthorised or wrongly executed payment.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Confirmed she made all the payments herself"
+          }
+        ]
+      },
+      "already_with_ombudsman": false,
+      "linked_to_earlier_complaint": false
+    },
+    "summary": [
+      {
+        "text": "The customer's sister emailed the bank on 14/10/2026 about suspected romance scam payments. The sister is not on the account and no authority is on file.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I am writing about my younger sister"
+          },
+          {
+            "source": "D2",
+            "quote": "NOT a party to the acct, no authority on file"
+          }
+        ]
+      },
+      {
+        "text": "Nine Faster Payments totalling GBP 23,400.00 were sent from the current account, mainly to payee R CALLOWAY, plus two to VARRICK MARITIME SERVICES LTD.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Total 9 payments GBP 23,400.00"
+          }
+        ]
+      },
+      {
+        "text": "On 15/10/2026 the customer confirmed she made all the payments herself and said 'it's my money'. The outbound payments block is active and a fraud marker was added.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Confirmed she made all the payments herself"
+          },
+          {
+            "source": "D2",
+            "quote": "I sent it, it's my money"
+          },
+          {
+            "source": "D3",
+            "quote": "Outbound payments block: ACTIVE"
+          }
+        ]
+      },
+      {
+        "text": "The customer was flagged as vulnerable, with signs of bereavement, isolation and possible coercive control. The payee asked her to look into a loan.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "suspected ongoing romance scam, isolation, possible coercive control"
+          },
+          {
+            "source": "D2",
+            "quote": "he had asked her to look into one"
+          }
+        ]
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2025-07-14",
+        "event": "First Faster Payment of GBP 800.00 to R CALLOWAY, with a generic warning shown and payment continued.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "14/07/2025 FP out GBP 800.00 payee R CALLOWAY"
+          }
+        ]
+      },
+      {
+        "date": "2025-12-09",
+        "event": "Faster Payment of GBP 2,500.00 to VARRICK MARITIME SERVICES LTD, with an invoice warning shown and payment continued.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "09/12/2025 FP out GBP 2,500.00 payee VARRICK MARITIME SERVICES LTD"
+          }
+        ]
+      },
+      {
+        "date": "2026-04-17",
+        "event": "Payment of GBP 3,200.00 to R CALLOWAY held for review. The customer said she was paying her nephew back for a car, and the payment was released.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "HELD for review"
+          },
+          {
+            "source": "D3",
+            "quote": "paying my nephew back for a car"
+          }
+        ]
+      },
+      {
+        "date": "2026-06-26",
+        "event": "Payment of GBP 3,400.00 to R CALLOWAY, with a romance scam warning shown and payment continued.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "26/06/2026 FP out GBP 3,400.00 payee R CALLOWAY"
+          }
+        ]
+      },
+      {
+        "date": "2026-09-29",
+        "event": "Last payment of GBP 3,500.00 to R CALLOWAY, with a romance scam warning shown and payment continued.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "29/09/2026 FP out GBP 3,500.00 payee R CALLOWAY"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-14",
+        "event": "Sister's email logged at 09:40. Two outbound calls to the customer made that day, with no answer.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Email rec'd from sister"
+          },
+          {
+            "source": "D2",
+            "quote": "Outbound to cust on [CUSTOMER_PHONE], no answer"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-15",
+        "event": "Customer spoke to the bank and passed ID&V. Fraud marker added at 10:44 and outbound payments block activated.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Outbound, spoke to [CUSTOMER], ID&V passed."
+          },
+          {
+            "source": "D3",
+            "quote": "Fraud marker added 15/10/2026 10:44"
+          }
+        ]
+      }
+    ],
+    "outcome_sought": {
+      "text": "The sister asks the bank to stop further money going to the payee and to try to recover the loss. The customer's own outcome has not been recorded.",
+      "citations": [
+        {
+          "source": "D1",
+          "quote": "Please can you stop any more money going to this man and try to get back what she has lost"
+        },
+        {
+          "source": "D2",
+          "quote": "Did not ask what outcome she wants"
+        }
+      ]
+    },
+    "vulnerability": [
+      {
+        "signal": "Bereavement (husband died 2024)",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "bereaved (husband 2024)"
+          }
+        ]
+      },
+      {
+        "signal": "Isolation and possible coercive control",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "suspected ongoing romance scam, isolation, possible coercive control"
+          }
+        ]
+      },
+      {
+        "signal": "Withdrawal from friends and church, and distress",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "she doesn't answer when her friends ring"
+          },
+          {
+            "source": "D2",
+            "quote": "Became upset when I explained common signs of romance scams."
+          }
+        ]
+      }
+    ],
+    "relevant_policy": [
+      {
+        "policy_id": "CP-1.2",
+        "why_relevant": "The sister is not an authorised representative. Written authority is needed before she can act for the customer.",
+        "citations": [
+          {
+            "source": "CP-1.2",
+            "quote": "or by a representative the customer has authorised in writing"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-2.4",
+        "why_relevant": "Earlier complaints from the customer on the same subject must be checked and any link recorded before investigating.",
+        "citations": [
+          {
+            "source": "CP-2.4",
+            "quote": "check for earlier complaints from the same customer on the same subject"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.3",
+        "why_relevant": "The customer's own desired outcome has not yet been recorded.",
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "The handler must record, in the customer's own words where possible, the outcome the customer is seeking."
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-5.2",
+        "why_relevant": "Vulnerability signs and support needs must be recorded.",
+        "citations": [
+          {
+            "source": "CP-5.2",
+            "quote": "Signs of vulnerability must be recorded with the customer's consent where possible"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-5.3",
+        "why_relevant": "The customer is vulnerable, so the handover to the specialist team must be warm.",
+        "citations": [
+          {
+            "source": "CP-5.3",
+            "quote": "must not pass a vulnerable customer between teams without a warm handover"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-6.1",
+        "why_relevant": "The case falls within the Fraud and Scams remit and must be handed over with the team checklist.",
+        "citations": [
+          {
+            "source": "CP-6.1",
+            "quote": "A complaint must be passed to a specialist team when it falls within that team's remit"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-7.4",
+        "why_relevant": "The Fraud and Scams team needs the payment details, reporting date, warnings, account of events and receiving bank.",
+        "citations": [
+          {
+            "source": "CP-7.4",
+            "quote": "The Fraud and Scams team needs the payment details, when the scam was reported, any warnings shown at the time"
+          }
+        ]
+      }
+    ],
+    "handover_checklist": [
+      {
+        "item_id": "outcome_sought",
+        "status": "missing",
+        "value": "",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Did not ask what outcome she wants"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_contact_attempted",
+        "status": "present",
+        "value": "Spoke to customer 15/10/2026, ID&V passed.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Outbound, spoke to [CUSTOMER], ID&V passed."
+          }
+        ]
+      },
+      {
+        "item_id": "customer_told_of_handover",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "vulnerability_recorded",
+        "status": "present",
+        "value": "Vulnerable flag added with support: call afternoons; sister may join calls verbally.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Support: call afternoons, cust happy for sister"
+          }
+        ]
+      },
+      {
+        "item_id": "linked_complaints_checked",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "payment_date",
+        "status": "present",
+        "value": "Nine payments from 14/07/2025 to 29/09/2026.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "14/07/2025 FP out GBP 800.00 payee R CALLOWAY"
+          },
+          {
+            "source": "D3",
+            "quote": "29/09/2026 FP out GBP 3,500.00 payee R CALLOWAY"
+          }
+        ]
+      },
+      {
+        "item_id": "payment_amount",
+        "status": "present",
+        "value": "GBP 800.00 to GBP 3,500.00 each; total GBP 23,400.00.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Total 9 payments GBP 23,400.00"
+          }
+        ]
+      },
+      {
+        "item_id": "payment_method",
+        "status": "present",
+        "value": "Faster Payment.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "FP out GBP 800.00"
+          }
+        ]
+      },
+      {
+        "item_id": "payee_details",
+        "status": "present",
+        "value": "R CALLOWAY, Fenmoor Digital Bank; VARRICK MARITIME SERVICES LTD, Ardley Bank plc.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "receiving bank Fenmoor Digital Bank"
+          },
+          {
+            "source": "D3",
+            "quote": "receiving bank Ardley Bank plc"
+          }
+        ]
+      },
+      {
+        "item_id": "date_reported",
+        "status": "present",
+        "value": "14/10/2026, when the sister's email was logged.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Email rec'd from sister"
+          }
+        ]
+      },
+      {
+        "item_id": "warnings_shown",
+        "status": "present",
+        "value": "Generic and romance scam warnings shown on each payment; all payments continued.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Romance scam warning v1 (dynamic) shown, continued"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_account_of_events",
+        "status": "present",
+        "value": "Customer said she sent the money herself and that it is her money. She has not described events in full.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "I sent it, it's my money"
+          }
+        ]
+      },
+      {
+        "item_id": "authorised_or_not",
+        "status": "present",
+        "value": "Customer says she made all the payments herself.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Confirmed she made all the payments herself"
+          }
+        ]
+      }
+    ],
+    "conflicts": [
+      {
+        "text": "Purpose of the 17/04/2026 GBP 3,200.00 payment. The payment record says the customer described it as repaying her nephew for a car. The 15/10/2026 call note says she confirmed all payments were made to 'Richard'. Both versions are recorded and not resolved.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "paying my nephew back for a car"
+          },
+          {
+            "source": "D2",
+            "quote": "Confirmed she made all the payments herself"
+          }
+        ]
+      }
+    ],
+    "flags": [
+      {
+        "type": "third_party_authority",
+        "description": "Complaint raised by the customer's sister, who is not on the account and has no written authority. The customer agreed only verbally to the sister joining calls.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "verbal only, no written third party authority"
+          }
+        ]
+      },
+      {
+        "type": "deadline_risk",
+        "description": "Live scam risk. The sister reports a request for GBP 8,000 for a flight and visa. The outbound payments block is active.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "he needs £8,000 for a flight and a visa"
+          },
+          {
+            "source": "D3",
+            "quote": "Outbound payments block: ACTIVE"
+          }
+        ]
+      },
+      {
+        "type": "data_quality",
+        "description": "No payee check result is recorded on the 21/10/2025 payment to R CALLOWAY, or on the later R CALLOWAY payments shown.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "21/10/2025 FP out GBP 2,000.00 payee R CALLOWAY"
+          },
+          {
+            "source": "D3",
+            "quote": "29/09/2026 FP out GBP 3,500.00 payee R CALLOWAY"
+          }
+        ]
+      }
+    ]
+  },
+  "checks": {
+    "statements": [
+      {
+        "path": "intake.issues.0",
+        "text": "Customer-authorised Faster Payments to suspected romance scam payees, nine payments totalling GBP 23,400.00 from 14/07/2025 to 29/09/2026. Raised by the customer's sister, who has no authority on file.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Total 9 payments GBP 23,400.00",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "NOT a party to the acct, no authority on file",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.team_reason",
+        "text": "Customer authorised the payments to a suspected romance scam payee, and F&S has been notified for urgent intervention.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "F&S notified for urgent intervention",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.payment_services_reason",
+        "text": "The customer confirmed she made the payments herself, so this is an authorised scam, not an unauthorised or wrongly executed payment.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Confirmed she made all the payments herself",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.0",
+        "text": "The customer's sister emailed the bank on 14/10/2026 about suspected romance scam payments. The sister is not on the account and no authority is on file.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I am writing about my younger sister",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "NOT a party to the acct, no authority on file",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.1",
+        "text": "Nine Faster Payments totalling GBP 23,400.00 were sent from the current account, mainly to payee R CALLOWAY, plus two to VARRICK MARITIME SERVICES LTD.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Total 9 payments GBP 23,400.00",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.2",
+        "text": "On 15/10/2026 the customer confirmed she made all the payments herself and said 'it's my money'. The outbound payments block is active and a fraud marker was added.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Confirmed she made all the payments herself",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "I sent it, it's my money",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Outbound payments block: ACTIVE",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.3",
+        "text": "The customer was flagged as vulnerable, with signs of bereavement, isolation and possible coercive control. The payee asked her to look into a loan.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "suspected ongoing romance scam, isolation, possible coercive control",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "he had asked her to look into one",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.0",
+        "text": "2025-07-14: First Faster Payment of GBP 800.00 to R CALLOWAY, with a generic warning shown and payment continued.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "14/07/2025 FP out GBP 800.00 payee R CALLOWAY",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.1",
+        "text": "2025-12-09: Faster Payment of GBP 2,500.00 to VARRICK MARITIME SERVICES LTD, with an invoice warning shown and payment continued.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "09/12/2025 FP out GBP 2,500.00 payee VARRICK MARITIME SERVICES LTD",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.2",
+        "text": "2026-04-17: Payment of GBP 3,200.00 to R CALLOWAY held for review. The customer said she was paying her nephew back for a car, and the payment was released.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "HELD for review",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "paying my nephew back for a car",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.3",
+        "text": "2026-06-26: Payment of GBP 3,400.00 to R CALLOWAY, with a romance scam warning shown and payment continued.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "26/06/2026 FP out GBP 3,400.00 payee R CALLOWAY",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.4",
+        "text": "2026-09-29: Last payment of GBP 3,500.00 to R CALLOWAY, with a romance scam warning shown and payment continued.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "29/09/2026 FP out GBP 3,500.00 payee R CALLOWAY",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.5",
+        "text": "2026-10-14: Sister's email logged at 09:40. Two outbound calls to the customer made that day, with no answer.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Email rec'd from sister",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Outbound to cust on [CUSTOMER_PHONE], no answer",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.6",
+        "text": "2026-10-15: Customer spoke to the bank and passed ID&V. Fraud marker added at 10:44 and outbound payments block activated.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Outbound, spoke to [CUSTOMER], ID&V passed.",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Fraud marker added 15/10/2026 10:44",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "outcome_sought",
+        "text": "The sister asks the bank to stop further money going to the payee and to try to recover the loss. The customer's own outcome has not been recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Please can you stop any more money going to this man and try to get back what she has lost",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Did not ask what outcome she wants",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "vulnerability.0",
+        "text": "Bereavement (husband died 2024)",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "bereaved (husband 2024)",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "vulnerability.1",
+        "text": "Isolation and possible coercive control",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "suspected ongoing romance scam, isolation, possible coercive control",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "vulnerability.2",
+        "text": "Withdrawal from friends and church, and distress",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "she doesn't answer when her friends ring",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Became upset when I explained common signs of romance scams.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.0",
+        "text": "CP-1.2: The sister is not an authorised representative. Written authority is needed before she can act for the customer.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-1.2",
+            "quote": "or by a representative the customer has authorised in writing",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.1",
+        "text": "CP-2.4: Earlier complaints from the customer on the same subject must be checked and any link recorded before investigating.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.4",
+            "quote": "check for earlier complaints from the same customer on the same subject",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.2",
+        "text": "CP-4.3: The customer's own desired outcome has not yet been recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "The handler must record, in the customer's own words where possible, the outcome the customer is seeking.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.3",
+        "text": "CP-5.2: Vulnerability signs and support needs must be recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-5.2",
+            "quote": "Signs of vulnerability must be recorded with the customer's consent where possible",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.4",
+        "text": "CP-5.3: The customer is vulnerable, so the handover to the specialist team must be warm.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-5.3",
+            "quote": "must not pass a vulnerable customer between teams without a warm handover",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.5",
+        "text": "CP-6.1: The case falls within the Fraud and Scams remit and must be handed over with the team checklist.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-6.1",
+            "quote": "A complaint must be passed to a specialist team when it falls within that team's remit",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.6",
+        "text": "CP-7.4: The Fraud and Scams team needs the payment details, reporting date, warnings, account of events and receiving bank.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-7.4",
+            "quote": "The Fraud and Scams team needs the payment details, when the scam was reported, any warnings shown at the time",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.customer_contact_attempted",
+        "text": "customer_contact_attempted: Spoke to customer 15/10/2026, ID&V passed.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Outbound, spoke to [CUSTOMER], ID&V passed.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.vulnerability_recorded",
+        "text": "vulnerability_recorded: Vulnerable flag added with support: call afternoons; sister may join calls verbally.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Support: call afternoons, cust happy for sister",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.payment_date",
+        "text": "payment_date: Nine payments from 14/07/2025 to 29/09/2026.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "14/07/2025 FP out GBP 800.00 payee R CALLOWAY",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "29/09/2026 FP out GBP 3,500.00 payee R CALLOWAY",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.payment_amount",
+        "text": "payment_amount: GBP 800.00 to GBP 3,500.00 each; total GBP 23,400.00.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Total 9 payments GBP 23,400.00",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.payment_method",
+        "text": "payment_method: Faster Payment.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "FP out GBP 800.00",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.payee_details",
+        "text": "payee_details: R CALLOWAY, Fenmoor Digital Bank; VARRICK MARITIME SERVICES LTD, Ardley Bank plc.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "receiving bank Fenmoor Digital Bank",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "receiving bank Ardley Bank plc",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.date_reported",
+        "text": "date_reported: 14/10/2026, when the sister's email was logged.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Email rec'd from sister",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.warnings_shown",
+        "text": "warnings_shown: Generic and romance scam warnings shown on each payment; all payments continued.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Romance scam warning v1 (dynamic) shown, continued",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.customer_account_of_events",
+        "text": "customer_account_of_events: Customer said she sent the money herself and that it is her money. She has not described events in full.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "I sent it, it's my money",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.authorised_or_not",
+        "text": "authorised_or_not: Customer says she made all the payments herself.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Confirmed she made all the payments herself",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "conflicts.0",
+        "text": "Purpose of the 17/04/2026 GBP 3,200.00 payment. The payment record says the customer described it as repaying her nephew for a car. The 15/10/2026 call note says she confirmed all payments were made to 'Richard'. Both versions are recorded and not resolved.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "paying my nephew back for a car",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Confirmed she made all the payments herself",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.0",
+        "text": "third_party_authority: Complaint raised by the customer's sister, who is not on the account and has no written authority. The customer agreed only verbally to the sister joining calls.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "verbal only, no written third party authority",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.1",
+        "text": "deadline_risk: Live scam risk. The sister reports a request for GBP 8,000 for a flight and visa. The outbound payments block is active.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "he needs £8,000 for a flight and a visa",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Outbound payments block: ACTIVE",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.2",
+        "text": "data_quality: No payee check result is recorded on the 21/10/2025 payment to R CALLOWAY, or on the later R CALLOWAY payments shown.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "21/10/2025 FP out GBP 2,000.00 payee R CALLOWAY",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "29/09/2026 FP out GBP 3,500.00 payee R CALLOWAY",
+            "result": "verified"
+          }
+        ]
+      }
+    ],
+    "supportedCount": 39,
+    "unsupportedCount": 0,
+    "inventedPlaceholders": [],
+    "checklist": {
+      "required": 13,
+      "present": 10,
+      "missing": [
+        "outcome_sought",
+        "customer_told_of_handover",
+        "linked_complaints_checked"
+      ],
+      "conflicting": []
+    }
+  },
+  "clock": "8_weeks",
+  "deadlines": {
+    "received": "2026-10-14",
+    "clock": "8_weeks",
+    "summaryResolutionWindowCloses": "2026-10-19",
+    "eightWeekDue": "2026-12-09",
+    "workingDue": "2026-12-09",
+    "needsHandlerConfirmation": false,
+    "calendarDaysLeft": 30,
+    "businessDaysLeft": 22,
+    "status": "on_track"
+  },
+  "usage": {
+    "inputTokens": 2031,
+    "outputTokens": 15412,
+    "cacheReadTokens": 9468,
+    "cacheWriteTokens": 0,
+    "costUsd": 0.00800378,
+    "latencyMs": 57728
+  }
+}
