@@ -10,7 +10,7 @@ Live site: https://ankura-casepack.vercel.app
 
 There is no login and no real data. Each complaint opens on a saved result from a real run, and the button "Run live AI on this case" drafts a fresh pack in about 45 seconds. Live runs are limited per visitor and per day, with a spending cap.
 
-1. Open the front page. Press Start, then Next, and it steps through one real run from the complaint arriving to the team leader's board, explaining each stage.
+1. Open the front page and press **Take the guided tour**. It walks you over the real handler's screen in eight stops, with Next and Skip. Or press Start to watch one run replayed, stage by stage.
 2. Choose **All complaints** in the navigation and open **HV-007, Mr Kieran Doyle**. This case has an instruction hidden in the customer's text, and you will see it flagged.
 3. Accept each section with its **Accept verified here** button. Every line the AI wrote has a quote from the source, and code has checked each quote exists.
 4. Fill each gap in the specialist team's checklist, or mark it not available with a reason. Sign-off stays blocked until you do.
