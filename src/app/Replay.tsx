@@ -156,10 +156,10 @@ export default function Replay({ data }: { data: ReplayData }) {
   const cues = useMemo(() => buildCues(data), [data]);
   const [elapsed, setElapsed] = useState(0);
   const [playing, setPlaying] = useState(false);
-  const [stepMode, setStepMode] = useState(false);
+  const [stepMode, setStepMode] = useState(true);
   const [sound, setSound] = useState(false);
   const voiceRef = useRef<HTMLAudioElement | null>(null);
-  const stepModeRef = useRef(false);
+  const stepModeRef = useRef(true);
   stepModeRef.current = stepMode;
   const [ready, setReady] = useState(false);
   const [cursor, setCursor] = useState<{ x: number; y: number } | null>(null);
@@ -171,11 +171,11 @@ export default function Replay({ data }: { data: ReplayData }) {
     targets.current[name] = el;
   };
 
-  // Start automatically unless the visitor prefers reduced motion, in which case show the finished result.
+  // Nothing moves until the visitor presses Start. Each stage then waits for Next and explains itself.
+  // A visitor who prefers reduced motion gets the finished result straight away.
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) setElapsed(cues.total);
-    else setPlaying(true);
     setReady(true);
   }, [cues.total]);
 
@@ -339,10 +339,10 @@ export default function Replay({ data }: { data: ReplayData }) {
   return (
     <div className={styles.page}>
       <div className={styles.intro}>
-        <h1 className={styles.h1}>Watch a complaint become a case pack</h1>
+        <h1 className={styles.h1}>See a complaint become a case pack, one stage at a time</h1>
         <p className={styles.lede}>
-          One real run, replayed, then the people who act on it. Every word in the pack was written by the AI, checked by code and timed.
-          Nothing was typed in by a person. Real time {data.seconds} seconds, cost {cost}.
+          Press Start, then Next for each of the nine stages. Each one explains what is happening. It is one real run, replayed, then the people who act on it.
+          Every word in the pack was written by the AI, checked by code and timed. Real time {data.seconds} seconds, cost {cost}.
         </p>
       </div>
 
