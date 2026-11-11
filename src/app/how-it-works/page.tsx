@@ -207,7 +207,7 @@ export default function HowItWorks() {
       </ul>
 
       <p className={styles.next}>
-        <Link href="/walkthrough">Take the five-step walkthrough</Link>
+        <Link href="/walkthrough">See what a failed quote check looks like, in the five-step walkthrough</Link>
         <Link href="/queue">See all complaints</Link>
       </p>
     </div>

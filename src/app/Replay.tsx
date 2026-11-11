@@ -341,7 +341,7 @@ export default function Replay({ data }: { data: ReplayData }) {
       <div className={styles.intro}>
         <h1 className={styles.h1}>See a complaint become a case pack, one stage at a time</h1>
         <p className={styles.lede}>
-          Press Start, then Next for each of the nine stages. Each one explains what is happening. It is one real run, replayed, then the people who act on it.
+          New here? <Link href={`/case/${data.caseId}?tour=1`}><strong>Take the two-minute guided tour</strong></Link> of the real screen, or press Start below to watch one run, then Next for each of the nine stages. Each one explains what is happening. It is one real run, replayed, then the people who act on it.
           Every word in the pack was written by the AI, checked by code and timed. Real time {data.seconds} seconds, cost {cost}.
         </p>
       </div>
@@ -580,7 +580,8 @@ export default function Replay({ data }: { data: ReplayData }) {
           <button className={!stepMode ? styles.paceOn : ""} onClick={() => choosePace(false)} aria-pressed={!stepMode}>Auto play</button>
           <button className={stepMode ? styles.paceOn : ""} onClick={() => choosePace(true)} aria-pressed={stepMode}>One stage at a time</button>
         </span>
-        <Link href={`/case/${data.caseId}`} className="btn">Do the review yourself</Link>
+        <Link href={`/case/${data.caseId}?tour=1`} className="btn">Take the guided tour</Link>
+        <Link href={`/case/${data.caseId}`}>Do the review yourself</Link>
         <Link href="/team">Open the team leader view</Link>
         {data.liveAvailable ? (
           <span className="small muted">Live AI is on. Open the case and press &ldquo;Run live AI on this case&rdquo; for a fresh run.</span>

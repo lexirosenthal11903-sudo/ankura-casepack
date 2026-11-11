@@ -12,6 +12,7 @@ import type { CaseFile } from "@/lib/types";
 import Link from "next/link";
 import { clearState, now, readState, writeState, type AuditEntry, type Decision, type GapFix, type ReviewState, type Stage } from "./state";
 import styles from "./workspace.module.css";
+import Tour from "./Tour";
 
 type Labels = {
   teams: Record<string, { label: string; handover: boolean }>;
@@ -231,7 +232,7 @@ export default function Workspace({
       <div className={styles.sectionHead}>
         <Tag>{title}</Tag>
         {editable && n > 0 && (
-          <button className="btn btn-small btn-secondary" onClick={() => acceptSection(prefixes, typeof title === "string" ? title.toLowerCase() : "this section")}>
+          <button className="btn btn-small btn-secondary" data-tour="accept" onClick={() => acceptSection(prefixes, typeof title === "string" ? title.toLowerCase() : "this section")}>
             Accept {n} verified here
           </button>
         )}
@@ -311,7 +312,7 @@ export default function Workspace({
     const d = decisions[path];
     const edited = d?.status === "edited" && d.text;
     return (
-      <div key={key ?? path} id={`stmt-${path}`} tabIndex={-1} className={`${styles.statement} ${!s.supported ? styles.red : ""} ${d?.status === "rejected" ? styles.rejected : ""}`}>
+      <div key={key ?? path} id={`stmt-${path}`} data-tour="statement" tabIndex={-1} className={`${styles.statement} ${!s.supported ? styles.red : ""} ${d?.status === "rejected" ? styles.rejected : ""}`}>
         <div className={styles.statementText}>
           {edited ? (
             <>{d.text} <span className="tag tag-blue">Edited by handler</span></>
@@ -456,10 +457,10 @@ export default function Workspace({
       </div>
 
       <div className={styles.grid}>
-        <section className={styles.col} aria-labelledby="docs-h">
+        <section className={styles.col} aria-labelledby="docs-h" data-tour="docs">
           <h2 id="docs-h">Case documents</h2>
           <div className={styles.toggle} role="group" aria-label="Document view">
-            <button aria-pressed={docView === "redacted"} onClick={() => setDocView("redacted")}>What the AI saw</button>
+            <button aria-pressed={docView === "redacted"} onClick={() => setDocView("redacted")} data-tour="ai-saw">What the AI saw</button>
             <button aria-pressed={docView === "original"} onClick={() => setDocView("original")}>As received</button>
           </div>
           <p className="small muted">
@@ -555,7 +556,7 @@ export default function Workspace({
         </section>
 
         <aside className={styles.col} aria-label="Deadlines, handover and sign-off">
-          <section className={styles.panel}>
+          <section className={styles.panel} data-tour="deadlines">
             <h2>Deadlines</h2>
             <p className="small muted">Worked out by code from the date received, not by the AI.</p>
             <dl className={styles.dl}>
@@ -598,7 +599,7 @@ export default function Workspace({
             )}
           </section>
 
-          <section className={styles.panel}>
+          <section className={styles.panel} data-tour="checklist">
             <h2>Handover checklist</h2>
             <p className="small muted">
               {team.handover
@@ -654,7 +655,7 @@ export default function Workspace({
             <h2 ref={signOffRef} tabIndex={-1}>Sign-off</h2>
             {editable && (
               <>
-                <ul className={styles.tasks}>
+                <ul className={styles.tasks} data-tour="signoff">
                   {tasks.map((t) => (
                     <li key={t.label}>
                       <span className="small">{t.label}</span>
@@ -698,6 +699,7 @@ export default function Workspace({
           </section>
         </aside>
       </div>
+      <Tour caseId={caseFile.id} />
     </div>
   );
 }
