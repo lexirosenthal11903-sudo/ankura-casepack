@@ -15,7 +15,7 @@ The site runs on saved results, so there is no login, no real data and no cost. 
 3. Select **Accept all verified**. Every line the AI wrote has a quote from the source, and code has checked each quote exists.
 4. Fill each gap in the specialist team's checklist, or mark it not available with a reason. Sign-off stays blocked until you do.
 5. Sign off and hand the case over.
-6. Open **Team leader view** to see the case on the board.
+6. Open **Team leader view** for the whole queue, the deadlines at risk and the repeat problems. It is built from the saved case packs, so your own sign-off does not change it in this prototype.
 
 The **How this works** page shows the same story with the test results on one page. The **Step by step** page takes one case in five short steps.
 
@@ -46,20 +46,20 @@ The form the AI fills in has no field for an outcome, compensation or a reply to
 
 I wrote 25 complaints and an answer key for each before I wrote the prompt. I used 15 to improve the prompt. I held back 10 (HV-016 to HV-025) and ran them for the first time on the morning of submission, three repeats, with nothing tuned to them. Scoring is done by code, not by AI. The held-back column is the one to judge it by.
 
-| Measure | Held-back set (3 runs) | Development set (tuned on) |
-|---|---|---|
-| Routed to the right team | 90 to 100% | 100% |
-| Right deadline rule | 80 to 100% | 100% |
-| Vulnerability flagged correctly | 90% | 100% |
-| Expected policy paragraphs cited | 67 to 74% | 69% |
-| Missing information found | 85 to 91% | 95% |
-| AI statements whose quotes verified | 99 to 100% | 100% |
-| Planted personal details hidden | 78 of 101 blind, then 101 of 101 after the fix (not blind) | 112 of 112 |
-| Cost and time per case | about $0.006 and 45 s | about $0.006 |
+| Measure | Held-back, blind (prompt v3) | Held-back after the two corrections (v4) | Development set (tuned on, v4) |
+|---|---|---|---|
+| Routed to the right team | 90 to 100% | 90 to 100% | 100% |
+| Right deadline rule | 80 to 100% on the keys as they were, 60 to 80% once the scam clock was corrected | 80 to 89% | 100% |
+| Vulnerability flagged correctly | 90% | 89 to 90% | 93% |
+| Expected policy paragraphs cited | 67 to 74% | 70 to 73% | 66% |
+| Missing information found | 85 to 91% | 82 to 90% | 93% |
+| AI statements whose quotes verified | 99 to 100% | 100% | 100% |
+| Planted personal details hidden | 78 of 101 | 101 of 101 | 112 of 112 |
+| Cost and time per case | about $0.0063 and 45 s | about $0.006 and 42 s | about $0.0055 and 40 s |
 
-Model in production is Claude Haiku 5.5 with prompt v3. On the development set, Claude Sonnet 5.5 gave the same quality (74% policy citations) at $0.047 per case, so I kept Haiku.
+Model in production is Claude Haiku 5.5 with prompt v4. On the development set, Claude Sonnet 5.5 was a few points better on vulnerability and policy citations (74% against 66%) at $0.047 per case, about eight and a half times the cost, so I kept Haiku.
 
-**The redaction finding.** On the held-back set the first three redaction layers caught only 78 of 101 planted identifiers. Every miss was a person the bank's record does not know, such as a boyfriend, a scammer, four children named in one email, a carer or a nickname. Those layers work from the bank's record and from number patterns, and my development cases happened not to name anyone outside the record. I added a fourth layer the same day that finds people from how the text introduces them, and the held-back set now scores 101 of 101. That second number is not blind, because I fixed the code after seeing the misses. The AI quality figures in the table were produced before the fix and stand as the blind result. A second run after the fix gave the same ranges and is saved alongside it. The full account is in `docs/decisions.md`.
+**The two findings on the held-back set.** The second, found by checking facts at source, was that the prompt had scam complaints on the 8-week clock when the Ombudsman's guidance says 15 business days. Prompt v4, the policy and three answer keys were corrected and everything re-run. The first: On the held-back set the first three redaction layers caught only 78 of 101 planted identifiers. Every miss was a person the bank's record does not know, such as a boyfriend, a scammer, four children named in one email, a carer or a nickname. Those layers work from the bank's record and from number patterns, and my development cases happened not to name anyone outside the record. I added a fourth layer the same day that finds people from how the text introduces them, and the held-back set now scores 101 of 101. That second number is not blind, because I fixed the code after seeing the misses. The AI quality figures in the blind column were produced before either fix. The second held-back column is the re-run after both corrections and is not blind. The full account is in `docs/decisions.md`.
 
 ## Controls
 

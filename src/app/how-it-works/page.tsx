@@ -133,7 +133,7 @@ export default function HowItWorks() {
       <table className={styles.table}>
         <thead><tr><th scope="col">Risk</th><th scope="col">Control</th><th scope="col">How we know it works</th></tr></thead>
         <tbody>
-          <tr><td>Customer data reaches the AI</td><td>Three-layer redaction before every call: the bank&apos;s own record, patterns, near-matches for misspelt names</td><td>Measured on planted names and numbers (below). Never claimed to be perfect</td></tr>
+          <tr><td>Customer data reaches the AI</td><td>Four-layer redaction before every call: the bank&apos;s own record, patterns, near-matches for misspelt names, and people the text introduces who are not in the record</td><td>Measured on planted names and numbers (below). Never claimed to be perfect</td></tr>
           <tr><td>AI makes things up</td><td>Every statement must quote its source. Code checks each quote</td><td>Unit tests. Unsupported lines are red and block sign-off</td></tr>
           <tr><td>Incomplete handovers</td><td>Every gap in the specialist team&apos;s checklist must be filled or marked not available with a reason before sign-off (policy CP-6.2). Specialists can send a case back with a coded reason</td><td>End-to-end test of the handover and send-back</td></tr>
           <tr><td>AI decides the outcome</td><td>No outcome or compensation field exists in the form the AI fills in. Routing and the deadline rule, which injected text could still influence, are confirmed by a person</td><td>Injection test case. Schema review</td></tr>
