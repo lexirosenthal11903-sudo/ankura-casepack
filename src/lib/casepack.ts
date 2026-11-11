@@ -6,7 +6,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { zodOutputFormat } from "@anthropic-ai/sdk/helpers/zod";
 import { checklistFor, loadCase, policy } from "./data";
 import { computeDeadlines, type Clock, type Deadlines } from "./deadlines";
-import { buildUserMessage, PROMPT_VERSION, SYSTEM_PROMPT } from "./prompts/casepack-v3";
+import { buildUserMessage, PROMPT_VERSION, SYSTEM_PROMPT } from "./prompts/casepack-v4";
 import { checkItem, type CheckedCitation, type Citation } from "./provenance";
 import { buildDisplay, findInventedPlaceholders, redactCase, type RedactedCase } from "./redact";
 import { clockFromPack, refundDutyApplies } from "./rules";

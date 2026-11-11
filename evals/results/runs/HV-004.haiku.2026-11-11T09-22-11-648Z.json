@@ -1,0 +1,1193 @@
+{
+  "caseId": "HV-004",
+  "createdAt": "2026-11-11T09:22:11.648Z",
+  "model": "claude-haiku-5-5",
+  "promptVersion": "casepack-v4",
+  "redacted": {
+    "id": "HV-004",
+    "received": "2026-09-28",
+    "channel": "email",
+    "documents": [
+      {
+        "id": "D1",
+        "system": "EMAIL",
+        "type": "email",
+        "date": "2026-09-28",
+        "author_role": "third_party",
+        "text": "Subject: My father's accounts - this is now ridiculous\n\nTo whom it may concern,\n\nMy father [DECEASED] died on 9 July. I am the executor of his will. I sent you the death certificate and the grant of probate by recorded delivery in the middle of August and I have the Royal Mail receipt. Since then I have phoned four times and every time I am told it is 'with the team'. On my last call a man called [STAFF] said you had never received the probate at all, which is not true.\n\nMeanwhile you are still charging a monthly fee on Dad's current account and I have had a letter addressed to him asking him to 'update his details', which was upsetting to open.\n\nI need the accounts closed and the money released to the estate so I can pay the care home, who are now chasing me. I would also like the fees refunded and an apology.\n\n[EXECUTOR]\n[EMAIL_1]\n[PHONE_1]"
+      },
+      {
+        "id": "D2",
+        "system": "CRM",
+        "type": "crm_note",
+        "date": "2026-08-19",
+        "author_role": "handler",
+        "text": "Bereavement docs received by post for [DECEASED]: death certificate (certified copy) and grant of probate. Scanned to case. Executor [EXECUTOR]. Passed to bereavement queue."
+      },
+      {
+        "id": "D3",
+        "system": "CORE",
+        "type": "system_log",
+        "date": "2026-09-30",
+        "author_role": "system",
+        "text": "Account [ACCOUNT_1] status: DECEASED NOTIFIED 14/07/2026. Probate status: AWAITED. Documents received date: none recorded. Monthly account fee GBP 3.00 debited 01/08/2026 and 01/09/2026."
+      },
+      {
+        "id": "D4",
+        "system": "CRM",
+        "type": "call_summary",
+        "date": "2026-09-22",
+        "author_role": "handler",
+        "text": "Executor called chasing release of funds. Checked CORE, shows probate awaited, advised her we have not received probate and asked her to resend. Executor said she had sent it and became upset. - [STAFF]"
+      }
+    ],
+    "replacements": [
+      {
+        "placeholder": "[EMAIL_1]",
+        "original": "helen.am@example.com",
+        "layer": "pattern",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[DECEASED]",
+        "original": "Raymond Achterberg",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[STAFF]",
+        "original": "Tom",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[EXECUTOR]",
+        "original": "Helen Achterberg-Moss",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[PHONE_1]",
+        "original": "07700 900 482",
+        "layer": "pattern",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[DECEASED]",
+        "original": "R Achterberg",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[EXECUTOR]",
+        "original": "H Achterberg-Moss",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[ACCOUNT_1]",
+        "original": "41907736",
+        "layer": "record",
+        "documentId": "D3"
+      },
+      {
+        "placeholder": "[STAFF]",
+        "original": "T Fairbairn",
+        "layer": "record",
+        "documentId": "D4"
+      }
+    ],
+    "placeholders": [
+      "[ACCOUNT_1]",
+      "[DECEASED]",
+      "[EMAIL_1]",
+      "[EXECUTOR]",
+      "[PHONE_1]",
+      "[STAFF]"
+    ],
+    "display": {
+      "[EMAIL_1]": "helen.am@example.com",
+      "[DECEASED]": "Mr Raymond Achterberg",
+      "[STAFF]": "Tom Fairbairn",
+      "[EXECUTOR]": "Helen Achterberg-Moss",
+      "[PHONE_1]": "07700 900 482",
+      "[ACCOUNT_1]": "41907736",
+      "[SORT_CODE]": "77-41-22",
+      "[ACCOUNT_2]": "58830142"
+    }
+  },
+  "pack": {
+    "enough_information": {
+      "sufficient": true,
+      "what_is_needed": ""
+    },
+    "intake": {
+      "issues": [
+        {
+          "product": "current_account",
+          "cause": "bereavement_poa",
+          "description": "Executor asks for the accounts to be closed and funds released to the estate. Receipt of probate is disputed.",
+          "citations": [
+            {
+              "source": "D1",
+              "quote": "I need the accounts closed and the money released to the estate"
+            },
+            {
+              "source": "D3",
+              "quote": "Probate status: AWAITED."
+            }
+          ]
+        },
+        {
+          "product": "current_account",
+          "cause": "fees_interest",
+          "description": "Monthly account fee continued to be debited after the death was notified.",
+          "citations": [
+            {
+              "source": "D3",
+              "quote": "Monthly account fee GBP 3.00 debited 01/08/2026 and 01/09/2026."
+            }
+          ]
+        },
+        {
+          "product": "current_account",
+          "cause": "service_delay",
+          "description": "Repeated calls without resolution, and a letter addressed to the deceased asking him to update his details.",
+          "citations": [
+            {
+              "source": "D1",
+              "quote": "Since then I have phoned four times"
+            },
+            {
+              "source": "D1",
+              "quote": "a letter addressed to him asking him to 'update his details'"
+            }
+          ]
+        }
+      ],
+      "suggested_team": "bereavement_poa",
+      "team_reason": {
+        "text": "The complaint concerns a deceased customer's account, and the complainant says they are the executor.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I am the executor of his will."
+          },
+          {
+            "source": "D3",
+            "quote": "DECEASED NOTIFIED 14/07/2026"
+          }
+        ]
+      },
+      "payment_services": "no",
+      "payment_services_reason": {
+        "text": "The issues are fees, account closure and probate handling. No unauthorised or wrongly executed payment is described.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "you are still charging a monthly fee on Dad's current account"
+          }
+        ]
+      },
+      "already_with_ombudsman": false,
+      "linked_to_earlier_complaint": false
+    },
+    "summary": [
+      {
+        "text": "Executor reports the account holder died on 9 July and that she is the executor of the estate.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "My father [DECEASED] died on 9 July."
+          }
+        ]
+      },
+      {
+        "text": "Executor asks for the accounts to be closed, funds released to the estate, fees refunded and an apology. She reports pressure from a care home.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I would also like the fees refunded and an apology."
+          },
+          {
+            "source": "D1",
+            "quote": "so I can pay the care home, who are now chasing me"
+          }
+        ]
+      },
+      {
+        "text": "Monthly account fee of GBP 3.00 was debited on 01/08/2026 and 01/09/2026. The bank system shows probate as awaited.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Monthly account fee GBP 3.00 debited 01/08/2026 and 01/09/2026."
+          },
+          {
+            "source": "D3",
+            "quote": "Probate status: AWAITED."
+          }
+        ]
+      },
+      {
+        "text": "Receipt of probate is disputed. The executor says it was sent by recorded delivery, and bank records conflict on whether it was received.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "by recorded delivery in the middle of August"
+          },
+          {
+            "source": "D2",
+            "quote": "Scanned to case."
+          }
+        ]
+      }
+    ],
+    "timeline": [
+      {
+        "date": "9 July",
+        "event": "Account holder died, as stated by the executor. Year not stated.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "My father [DECEASED] died on 9 July."
+          }
+        ]
+      },
+      {
+        "date": "2026-07-14",
+        "event": "Death notified to the bank.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "DECEASED NOTIFIED 14/07/2026"
+          }
+        ]
+      },
+      {
+        "date": "mid-August",
+        "event": "Executor says death certificate and grant of probate were sent by recorded delivery.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "by recorded delivery in the middle of August"
+          }
+        ]
+      },
+      {
+        "date": "2026-08-01",
+        "event": "Monthly account fee GBP 3.00 debited.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "debited 01/08/2026 and 01/09/2026"
+          }
+        ]
+      },
+      {
+        "date": "2026-08-19",
+        "event": "Bereavement documents recorded as received by post and scanned to the case.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "death certificate (certified copy) and grant of probate"
+          }
+        ]
+      },
+      {
+        "date": "2026-09-01",
+        "event": "Monthly account fee GBP 3.00 debited.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "debited 01/08/2026 and 01/09/2026"
+          }
+        ]
+      },
+      {
+        "date": "2026-09-22",
+        "event": "Executor called chasing release of funds. Handler advised probate not received and asked for it to be resent.",
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "Executor called chasing release of funds."
+          },
+          {
+            "source": "D4",
+            "quote": "advised her we have not received probate and asked her to resend"
+          }
+        ]
+      },
+      {
+        "date": "2026-09-28",
+        "event": "Complaint received by email.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "My father's accounts - this is now ridiculous"
+          }
+        ]
+      }
+    ],
+    "outcome_sought": {
+      "text": "Accounts closed, money released to the estate, fees refunded and an apology.",
+      "citations": [
+        {
+          "source": "D1",
+          "quote": "I need the accounts closed and the money released to the estate"
+        },
+        {
+          "source": "D1",
+          "quote": "I would also like the fees refunded and an apology."
+        }
+      ]
+    },
+    "vulnerability": [
+      {
+        "signal": "Bereavement",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "My father [DECEASED] died on 9 July."
+          }
+        ]
+      },
+      {
+        "signal": "Financial difficulty: funds needed to pay a care home",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "so I can pay the care home, who are now chasing me"
+          }
+        ]
+      },
+      {
+        "signal": "Distress: upset during contact with the bank",
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "Executor said she had sent it and became upset."
+          }
+        ]
+      }
+    ],
+    "relevant_policy": [
+      {
+        "policy_id": "CP-8.1",
+        "why_relevant": "Deceased customer's account. Authority must be confirmed before account information is shared.",
+        "citations": [
+          {
+            "source": "CP-8.1",
+            "quote": "Staff must confirm who has authority to act, such as the executor or administrator, before sharing account information."
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-1.2",
+        "why_relevant": "The executor may complain on the customer's behalf if they have legal authority.",
+        "citations": [
+          {
+            "source": "CP-1.2",
+            "quote": "by someone with legal authority to act for them (an attorney, deputy or executor)"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-6.1",
+        "why_relevant": "The case falls within the bereavement and power of attorney team's remit and must be handed over with its checklist.",
+        "citations": [
+          {
+            "source": "CP-6.1",
+            "quote": "A complaint must be passed to a specialist team when it falls within that team's remit, using the team's handover checklist."
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-6.2",
+        "why_relevant": "The handover is complete only when each required checklist item is filled in or marked with a reason.",
+        "citations": [
+          {
+            "source": "CP-6.2",
+            "quote": "A handover is complete only when every required checklist item is filled in or marked as not available with a reason."
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.2",
+        "why_relevant": "Probate receipt records disagree and both versions must be recorded.",
+        "citations": [
+          {
+            "source": "CP-4.2",
+            "quote": "Where system records disagree, for example on the date of a call or a payment, the handler must record both versions and the source of each"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.3",
+        "why_relevant": "The outcome the executor is seeking must be recorded in her own words.",
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "The handler must record, in the customer's own words where possible, the outcome the customer is seeking."
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-5.2",
+        "why_relevant": "Bereavement, financial pressure and distress signs must be recorded with support needs.",
+        "citations": [
+          {
+            "source": "CP-5.2",
+            "quote": "Signs of vulnerability must be recorded with the customer's consent where possible"
+          }
+        ]
+      }
+    ],
+    "handover_checklist": [
+      {
+        "item_id": "outcome_sought",
+        "status": "present",
+        "value": "Accounts closed, money released to the estate, fees refunded and an apology.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I need the accounts closed and the money released to the estate"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_contact_attempted",
+        "status": "present",
+        "value": "Executor called on 2026-09-22 and has phoned four times.",
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "Executor called chasing release of funds."
+          },
+          {
+            "source": "D1",
+            "quote": "Since then I have phoned four times"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_told_of_handover",
+        "status": "missing",
+        "value": "",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Subject: My father's accounts - this is now ridiculous"
+          }
+        ]
+      },
+      {
+        "item_id": "vulnerability_recorded",
+        "status": "missing",
+        "value": "",
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "Executor said she had sent it and became upset."
+          }
+        ]
+      },
+      {
+        "item_id": "linked_complaints_checked",
+        "status": "missing",
+        "value": "",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "My father's accounts - this is now ridiculous"
+          }
+        ]
+      },
+      {
+        "item_id": "date_of_death",
+        "status": "present",
+        "value": "9 July (year not stated)",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "My father [DECEASED] died on 9 July."
+          }
+        ]
+      },
+      {
+        "item_id": "authority_type",
+        "status": "present",
+        "value": "Executor, per the executor's email. Probate grant not yet verified.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I am the executor of his will."
+          }
+        ]
+      },
+      {
+        "item_id": "authority_evidence_status",
+        "status": "conflicting",
+        "value": "Scanned to the case on 2026-08-19 per handler note. Probate status recorded as AWAITED with no received date.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "death certificate (certified copy) and grant of probate"
+          },
+          {
+            "source": "D3",
+            "quote": "Probate status: AWAITED."
+          }
+        ]
+      },
+      {
+        "item_id": "accounts_affected",
+        "status": "present",
+        "value": "[ACCOUNT_1]",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Account [ACCOUNT_1] status: DECEASED NOTIFIED 14/07/2026"
+          }
+        ]
+      },
+      {
+        "item_id": "relationship_to_customer",
+        "status": "present",
+        "value": "Child of the deceased (executor)",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "My father [DECEASED] died on 9 July."
+          }
+        ]
+      }
+    ],
+    "conflicts": [
+      {
+        "text": "Probate receipt. D1 says the death certificate and grant of probate were sent by recorded delivery in mid-August. D2 records them as received by post on 2026-08-19 and scanned. D3 shows probate AWAITED with no received date. D4 records that the bank has not received probate. Both versions are shown and not resolved.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "by recorded delivery in the middle of August"
+          },
+          {
+            "source": "D2",
+            "quote": "Scanned to case."
+          },
+          {
+            "source": "D3",
+            "quote": "Documents received date: none recorded."
+          },
+          {
+            "source": "D4",
+            "quote": "advised her we have not received probate and asked her to resend"
+          }
+        ]
+      }
+    ],
+    "flags": [
+      {
+        "type": "third_party_authority",
+        "description": "Executor authority is claimed but the grant of probate is not confirmed as checked. Probate status is shown as awaited.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Probate status: AWAITED."
+          }
+        ]
+      },
+      {
+        "type": "data_quality",
+        "description": "Received date for the bereavement documents is recorded in one system and missing in another.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Documents received date: none recorded."
+          }
+        ]
+      },
+      {
+        "type": "deadline_risk",
+        "description": "Final response is due within eight weeks of receipt on 2026-09-28. The executor reports pressure from a care home.",
+        "citations": [
+          {
+            "source": "CP-3.1",
+            "quote": "send a final response within eight weeks of receiving the complaint"
+          }
+        ]
+      }
+    ]
+  },
+  "checks": {
+    "statements": [
+      {
+        "path": "intake.issues.0",
+        "text": "Executor asks for the accounts to be closed and funds released to the estate. Receipt of probate is disputed.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I need the accounts closed and the money released to the estate",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Probate status: AWAITED.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.issues.1",
+        "text": "Monthly account fee continued to be debited after the death was notified.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Monthly account fee GBP 3.00 debited 01/08/2026 and 01/09/2026.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.issues.2",
+        "text": "Repeated calls without resolution, and a letter addressed to the deceased asking him to update his details.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Since then I have phoned four times",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "a letter addressed to him asking him to 'update his details'",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.team_reason",
+        "text": "The complaint concerns a deceased customer's account, and the complainant says they are the executor.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I am the executor of his will.",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "DECEASED NOTIFIED 14/07/2026",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.payment_services_reason",
+        "text": "The issues are fees, account closure and probate handling. No unauthorised or wrongly executed payment is described.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "you are still charging a monthly fee on Dad's current account",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.0",
+        "text": "Executor reports the account holder died on 9 July and that she is the executor of the estate.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "My father [DECEASED] died on 9 July.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.1",
+        "text": "Executor asks for the accounts to be closed, funds released to the estate, fees refunded and an apology. She reports pressure from a care home.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I would also like the fees refunded and an apology.",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "so I can pay the care home, who are now chasing me",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.2",
+        "text": "Monthly account fee of GBP 3.00 was debited on 01/08/2026 and 01/09/2026. The bank system shows probate as awaited.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Monthly account fee GBP 3.00 debited 01/08/2026 and 01/09/2026.",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Probate status: AWAITED.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.3",
+        "text": "Receipt of probate is disputed. The executor says it was sent by recorded delivery, and bank records conflict on whether it was received.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "by recorded delivery in the middle of August",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Scanned to case.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.0",
+        "text": "9 July: Account holder died, as stated by the executor. Year not stated.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "My father [DECEASED] died on 9 July.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.1",
+        "text": "2026-07-14: Death notified to the bank.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "DECEASED NOTIFIED 14/07/2026",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.2",
+        "text": "mid-August: Executor says death certificate and grant of probate were sent by recorded delivery.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "by recorded delivery in the middle of August",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.3",
+        "text": "2026-08-01: Monthly account fee GBP 3.00 debited.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "debited 01/08/2026 and 01/09/2026",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.4",
+        "text": "2026-08-19: Bereavement documents recorded as received by post and scanned to the case.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "death certificate (certified copy) and grant of probate",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.5",
+        "text": "2026-09-01: Monthly account fee GBP 3.00 debited.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "debited 01/08/2026 and 01/09/2026",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.6",
+        "text": "2026-09-22: Executor called chasing release of funds. Handler advised probate not received and asked for it to be resent.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "Executor called chasing release of funds.",
+            "result": "verified"
+          },
+          {
+            "source": "D4",
+            "quote": "advised her we have not received probate and asked her to resend",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.7",
+        "text": "2026-09-28: Complaint received by email.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "My father's accounts - this is now ridiculous",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "outcome_sought",
+        "text": "Accounts closed, money released to the estate, fees refunded and an apology.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I need the accounts closed and the money released to the estate",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "I would also like the fees refunded and an apology.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "vulnerability.0",
+        "text": "Bereavement",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "My father [DECEASED] died on 9 July.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "vulnerability.1",
+        "text": "Financial difficulty: funds needed to pay a care home",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "so I can pay the care home, who are now chasing me",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "vulnerability.2",
+        "text": "Distress: upset during contact with the bank",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "Executor said she had sent it and became upset.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.0",
+        "text": "CP-8.1: Deceased customer's account. Authority must be confirmed before account information is shared.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-8.1",
+            "quote": "Staff must confirm who has authority to act, such as the executor or administrator, before sharing account information.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.1",
+        "text": "CP-1.2: The executor may complain on the customer's behalf if they have legal authority.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-1.2",
+            "quote": "by someone with legal authority to act for them (an attorney, deputy or executor)",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.2",
+        "text": "CP-6.1: The case falls within the bereavement and power of attorney team's remit and must be handed over with its checklist.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-6.1",
+            "quote": "A complaint must be passed to a specialist team when it falls within that team's remit, using the team's handover checklist.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.3",
+        "text": "CP-6.2: The handover is complete only when each required checklist item is filled in or marked with a reason.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-6.2",
+            "quote": "A handover is complete only when every required checklist item is filled in or marked as not available with a reason.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.4",
+        "text": "CP-4.2: Probate receipt records disagree and both versions must be recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.2",
+            "quote": "Where system records disagree, for example on the date of a call or a payment, the handler must record both versions and the source of each",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.5",
+        "text": "CP-4.3: The outcome the executor is seeking must be recorded in her own words.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "The handler must record, in the customer's own words where possible, the outcome the customer is seeking.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.6",
+        "text": "CP-5.2: Bereavement, financial pressure and distress signs must be recorded with support needs.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-5.2",
+            "quote": "Signs of vulnerability must be recorded with the customer's consent where possible",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.outcome_sought",
+        "text": "outcome_sought: Accounts closed, money released to the estate, fees refunded and an apology.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I need the accounts closed and the money released to the estate",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.customer_contact_attempted",
+        "text": "customer_contact_attempted: Executor called on 2026-09-22 and has phoned four times.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "Executor called chasing release of funds.",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "Since then I have phoned four times",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.date_of_death",
+        "text": "date_of_death: 9 July (year not stated)",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "My father [DECEASED] died on 9 July.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.authority_type",
+        "text": "authority_type: Executor, per the executor's email. Probate grant not yet verified.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I am the executor of his will.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.authority_evidence_status",
+        "text": "authority_evidence_status: Scanned to the case on 2026-08-19 per handler note. Probate status recorded as AWAITED with no received date.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "death certificate (certified copy) and grant of probate",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Probate status: AWAITED.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.accounts_affected",
+        "text": "accounts_affected: [ACCOUNT_1]",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Account [ACCOUNT_1] status: DECEASED NOTIFIED 14/07/2026",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.relationship_to_customer",
+        "text": "relationship_to_customer: Child of the deceased (executor)",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "My father [DECEASED] died on 9 July.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "conflicts.0",
+        "text": "Probate receipt. D1 says the death certificate and grant of probate were sent by recorded delivery in mid-August. D2 records them as received by post on 2026-08-19 and scanned. D3 shows probate AWAITED with no received date. D4 records that the bank has not received probate. Both versions are shown and not resolved.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "by recorded delivery in the middle of August",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Scanned to case.",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Documents received date: none recorded.",
+            "result": "verified"
+          },
+          {
+            "source": "D4",
+            "quote": "advised her we have not received probate and asked her to resend",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.0",
+        "text": "third_party_authority: Executor authority is claimed but the grant of probate is not confirmed as checked. Probate status is shown as awaited.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Probate status: AWAITED.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.1",
+        "text": "data_quality: Received date for the bereavement documents is recorded in one system and missing in another.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Documents received date: none recorded.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.2",
+        "text": "deadline_risk: Final response is due within eight weeks of receipt on 2026-09-28. The executor reports pressure from a care home.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-3.1",
+            "quote": "send a final response within eight weeks of receiving the complaint",
+            "result": "verified"
+          }
+        ]
+      }
+    ],
+    "supportedCount": 39,
+    "unsupportedCount": 0,
+    "inventedPlaceholders": [],
+    "checklist": {
+      "required": 10,
+      "present": 6,
+      "missing": [
+        "customer_told_of_handover",
+        "vulnerability_recorded",
+        "linked_complaints_checked"
+      ],
+      "conflicting": [
+        "authority_evidence_status"
+      ]
+    }
+  },
+  "clock": "8_weeks",
+  "deadlines": {
+    "received": "2026-09-28",
+    "clock": "8_weeks",
+    "summaryResolutionWindowCloses": "2026-10-01",
+    "eightWeekDue": "2026-11-23",
+    "workingDue": "2026-11-23",
+    "needsHandlerConfirmation": false,
+    "calendarDaysLeft": 14,
+    "businessDaysLeft": 10,
+    "status": "on_track"
+  },
+  "usage": {
+    "inputTokens": 721,
+    "outputTokens": 11627,
+    "cacheReadTokens": 9539,
+    "cacheWriteTokens": 0,
+    "costUsd": 0.00598099,
+    "latencyMs": 43753
+  }
+}

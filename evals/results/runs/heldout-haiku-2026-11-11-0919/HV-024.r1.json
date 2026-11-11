@@ -1,0 +1,999 @@
+{
+  "caseId": "HV-024",
+  "createdAt": "2026-11-11T09:20:35.294Z",
+  "model": "claude-haiku-5-5",
+  "promptVersion": "casepack-v4",
+  "redacted": {
+    "id": "HV-024",
+    "received": "2026-09-21",
+    "channel": "web_form",
+    "documents": [
+      {
+        "id": "D1",
+        "system": "WEBFORM",
+        "type": "web_form",
+        "date": "2026-09-21",
+        "author_role": "customer",
+        "text": "WEB FORM - Make a complaint\nName: [CUSTOMER]\nAccount type: Current account\nWhat is your complaint about? Card payment / refund\nTell us what happened:\nOn 20 June I ordered a corner sofa online from Larchmont Living and paid £1,349.00 in full on my H&V debit card ending [CARD]. Delivery was promised for the week of 10 August. It never came. My partner [PERSON_1] took two days off work to wait in for it. They kept emailing to say there were delays at the factory. On 2 September they went into administration and the website just has a notice on it now. The administrators' letter says customers are 'unsecured creditors' and are unlikely to get anything back.\n\nI contacted you on app chat on 10 September and asked for a chargeback. The person said you can't do chargebacks when a company has gone bust and I need to claim from the administrators. My friend got her money back from her bank for exactly the same thing, so I don't think that's right. I said I wasn't happy and was told to 'submit a complaint online', which is what I'm doing.\nWhat would you like us to do? Raise a chargeback and refund the £1,349.\nBest way to contact you: [EMAIL_1] (please use this one, not my old work email)"
+      },
+      {
+        "id": "D2",
+        "system": "CARDS",
+        "type": "system_log",
+        "date": "2026-09-10",
+        "author_role": "system",
+        "text": "Card [CARD]. 20/06/2026 14:38 LARCHMONT LIVING LTD GBP 1,349.00 e-commerce, 3DS challenged, approved. Merchant status (scheme lookup 10/09/2026): TERMINATED - insolvency. 10/09/2026 16:22 Dispute enquiry via in-app chat, reason: goods not received. Agent outcome: NOT RAISED, 'merchant insolvent, refer cust to administrator'. Chat transcript note: customer wrote 'I'm not happy with this answer'. No complaint logged."
+      },
+      {
+        "id": "D3",
+        "system": "CRM",
+        "type": "crm_note",
+        "date": "2026-09-22",
+        "author_role": "handler",
+        "text": "Web form complaint logged. Debit card purchase, goods not received, merchant in administration. Chargeback declined in chat 10/09. Chat shows cust said she was not happy on 10/09, TL to confirm whether received date should be 10/09. Called cust [CUSTOMER_PHONE] 22/09 10:15, no answer, no voicemail facility. To Payments & Disputes. - [STAFF]"
+      }
+    ],
+    "replacements": [
+      {
+        "placeholder": "[EMAIL_1]",
+        "original": "nadia.h87@example.com",
+        "layer": "pattern",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Nadia Haddad",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[CARD]",
+        "original": "7731",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[PERSON_1]",
+        "original": "Sami",
+        "layer": "text",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[CARD]",
+        "original": "7731",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[CUSTOMER_PHONE]",
+        "original": "07700 900 925",
+        "layer": "record",
+        "documentId": "D3"
+      },
+      {
+        "placeholder": "[STAFF]",
+        "original": "E Mwangi",
+        "layer": "record",
+        "documentId": "D3"
+      }
+    ],
+    "placeholders": [
+      "[CARD]",
+      "[CUSTOMER]",
+      "[CUSTOMER_PHONE]",
+      "[EMAIL_1]",
+      "[PERSON_1]",
+      "[STAFF]"
+    ],
+    "display": {
+      "[EMAIL_1]": "nadia.h87@example.com",
+      "[CUSTOMER]": "Ms Nadia Haddad",
+      "[CARD]": "7731",
+      "[PERSON_1]": "Sami",
+      "[CUSTOMER_PHONE]": "07700 900 925",
+      "[STAFF]": "Ellis Mwangi",
+      "[ACCOUNT]": "33970814",
+      "[SORT_CODE]": "77-41-56",
+      "[CUSTOMER_EMAIL]": "n.haddad@example.com"
+    }
+  },
+  "pack": {
+    "enough_information": {
+      "sufficient": true,
+      "what_is_needed": ""
+    },
+    "intake": {
+      "issues": [
+        {
+          "product": "current_account",
+          "cause": "card_dispute",
+          "description": "Customer paid £1,349.00 by debit card to Larchmont Living Ltd for a sofa that was not delivered. The merchant is insolvent. Customer wants a chargeback, which the 10/09 app chat agent did not raise.",
+          "citations": [
+            {
+              "source": "D1",
+              "quote": "paid £1,349.00 in full on my H&V debit card"
+            },
+            {
+              "source": "D2",
+              "quote": "Agent outcome: NOT RAISED"
+            }
+          ]
+        }
+      ],
+      "suggested_team": "payments_disputes",
+      "team_reason": {
+        "text": "Card dispute with a retailer where a chargeback is requested, which this team handles.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Raise a chargeback and refund the £1,349"
+          }
+        ]
+      },
+      "payment_services": "no",
+      "payment_services_reason": {
+        "text": "Customer authorised the card payment (3DS approved). Chargeback with a retailer is not a Parts 6-7 issue.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "e-commerce, 3DS challenged, approved"
+          }
+        ]
+      },
+      "already_with_ombudsman": false,
+      "linked_to_earlier_complaint": false
+    },
+    "summary": [
+      {
+        "text": "Customer paid £1,349.00 by debit card on 20 June 2026 to Larchmont Living Ltd for a sofa that was not delivered.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "paid £1,349.00 in full on my H&V debit card"
+          },
+          {
+            "source": "D2",
+            "quote": "LARCHMONT LIVING LTD GBP 1,349.00"
+          }
+        ]
+      },
+      {
+        "text": "Merchant status is recorded as terminated for insolvency. Customer says the merchant went into administration.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "TERMINATED - insolvency"
+          },
+          {
+            "source": "D1",
+            "quote": "On 2 September they went into administration"
+          }
+        ]
+      },
+      {
+        "text": "On 10 September app chat, no chargeback was raised and the customer was told to claim from the administrators.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I need to claim from the administrators"
+          },
+          {
+            "source": "D2",
+            "quote": "Agent outcome: NOT RAISED"
+          }
+        ]
+      },
+      {
+        "text": "Web form complaint logged; customer asks for a chargeback and refund of £1,349.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Web form complaint logged"
+          },
+          {
+            "source": "D1",
+            "quote": "Raise a chargeback and refund the £1,349"
+          }
+        ]
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-06-20",
+        "event": "Card payment of GBP 1,349.00 to Larchmont Living Ltd, approved after 3DS challenge.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "20/06/2026 14:38 LARCHMONT LIVING LTD GBP 1,349.00"
+          }
+        ]
+      },
+      {
+        "date": "week of 10 August",
+        "event": "Sofa delivery promised; not delivered.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Delivery was promised for the week of 10 August"
+          }
+        ]
+      },
+      {
+        "date": "2026-09-02",
+        "event": "Customer says merchant went into administration (as written: 2 September).",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "On 2 September they went into administration"
+          }
+        ]
+      },
+      {
+        "date": "2026-09-10",
+        "event": "Customer contacted app chat; dispute enquiry not raised; merchant status checked as terminated.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I contacted you on app chat on 10 September"
+          },
+          {
+            "source": "D2",
+            "quote": "Agent outcome: NOT RAISED"
+          }
+        ]
+      },
+      {
+        "date": "2026-09-21",
+        "event": "Web form complaint received.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Web form complaint logged"
+          }
+        ]
+      },
+      {
+        "date": "2026-09-22",
+        "event": "Handler call to customer at 10:15 unanswered; no voicemail facility.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "no answer, no voicemail facility"
+          }
+        ]
+      }
+    ],
+    "outcome_sought": {
+      "text": "Raise a chargeback and refund the £1,349.",
+      "citations": [
+        {
+          "source": "D1",
+          "quote": "Raise a chargeback and refund the £1,349"
+        }
+      ]
+    },
+    "vulnerability": [],
+    "relevant_policy": [
+      {
+        "policy_id": "CP-1.1",
+        "why_relevant": "Customer expressed dissatisfaction in chat and reports financial loss, so this is a complaint.",
+        "citations": [
+          {
+            "source": "CP-1.1",
+            "quote": "where the customer says they have suffered, or may suffer, financial loss, material distress or material inconvenience"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-3.1",
+        "why_relevant": "Sets the eight-week final response limit for this non-payment-services complaint.",
+        "citations": [
+          {
+            "source": "CP-3.1",
+            "quote": "We must send a final response within eight weeks of receiving the complaint"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.2",
+        "why_relevant": "Chat outcome and merchant status conflict across systems and must be recorded as both versions.",
+        "citations": [
+          {
+            "source": "CP-4.2",
+            "quote": "must record both versions and the source of each"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.3",
+        "why_relevant": "The customer's requested outcome must be recorded in their words.",
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "the outcome the customer is seeking"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.5",
+        "why_relevant": "A documented call attempt on 22/09 was unanswered; further contact may be needed before handover.",
+        "citations": [
+          {
+            "source": "CP-4.5",
+            "quote": "make at least one documented attempt to contact the customer"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-6.1",
+        "why_relevant": "Card dispute falls within the payments_disputes remit, so the case goes there with its checklist.",
+        "citations": [
+          {
+            "source": "CP-6.1",
+            "quote": "must be passed to a specialist team when it falls within that team's remit"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-6.3",
+        "why_relevant": "Customer must be told which team now holds the complaint and this must be recorded.",
+        "citations": [
+          {
+            "source": "CP-6.3",
+            "quote": "tell the customer which team now has their complaint"
+          }
+        ]
+      }
+    ],
+    "handover_checklist": [
+      {
+        "item_id": "outcome_sought",
+        "status": "present",
+        "value": "Raise a chargeback and refund the £1,349.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Raise a chargeback and refund the £1,349"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_contact_attempted",
+        "status": "present",
+        "value": "Customer chat 10/09; handler call 22/09 unanswered.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I contacted you on app chat on 10 September"
+          },
+          {
+            "source": "D3",
+            "quote": "no answer, no voicemail facility"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_told_of_handover",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "vulnerability_recorded",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "linked_complaints_checked",
+        "status": "present",
+        "value": "No complaint logged for the 10/09 chat; no earlier complaint in documents.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "No complaint logged."
+          }
+        ]
+      },
+      {
+        "item_id": "transaction_reference",
+        "status": "present",
+        "value": "20/06/2026, GBP 1,349.00, Larchmont Living Ltd.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "20/06/2026 14:38 LARCHMONT LIVING LTD GBP 1,349.00"
+          }
+        ]
+      },
+      {
+        "item_id": "payment_type",
+        "status": "present",
+        "value": "Debit card e-commerce, 3DS approved.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "e-commerce, 3DS challenged, approved"
+          }
+        ]
+      },
+      {
+        "item_id": "expected_vs_actual",
+        "status": "present",
+        "value": "Delivery promised week of 10 August; never delivered.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Delivery was promised for the week of 10 August"
+          }
+        ]
+      },
+      {
+        "item_id": "merchant_or_payee",
+        "status": "present",
+        "value": "Larchmont Living Ltd, terminated for insolvency.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "LARCHMONT LIVING LTD GBP 1,349.00"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_loss",
+        "status": "present",
+        "value": "£1,349.00 paid in full.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "paid £1,349.00 in full on my H&V debit card"
+          }
+        ]
+      }
+    ],
+    "conflicts": [
+      {
+        "text": "Chargeback outcome on 10/09: system log says not raised; CRM note says declined.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Agent outcome: NOT RAISED"
+          },
+          {
+            "source": "D3",
+            "quote": "Chargeback declined in chat 10/09"
+          }
+        ]
+      },
+      {
+        "text": "Merchant status: system shows terminated for insolvency; customer says the merchant entered administration.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "TERMINATED - insolvency"
+          },
+          {
+            "source": "D1",
+            "quote": "On 2 September they went into administration"
+          }
+        ]
+      },
+      {
+        "text": "Received date: complaint shown as received 21/09; CRM asks whether 10/09 should be the received date because the customer said they were not happy in chat.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "TL to confirm whether received date should be 10/09"
+          },
+          {
+            "source": "D1",
+            "quote": "I said I wasn't happy"
+          }
+        ]
+      }
+    ],
+    "flags": [
+      {
+        "type": "data_quality",
+        "description": "Customer asked to be contacted by email, not the old work email. The 22/09 call was unanswered and no email contact is recorded.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "please use this one, not my old work email"
+          },
+          {
+            "source": "D3",
+            "quote": "no answer, no voicemail facility"
+          }
+        ]
+      }
+    ]
+  },
+  "checks": {
+    "statements": [
+      {
+        "path": "intake.issues.0",
+        "text": "Customer paid £1,349.00 by debit card to Larchmont Living Ltd for a sofa that was not delivered. The merchant is insolvent. Customer wants a chargeback, which the 10/09 app chat agent did not raise.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "paid £1,349.00 in full on my H&V debit card",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Agent outcome: NOT RAISED",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.team_reason",
+        "text": "Card dispute with a retailer where a chargeback is requested, which this team handles.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Raise a chargeback and refund the £1,349",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.payment_services_reason",
+        "text": "Customer authorised the card payment (3DS approved). Chargeback with a retailer is not a Parts 6-7 issue.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "e-commerce, 3DS challenged, approved",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.0",
+        "text": "Customer paid £1,349.00 by debit card on 20 June 2026 to Larchmont Living Ltd for a sofa that was not delivered.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "paid £1,349.00 in full on my H&V debit card",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "LARCHMONT LIVING LTD GBP 1,349.00",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.1",
+        "text": "Merchant status is recorded as terminated for insolvency. Customer says the merchant went into administration.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "TERMINATED - insolvency",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "On 2 September they went into administration",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.2",
+        "text": "On 10 September app chat, no chargeback was raised and the customer was told to claim from the administrators.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I need to claim from the administrators",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Agent outcome: NOT RAISED",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.3",
+        "text": "Web form complaint logged; customer asks for a chargeback and refund of £1,349.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Web form complaint logged",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "Raise a chargeback and refund the £1,349",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.0",
+        "text": "2026-06-20: Card payment of GBP 1,349.00 to Larchmont Living Ltd, approved after 3DS challenge.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "20/06/2026 14:38 LARCHMONT LIVING LTD GBP 1,349.00",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.1",
+        "text": "week of 10 August: Sofa delivery promised; not delivered.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Delivery was promised for the week of 10 August",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.2",
+        "text": "2026-09-02: Customer says merchant went into administration (as written: 2 September).",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "On 2 September they went into administration",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.3",
+        "text": "2026-09-10: Customer contacted app chat; dispute enquiry not raised; merchant status checked as terminated.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I contacted you on app chat on 10 September",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Agent outcome: NOT RAISED",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.4",
+        "text": "2026-09-21: Web form complaint received.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Web form complaint logged",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.5",
+        "text": "2026-09-22: Handler call to customer at 10:15 unanswered; no voicemail facility.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "no answer, no voicemail facility",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "outcome_sought",
+        "text": "Raise a chargeback and refund the £1,349.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Raise a chargeback and refund the £1,349",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.0",
+        "text": "CP-1.1: Customer expressed dissatisfaction in chat and reports financial loss, so this is a complaint.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-1.1",
+            "quote": "where the customer says they have suffered, or may suffer, financial loss, material distress or material inconvenience",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.1",
+        "text": "CP-3.1: Sets the eight-week final response limit for this non-payment-services complaint.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-3.1",
+            "quote": "We must send a final response within eight weeks of receiving the complaint",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.2",
+        "text": "CP-4.2: Chat outcome and merchant status conflict across systems and must be recorded as both versions.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.2",
+            "quote": "must record both versions and the source of each",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.3",
+        "text": "CP-4.3: The customer's requested outcome must be recorded in their words.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "the outcome the customer is seeking",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.4",
+        "text": "CP-4.5: A documented call attempt on 22/09 was unanswered; further contact may be needed before handover.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.5",
+            "quote": "make at least one documented attempt to contact the customer",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.5",
+        "text": "CP-6.1: Card dispute falls within the payments_disputes remit, so the case goes there with its checklist.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-6.1",
+            "quote": "must be passed to a specialist team when it falls within that team's remit",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.6",
+        "text": "CP-6.3: Customer must be told which team now holds the complaint and this must be recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-6.3",
+            "quote": "tell the customer which team now has their complaint",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.outcome_sought",
+        "text": "outcome_sought: Raise a chargeback and refund the £1,349.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Raise a chargeback and refund the £1,349",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.customer_contact_attempted",
+        "text": "customer_contact_attempted: Customer chat 10/09; handler call 22/09 unanswered.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I contacted you on app chat on 10 September",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "no answer, no voicemail facility",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.linked_complaints_checked",
+        "text": "linked_complaints_checked: No complaint logged for the 10/09 chat; no earlier complaint in documents.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "No complaint logged.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.transaction_reference",
+        "text": "transaction_reference: 20/06/2026, GBP 1,349.00, Larchmont Living Ltd.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "20/06/2026 14:38 LARCHMONT LIVING LTD GBP 1,349.00",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.payment_type",
+        "text": "payment_type: Debit card e-commerce, 3DS approved.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "e-commerce, 3DS challenged, approved",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.expected_vs_actual",
+        "text": "expected_vs_actual: Delivery promised week of 10 August; never delivered.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Delivery was promised for the week of 10 August",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.merchant_or_payee",
+        "text": "merchant_or_payee: Larchmont Living Ltd, terminated for insolvency.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "LARCHMONT LIVING LTD GBP 1,349.00",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.customer_loss",
+        "text": "customer_loss: £1,349.00 paid in full.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "paid £1,349.00 in full on my H&V debit card",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "conflicts.0",
+        "text": "Chargeback outcome on 10/09: system log says not raised; CRM note says declined.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Agent outcome: NOT RAISED",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Chargeback declined in chat 10/09",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "conflicts.1",
+        "text": "Merchant status: system shows terminated for insolvency; customer says the merchant entered administration.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "TERMINATED - insolvency",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "On 2 September they went into administration",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "conflicts.2",
+        "text": "Received date: complaint shown as received 21/09; CRM asks whether 10/09 should be the received date because the customer said they were not happy in chat.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "TL to confirm whether received date should be 10/09",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "I said I wasn't happy",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.0",
+        "text": "data_quality: Customer asked to be contacted by email, not the old work email. The 22/09 call was unanswered and no email contact is recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "please use this one, not my old work email",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "no answer, no voicemail facility",
+            "result": "verified"
+          }
+        ]
+      }
+    ],
+    "supportedCount": 33,
+    "unsupportedCount": 0,
+    "inventedPlaceholders": [],
+    "checklist": {
+      "required": 10,
+      "present": 8,
+      "missing": [
+        "customer_told_of_handover",
+        "vulnerability_recorded"
+      ],
+      "conflicting": []
+    }
+  },
+  "clock": "8_weeks",
+  "deadlines": {
+    "received": "2026-09-21",
+    "clock": "8_weeks",
+    "summaryResolutionWindowCloses": "2026-09-24",
+    "eightWeekDue": "2026-11-16",
+    "workingDue": "2026-11-16",
+    "needsHandlerConfirmation": false,
+    "calendarDaysLeft": 7,
+    "businessDaysLeft": 5,
+    "status": "due_soon"
+  },
+  "usage": {
+    "inputTokens": 912,
+    "outputTokens": 9182,
+    "cacheReadTokens": 9539,
+    "cacheWriteTokens": 0,
+    "costUsd": 0.00477759,
+    "latencyMs": 34975
+  }
+}

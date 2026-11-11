@@ -22,8 +22,8 @@ type Labels = {
 };
 
 const CLOCK_LABEL: Record<Clock, string> = {
-  "8_weeks": "8 weeks (standard FCA complaint rule)",
-  "15_business_days": "15 business days (payment services rule)",
+  "8_weeks": "8 weeks, standard FCA complaint rule",
+  "15_business_days": "15 business days, payment services rule",
   confirm: "Not yet confirmed by the handler",
 };
 

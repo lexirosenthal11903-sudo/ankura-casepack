@@ -1,0 +1,752 @@
+{
+  "caseId": "HV-020",
+  "createdAt": "2026-11-11T09:24:15.768Z",
+  "model": "claude-haiku-5-5",
+  "promptVersion": "casepack-v4",
+  "redacted": {
+    "id": "HV-020",
+    "received": "2026-11-02",
+    "channel": "branch",
+    "documents": [
+      {
+        "id": "D1",
+        "system": "BRANCH",
+        "type": "branch_note",
+        "date": "2026-11-02",
+        "author_role": "branch_staff",
+        "text": "Branch: Bristol Broadmead. Cust [CUSTOMER], ID seen (driving licence). Came in re app outage Fri 30/10. Pays rent (£875) to letting agent by bank transfer on the 30th every month, due date is the 30th. Tried app from approx 8am, error 'something went wrong', tried online banking on a laptop at lunch, same. Rang the phone line, held 40+ mins & gave up (on her lunch break, works in a nursery so can't have phone on her in the afternoon). Paid it Sat morning 31/10. Letting agent (Ashdown Property Lettings, contact [PERSON]) charged a £25 late payment fee under the tenancy agreement - cust showed me the email on her phone, fee dated 31/10. Cust wants the £25 back and 'an acknowledgement that it was your fault not mine'. Says she has never been late with rent & is worried about her reference with the agent. Vuln check done - none identified, cust confident with the app normally. Explained outage was bank-wide & complaint will be logged, complaints team will contact her within 3 working days and may be able to resolve then. Cust prefers text/email, mob [CUSTOMER_PHONE] confirmed. [CUSTOMER] was very polite but frustrated. - [STAFF]"
+      },
+      {
+        "id": "D2",
+        "system": "CORE",
+        "type": "system_log",
+        "date": "2026-10-31",
+        "author_role": "system",
+        "text": "Digital session log CA [ACCOUNT]. 30/10/2026 08:03 APP LOGIN FAIL ERR-503. 30/10/2026 08:04 APP LOGIN FAIL ERR-503. 30/10/2026 12:47 OLB LOGIN FAIL ERR-503. 30/10/2026 12:49 OLB LOGIN FAIL ERR-503. Linked incident INC-2026-1030-01 'app and online banking unavailable 30/10/2026 07:10-15:40'. 31/10/2026 09:12 APP LOGIN OK. 31/10/2026 09:15 Faster Payment out GBP 875.00 payee ASHDOWN PROPERTY LETTINGS ref '[CUSTOMER] WREN CT RENT'."
+      },
+      {
+        "id": "D3",
+        "system": "CRM",
+        "type": "crm_note",
+        "date": "2026-11-02",
+        "author_role": "handler",
+        "text": "Complaint logged from branch ([STAFF], Broadmead). Cause: app/online banking outage. Root cause tag: INC-2026-1030-01. Amount claimed GBP 25.00 (third-party late payment fee). Customer contact pref: text/email."
+      }
+    ],
+    "replacements": [
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Ms I Clarke",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[CUSTOMER_PHONE]",
+        "original": "07700 900 451",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Imani",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[STAFF]",
+        "original": "DK",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[PERSON]",
+        "original": "Mr Okafor",
+        "layer": "near_match",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[ACCOUNT]",
+        "original": "70385126",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "FLAT 14",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[STAFF]",
+        "original": "DK",
+        "layer": "record",
+        "documentId": "D3"
+      }
+    ],
+    "placeholders": [
+      "[ACCOUNT]",
+      "[CUSTOMER]",
+      "[CUSTOMER_PHONE]",
+      "[PERSON]",
+      "[STAFF]"
+    ],
+    "display": {
+      "[CUSTOMER]": "Ms Imani Clarke",
+      "[CUSTOMER_PHONE]": "07700 900 451",
+      "[STAFF]": "Danielle Kerr",
+      "[PERSON]": "Mr Okafor",
+      "[ACCOUNT]": "70385126",
+      "[CARD]": "3309",
+      "[SORT_CODE]": "77-41-19",
+      "[CUSTOMER_EMAIL]": "imani.clarke@example.com"
+    }
+  },
+  "pack": {
+    "enough_information": {
+      "sufficient": true,
+      "what_is_needed": ""
+    },
+    "intake": {
+      "issues": [
+        {
+          "product": "current_account",
+          "cause": "digital_outage",
+          "description": "Customer says the app and online banking outage on 30/10/2026 stopped her paying rent on time, and her letting agent then charged a £25 late payment fee. She wants the £25 back and an acknowledgement of fault.",
+          "citations": [
+            {
+              "source": "D1",
+              "quote": "Came in re app outage Fri 30/10"
+            },
+            {
+              "source": "D1",
+              "quote": "charged a £25 late payment fee under the tenancy agreement"
+            }
+          ]
+        }
+      ],
+      "suggested_team": "frontline",
+      "team_reason": {
+        "text": "Single straightforward outage complaint with a £25 third-party fee claimed, which the first handler can resolve.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Amount claimed GBP 25.00 (third-party late payment fee)"
+          }
+        ]
+      },
+      "payment_services": "no",
+      "payment_services_reason": {
+        "text": "The payment was executed as instructed on 31/10/2026. The complaint concerns an app outage, not a wrongly executed or unauthorised payment.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "31/10/2026 09:15 Faster Payment out GBP 875.00"
+          }
+        ]
+      },
+      "already_with_ombudsman": false,
+      "linked_to_earlier_complaint": false
+    },
+    "summary": [
+      {
+        "text": "Customer says the app and online banking were unavailable on Friday 30/10/2026, so she could not pay her rent that day.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "app and online banking unavailable 30/10/2026 07:10-15:40"
+          },
+          {
+            "source": "D1",
+            "quote": "due date is the 30th"
+          }
+        ]
+      },
+      {
+        "text": "Rent of £875 was paid by Faster Payment at 09:15 on 31/10/2026, after the 30th due date.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "31/10/2026 09:15 Faster Payment out GBP 875.00"
+          }
+        ]
+      },
+      {
+        "text": "Letting agent charged a £25 late payment fee dated 31/10 under the tenancy agreement.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "charged a £25 late payment fee under the tenancy agreement"
+          }
+        ]
+      },
+      {
+        "text": "Branch recorded no signs of vulnerability.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Vuln check done - none identified"
+          }
+        ]
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-30",
+        "event": "App login failed with ERR-503 at 08:03 and again at 08:04.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "30/10/2026 08:03 APP LOGIN FAIL ERR-503"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-30",
+        "event": "Online banking login failed with ERR-503 at 12:47 and 12:49.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "30/10/2026 12:47 OLB LOGIN FAIL ERR-503"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-30",
+        "event": "Customer rang the phone line at lunch, held for 40+ minutes and gave up.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Rang the phone line, held 40+ mins & gave up"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-31",
+        "event": "App login succeeded at 09:12.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "31/10/2026 09:12 APP LOGIN OK"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-31",
+        "event": "Rent of £875 paid by Faster Payment to Ashdown Property Lettings at 09:15.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "31/10/2026 09:15 Faster Payment out GBP 875.00"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-31",
+        "event": "Letting agent late payment fee of £25 dated 31/10.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "fee dated 31/10"
+          }
+        ]
+      },
+      {
+        "date": "2026-11-02",
+        "event": "Customer attended Bristol Broadmead branch and the complaint was logged.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Complaint logged from branch"
+          }
+        ]
+      }
+    ],
+    "outcome_sought": {
+      "text": "Cust wants the £25 back and an acknowledgement that it was the bank's fault.",
+      "citations": [
+        {
+          "source": "D1",
+          "quote": "Cust wants the £25 back"
+        }
+      ]
+    },
+    "vulnerability": [],
+    "relevant_policy": [
+      {
+        "policy_id": "CP-1.1",
+        "why_relevant": "The customer says she has suffered financial loss and distress, so this is a complaint to be handled under the policy.",
+        "citations": [
+          {
+            "source": "CP-1.1",
+            "quote": "where the customer says they have suffered, or may suffer, financial loss, material distress or material inconvenience"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-2.1",
+        "why_relevant": "If the complaint is not resolved by the third business day, a written acknowledgement naming the handler is required.",
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "we must send a prompt written acknowledgement that names the handler or team dealing with it"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-2.2",
+        "why_relevant": "Frontline may resolve this by summary resolution within three business days, which requires an Ombudsman referral statement.",
+        "citations": [
+          {
+            "source": "CP-2.2",
+            "quote": "may be closed with a summary resolution communication"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-2.4",
+        "why_relevant": "The handler must check for earlier linked complaints before investigating, and this is not yet recorded.",
+        "citations": [
+          {
+            "source": "CP-2.4",
+            "quote": "the handler must check for earlier complaints from the same customer on the same subject"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.3",
+        "why_relevant": "The customer's requested outcome must be recorded in her own words.",
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "record, in the customer's own words where possible, the outcome the customer is seeking"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.4",
+        "why_relevant": "Any refund or acknowledgement of fault must be decided by an authorised member of staff, not by this case pack.",
+        "citations": [
+          {
+            "source": "CP-4.4",
+            "quote": "are made only by an authorised member of staff"
+          }
+        ]
+      }
+    ],
+    "handover_checklist": [
+      {
+        "item_id": "outcome_sought",
+        "status": "present",
+        "value": "Customer wants the £25 back and an acknowledgement that it was the bank's fault.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Cust wants the £25 back"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_contact_attempted",
+        "status": "present",
+        "value": "Customer attended the branch on 2026-11-02 and the outage was explained to her.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Came in re app outage Fri 30/10"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_told_of_handover",
+        "status": "not_applicable",
+        "value": "",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Complaint logged from branch"
+          }
+        ]
+      },
+      {
+        "item_id": "vulnerability_recorded",
+        "status": "present",
+        "value": "No vulnerability identified at branch check.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Vuln check done - none identified"
+          }
+        ]
+      },
+      {
+        "item_id": "linked_complaints_checked",
+        "status": "missing",
+        "value": "",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Complaint logged from branch"
+          }
+        ]
+      }
+    ],
+    "conflicts": [],
+    "flags": [
+      {
+        "type": "deadline_risk",
+        "description": "Branch told the customer the complaints team will contact her within 3 working days. Under CP-2.1 and CP-2.2 the third business day after receipt on 2026-11-02 is 2026-11-05.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "complaints team will contact her within 3 working days"
+          }
+        ]
+      }
+    ]
+  },
+  "checks": {
+    "statements": [
+      {
+        "path": "intake.issues.0",
+        "text": "Customer says the app and online banking outage on 30/10/2026 stopped her paying rent on time, and her letting agent then charged a £25 late payment fee. She wants the £25 back and an acknowledgement of fault.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Came in re app outage Fri 30/10",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "charged a £25 late payment fee under the tenancy agreement",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.team_reason",
+        "text": "Single straightforward outage complaint with a £25 third-party fee claimed, which the first handler can resolve.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Amount claimed GBP 25.00 (third-party late payment fee)",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.payment_services_reason",
+        "text": "The payment was executed as instructed on 31/10/2026. The complaint concerns an app outage, not a wrongly executed or unauthorised payment.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "31/10/2026 09:15 Faster Payment out GBP 875.00",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.0",
+        "text": "Customer says the app and online banking were unavailable on Friday 30/10/2026, so she could not pay her rent that day.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "app and online banking unavailable 30/10/2026 07:10-15:40",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "due date is the 30th",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.1",
+        "text": "Rent of £875 was paid by Faster Payment at 09:15 on 31/10/2026, after the 30th due date.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "31/10/2026 09:15 Faster Payment out GBP 875.00",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.2",
+        "text": "Letting agent charged a £25 late payment fee dated 31/10 under the tenancy agreement.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "charged a £25 late payment fee under the tenancy agreement",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.3",
+        "text": "Branch recorded no signs of vulnerability.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Vuln check done - none identified",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.0",
+        "text": "2026-10-30: App login failed with ERR-503 at 08:03 and again at 08:04.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "30/10/2026 08:03 APP LOGIN FAIL ERR-503",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.1",
+        "text": "2026-10-30: Online banking login failed with ERR-503 at 12:47 and 12:49.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "30/10/2026 12:47 OLB LOGIN FAIL ERR-503",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.2",
+        "text": "2026-10-30: Customer rang the phone line at lunch, held for 40+ minutes and gave up.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Rang the phone line, held 40+ mins & gave up",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.3",
+        "text": "2026-10-31: App login succeeded at 09:12.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "31/10/2026 09:12 APP LOGIN OK",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.4",
+        "text": "2026-10-31: Rent of £875 paid by Faster Payment to Ashdown Property Lettings at 09:15.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "31/10/2026 09:15 Faster Payment out GBP 875.00",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.5",
+        "text": "2026-10-31: Letting agent late payment fee of £25 dated 31/10.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "fee dated 31/10",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.6",
+        "text": "2026-11-02: Customer attended Bristol Broadmead branch and the complaint was logged.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Complaint logged from branch",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "outcome_sought",
+        "text": "Cust wants the £25 back and an acknowledgement that it was the bank's fault.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Cust wants the £25 back",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.0",
+        "text": "CP-1.1: The customer says she has suffered financial loss and distress, so this is a complaint to be handled under the policy.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-1.1",
+            "quote": "where the customer says they have suffered, or may suffer, financial loss, material distress or material inconvenience",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.1",
+        "text": "CP-2.1: If the complaint is not resolved by the third business day, a written acknowledgement naming the handler is required.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "we must send a prompt written acknowledgement that names the handler or team dealing with it",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.2",
+        "text": "CP-2.2: Frontline may resolve this by summary resolution within three business days, which requires an Ombudsman referral statement.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.2",
+            "quote": "may be closed with a summary resolution communication",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.3",
+        "text": "CP-2.4: The handler must check for earlier linked complaints before investigating, and this is not yet recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.4",
+            "quote": "the handler must check for earlier complaints from the same customer on the same subject",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.4",
+        "text": "CP-4.3: The customer's requested outcome must be recorded in her own words.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "record, in the customer's own words where possible, the outcome the customer is seeking",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.5",
+        "text": "CP-4.4: Any refund or acknowledgement of fault must be decided by an authorised member of staff, not by this case pack.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.4",
+            "quote": "are made only by an authorised member of staff",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.outcome_sought",
+        "text": "outcome_sought: Customer wants the £25 back and an acknowledgement that it was the bank's fault.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Cust wants the £25 back",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.customer_contact_attempted",
+        "text": "customer_contact_attempted: Customer attended the branch on 2026-11-02 and the outage was explained to her.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Came in re app outage Fri 30/10",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.vulnerability_recorded",
+        "text": "vulnerability_recorded: No vulnerability identified at branch check.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Vuln check done - none identified",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.0",
+        "text": "deadline_risk: Branch told the customer the complaints team will contact her within 3 working days. Under CP-2.1 and CP-2.2 the third business day after receipt on 2026-11-02 is 2026-11-05.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "complaints team will contact her within 3 working days",
+            "result": "verified"
+          }
+        ]
+      }
+    ],
+    "supportedCount": 25,
+    "unsupportedCount": 0,
+    "inventedPlaceholders": [],
+    "checklist": {
+      "required": 4,
+      "present": 3,
+      "missing": [
+        "linked_complaints_checked"
+      ],
+      "conflicting": []
+    }
+  },
+  "clock": "8_weeks",
+  "deadlines": {
+    "received": "2026-11-02",
+    "clock": "8_weeks",
+    "summaryResolutionWindowCloses": "2026-11-05",
+    "eightWeekDue": "2026-12-28",
+    "workingDue": "2026-12-28",
+    "needsHandlerConfirmation": false,
+    "calendarDaysLeft": 49,
+    "businessDaysLeft": 33,
+    "status": "on_track"
+  },
+  "usage": {
+    "inputTokens": 968,
+    "outputTokens": 8600,
+    "cacheReadTokens": 9539,
+    "cacheWriteTokens": 0,
+    "costUsd": 0.004492190000000001,
+    "latencyMs": 33669
+  }
+}

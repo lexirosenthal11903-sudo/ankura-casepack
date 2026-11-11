@@ -1,0 +1,823 @@
+{
+  "caseId": "HV-012",
+  "createdAt": "2026-11-11T09:27:45.921Z",
+  "model": "claude-haiku-5-5",
+  "promptVersion": "casepack-v4",
+  "redacted": {
+    "id": "HV-012",
+    "received": "2026-10-20",
+    "channel": "email",
+    "documents": [
+      {
+        "id": "D1",
+        "system": "EMAIL",
+        "type": "email",
+        "date": "2026-10-20",
+        "author_role": "customer",
+        "text": "Subject: Loan decision - still not happy\n\nHello,\n\nI'm writing again about the £8,000 loan you turned down in August. I wanted it to clear my two credit cards which are maxed out and the interest is killing me, every month it gets worse. You said in your letter you would not change the decision, so my case is already with the ombudsman, ref FOS-2026-118842.\n\nSince then I've had a pay rise (attached payslip shows £2,480 a month now, not £2,150) so I really think you should look at it again. I've been with your bank 9 years and I don't understand how you can just say no. I'm not sleeping well over this to be honest.\n\nPlease reconsider and let me know.\n\n[CUSTOMER]\n[PHONE_1]"
+      },
+      {
+        "id": "D2",
+        "system": "CRM",
+        "type": "crm_note",
+        "date": "2026-09-15",
+        "author_role": "handler",
+        "text": "Complaint CMP-2026-30917 ([CUSTOMER], PL decline 29/08). Reviewed decision, affordability decline correctly applied per lending policy, DTI over limit. Not upheld. Final response sent 15/09 by email with FOS leaflet and 6 month referral rights. Closed. - [STAFF]"
+      },
+      {
+        "id": "D3",
+        "system": "CORE",
+        "type": "system_log",
+        "date": "2026-08-29",
+        "author_role": "system",
+        "text": "PL APP 29/08/2026 online. Amount GBP 8,000 term 48m purpose DEBT CONSOLIDATION. Declared net income GBP 2,150/m. Housing GBP 725/m. Bureau credit commitments GBP 610/m (2 x credit card, combined bal GBP 7,940, util 99%). DTI 48% (limit 40%). Decision DECLINE reason AFF-03 affordability. Decline letter issued 29/08/2026."
+      }
+    ],
+    "replacements": [
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Hamza",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[PHONE_1]",
+        "original": "07700 900 871",
+        "layer": "pattern",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Mr Qureshi",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[STAFF]",
+        "original": "GW",
+        "layer": "record",
+        "documentId": "D2"
+      }
+    ],
+    "placeholders": [
+      "[CUSTOMER]",
+      "[PHONE_1]",
+      "[STAFF]"
+    ],
+    "display": {
+      "[CUSTOMER]": "Mr Hamza Qureshi",
+      "[PHONE_1]": "07700 900 871",
+      "[STAFF]": "Grace Whitfield",
+      "[ACCOUNT]": "35127760",
+      "[CARD]": "9318",
+      "[SORT_CODE]": "77-41-44",
+      "[CUSTOMER_PHONE]": "0121 496 0627",
+      "[CUSTOMER_EMAIL]": "hamza.qureshi@example.com"
+    }
+  },
+  "pack": {
+    "enough_information": {
+      "sufficient": true,
+      "what_is_needed": ""
+    },
+    "intake": {
+      "issues": [
+        {
+          "product": "personal_loan",
+          "cause": "affordability_arrears",
+          "description": "Customer asks for the £8,000 personal loan decline (affordability, 29/08/2026) to be reconsidered because of a higher income.",
+          "citations": [
+            {
+              "source": "D1",
+              "quote": "the £8,000 loan you turned down in August"
+            },
+            {
+              "source": "D3",
+              "quote": "Decision DECLINE reason AFF-03 affordability."
+            }
+          ]
+        }
+      ],
+      "suggested_team": "ombudsman_liaison",
+      "team_reason": {
+        "text": "Customer says the complaint is already with the Financial Ombudsman Service (ref FOS-2026-118842), so it is routed to Ombudsman liaison.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "so my case is already with the ombudsman, ref FOS-2026-118842"
+          },
+          {
+            "source": "CP-3.5",
+            "quote": "the handler must record the Ombudsman reference and pass the case to the Ombudsman liaison team rather than starting a new investigation"
+          }
+        ]
+      },
+      "payment_services": "no",
+      "payment_services_reason": {
+        "text": "Lending decision on a loan application. It does not concern a payment, so Parts 6 and 7 do not apply.",
+        "citations": [
+          {
+            "source": "CP-3.2",
+            "quote": "Where the complaint concerns rights and obligations under Parts 6 and 7 of the Payment Services Regulations 2017"
+          },
+          {
+            "source": "D1",
+            "quote": "the £8,000 loan you turned down in August"
+          }
+        ]
+      },
+      "already_with_ombudsman": true,
+      "linked_to_earlier_complaint": true
+    },
+    "summary": [
+      {
+        "text": "Customer applied online on 29/08/2026 for an £8,000 personal loan for debt consolidation and was declined for affordability.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Decision DECLINE reason AFF-03 affordability."
+          }
+        ]
+      },
+      {
+        "text": "An earlier complaint, CMP-2026-30917, was not upheld. A final response was sent on 15/09 and the complaint was closed.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Not upheld. Final response sent 15/09 by email with FOS leaflet"
+          }
+        ]
+      },
+      {
+        "text": "Customer now asks for the decision to be reconsidered, saying her pay has risen to £2,480 a month. The payslip is referred to but is not in the pack.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "attached payslip shows £2,480 a month now, not £2,150"
+          }
+        ]
+      },
+      {
+        "text": "Customer says the complaint is already with the Financial Ombudsman Service under ref FOS-2026-118842. This is not verified in the pack.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "so my case is already with the ombudsman, ref FOS-2026-118842"
+          }
+        ]
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-08-29",
+        "event": "Online personal loan application for £8,000 (debt consolidation) declined for affordability. Decline letter issued.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Decline letter issued 29/08/2026"
+          }
+        ]
+      },
+      {
+        "date": "2026-09-15",
+        "event": "Earlier complaint CMP-2026-30917 not upheld. Final response sent by email with FOS leaflet, and the complaint was closed.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Final response sent 15/09 by email with FOS leaflet"
+          }
+        ]
+      },
+      {
+        "date": "not stated",
+        "event": "Customer says the case was referred to the Financial Ombudsman Service, ref FOS-2026-118842.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "so my case is already with the ombudsman, ref FOS-2026-118842"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-20",
+        "event": "Customer emails again about the loan decline, citing a pay rise and asking for reconsideration.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I'm writing again about the £8,000 loan you turned down in August."
+          }
+        ]
+      }
+    ],
+    "outcome_sought": {
+      "text": "Customer wants the £8,000 loan decision reconsidered in light of her higher income.",
+      "citations": [
+        {
+          "source": "D1",
+          "quote": "Please reconsider and let me know."
+        }
+      ]
+    },
+    "vulnerability": [
+      {
+        "signal": "Financial difficulty: two credit cards maxed out with interest rising.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "the interest is killing me, every month it gets worse"
+          }
+        ]
+      },
+      {
+        "signal": "Distress: customer reports poor sleep due to the complaint.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I'm not sleeping well over this to be honest."
+          }
+        ]
+      }
+    ],
+    "relevant_policy": [
+      {
+        "policy_id": "CP-3.5",
+        "why_relevant": "Customer says the complaint is already with the Financial Ombudsman Service, so the case goes to Ombudsman liaison and the reference must be recorded.",
+        "citations": [
+          {
+            "source": "CP-3.5",
+            "quote": "the handler must record the Ombudsman reference and pass the case to the Ombudsman liaison team"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-2.4",
+        "why_relevant": "An earlier complaint on the same subject exists and must be checked and linked.",
+        "citations": [
+          {
+            "source": "CP-2.4",
+            "quote": "must check for earlier complaints from the same customer on the same subject in the last twelve months"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.3",
+        "why_relevant": "The outcome sought must be recorded in the customer's own words.",
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "must record, in the customer's own words where possible, the outcome the customer is seeking"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-5.1",
+        "why_relevant": "The customer shows possible financial difficulty and distress that must be looked for and considered.",
+        "citations": [
+          {
+            "source": "CP-5.1",
+            "quote": "look for signs that a customer may be in vulnerable circumstances"
+          },
+          {
+            "source": "CP-5.1",
+            "quote": "financial difficulty"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-5.2",
+        "why_relevant": "Signs of vulnerability must be recorded with the customer's consent, along with any support needed.",
+        "citations": [
+          {
+            "source": "CP-5.2",
+            "quote": "Signs of vulnerability must be recorded with the customer's consent where possible"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.4",
+        "why_relevant": "Any reconsideration of the lending decision must be decided by an authorised member of staff, not by this pack.",
+        "citations": [
+          {
+            "source": "CP-4.4",
+            "quote": "are made only by an authorised member of staff"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-6.3",
+        "why_relevant": "The customer must be told which team now has the complaint and this must be recorded.",
+        "citations": [
+          {
+            "source": "CP-6.3",
+            "quote": "The handler must tell the customer which team now has their complaint and record what they were told."
+          }
+        ]
+      }
+    ],
+    "handover_checklist": [
+      {
+        "item_id": "outcome_sought",
+        "status": "present",
+        "value": "Reconsideration of the £8,000 loan decision.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Please reconsider and let me know."
+          }
+        ]
+      },
+      {
+        "item_id": "customer_contact_attempted",
+        "status": "present",
+        "value": "Customer emailed the bank on 2026-10-20 about the decline.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I'm writing again about the £8,000 loan you turned down in August."
+          }
+        ]
+      },
+      {
+        "item_id": "customer_told_of_handover",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "vulnerability_recorded",
+        "status": "missing",
+        "value": "Signs of financial difficulty and distress appear in the email only. No formal vulnerability record or support needs are shown.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I'm not sleeping well over this to be honest."
+          }
+        ]
+      },
+      {
+        "item_id": "linked_complaints_checked",
+        "status": "present",
+        "value": "Linked to earlier complaint CMP-2026-30917, not upheld and closed 15/09.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Complaint CMP-2026-30917 ([CUSTOMER], PL decline 29/08)"
+          }
+        ]
+      }
+    ],
+    "conflicts": [
+      {
+        "text": "Income: the system records declared net income of £2,150 a month at application. The customer says her pay is now £2,480 a month. Both are shown, and neither is chosen.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Declared net income GBP 2,150/m"
+          },
+          {
+            "source": "D1",
+            "quote": "attached payslip shows £2,480 a month now, not £2,150"
+          }
+        ]
+      }
+    ],
+    "flags": [
+      {
+        "type": "other",
+        "description": "Customer says the complaint is with the Financial Ombudsman Service (ref FOS-2026-118842). This is not verified in the pack and must be checked before handover.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "so my case is already with the ombudsman, ref FOS-2026-118842"
+          }
+        ]
+      },
+      {
+        "type": "data_quality",
+        "description": "The payslip referred to by the customer is not in the pack.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "attached payslip shows £2,480 a month now, not £2,150"
+          }
+        ]
+      },
+      {
+        "type": "data_quality",
+        "description": "The logged DTI of 48% does not reproduce from the logged housing and credit commitments against declared income (about 62%). The handler should check the calculation.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Housing GBP 725/m. Bureau credit commitments GBP 610/m"
+          },
+          {
+            "source": "D3",
+            "quote": "DTI 48% (limit 40%)"
+          }
+        ]
+      }
+    ]
+  },
+  "checks": {
+    "statements": [
+      {
+        "path": "intake.issues.0",
+        "text": "Customer asks for the £8,000 personal loan decline (affordability, 29/08/2026) to be reconsidered because of a higher income.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "the £8,000 loan you turned down in August",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Decision DECLINE reason AFF-03 affordability.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.team_reason",
+        "text": "Customer says the complaint is already with the Financial Ombudsman Service (ref FOS-2026-118842), so it is routed to Ombudsman liaison.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "so my case is already with the ombudsman, ref FOS-2026-118842",
+            "result": "verified"
+          },
+          {
+            "source": "CP-3.5",
+            "quote": "the handler must record the Ombudsman reference and pass the case to the Ombudsman liaison team rather than starting a new investigation",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.payment_services_reason",
+        "text": "Lending decision on a loan application. It does not concern a payment, so Parts 6 and 7 do not apply.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-3.2",
+            "quote": "Where the complaint concerns rights and obligations under Parts 6 and 7 of the Payment Services Regulations 2017",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "the £8,000 loan you turned down in August",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.0",
+        "text": "Customer applied online on 29/08/2026 for an £8,000 personal loan for debt consolidation and was declined for affordability.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Decision DECLINE reason AFF-03 affordability.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.1",
+        "text": "An earlier complaint, CMP-2026-30917, was not upheld. A final response was sent on 15/09 and the complaint was closed.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Not upheld. Final response sent 15/09 by email with FOS leaflet",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.2",
+        "text": "Customer now asks for the decision to be reconsidered, saying her pay has risen to £2,480 a month. The payslip is referred to but is not in the pack.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "attached payslip shows £2,480 a month now, not £2,150",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.3",
+        "text": "Customer says the complaint is already with the Financial Ombudsman Service under ref FOS-2026-118842. This is not verified in the pack.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "so my case is already with the ombudsman, ref FOS-2026-118842",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.0",
+        "text": "2026-08-29: Online personal loan application for £8,000 (debt consolidation) declined for affordability. Decline letter issued.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Decline letter issued 29/08/2026",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.1",
+        "text": "2026-09-15: Earlier complaint CMP-2026-30917 not upheld. Final response sent by email with FOS leaflet, and the complaint was closed.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Final response sent 15/09 by email with FOS leaflet",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.2",
+        "text": "not stated: Customer says the case was referred to the Financial Ombudsman Service, ref FOS-2026-118842.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "so my case is already with the ombudsman, ref FOS-2026-118842",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.3",
+        "text": "2026-10-20: Customer emails again about the loan decline, citing a pay rise and asking for reconsideration.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I'm writing again about the £8,000 loan you turned down in August.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "outcome_sought",
+        "text": "Customer wants the £8,000 loan decision reconsidered in light of her higher income.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Please reconsider and let me know.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "vulnerability.0",
+        "text": "Financial difficulty: two credit cards maxed out with interest rising.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "the interest is killing me, every month it gets worse",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "vulnerability.1",
+        "text": "Distress: customer reports poor sleep due to the complaint.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I'm not sleeping well over this to be honest.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.0",
+        "text": "CP-3.5: Customer says the complaint is already with the Financial Ombudsman Service, so the case goes to Ombudsman liaison and the reference must be recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-3.5",
+            "quote": "the handler must record the Ombudsman reference and pass the case to the Ombudsman liaison team",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.1",
+        "text": "CP-2.4: An earlier complaint on the same subject exists and must be checked and linked.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.4",
+            "quote": "must check for earlier complaints from the same customer on the same subject in the last twelve months",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.2",
+        "text": "CP-4.3: The outcome sought must be recorded in the customer's own words.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "must record, in the customer's own words where possible, the outcome the customer is seeking",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.3",
+        "text": "CP-5.1: The customer shows possible financial difficulty and distress that must be looked for and considered.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-5.1",
+            "quote": "look for signs that a customer may be in vulnerable circumstances",
+            "result": "verified"
+          },
+          {
+            "source": "CP-5.1",
+            "quote": "financial difficulty",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.4",
+        "text": "CP-5.2: Signs of vulnerability must be recorded with the customer's consent, along with any support needed.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-5.2",
+            "quote": "Signs of vulnerability must be recorded with the customer's consent where possible",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.5",
+        "text": "CP-4.4: Any reconsideration of the lending decision must be decided by an authorised member of staff, not by this pack.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.4",
+            "quote": "are made only by an authorised member of staff",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.6",
+        "text": "CP-6.3: The customer must be told which team now has the complaint and this must be recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-6.3",
+            "quote": "The handler must tell the customer which team now has their complaint and record what they were told.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.outcome_sought",
+        "text": "outcome_sought: Reconsideration of the £8,000 loan decision.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Please reconsider and let me know.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.customer_contact_attempted",
+        "text": "customer_contact_attempted: Customer emailed the bank on 2026-10-20 about the decline.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I'm writing again about the £8,000 loan you turned down in August.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.linked_complaints_checked",
+        "text": "linked_complaints_checked: Linked to earlier complaint CMP-2026-30917, not upheld and closed 15/09.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Complaint CMP-2026-30917 ([CUSTOMER], PL decline 29/08)",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "conflicts.0",
+        "text": "Income: the system records declared net income of £2,150 a month at application. The customer says her pay is now £2,480 a month. Both are shown, and neither is chosen.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Declared net income GBP 2,150/m",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "attached payslip shows £2,480 a month now, not £2,150",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.0",
+        "text": "other: Customer says the complaint is with the Financial Ombudsman Service (ref FOS-2026-118842). This is not verified in the pack and must be checked before handover.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "so my case is already with the ombudsman, ref FOS-2026-118842",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.1",
+        "text": "data_quality: The payslip referred to by the customer is not in the pack.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "attached payslip shows £2,480 a month now, not £2,150",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.2",
+        "text": "data_quality: The logged DTI of 48% does not reproduce from the logged housing and credit commitments against declared income (about 62%). The handler should check the calculation.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Housing GBP 725/m. Bureau credit commitments GBP 610/m",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "DTI 48% (limit 40%)",
+            "result": "verified"
+          }
+        ]
+      }
+    ],
+    "supportedCount": 28,
+    "unsupportedCount": 0,
+    "inventedPlaceholders": [],
+    "checklist": {
+      "required": 5,
+      "present": 3,
+      "missing": [
+        "customer_told_of_handover",
+        "vulnerability_recorded"
+      ],
+      "conflicting": []
+    }
+  },
+  "clock": "8_weeks",
+  "deadlines": {
+    "received": "2026-10-20",
+    "clock": "8_weeks",
+    "summaryResolutionWindowCloses": "2026-10-23",
+    "eightWeekDue": "2026-12-15",
+    "workingDue": "2026-12-15",
+    "needsHandlerConfirmation": false,
+    "calendarDaysLeft": 36,
+    "businessDaysLeft": 26,
+    "status": "on_track"
+  },
+  "usage": {
+    "inputTokens": 679,
+    "outputTokens": 9199,
+    "cacheReadTokens": 9539,
+    "cacheWriteTokens": 0,
+    "costUsd": 0.00476279,
+    "latencyMs": 35145
+  }
+}

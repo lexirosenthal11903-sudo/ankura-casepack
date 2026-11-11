@@ -504,7 +504,7 @@ export default function Replay({ data }: { data: ReplayData }) {
                 <dl className={`${styles.deadlines} ${styles.in}`}>
                   <div>
                     <dt>Final response due</dt>
-                    <dd><strong>{data.workingDue}</strong>, {data.businessDaysLeft} working days away ({CLOCK_LABEL[data.clock]}). Worked out by code.</dd>
+                    <dd><strong>{data.workingDue}</strong>, {data.businessDaysLeft} business days away ({CLOCK_LABEL[data.clock]}). Worked out by code.</dd>
                   </div>
                   {at(cues.refundAt) && data.refundDue && (
                     <div className={styles.in}>
@@ -568,7 +568,7 @@ export default function Replay({ data }: { data: ReplayData }) {
         {finished ? (
           <button className="btn btn-secondary" onClick={replay}>Play again</button>
         ) : stepMode && !playing ? (
-          <button className="btn btn-secondary" onClick={() => setPlaying(true)}>{elapsed === 0 ? "Start" : `Next: ${PHASES[Math.min(phase + 1, PHASES.length - 1)]}`}</button>
+          <button className="btn btn-secondary" onClick={() => setPlaying(true)}>{elapsed === 0 ? "Start" : atStageEnd ? `Next: ${PHASES[Math.min(phase + 1, PHASES.length - 1)]}` : `Continue: ${PHASES[phase]}`}</button>
         ) : (
           <button className="btn btn-secondary" onClick={() => setPlaying((p) => !p)}>{playing ? "Pause" : "Play"}</button>
         )}
@@ -594,12 +594,12 @@ export default function Replay({ data }: { data: ReplayData }) {
         <dl className={styles.stats}>
           <div><dd>{data.proof.verified} of {data.proof.statements}</dd><dt>quoted sentences found in their source</dt></div>
           <div><dd>{data.proof.cases} of {data.proof.cases}</dd><dt>sent to the right specialist team</dt></div>
-          <div><dd>{data.proof.hiddenDetails}</dd><dt>personal details hidden before any AI call</dt></div>
+          <div><dd>{data.proof.hiddenDetails}</dd><dt>details replaced before any AI call, across the 15 saved runs</dt></div>
           <div><dd>{(data.proof.costUsd * 79).toFixed(2)}p</dd><dt>average cost per complaint</dt></div>
         </dl>
         <p className="small muted">
-          Scored by code against answer keys written before the prompt. Ten more complaints are held back for the final test and have
-          not been run. Full method and limits on <Link href="/how-it-works">How this works</Link>.
+          Scored by code against answer keys written before the prompt, on the 15 cases the prompt was improved on. Ten more complaints
+          were held back and run once at the end. Their results, including what they caught, are on <Link href="/how-it-works">How this works</Link>.
         </p>
       </section>
 

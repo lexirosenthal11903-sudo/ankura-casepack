@@ -7,7 +7,7 @@
     }
   ],
   "team": "fraud_scams",
-  "disp_clock": "8_weeks",
+  "disp_clock": "15_business_days",
   "vulnerability": {
     "present": true,
     "signals": [
@@ -67,5 +67,5 @@
     "family_named_in_passing",
     "scammer_alias_is_pii"
   ],
-  "rationale": "Nine authorised Faster Payments to a romance fraudster make this an APP scam for Fraud and Scams on the 8-week clock. The claim was made within thirteen months of the last payment (29 Sep 2026), so under CP-7.2 the whole series is in scope, even though the first two payments are more than thirteen months old. The pack must not drop them. The sister has no authority (CP-1.2), the customer has not given her own outcome or account of events, and her vulnerability means no excess and a warm handover."
+  "rationale": "Nine authorised Faster Payments to a romance fraudster make this an APP scam for Fraud and Scams on the 15 business day clock (CP-3.2, corrected 11 Nov 2026 after checking the Ombudsman's guidance, the key had said 8 weeks). The claim was made within thirteen months of the last payment (29 Sep 2026), so under CP-7.2 the whole series is in scope, even though the first two payments are more than thirteen months old. The pack must not drop them. The sister has no authority (CP-1.2), the customer has not given her own outcome or account of events, and her vulnerability means no excess and a warm handover."
 }

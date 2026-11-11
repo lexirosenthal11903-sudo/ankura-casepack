@@ -42,7 +42,7 @@ test("handler fills every gap before handover; a send-back must be fixed before 
   await page.getByRole("button", { name: "Save", exact: true }).click();
   await page.getByRole("button", { name: /Sign off again and hand to Fraud and Scams/ }).click();
   await page.getByRole("link", { name: "Switch to the Fraud and Scams view" }).click();
-  await expect(page.getByText("Called customer 9 Nov, no answer, voicemail left")).toBeVisible();
+  await expect(page.getByText("Called customer 9 Nov, no answer, voicemail left").first()).toBeVisible();
   await page.getByLabel("Yes, accept the handover").check();
   await page.getByRole("button", { name: "Confirm decision" }).click();
   await expect(page.getByText("You accepted the handover.")).toBeVisible();

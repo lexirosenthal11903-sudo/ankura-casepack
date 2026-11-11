@@ -1,0 +1,442 @@
+{
+  "caseId": "HV-015",
+  "createdAt": "2026-11-11T09:27:17.375Z",
+  "model": "claude-haiku-5-5",
+  "promptVersion": "casepack-v4",
+  "redacted": {
+    "id": "HV-015",
+    "received": "2026-11-05",
+    "channel": "web_form",
+    "documents": [
+      {
+        "id": "D1",
+        "system": "WEBFORM",
+        "type": "web_form",
+        "date": "2026-11-05",
+        "author_role": "customer",
+        "text": "Complaint form (logged-in session) | Name: [CUSTOMER] P | Account: [not selected] | What happened: you have taken money from me AGAIN, sort it out or Im leaving | What would put it right: [blank]"
+      }
+    ],
+    "replacements": [
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Craig",
+        "layer": "record",
+        "documentId": "D1"
+      }
+    ],
+    "placeholders": [
+      "[CUSTOMER]"
+    ],
+    "display": {
+      "[CUSTOMER]": "Mr Craig Pollard",
+      "[ACCOUNT_1]": "38419026",
+      "[CARD]": "5508",
+      "[SORT_CODE]": "77-41-33",
+      "[ACCOUNT_2]": "71240388",
+      "[CUSTOMER_PHONE]": "0121 496 0184",
+      "[CUSTOMER_EMAIL]": "craigpollard72@example.com"
+    }
+  },
+  "pack": {
+    "enough_information": {
+      "sufficient": false,
+      "what_is_needed": "The handler must identify the account and product, what payment or problem the customer means, when it happened, whether the customer authorised it, and what outcome they want. Check for earlier complaints on the same subject (CP-2.4)."
+    },
+    "intake": {
+      "issues": [],
+      "suggested_team": "frontline",
+      "team_reason": {
+        "text": "Suggested as a first-handler case only because the documents do not identify a specialist remit. The product and problem must be confirmed before any handover.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Account: [not selected] | What happened:"
+          }
+        ]
+      },
+      "payment_services": "unclear",
+      "payment_services_reason": {
+        "text": "The customer says money was taken, but the documents do not show whether the payment was authorised or correctly executed.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "you have taken money from me AGAIN"
+          }
+        ]
+      },
+      "already_with_ombudsman": false,
+      "linked_to_earlier_complaint": false
+    },
+    "summary": [
+      {
+        "text": "Complaint logged via web form on 2026-11-05 from a logged-in session.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Complaint form (logged-in session)"
+          }
+        ]
+      },
+      {
+        "text": "Customer says money was taken from them again.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "you have taken money from me AGAIN"
+          }
+        ]
+      },
+      {
+        "text": "No account was selected on the form.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Account: [not selected] | What happened:"
+          }
+        ]
+      },
+      {
+        "text": "The customer has not stated what would put things right.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "What would put it right: [blank]"
+          }
+        ]
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-11-05",
+        "event": "Complaint form submitted via web form.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Complaint form (logged-in session)"
+          }
+        ]
+      }
+    ],
+    "outcome_sought": {
+      "text": "Not stated. The customer's only demand is to sort it out or they are leaving.",
+      "citations": [
+        {
+          "source": "D1",
+          "quote": "What would put it right: [blank]"
+        }
+      ]
+    },
+    "vulnerability": [],
+    "relevant_policy": [
+      {
+        "policy_id": "CP-1.3",
+        "why_relevant": "The complaint must be logged in the CRM on the day received, with product and cause category.",
+        "citations": [
+          {
+            "source": "CP-1.3",
+            "quote": "Every complaint must be logged in the CRM on the day it is received, whatever the channel"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-2.4",
+        "why_relevant": "Earlier linked complaints must be checked, as the customer's wording suggests a repeat.",
+        "citations": [
+          {
+            "source": "CP-2.4",
+            "quote": "the handler must check for earlier complaints from the same customer on the same subject in the last twelve months"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.3",
+        "why_relevant": "The outcome the customer seeks must be recorded, but it is currently blank.",
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "The handler must record, in the customer's own words where possible, the outcome the customer is seeking."
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.5",
+        "why_relevant": "Missing information requires a documented attempt to contact the customer.",
+        "citations": [
+          {
+            "source": "CP-4.5",
+            "quote": "the handler must make at least one documented attempt to contact the customer before a case is passed to a specialist team."
+          }
+        ]
+      }
+    ],
+    "handover_checklist": [
+      {
+        "item_id": "outcome_sought",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "customer_contact_attempted",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "customer_told_of_handover",
+        "status": "not_applicable",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "vulnerability_recorded",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "linked_complaints_checked",
+        "status": "missing",
+        "value": "Customer wording suggests a repeat complaint; earlier complaints not yet checked.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "you have taken money from me AGAIN"
+          }
+        ]
+      }
+    ],
+    "conflicts": [],
+    "flags": [
+      {
+        "type": "data_quality",
+        "description": "No account selected on the form, so the product and account cannot be identified.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Account: [not selected] | What happened:"
+          }
+        ]
+      },
+      {
+        "type": "deadline_risk",
+        "description": "If this proves to be a payment services complaint, the final response is due within fifteen business days of receipt.",
+        "citations": [
+          {
+            "source": "CP-3.2",
+            "quote": "the final response is due within fifteen business days"
+          }
+        ]
+      }
+    ]
+  },
+  "checks": {
+    "statements": [
+      {
+        "path": "intake.team_reason",
+        "text": "Suggested as a first-handler case only because the documents do not identify a specialist remit. The product and problem must be confirmed before any handover.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Account: [not selected] | What happened:",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.payment_services_reason",
+        "text": "The customer says money was taken, but the documents do not show whether the payment was authorised or correctly executed.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "you have taken money from me AGAIN",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.0",
+        "text": "Complaint logged via web form on 2026-11-05 from a logged-in session.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Complaint form (logged-in session)",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.1",
+        "text": "Customer says money was taken from them again.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "you have taken money from me AGAIN",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.2",
+        "text": "No account was selected on the form.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Account: [not selected] | What happened:",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.3",
+        "text": "The customer has not stated what would put things right.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "What would put it right: [blank]",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.0",
+        "text": "2026-11-05: Complaint form submitted via web form.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Complaint form (logged-in session)",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "outcome_sought",
+        "text": "Not stated. The customer's only demand is to sort it out or they are leaving.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "What would put it right: [blank]",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.0",
+        "text": "CP-1.3: The complaint must be logged in the CRM on the day received, with product and cause category.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-1.3",
+            "quote": "Every complaint must be logged in the CRM on the day it is received, whatever the channel",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.1",
+        "text": "CP-2.4: Earlier linked complaints must be checked, as the customer's wording suggests a repeat.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.4",
+            "quote": "the handler must check for earlier complaints from the same customer on the same subject in the last twelve months",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.2",
+        "text": "CP-4.3: The outcome the customer seeks must be recorded, but it is currently blank.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "The handler must record, in the customer's own words where possible, the outcome the customer is seeking.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.3",
+        "text": "CP-4.5: Missing information requires a documented attempt to contact the customer.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.5",
+            "quote": "the handler must make at least one documented attempt to contact the customer before a case is passed to a specialist team.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.0",
+        "text": "data_quality: No account selected on the form, so the product and account cannot be identified.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Account: [not selected] | What happened:",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.1",
+        "text": "deadline_risk: If this proves to be a payment services complaint, the final response is due within fifteen business days of receipt.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-3.2",
+            "quote": "the final response is due within fifteen business days",
+            "result": "verified"
+          }
+        ]
+      }
+    ],
+    "supportedCount": 14,
+    "unsupportedCount": 0,
+    "inventedPlaceholders": [],
+    "checklist": {
+      "required": 4,
+      "present": 0,
+      "missing": [
+        "outcome_sought",
+        "customer_contact_attempted",
+        "vulnerability_recorded",
+        "linked_complaints_checked"
+      ],
+      "conflicting": []
+    }
+  },
+  "clock": "confirm",
+  "deadlines": {
+    "received": "2026-11-05",
+    "clock": "confirm",
+    "summaryResolutionWindowCloses": "2026-11-10",
+    "eightWeekDue": "2026-12-31",
+    "psrDue": "2026-11-26",
+    "psrExceptionalDue": "2026-12-24",
+    "workingDue": "2026-11-26",
+    "needsHandlerConfirmation": true,
+    "calendarDaysLeft": 17,
+    "businessDaysLeft": 13,
+    "status": "on_track"
+  },
+  "usage": {
+    "inputTokens": 173,
+    "outputTokens": 3548,
+    "cacheReadTokens": 9539,
+    "cacheWriteTokens": 0,
+    "costUsd": 0.0018866900000000001,
+    "latencyMs": 15472
+  }
+}

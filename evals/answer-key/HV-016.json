@@ -7,7 +7,7 @@
     }
   ],
   "team": "fraud_scams",
-  "disp_clock": "8_weeks",
+  "disp_clock": "15_business_days",
   "vulnerability": {
     "present": false,
     "signals": []
@@ -45,5 +45,5 @@
     "first_name_only_signoff",
     "payee_name_is_pii"
   ],
-  "rationale": "She authorised a Faster Payment to a fake seller, so this is an APP scam for Fraud and Scams on the 8-week clock. She chose 'Something else' as the payment reason, so only the generic warning was shown, and the team must weigh that. She is not vulnerable, so the £100 excess under CP-7.2 may apply, but that is a decision for staff. The new mobile number appears only in her email, so the record cannot catch it."
+  "rationale": "She authorised a Faster Payment to a fake seller, so this is an APP scam for Fraud and Scams on the 15 business day clock (CP-3.2, corrected 11 Nov 2026 after checking the Ombudsman's guidance, the key had said 8 weeks). She chose 'Something else' as the payment reason, so only the generic warning was shown, and the team must weigh that. She is not vulnerable, so the £100 excess under CP-7.2 may apply, but that is a decision for staff. The new mobile number appears only in her email, so the record cannot catch it."
 }

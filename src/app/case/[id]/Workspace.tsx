@@ -220,7 +220,7 @@ export default function Workspace({
     setGapFixes((g) => ({ ...g, [id]: { status, text: gapDraft.trim() } }));
     click();
     changed();
-    log("Handler", status === "added" ? `Added handover detail: ${labels.checklist[id]}.` : `Marked not available with a reason: ${labels.checklist[id]}.`);
+    log("Handler", status === "added" ? `Added handover detail: ${labels.checklist[id]}.` : `Marked not available: ${labels.checklist[id]}. Reason: ${gapDraft.trim()}.`);
     setGapEditing(null);
     setGapDraft("");
     focusAfter.current = `gap-${id}`;
@@ -658,7 +658,7 @@ export default function Workspace({
             {stage === "accepted_by_specialist" && (
               <p className="small"><span className="tag tag-green">Accepted by {team.label}</span> <Link href={`/case/${caseFile.id}/handover`}>See their view</Link></p>
             )}
-            <p className="small muted">{clicks} review actions on this case.</p>
+            <p className="small muted">{clicks} review {clicks === 1 ? "action" : "actions"} on this case.</p>
           </section>
 
           <section className={styles.panel}>

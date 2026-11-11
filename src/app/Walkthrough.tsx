@@ -265,7 +265,7 @@ export default function Walkthrough({ data }: { data: WalkthroughData }) {
               <div>
                 <dt>Reply due</dt>
                 <dd>
-                  <strong>{data.workingDue}</strong>, {data.businessDaysLeft} working days away.
+                  <strong>{data.workingDue}</strong>, {data.businessDaysLeft} business days away.
                   {data.needsClock && (
                     <span className={styles.factNote}>
                       The tool was not sure which deadline rule applies, so it uses the shorter one and asks the handler to confirm. Worked

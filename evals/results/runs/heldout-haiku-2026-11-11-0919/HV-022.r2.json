@@ -1,0 +1,1104 @@
+{
+  "caseId": "HV-022",
+  "createdAt": "2026-11-11T09:22:40.610Z",
+  "model": "claude-haiku-5-5",
+  "promptVersion": "casepack-v4",
+  "redacted": {
+    "id": "HV-022",
+    "received": "2026-10-27",
+    "channel": "phone",
+    "documents": [
+      {
+        "id": "D1",
+        "system": "CRM",
+        "type": "call_summary",
+        "date": "2026-10-27",
+        "author_role": "handler",
+        "text": "Inbound 13:52, [CUSTOMER] (ID&V passed). Calling about overdraft charges. Has been at or near the £1,200 limit since about March and 'the interest just keeps coming off'. Also 3 x £10 returned payment fees in Sept/Oct. Wants the fees and interest refunded and 'a break from it' so she can get back to zero.\n\nCust spoke very quietly & asked me twice to hold while she checked something. Said she was calling from work on her break. When I asked about income she said her wages go in but '[PERSON_1] deals with the money, he moves it over to his so the bills get paid' and she doesn't always know what's left. Said she doesn't have the app on her phone, he has it on his. Did not want to go through income & outgoings today, said 'not now, sorry'. I did not push.\n\nCust asked us NOT to send any letters to the house about this and not to call the mobile on file. Asked us to text a different number instead, [PHONE_1](her work phone). Said 'please don't put anything about this through the door'.\n\nI have not used the word abuse with the cust. Told her we can review the charges and that free, confidential debt advice is available, gave details. Also said we have support if anyone else is controlling her money and she can talk to us privately at any time. She said 'ok' and went quiet. Told her I am passing this to our Financial Support team, who will text the work number first to arrange a safe time to call. - [STAFF]"
+      },
+      {
+        "id": "D2",
+        "system": "CORE",
+        "type": "system_log",
+        "date": "2026-10-27",
+        "author_role": "system",
+        "text": "CA [ACCOUNT_1]. Arranged overdraft limit GBP 1,200.00. Balance 27/10/2026 GBP -1,186.42. Days overdrawn in last 220 days: 220. Overdraft interest (39.9% EAR) debited: 01/06/2026 GBP 36.80, 01/07/2026 GBP 38.15, 01/08/2026 GBP 38.40, 01/09/2026 GBP 38.62, 01/10/2026 GBP 38.90. Returned Direct Debit fee GBP 10.00 debited 08/09/2026, 22/09/2026, 06/10/2026. Salary credit approx GBP 1,640 on 25th monthly (HOLLINGWORTH FOODS LTD). Faster Payment out same day as salary: 25/08/2026 GBP 1,500.00 to C [PERSON_2], 25/09/2026 GBP 1,550.00 to C [PERSON_2]. Collections status: none. Online banking device: 1 registered device, not customer's registered mobile number."
+      },
+      {
+        "id": "D3",
+        "system": "CRM",
+        "type": "crm_note",
+        "date": "2026-10-28",
+        "author_role": "handler",
+        "text": "Vulnerability record updated for [CUSTOMER] (verbal consent 27/10): financial difficulty. Support needs: NO letters to home address, NO calls to mobile on file, contact by text to alt number only (work phone, added to profile). Possible economic abuse observed by handler, not disclosed by cust. Do not raise with cust unless she raises it. Referred to Financial Support."
+      }
+    ],
+    "replacements": [
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Ms Whitaker",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[STAFF]",
+        "original": "S O'Brien",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[PHONE_1]",
+        "original": "07700 900 593 ",
+        "layer": "pattern",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[PERSON_1]",
+        "original": "Craig",
+        "layer": "text",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[ACCOUNT_1]",
+        "original": "60731948",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[PERSON_2]",
+        "original": "ASHWORTH",
+        "layer": "text",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[PERSON_2]",
+        "original": "ASHWORTH",
+        "layer": "text",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Ms Whittaker",
+        "layer": "near_match",
+        "documentId": "D3"
+      }
+    ],
+    "placeholders": [
+      "[ACCOUNT_1]",
+      "[CUSTOMER]",
+      "[PERSON_1]",
+      "[PERSON_2]",
+      "[PHONE_1]",
+      "[STAFF]"
+    ],
+    "display": {
+      "[CUSTOMER]": "Ms Leanne Whitaker",
+      "[STAFF]": "Sinead O'Brien",
+      "[PHONE_1]": "07700 900 593 ",
+      "[PERSON_1]": "Craig",
+      "[ACCOUNT_1]": "60731948",
+      "[PERSON_2]": "ASHWORTH",
+      "[CARD]": "5146",
+      "[SORT_CODE]": "77-41-45",
+      "[ACCOUNT_2]": "60731948",
+      "[CUSTOMER_PHONE]": "07700 900 278"
+    }
+  },
+  "pack": {
+    "enough_information": {
+      "sufficient": true,
+      "what_is_needed": ""
+    },
+    "intake": {
+      "issues": [
+        {
+          "product": "overdraft",
+          "cause": "fees_interest",
+          "description": "Overdraft interest and three GBP 10 returned payment fees. Customer wants them refunded and a break from charges.",
+          "citations": [
+            {
+              "source": "D1",
+              "quote": "Wants the fees and interest refunded"
+            },
+            {
+              "source": "D1",
+              "quote": "3 x £10 returned payment fees in Sept/Oct"
+            }
+          ]
+        }
+      ],
+      "suggested_team": "financial_support",
+      "team_reason": {
+        "text": "Overdraft fees and interest arising while the customer reports financial difficulty, so collections and affordability need review.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Calling about overdraft charges"
+          },
+          {
+            "source": "CP-9.2",
+            "quote": "Fees and interest applied while a customer was in financial difficulty must be reviewed as part of the complaint"
+          }
+        ]
+      },
+      "payment_services": "no",
+      "payment_services_reason": {
+        "text": "The complaint concerns fees and interest, not an unauthorised or wrongly executed payment.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Calling about overdraft charges"
+          }
+        ]
+      },
+      "already_with_ombudsman": false,
+      "linked_to_earlier_complaint": false
+    },
+    "summary": [
+      {
+        "text": "Customer says her overdraft has been at or near the GBP 1,200 limit since about March and wants fees and interest refunded.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "at or near the £1,200 limit since about March"
+          }
+        ]
+      },
+      {
+        "text": "System records show overdraft interest of GBP 36.80 to GBP 38.90 a month from June to October 2026, and three GBP 10.00 returned Direct Debit fees.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Overdraft interest (39.9% EAR) debited: 01/06/2026 GBP 36.80"
+          },
+          {
+            "source": "D2",
+            "quote": "Returned Direct Debit fee GBP 10.00 debited 08/09/2026, 22/09/2026, 06/10/2026"
+          }
+        ]
+      },
+      {
+        "text": "Balance on 27/10/2026 was GBP -1,186.42 and collections status is none.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Balance 27/10/2026 GBP -1,186.42"
+          },
+          {
+            "source": "D2",
+            "quote": "Collections status: none"
+          }
+        ]
+      },
+      {
+        "text": "Customer declined to go through income and outgoings on the call. She says a third party handles her money.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Did not want to go through income & outgoings today"
+          },
+          {
+            "source": "D1",
+            "quote": "he moves it over to his so the bills get paid"
+          }
+        ]
+      },
+      {
+        "text": "Vulnerability is recorded for financial difficulty with contact restrictions. The handler also noted possible economic abuse, which the customer has not disclosed.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Support needs: NO letters to home address, NO calls to mobile on file"
+          },
+          {
+            "source": "D3",
+            "quote": "Possible economic abuse observed by handler, not disclosed by cust"
+          }
+        ]
+      }
+    ],
+    "timeline": [
+      {
+        "date": "about March",
+        "event": "Customer says the overdraft has been at or near the limit since about March.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "at or near the £1,200 limit since about March"
+          }
+        ]
+      },
+      {
+        "date": "2026-06-01",
+        "event": "Overdraft interest of GBP 36.80 debited.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Overdraft interest (39.9% EAR) debited: 01/06/2026 GBP 36.80"
+          }
+        ]
+      },
+      {
+        "date": "2026-08-25",
+        "event": "Faster Payment of GBP 1,500.00 to C [PERSON_2], same day as salary credit.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Faster Payment out same day as salary: 25/08/2026 GBP 1,500.00 to C [PERSON_2]"
+          }
+        ]
+      },
+      {
+        "date": "2026-09-08",
+        "event": "Returned Direct Debit fee of GBP 10.00 debited.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Returned Direct Debit fee GBP 10.00 debited 08/09/2026, 22/09/2026, 06/10/2026"
+          }
+        ]
+      },
+      {
+        "date": "2026-09-22",
+        "event": "Returned Direct Debit fee of GBP 10.00 debited.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Returned Direct Debit fee GBP 10.00 debited 08/09/2026, 22/09/2026, 06/10/2026"
+          }
+        ]
+      },
+      {
+        "date": "2026-09-25",
+        "event": "Faster Payment of GBP 1,550.00 to C [PERSON_2], same day as salary credit.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "25/09/2026 GBP 1,550.00 to C [PERSON_2]"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-06",
+        "event": "Returned Direct Debit fee of GBP 10.00 debited.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Returned Direct Debit fee GBP 10.00 debited 08/09/2026, 22/09/2026, 06/10/2026"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-27",
+        "event": "Customer called at 13:52, ID&V passed. Asked for no letters to the home address and no calls to the mobile on file.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Inbound 13:52, [CUSTOMER] (ID&V passed)"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-28",
+        "event": "Vulnerability record updated with verbal consent from 27/10. Referred to Financial Support.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Vulnerability record updated for [CUSTOMER] (verbal consent 27/10): financial difficulty"
+          }
+        ]
+      }
+    ],
+    "outcome_sought": {
+      "text": "Refund of fees and interest, and a break from charges so she can get back to zero.",
+      "citations": [
+        {
+          "source": "D1",
+          "quote": "Wants the fees and interest refunded"
+        },
+        {
+          "source": "D1",
+          "quote": "a break from it' so she can get back to zero"
+        }
+      ]
+    },
+    "vulnerability": [
+      {
+        "signal": "Financial difficulty",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "verbal consent 27/10): financial difficulty"
+          }
+        ]
+      },
+      {
+        "signal": "Possible economic abuse, observed by handler and not disclosed by customer",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Possible economic abuse observed by handler, not disclosed by cust"
+          }
+        ]
+      }
+    ],
+    "relevant_policy": [
+      {
+        "policy_id": "CP-4.3",
+        "why_relevant": "The customer's desired outcome must be recorded in her own words.",
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "The handler must record, in the customer's own words where possible"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-5.1",
+        "why_relevant": "Signs of financial difficulty and possible economic abuse are present.",
+        "citations": [
+          {
+            "source": "CP-5.1",
+            "quote": "Staff must look for signs that a customer may be in vulnerable circumstances"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-5.2",
+        "why_relevant": "Vulnerability and contact support needs must be recorded.",
+        "citations": [
+          {
+            "source": "CP-5.2",
+            "quote": "Signs of vulnerability must be recorded with the customer's consent where possible"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-5.3",
+        "why_relevant": "Handling must be adapted, and the customer must not be passed between teams without a warm handover.",
+        "citations": [
+          {
+            "source": "CP-5.3",
+            "quote": "The handler must adapt communication and must not pass a vulnerable customer between teams without a warm handover."
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-6.1",
+        "why_relevant": "The case falls within Financial Support's remit and needs its checklist.",
+        "citations": [
+          {
+            "source": "CP-6.1",
+            "quote": "A complaint must be passed to a specialist team when it falls within that team's remit"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-9.1",
+        "why_relevant": "Arrears and collections questions apply, including forbearance and debt advice.",
+        "citations": [
+          {
+            "source": "CP-9.1",
+            "quote": "Where a complaint involves arrears or collections, the handler must check whether forbearance was considered"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-9.2",
+        "why_relevant": "Fees and interest charged during financial difficulty must be reviewed.",
+        "citations": [
+          {
+            "source": "CP-9.2",
+            "quote": "Fees and interest applied while a customer was in financial difficulty must be reviewed as part of the complaint"
+          }
+        ]
+      }
+    ],
+    "handover_checklist": [
+      {
+        "item_id": "outcome_sought",
+        "status": "present",
+        "value": "Refund of fees and interest, and a break from charges.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Wants the fees and interest refunded"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_contact_attempted",
+        "status": "present",
+        "value": "Inbound call on 27/10/2026, ID&V passed.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Inbound 13:52, [CUSTOMER] (ID&V passed)"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_told_of_handover",
+        "status": "present",
+        "value": "Customer told the case is going to Financial Support, who will text the work number first.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Told her I am passing this to our Financial Support team"
+          }
+        ]
+      },
+      {
+        "item_id": "vulnerability_recorded",
+        "status": "present",
+        "value": "Financial difficulty and contact restrictions recorded with verbal consent on 27/10.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Support needs: NO letters to home address, NO calls to mobile on file"
+          }
+        ]
+      },
+      {
+        "item_id": "linked_complaints_checked",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "balance_and_arrears",
+        "status": "present",
+        "value": "Balance GBP -1,186.42 against a GBP 1,200.00 limit.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Arranged overdraft limit GBP 1,200.00"
+          },
+          {
+            "source": "D2",
+            "quote": "Balance 27/10/2026 GBP -1,186.42"
+          }
+        ]
+      },
+      {
+        "item_id": "income_expenditure",
+        "status": "missing",
+        "value": "Customer declined to discuss income and outgoings on 27/10. Salary credit approx GBP 1,640 monthly in system.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Did not want to go through income & outgoings today"
+          },
+          {
+            "source": "D2",
+            "quote": "Salary credit approx GBP 1,640 on 25th monthly"
+          }
+        ]
+      },
+      {
+        "item_id": "forbearance_history",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "collections_status",
+        "status": "present",
+        "value": "No collections activity recorded.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Collections status: none"
+          }
+        ]
+      },
+      {
+        "item_id": "debt_advice_signposted",
+        "status": "present",
+        "value": "Free, confidential debt advice was signposted on 27/10.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "that free, confidential debt advice is available"
+          }
+        ]
+      }
+    ],
+    "conflicts": [],
+    "flags": [
+      {
+        "type": "third_party_authority",
+        "description": "A third party reportedly holds the app and moves the customer's salary. No authority to act is recorded.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Said she doesn't have the app on her phone, he has it on his"
+          }
+        ]
+      },
+      {
+        "type": "other",
+        "description": "Possible economic abuse, not disclosed by the customer. Per the handler note, do not raise it with the customer unless she does.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Do not raise with cust unless she raises it"
+          }
+        ]
+      },
+      {
+        "type": "other",
+        "description": "The online banking device is registered to a number other than the customer's registered mobile, and she says the app is on another person's phone.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "1 registered device, not customer's registered mobile number"
+          }
+        ]
+      },
+      {
+        "type": "deadline_risk",
+        "description": "If not resolved by the close of the third business day, a written acknowledgement naming the handler or team is required.",
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "we must send a prompt written acknowledgement that names the handler or team dealing with it"
+          }
+        ]
+      }
+    ]
+  },
+  "checks": {
+    "statements": [
+      {
+        "path": "intake.issues.0",
+        "text": "Overdraft interest and three GBP 10 returned payment fees. Customer wants them refunded and a break from charges.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Wants the fees and interest refunded",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "3 x £10 returned payment fees in Sept/Oct",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.team_reason",
+        "text": "Overdraft fees and interest arising while the customer reports financial difficulty, so collections and affordability need review.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Calling about overdraft charges",
+            "result": "verified"
+          },
+          {
+            "source": "CP-9.2",
+            "quote": "Fees and interest applied while a customer was in financial difficulty must be reviewed as part of the complaint",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.payment_services_reason",
+        "text": "The complaint concerns fees and interest, not an unauthorised or wrongly executed payment.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Calling about overdraft charges",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.0",
+        "text": "Customer says her overdraft has been at or near the GBP 1,200 limit since about March and wants fees and interest refunded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "at or near the £1,200 limit since about March",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.1",
+        "text": "System records show overdraft interest of GBP 36.80 to GBP 38.90 a month from June to October 2026, and three GBP 10.00 returned Direct Debit fees.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Overdraft interest (39.9% EAR) debited: 01/06/2026 GBP 36.80",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Returned Direct Debit fee GBP 10.00 debited 08/09/2026, 22/09/2026, 06/10/2026",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.2",
+        "text": "Balance on 27/10/2026 was GBP -1,186.42 and collections status is none.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Balance 27/10/2026 GBP -1,186.42",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Collections status: none",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.3",
+        "text": "Customer declined to go through income and outgoings on the call. She says a third party handles her money.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Did not want to go through income & outgoings today",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "he moves it over to his so the bills get paid",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.4",
+        "text": "Vulnerability is recorded for financial difficulty with contact restrictions. The handler also noted possible economic abuse, which the customer has not disclosed.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Support needs: NO letters to home address, NO calls to mobile on file",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Possible economic abuse observed by handler, not disclosed by cust",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.0",
+        "text": "about March: Customer says the overdraft has been at or near the limit since about March.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "at or near the £1,200 limit since about March",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.1",
+        "text": "2026-06-01: Overdraft interest of GBP 36.80 debited.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Overdraft interest (39.9% EAR) debited: 01/06/2026 GBP 36.80",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.2",
+        "text": "2026-08-25: Faster Payment of GBP 1,500.00 to C [PERSON_2], same day as salary credit.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Faster Payment out same day as salary: 25/08/2026 GBP 1,500.00 to C [PERSON_2]",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.3",
+        "text": "2026-09-08: Returned Direct Debit fee of GBP 10.00 debited.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Returned Direct Debit fee GBP 10.00 debited 08/09/2026, 22/09/2026, 06/10/2026",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.4",
+        "text": "2026-09-22: Returned Direct Debit fee of GBP 10.00 debited.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Returned Direct Debit fee GBP 10.00 debited 08/09/2026, 22/09/2026, 06/10/2026",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.5",
+        "text": "2026-09-25: Faster Payment of GBP 1,550.00 to C [PERSON_2], same day as salary credit.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "25/09/2026 GBP 1,550.00 to C [PERSON_2]",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.6",
+        "text": "2026-10-06: Returned Direct Debit fee of GBP 10.00 debited.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Returned Direct Debit fee GBP 10.00 debited 08/09/2026, 22/09/2026, 06/10/2026",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.7",
+        "text": "2026-10-27: Customer called at 13:52, ID&V passed. Asked for no letters to the home address and no calls to the mobile on file.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Inbound 13:52, [CUSTOMER] (ID&V passed)",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.8",
+        "text": "2026-10-28: Vulnerability record updated with verbal consent from 27/10. Referred to Financial Support.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Vulnerability record updated for [CUSTOMER] (verbal consent 27/10): financial difficulty",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "outcome_sought",
+        "text": "Refund of fees and interest, and a break from charges so she can get back to zero.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Wants the fees and interest refunded",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "a break from it' so she can get back to zero",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "vulnerability.0",
+        "text": "Financial difficulty",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "verbal consent 27/10): financial difficulty",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "vulnerability.1",
+        "text": "Possible economic abuse, observed by handler and not disclosed by customer",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Possible economic abuse observed by handler, not disclosed by cust",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.0",
+        "text": "CP-4.3: The customer's desired outcome must be recorded in her own words.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "The handler must record, in the customer's own words where possible",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.1",
+        "text": "CP-5.1: Signs of financial difficulty and possible economic abuse are present.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-5.1",
+            "quote": "Staff must look for signs that a customer may be in vulnerable circumstances",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.2",
+        "text": "CP-5.2: Vulnerability and contact support needs must be recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-5.2",
+            "quote": "Signs of vulnerability must be recorded with the customer's consent where possible",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.3",
+        "text": "CP-5.3: Handling must be adapted, and the customer must not be passed between teams without a warm handover.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-5.3",
+            "quote": "The handler must adapt communication and must not pass a vulnerable customer between teams without a warm handover.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.4",
+        "text": "CP-6.1: The case falls within Financial Support's remit and needs its checklist.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-6.1",
+            "quote": "A complaint must be passed to a specialist team when it falls within that team's remit",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.5",
+        "text": "CP-9.1: Arrears and collections questions apply, including forbearance and debt advice.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-9.1",
+            "quote": "Where a complaint involves arrears or collections, the handler must check whether forbearance was considered",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.6",
+        "text": "CP-9.2: Fees and interest charged during financial difficulty must be reviewed.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-9.2",
+            "quote": "Fees and interest applied while a customer was in financial difficulty must be reviewed as part of the complaint",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.outcome_sought",
+        "text": "outcome_sought: Refund of fees and interest, and a break from charges.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Wants the fees and interest refunded",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.customer_contact_attempted",
+        "text": "customer_contact_attempted: Inbound call on 27/10/2026, ID&V passed.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Inbound 13:52, [CUSTOMER] (ID&V passed)",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.customer_told_of_handover",
+        "text": "customer_told_of_handover: Customer told the case is going to Financial Support, who will text the work number first.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Told her I am passing this to our Financial Support team",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.vulnerability_recorded",
+        "text": "vulnerability_recorded: Financial difficulty and contact restrictions recorded with verbal consent on 27/10.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Support needs: NO letters to home address, NO calls to mobile on file",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.balance_and_arrears",
+        "text": "balance_and_arrears: Balance GBP -1,186.42 against a GBP 1,200.00 limit.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Arranged overdraft limit GBP 1,200.00",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Balance 27/10/2026 GBP -1,186.42",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.collections_status",
+        "text": "collections_status: No collections activity recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Collections status: none",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.debt_advice_signposted",
+        "text": "debt_advice_signposted: Free, confidential debt advice was signposted on 27/10.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "that free, confidential debt advice is available",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.0",
+        "text": "third_party_authority: A third party reportedly holds the app and moves the customer's salary. No authority to act is recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Said she doesn't have the app on her phone, he has it on his",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.1",
+        "text": "other: Possible economic abuse, not disclosed by the customer. Per the handler note, do not raise it with the customer unless she does.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Do not raise with cust unless she raises it",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.2",
+        "text": "other: The online banking device is registered to a number other than the customer's registered mobile, and she says the app is on another person's phone.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "1 registered device, not customer's registered mobile number",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.3",
+        "text": "deadline_risk: If not resolved by the close of the third business day, a written acknowledgement naming the handler or team is required.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "we must send a prompt written acknowledgement that names the handler or team dealing with it",
+            "result": "verified"
+          }
+        ]
+      }
+    ],
+    "supportedCount": 38,
+    "unsupportedCount": 0,
+    "inventedPlaceholders": [],
+    "checklist": {
+      "required": 10,
+      "present": 7,
+      "missing": [
+        "linked_complaints_checked",
+        "income_expenditure",
+        "forbearance_history"
+      ],
+      "conflicting": []
+    }
+  },
+  "clock": "8_weeks",
+  "deadlines": {
+    "received": "2026-10-27",
+    "clock": "8_weeks",
+    "summaryResolutionWindowCloses": "2026-10-30",
+    "eightWeekDue": "2026-12-22",
+    "workingDue": "2026-12-22",
+    "needsHandlerConfirmation": false,
+    "calendarDaysLeft": 43,
+    "businessDaysLeft": 31,
+    "status": "on_track"
+  },
+  "usage": {
+    "inputTokens": 1128,
+    "outputTokens": 14447,
+    "cacheReadTokens": 9539,
+    "cacheWriteTokens": 0,
+    "costUsd": 0.00743169,
+    "latencyMs": 52709
+  }
+}

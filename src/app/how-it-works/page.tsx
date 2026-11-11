@@ -56,7 +56,8 @@ const pct = (x: number) => `${Math.round(100 * x)}%`;
 
 export default function HowItWorks() {
   const dev = readSummary("dev-haiku");
-  const held = readSummary("heldout-haiku-blind") ?? readSummary("heldout-haiku");
+  const held = readSummary("heldout-haiku-blind");
+  const heldNow = readSummary("heldout-haiku");
   const devRedaction = redactionScore("dev");
   const heldRedactionNow = held ? redactionScore("heldout") : null;
   const d = dev?.repeats[0];
@@ -150,23 +151,24 @@ export default function HowItWorks() {
       </p>
       <table className={styles.table}>
         <thead>
-          <tr><th scope="col">Measure</th>{h && <th scope="col">Held-back set, run once at the end, 3 repeats</th>}<th scope="col">Development set (tuned on)</th></tr>
+          <tr><th scope="col">Measure</th>{h && <th scope="col">Held-back set, blind run, prompt v3, 3 repeats</th>}{heldNow && <th scope="col">Held-back set after the two corrections, prompt v4, 3 repeats</th>}<th scope="col">Development set (tuned on, v4)</th></tr>
         </thead>
         <tbody>
           {[
-            ["Routed to the right team", held && range(held, "team"), d && pct(d.team)],
-            ["Right deadline rule", held && range(held, "clock"), d && pct(d.clock)],
-            ["Signs of vulnerability flagged correctly", held && range(held, "vulnerability"), d && pct(d.vulnerability)],
-            ["Missing information found", held && range(held, "missingRecall"), d && pct(d.missingRecall)],
-            ["Expected policy paragraphs cited", held && range(held, "policyRecall"), d && pct(d.policyRecall)],
-            ["AI statements whose quotes verified", held && range(held, "supportedRate"), d && pct(d.supportedRate)],
-            ["Injection attempts flagged", h?.injection, d?.injection],
-            ["Planted personal details hidden", heldRedactionNow && `${HELDOUT_REDACTION_BLIND.caught} of ${HELDOUT_REDACTION_BLIND.planted} blind, then ${heldRedactionNow.caught} of ${heldRedactionNow.planted} after the fix`, `${devRedaction.caught} of ${devRedaction.planted}`],
-            ["Cost per case", h && `$${h.costPerCase.toFixed(4)}`, d && `$${d.costPerCase.toFixed(4)}`],
-          ].map(([label, hv, dv]) => (
+            ["Routed to the right team", held && range(held, "team"), heldNow && range(heldNow, "team"), d && pct(d.team)],
+            ["Right deadline rule", held && `${range(held, "clock")} on the keys as they were, 60% to 80% once the scam clock was corrected`, heldNow && range(heldNow, "clock"), d && pct(d.clock)],
+            ["Signs of vulnerability flagged correctly", held && range(held, "vulnerability"), heldNow && range(heldNow, "vulnerability"), d && pct(d.vulnerability)],
+            ["Missing information found", held && range(held, "missingRecall"), heldNow && range(heldNow, "missingRecall"), d && pct(d.missingRecall)],
+            ["Expected policy paragraphs cited", held && range(held, "policyRecall"), heldNow && range(heldNow, "policyRecall"), d && pct(d.policyRecall)],
+            ["AI statements whose quotes verified", held && range(held, "supportedRate"), heldNow && range(heldNow, "supportedRate"), d && pct(d.supportedRate)],
+            ["Injection attempts flagged", h?.injection, heldNow?.repeats[0]?.injection, d?.injection],
+            ["Planted personal details hidden", heldRedactionNow && `${HELDOUT_REDACTION_BLIND.caught} of ${HELDOUT_REDACTION_BLIND.planted}`, heldRedactionNow && `${heldRedactionNow.caught} of ${heldRedactionNow.planted}`, `${devRedaction.caught} of ${devRedaction.planted}`],
+            ["Cost per case", h && `$${h.costPerCase.toFixed(4)}`, heldNow && `$${heldNow.repeats[0].costPerCase.toFixed(4)}`, d && `$${d.costPerCase.toFixed(4)}`],
+          ].map(([label, hv, nv, dv]) => (
             <tr key={label as string}>
               <td>{label}</td>
               {h && <td>{hv ?? "n/a"}</td>}
+              {heldNow && <td>{nv ?? "n/a"}</td>}
               <td>{dv ?? "n/a"}</td>
             </tr>
           ))}
@@ -175,7 +177,7 @@ export default function HowItWorks() {
       <p className="small muted">
         {dev && <>Development results: {modelName(dev.model)}, prompt {dev.promptVersion}, scored {formatDate(dev.generated.slice(0, 10))}. </>}
         The development set flatters the tool because the prompt and redaction rules were improved on it.{" "}
-        {h ? "The held-back column is the one to judge it by." : "The 10 held-back cases are run once, at the end of the build, and their results will be added here as the figures to judge it by."}
+        {h ? "The blind column is the one to judge it by. The second held-back column is after two corrections made on the same morning, so it is not blind." : "The 10 held-back cases are run once, at the end of the build, and their results will be added here as the figures to judge it by."}
       </p>
       {heldRedactionNow && (
         <p>
@@ -183,7 +185,15 @@ export default function HowItWorks() {
           identifiers. Every miss was a person the bank&apos;s record does not know: a boyfriend, a scammer&apos;s name, children named in an email, a carer, a nickname.
           The first three layers work from the record, so they could not see them. A fourth layer that finds people from how the text introduces them was added the same day,
           and the held-back set now scores {heldRedactionNow.caught} of {heldRedactionNow.planted}. That second figure is not blind, and this page says so rather than showing only the clean number.
-          Full account in docs/decisions.md.
+        </p>
+      )}
+      {heldRedactionNow && (
+        <p>
+          <strong>The second thing it caught.</strong> Checking two facts at the regulator&apos;s own pages showed that the prompt, the fictional policy and three
+          answer keys had scam complaints on the 8-week clock. The Financial Ombudsman&apos;s guidance to firms says a complaint about how a fraud or scam was
+          handled must be answered within 15 business days under DISP 1.6.2A. The deadline engine is deliberately code so that a rule is never guessed, and it
+          still carried a wrong rule, because the rule came from a person. Prompt v4, the policy and the keys were corrected, and the second held-back column is
+          the re-run. The full account, with every number, is in the decision log in the repository.
         </p>
       )}
 

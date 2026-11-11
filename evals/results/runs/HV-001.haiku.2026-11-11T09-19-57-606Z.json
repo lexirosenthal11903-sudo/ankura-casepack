@@ -1,0 +1,1082 @@
+{
+  "caseId": "HV-001",
+  "createdAt": "2026-11-11T09:19:57.606Z",
+  "model": "claude-haiku-5-5",
+  "promptVersion": "casepack-v4",
+  "redacted": {
+    "id": "HV-001",
+    "received": "2026-10-26",
+    "channel": "phone",
+    "documents": [
+      {
+        "id": "D1",
+        "system": "CRM",
+        "type": "call_summary",
+        "date": "2026-10-26",
+        "author_role": "handler",
+        "text": "Inbound call from [CUSTOMER] (ID&V passed) 10:42. Very upset, crying at times. Says on Thurs 22/10 she got a call from 'Harbour and Vale fraud team' saying her acc was being used by criminals and she had to move her money to a safe account. Caller knew her name and the last 4 digits of her card. She moved money from her savings to her current acc and then sent two payments on the app while still on the phone with them, £4,800 and then £2,950. Says the man told her what to type. She thinks there was a message on screen but 'he told me to press continue its normal'. Realised when her son [THIRD_PARTY] came round on Sat and told her it was a scam. She lives alone since her husband passed last year and says she 'cant sleep, that was money for my funeral'. She wants all her money back. Told her I would raise a complaint and the fraud team would be in touch. Advised her we will never ask her to move money. Gave complaint ref. - [STAFF]"
+      },
+      {
+        "id": "D2",
+        "system": "CORE",
+        "type": "system_log",
+        "date": "2026-10-22",
+        "author_role": "system",
+        "text": "22/10/2026 15:03 Internal transfer SAV [ACCOUNT_2] to CA [ACCOUNT_1] GBP 7,800.00. 22/10/2026 15:11 Faster Payment out CA [ACCOUNT_1] GBP 4,800.00 payee 'J [CUSTOMER] SAFE' receiving bank Northgate Payments Ltd. Confirmation of Payee result: NO MATCH. Scam warning shown: 'safe account' warning v4, customer selected Continue. 22/10/2026 15:19 Faster Payment out CA [ACCOUNT_1] GBP 2,950.00 payee 'J [CUSTOMER] SAFE' same account. Confirmation of Payee result: NO MATCH. Scam warning shown, customer selected Continue."
+      },
+      {
+        "id": "D3",
+        "system": "CRM",
+        "type": "crm_note",
+        "date": "2026-10-24",
+        "author_role": "handler",
+        "text": "Call from [THIRD_PARTY] (son) on 24/10 reporting his mother has been scammed. Not on the account, no authority on file. Advised mother must call in herself or we need third party authority. Fraud block placed on card ending [CARD] as precaution."
+      }
+    ],
+    "replacements": [
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Mrs Ellison",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[THIRD_PARTY]",
+        "original": "David",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[STAFF]",
+        "original": "P Raman",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[ACCOUNT_2]",
+        "original": "52260419",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[ACCOUNT_1]",
+        "original": "30118842",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[ACCOUNT_1]",
+        "original": "30118842",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "ELLISON",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[ACCOUNT_1]",
+        "original": "30118842",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "ELLISON",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[THIRD_PARTY]",
+        "original": "David Ellison",
+        "layer": "record",
+        "documentId": "D3"
+      },
+      {
+        "placeholder": "[CARD]",
+        "original": "4417",
+        "layer": "record",
+        "documentId": "D3"
+      }
+    ],
+    "placeholders": [
+      "[ACCOUNT_1]",
+      "[ACCOUNT_2]",
+      "[CARD]",
+      "[CUSTOMER]",
+      "[STAFF]",
+      "[THIRD_PARTY]"
+    ],
+    "display": {
+      "[CUSTOMER]": "Mrs Margaret Ellison",
+      "[THIRD_PARTY]": "David Ellison",
+      "[STAFF]": "Priya Raman",
+      "[ACCOUNT_2]": "52260419",
+      "[ACCOUNT_1]": "30118842",
+      "[CARD]": "4417",
+      "[SORT_CODE]": "77-41-08",
+      "[CUSTOMER_PHONE]": "01632 960 211"
+    }
+  },
+  "pack": {
+    "enough_information": {
+      "sufficient": true,
+      "what_is_needed": ""
+    },
+    "intake": {
+      "issues": [
+        {
+          "product": "current_account",
+          "cause": "app_scam",
+          "description": "Customer says a caller posing as the bank's fraud team told her to move savings to a safe account, and she then sent two Faster Payments of £4,800 and £2,950 on 22/10/2026 while on the phone to the caller.",
+          "citations": [
+            {
+              "source": "D1",
+              "quote": "she got a call from 'Harbour and Vale fraud team' saying her acc was being used by criminals"
+            },
+            {
+              "source": "D1",
+              "quote": "sent two payments on the app while still on the phone with them"
+            }
+          ]
+        }
+      ],
+      "suggested_team": "fraud_scams",
+      "team_reason": {
+        "text": "Customer says she was tricked into authorising two Faster Payments, which is a scam the customer authorised.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "sent two payments on the app while still on the phone with them"
+          },
+          {
+            "source": "CP-7.2",
+            "quote": "Where a customer was tricked into sending a Faster Payment to a fraudster, we follow the APP scam reimbursement rules."
+          }
+        ]
+      },
+      "payment_services": "yes",
+      "payment_services_reason": {
+        "text": "The complaint concerns how the bank handled a scam involving Faster Payments, which the policy treats as a payment services complaint.",
+        "citations": [
+          {
+            "source": "CP-3.2",
+            "quote": "about how we handled a fraud or scam involving a payment"
+          }
+        ]
+      },
+      "already_with_ombudsman": false,
+      "linked_to_earlier_complaint": false
+    },
+    "summary": [
+      {
+        "text": "Customer says on 22/10/2026 a caller claiming to be the bank's fraud team told her to move money to a safe account.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "she got a call from 'Harbour and Vale fraud team' saying her acc was being used by criminals"
+          }
+        ]
+      },
+      {
+        "text": "System records show a transfer of £7,800.00 from savings to current account, then two Faster Payments of £4,800.00 and £2,950.00 to payee 'J [CUSTOMER] SAFE'.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Internal transfer SAV [ACCOUNT_2] to CA [ACCOUNT_1] GBP 7,800.00"
+          },
+          {
+            "source": "D2",
+            "quote": "Faster Payment out CA [ACCOUNT_1] GBP 4,800.00 payee 'J [CUSTOMER] SAFE'"
+          }
+        ]
+      },
+      {
+        "text": "Confirmation of Payee returned NO MATCH on both payments, and a scam warning was shown before each one, with the customer selecting Continue.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Scam warning shown: 'safe account' warning v4, customer selected Continue."
+          }
+        ]
+      },
+      {
+        "text": "Customer says the caller told her what to type; her son told her on Saturday it was a scam, and her son reported this to the bank on 24/10.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Says the man told her what to type."
+          },
+          {
+            "source": "D3",
+            "quote": "Call from [THIRD_PARTY] (son) on 24/10 reporting his mother has been scammed."
+          }
+        ]
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-22",
+        "event": "Customer says she received the call from the caller posing as the fraud team.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Says on Thurs 22/10 she got a call from 'Harbour and Vale fraud team'"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-22",
+        "event": "Transfer of £7,800.00 from savings to current account at 15:03.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Internal transfer SAV [ACCOUNT_2] to CA [ACCOUNT_1] GBP 7,800.00"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-22",
+        "event": "Faster Payment of £4,800.00 to payee 'J [CUSTOMER] SAFE' at 15:11.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "15:11 Faster Payment out CA [ACCOUNT_1] GBP 4,800.00"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-22",
+        "event": "Faster Payment of £2,950.00 to the same payee at 15:19.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "15:19 Faster Payment out CA [ACCOUNT_1] GBP 2,950.00"
+          }
+        ]
+      },
+      {
+        "date": "Sat",
+        "event": "Customer's son told her it was a scam (date as written in customer's account).",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "when her son [THIRD_PARTY] came round on Sat and told her it was a scam"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-24",
+        "event": "Son called the bank to report the scam; no authority on file.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Call from [THIRD_PARTY] (son) on 24/10 reporting his mother has been scammed."
+          }
+        ]
+      },
+      {
+        "date": "2026-10-26",
+        "event": "Customer called the bank at 10:42 and the complaint was raised.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Inbound call from [CUSTOMER] (ID&V passed) 10:42."
+          }
+        ]
+      }
+    ],
+    "outcome_sought": {
+      "text": "Customer wants all her money back.",
+      "citations": [
+        {
+          "source": "D1",
+          "quote": "She wants all her money back."
+        }
+      ]
+    },
+    "vulnerability": [
+      {
+        "signal": "Bereavement",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "She lives alone since her husband passed last year"
+          }
+        ]
+      },
+      {
+        "signal": "Emotional distress and sleep difficulty",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Very upset, crying at times."
+          },
+          {
+            "source": "D1",
+            "quote": "cant sleep, that was money for my funeral"
+          }
+        ]
+      }
+    ],
+    "relevant_policy": [
+      {
+        "policy_id": "CP-3.2",
+        "why_relevant": "Complaint about how a scam involving a payment was handled sets a fifteen business day final response deadline.",
+        "citations": [
+          {
+            "source": "CP-3.2",
+            "quote": "the final response is due within fifteen business days"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-7.2",
+        "why_relevant": "Customer says she was tricked into sending Faster Payments, so APP scam reimbursement rules apply.",
+        "citations": [
+          {
+            "source": "CP-7.2",
+            "quote": "Where a customer was tricked into sending a Faster Payment to a fraudster, we follow the APP scam reimbursement rules."
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-7.4",
+        "why_relevant": "Lists the evidence the Fraud and Scams team needs for this claim.",
+        "citations": [
+          {
+            "source": "CP-7.4",
+            "quote": "The Fraud and Scams team needs the payment details, when the scam was reported"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-5.1",
+        "why_relevant": "Signs of bereavement, distress and living alone were raised and must be recognised.",
+        "citations": [
+          {
+            "source": "CP-5.1",
+            "quote": "Staff must look for signs that a customer may be in vulnerable circumstances, such as bereavement"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-5.3",
+        "why_relevant": "Vulnerability changes how the complaint is handled and requires adapted communication and a warm handover.",
+        "citations": [
+          {
+            "source": "CP-5.3",
+            "quote": "Vulnerability changes how a complaint is handled, not whether it is handled quickly."
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-6.1",
+        "why_relevant": "The case falls within the Fraud and Scams team's remit and must be passed on with its checklist.",
+        "citations": [
+          {
+            "source": "CP-6.1",
+            "quote": "A complaint must be passed to a specialist team when it falls within that team's remit"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.3",
+        "why_relevant": "The customer's desired outcome must be recorded in her own words.",
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "The handler must record, in the customer's own words where possible, the outcome the customer is seeking."
+          }
+        ]
+      }
+    ],
+    "handover_checklist": [
+      {
+        "item_id": "outcome_sought",
+        "status": "present",
+        "value": "Customer wants all her money back.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "She wants all her money back."
+          }
+        ]
+      },
+      {
+        "item_id": "customer_contact_attempted",
+        "status": "present",
+        "value": "Customer called the bank and ID&V was passed.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Inbound call from [CUSTOMER] (ID&V passed) 10:42."
+          }
+        ]
+      },
+      {
+        "item_id": "customer_told_of_handover",
+        "status": "missing",
+        "value": "No record that the customer was told which team now holds the complaint.",
+        "citations": []
+      },
+      {
+        "item_id": "vulnerability_recorded",
+        "status": "missing",
+        "value": "Signs noted but no formal vulnerability record or support needs seen.",
+        "citations": []
+      },
+      {
+        "item_id": "linked_complaints_checked",
+        "status": "missing",
+        "value": "No record of a check for earlier linked complaints.",
+        "citations": []
+      },
+      {
+        "item_id": "payment_date",
+        "status": "present",
+        "value": "22/10/2026, two payments at 15:11 and 15:19.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "15:11 Faster Payment out CA [ACCOUNT_1] GBP 4,800.00"
+          },
+          {
+            "source": "D2",
+            "quote": "15:19 Faster Payment out CA [ACCOUNT_1] GBP 2,950.00"
+          }
+        ]
+      },
+      {
+        "item_id": "payment_amount",
+        "status": "present",
+        "value": "£4,800.00 and £2,950.00.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Faster Payment out CA [ACCOUNT_1] GBP 4,800.00"
+          },
+          {
+            "source": "D2",
+            "quote": "Faster Payment out CA [ACCOUNT_1] GBP 2,950.00"
+          }
+        ]
+      },
+      {
+        "item_id": "payment_method",
+        "status": "present",
+        "value": "Faster Payment from current account, made on the app.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Faster Payment out CA [ACCOUNT_1] GBP 4,800.00"
+          }
+        ]
+      },
+      {
+        "item_id": "payee_details",
+        "status": "present",
+        "value": "Payee 'J [CUSTOMER] SAFE', receiving bank Northgate Payments Ltd. Confirmation of Payee: NO MATCH on both payments.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "receiving bank Northgate Payments Ltd."
+          }
+        ]
+      },
+      {
+        "item_id": "date_reported",
+        "status": "present",
+        "value": "Son reported to bank on 24/10/2026; customer complained on 26/10/2026.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Call from [THIRD_PARTY] (son) on 24/10 reporting his mother has been scammed."
+          },
+          {
+            "source": "D1",
+            "quote": "Inbound call from [CUSTOMER] (ID&V passed) 10:42."
+          }
+        ]
+      },
+      {
+        "item_id": "warnings_shown",
+        "status": "present",
+        "value": "Safe account scam warning v4 shown before each payment; customer selected Continue.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Scam warning shown: 'safe account' warning v4, customer selected Continue."
+          }
+        ]
+      },
+      {
+        "item_id": "customer_account_of_events",
+        "status": "present",
+        "value": "Caller told her to move money to a safe account and what to type; she pressed continue.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Says the man told her what to type."
+          },
+          {
+            "source": "D1",
+            "quote": "'he told me to press continue its normal'"
+          }
+        ]
+      },
+      {
+        "item_id": "authorised_or_not",
+        "status": "present",
+        "value": "Customer says she sent both payments on the app while on the phone to the caller under instruction.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "sent two payments on the app while still on the phone with them"
+          }
+        ]
+      }
+    ],
+    "conflicts": [],
+    "flags": [
+      {
+        "type": "deadline_risk",
+        "description": "Payment services complaint: final response due within fifteen business days of receipt on 26/10/2026, or a holding reply is needed.",
+        "citations": [
+          {
+            "source": "CP-3.2",
+            "quote": "the final response is due within fifteen business days"
+          }
+        ]
+      },
+      {
+        "type": "third_party_authority",
+        "description": "Son called on 24/10/2026 to report the scam; no authority on file and not checked.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "no authority on file"
+          }
+        ]
+      }
+    ]
+  },
+  "checks": {
+    "statements": [
+      {
+        "path": "intake.issues.0",
+        "text": "Customer says a caller posing as the bank's fraud team told her to move savings to a safe account, and she then sent two Faster Payments of £4,800 and £2,950 on 22/10/2026 while on the phone to the caller.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "she got a call from 'Harbour and Vale fraud team' saying her acc was being used by criminals",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "sent two payments on the app while still on the phone with them",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.team_reason",
+        "text": "Customer says she was tricked into authorising two Faster Payments, which is a scam the customer authorised.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "sent two payments on the app while still on the phone with them",
+            "result": "verified"
+          },
+          {
+            "source": "CP-7.2",
+            "quote": "Where a customer was tricked into sending a Faster Payment to a fraudster, we follow the APP scam reimbursement rules.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.payment_services_reason",
+        "text": "The complaint concerns how the bank handled a scam involving Faster Payments, which the policy treats as a payment services complaint.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-3.2",
+            "quote": "about how we handled a fraud or scam involving a payment",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.0",
+        "text": "Customer says on 22/10/2026 a caller claiming to be the bank's fraud team told her to move money to a safe account.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "she got a call from 'Harbour and Vale fraud team' saying her acc was being used by criminals",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.1",
+        "text": "System records show a transfer of £7,800.00 from savings to current account, then two Faster Payments of £4,800.00 and £2,950.00 to payee 'J [CUSTOMER] SAFE'.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Internal transfer SAV [ACCOUNT_2] to CA [ACCOUNT_1] GBP 7,800.00",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Faster Payment out CA [ACCOUNT_1] GBP 4,800.00 payee 'J [CUSTOMER] SAFE'",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.2",
+        "text": "Confirmation of Payee returned NO MATCH on both payments, and a scam warning was shown before each one, with the customer selecting Continue.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Scam warning shown: 'safe account' warning v4, customer selected Continue.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.3",
+        "text": "Customer says the caller told her what to type; her son told her on Saturday it was a scam, and her son reported this to the bank on 24/10.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Says the man told her what to type.",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Call from [THIRD_PARTY] (son) on 24/10 reporting his mother has been scammed.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.0",
+        "text": "2026-10-22: Customer says she received the call from the caller posing as the fraud team.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Says on Thurs 22/10 she got a call from 'Harbour and Vale fraud team'",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.1",
+        "text": "2026-10-22: Transfer of £7,800.00 from savings to current account at 15:03.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Internal transfer SAV [ACCOUNT_2] to CA [ACCOUNT_1] GBP 7,800.00",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.2",
+        "text": "2026-10-22: Faster Payment of £4,800.00 to payee 'J [CUSTOMER] SAFE' at 15:11.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "15:11 Faster Payment out CA [ACCOUNT_1] GBP 4,800.00",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.3",
+        "text": "2026-10-22: Faster Payment of £2,950.00 to the same payee at 15:19.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "15:19 Faster Payment out CA [ACCOUNT_1] GBP 2,950.00",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.4",
+        "text": "Sat: Customer's son told her it was a scam (date as written in customer's account).",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "when her son [THIRD_PARTY] came round on Sat and told her it was a scam",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.5",
+        "text": "2026-10-24: Son called the bank to report the scam; no authority on file.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Call from [THIRD_PARTY] (son) on 24/10 reporting his mother has been scammed.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.6",
+        "text": "2026-10-26: Customer called the bank at 10:42 and the complaint was raised.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Inbound call from [CUSTOMER] (ID&V passed) 10:42.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "outcome_sought",
+        "text": "Customer wants all her money back.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "She wants all her money back.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "vulnerability.0",
+        "text": "Bereavement",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "She lives alone since her husband passed last year",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "vulnerability.1",
+        "text": "Emotional distress and sleep difficulty",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Very upset, crying at times.",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "cant sleep, that was money for my funeral",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.0",
+        "text": "CP-3.2: Complaint about how a scam involving a payment was handled sets a fifteen business day final response deadline.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-3.2",
+            "quote": "the final response is due within fifteen business days",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.1",
+        "text": "CP-7.2: Customer says she was tricked into sending Faster Payments, so APP scam reimbursement rules apply.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-7.2",
+            "quote": "Where a customer was tricked into sending a Faster Payment to a fraudster, we follow the APP scam reimbursement rules.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.2",
+        "text": "CP-7.4: Lists the evidence the Fraud and Scams team needs for this claim.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-7.4",
+            "quote": "The Fraud and Scams team needs the payment details, when the scam was reported",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.3",
+        "text": "CP-5.1: Signs of bereavement, distress and living alone were raised and must be recognised.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-5.1",
+            "quote": "Staff must look for signs that a customer may be in vulnerable circumstances, such as bereavement",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.4",
+        "text": "CP-5.3: Vulnerability changes how the complaint is handled and requires adapted communication and a warm handover.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-5.3",
+            "quote": "Vulnerability changes how a complaint is handled, not whether it is handled quickly.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.5",
+        "text": "CP-6.1: The case falls within the Fraud and Scams team's remit and must be passed on with its checklist.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-6.1",
+            "quote": "A complaint must be passed to a specialist team when it falls within that team's remit",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.6",
+        "text": "CP-4.3: The customer's desired outcome must be recorded in her own words.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "The handler must record, in the customer's own words where possible, the outcome the customer is seeking.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.outcome_sought",
+        "text": "outcome_sought: Customer wants all her money back.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "She wants all her money back.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.customer_contact_attempted",
+        "text": "customer_contact_attempted: Customer called the bank and ID&V was passed.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Inbound call from [CUSTOMER] (ID&V passed) 10:42.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.payment_date",
+        "text": "payment_date: 22/10/2026, two payments at 15:11 and 15:19.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "15:11 Faster Payment out CA [ACCOUNT_1] GBP 4,800.00",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "15:19 Faster Payment out CA [ACCOUNT_1] GBP 2,950.00",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.payment_amount",
+        "text": "payment_amount: £4,800.00 and £2,950.00.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Faster Payment out CA [ACCOUNT_1] GBP 4,800.00",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Faster Payment out CA [ACCOUNT_1] GBP 2,950.00",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.payment_method",
+        "text": "payment_method: Faster Payment from current account, made on the app.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Faster Payment out CA [ACCOUNT_1] GBP 4,800.00",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.payee_details",
+        "text": "payee_details: Payee 'J [CUSTOMER] SAFE', receiving bank Northgate Payments Ltd. Confirmation of Payee: NO MATCH on both payments.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "receiving bank Northgate Payments Ltd.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.date_reported",
+        "text": "date_reported: Son reported to bank on 24/10/2026; customer complained on 26/10/2026.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Call from [THIRD_PARTY] (son) on 24/10 reporting his mother has been scammed.",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "Inbound call from [CUSTOMER] (ID&V passed) 10:42.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.warnings_shown",
+        "text": "warnings_shown: Safe account scam warning v4 shown before each payment; customer selected Continue.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Scam warning shown: 'safe account' warning v4, customer selected Continue.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.customer_account_of_events",
+        "text": "customer_account_of_events: Caller told her to move money to a safe account and what to type; she pressed continue.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Says the man told her what to type.",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "'he told me to press continue its normal'",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.authorised_or_not",
+        "text": "authorised_or_not: Customer says she sent both payments on the app while on the phone to the caller under instruction.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "sent two payments on the app while still on the phone with them",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.0",
+        "text": "deadline_risk: Payment services complaint: final response due within fifteen business days of receipt on 26/10/2026, or a holding reply is needed.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-3.2",
+            "quote": "the final response is due within fifteen business days",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.1",
+        "text": "third_party_authority: Son called on 24/10/2026 to report the scam; no authority on file and not checked.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "no authority on file",
+            "result": "verified"
+          }
+        ]
+      }
+    ],
+    "supportedCount": 36,
+    "unsupportedCount": 0,
+    "inventedPlaceholders": [],
+    "checklist": {
+      "required": 13,
+      "present": 10,
+      "missing": [
+        "customer_told_of_handover",
+        "vulnerability_recorded",
+        "linked_complaints_checked"
+      ],
+      "conflicting": []
+    }
+  },
+  "clock": "15_business_days",
+  "deadlines": {
+    "received": "2026-10-26",
+    "clock": "15_business_days",
+    "summaryResolutionWindowCloses": "2026-10-29",
+    "eightWeekDue": "2026-12-21",
+    "psrDue": "2026-11-16",
+    "psrExceptionalDue": "2026-12-14",
+    "workingDue": "2026-11-16",
+    "needsHandlerConfirmation": false,
+    "calendarDaysLeft": 7,
+    "businessDaysLeft": 5,
+    "status": "due_soon"
+  },
+  "usage": {
+    "inputTokens": 857,
+    "outputTokens": 10833,
+    "cacheReadTokens": 0,
+    "cacheWriteTokens": 9539,
+    "costUsd": 0.0066945749999999995,
+    "latencyMs": 40570
+  }
+}

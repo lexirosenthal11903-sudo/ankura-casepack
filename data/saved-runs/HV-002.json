@@ -1,8 +1,8 @@
 {
   "caseId": "HV-002",
-  "createdAt": "2026-11-06T10:39:05.474Z",
+  "createdAt": "2026-11-11T09:20:44.272Z",
   "model": "claude-haiku-5-5",
-  "promptVersion": "casepack-v3",
+  "promptVersion": "casepack-v4",
   "redacted": {
     "id": "HV-002",
     "received": "2026-10-19",
@@ -115,7 +115,19 @@
       "[SORT_CODE_1]",
       "[STAFF]",
       "[THIRD_PARTY]"
-    ]
+    ],
+    "display": {
+      "[THIRD_PARTY]": "Gary Whitworth",
+      "[CUSTOMER]": "Mr Tariq Hussain",
+      "[ACCOUNT]": "27450918",
+      "[PHONE_1]": "07700 900 316",
+      "[SORT_CODE_1]": "77-41-63",
+      "[CUSTOMER_PHONE]": "01632 960 548",
+      "[STAFF]": "Lauren Mills",
+      "[CARD]": "6630",
+      "[SORT_CODE]": "77-41-15",
+      "[CUSTOMER_EMAIL]": "t.hussain84@example.com"
+    }
   },
   "pack": {
     "enough_information": {
@@ -127,40 +139,44 @@
         {
           "product": "current_account",
           "cause": "payment_problem",
-          "description": "Faster Payment of £1,250 to builder delayed about three days by a routing fault. Customer wants to know where the money was, a £75 refund and compensation for stress and a day off work.",
+          "description": "Faster Payment of £1,250 to builder on 13 Oct 2026 arrived on 16 Oct, three days late, after a routing fault held it in suspense. Customer says this cost a £75 rebooking charge and a lost delivery slot.",
           "citations": [
             {
               "source": "D1",
-              "quote": "I want to know where my money was for three days"
+              "quote": "It finally landed in his account on Friday 16th, three days later"
+            },
+            {
+              "source": "D2",
+              "quote": "ROUTING EXCEPTION: beneficiary sort code mapped to legacy agency table"
             }
           ]
         }
       ],
       "suggested_team": "payments_disputes",
       "team_reason": {
-        "text": "Delayed Faster Payment caused by a bank routing fault, needing a redress calculation from Payments and Disputes.",
-        "citations": [
-          {
-            "source": "D3",
-            "quote": "Needs Payments & Disputes for PSR redress calc"
-          },
-          {
-            "source": "D2",
-            "quote": "ROUTING EXCEPTION: beneficiary sort code mapped to legacy agency table"
-          }
-        ]
-      },
-      "payment_services": "yes",
-      "payment_services_reason": {
-        "text": "Bank executed a Faster Payment late through its own routing fault, which falls under Parts 6 and 7 of the Payment Services Regulations 2017.",
+        "text": "The complaint concerns a Faster Payment that was delayed by a routing fault, and the CRM note directs it to Payments and Disputes.",
         "citations": [
           {
             "source": "D2",
             "quote": "payment posted to internal suspense GL 99-410"
           },
           {
+            "source": "D3",
+            "quote": "Needs Payments & Disputes for PSR redress calc"
+          }
+        ]
+      },
+      "payment_services": "yes",
+      "payment_services_reason": {
+        "text": "The payment was executed late, which falls under Parts 6 and 7 of the Payment Services Regulations 2017. The customer authorised the payment, so this is not an unauthorised transaction.",
+        "citations": [
+          {
+            "source": "CP-3.2",
+            "quote": "such as an unauthorised or wrongly executed payment"
+          },
+          {
             "source": "D2",
-            "quote": "Status SETTLED"
+            "quote": "FPS OUT 13/10/2026 14:22:07 DR CA [ACCOUNT] GBP 1,250.00"
           }
         ]
       },
@@ -169,7 +185,62 @@
     },
     "summary": [
       {
-        "text": "Customer sent £1,250 by Faster Payment to builder Hollinwood & Shaw Building Services on 13 October 2026.",
+        "text": "Customer sent £1,250 by Faster Payment from current account to builder on 13 Oct 2026; funds reached the payee on 16 Oct.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "On Tuesday 13th Oct at about 2.20pm I sent £1,250 by Faster Payment"
+          },
+          {
+            "source": "D2",
+            "quote": "16/10/2026 09:51:40 Status SETTLED."
+          }
+        ]
+      },
+      {
+        "text": "System log shows a routing exception posted the payment to internal suspense, and 41 payments were affected by the same fault from 12 to 15 Oct.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "payment posted to internal suspense GL 99-410"
+          },
+          {
+            "source": "D2",
+            "quote": "41 payments affected by same agency table fault 12/10-15/10"
+          }
+        ]
+      },
+      {
+        "text": "Customer says the delay cost a £75 rebooking charge and a lost delivery slot, and wants £75 back plus compensation for stress.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "he has charged me £75 to rebook the delivery and his lads"
+          },
+          {
+            "source": "D1",
+            "quote": "I think I am owed something for the stress"
+          }
+        ]
+      },
+      {
+        "text": "Customer says a bank call on 14 Oct told him the payment had left the bank. No note of that call is in the pack. A handler call on 19 Oct was not answered.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I rang you on the 14th and was told the payment"
+          },
+          {
+            "source": "D3",
+            "quote": "Tried to call [CUSTOMER_PHONE] at 15:10, no answer"
+          }
+        ]
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-10-13",
+        "event": "Faster Payment of £1,250 debited from current account to Hollinwood & Shaw Building Services, status ACCEPTED.",
         "citations": [
           {
             "source": "D2",
@@ -178,7 +249,8 @@
         ]
       },
       {
-        "text": "Bank routing exception posted the payment to internal suspense instead of the beneficiary.",
+        "date": "2026-10-13",
+        "event": "Routing exception: beneficiary sort code mapped to legacy agency table and payment posted to internal suspense.",
         "citations": [
           {
             "source": "D2",
@@ -187,99 +259,38 @@
         ]
       },
       {
-        "text": "Payment settled on 16 October after manual repair by Payments Ops.",
-        "citations": [
-          {
-            "source": "D2",
-            "quote": "Manual repair by Payments Ops (batch RPR-1016-04)"
-          }
-        ]
-      },
-      {
-        "text": "Customer says the delay cost a £75 rebooking charge, a week's slippage on the job and a day off work.",
+        "date": "2026-10-14",
+        "event": "Customer called the bank and was told the payment had left the bank's side and to wait (customer's account; no call record in pack).",
         "citations": [
           {
             "source": "D1",
-            "quote": "he has charged me £75 to rebook the delivery"
-          },
-          {
-            "source": "D1",
-            "quote": "I had to take a day off to sort this out"
-          }
-        ]
-      },
-      {
-        "text": "System note says 41 payments were affected by the same agency table fault between 12 and 15 October.",
-        "citations": [
-          {
-            "source": "D2",
-            "quote": "41 payments affected by same agency table fault 12/10-15/10"
-          }
-        ]
-      }
-    ],
-    "timeline": [
-      {
-        "date": "2026-10-13",
-        "event": "Faster Payment of £1,250 sent to builder at 14:22:07 and accepted by the bank.",
-        "citations": [
-          {
-            "source": "D2",
-            "quote": "FPS OUT 13/10/2026 14:22:07"
-          }
-        ]
-      },
-      {
-        "date": "2026-10-13",
-        "event": "Payment routed to internal suspense after a routing exception two seconds later.",
-        "citations": [
-          {
-            "source": "D2",
-            "quote": "payment posted to internal suspense GL 99-410"
-          }
-        ]
-      },
-      {
-        "date": "14th (as written)",
-        "event": "Customer called the bank and was told the payment had left the bank's side.",
-        "citations": [
-          {
-            "source": "D1",
-            "quote": "I rang you on the 14th"
+            "quote": "I rang you on the 14th and was told the payment"
           }
         ]
       },
       {
         "date": "2026-10-16",
-        "event": "Payment manually repaired and resubmitted, then settled. Customer says the builder received it that day.",
+        "event": "Manual repair by Payments Ops; payment resubmitted and status SETTLED at 09:51.",
         "citations": [
           {
             "source": "D2",
-            "quote": "Status SETTLED"
-          },
-          {
-            "source": "D1",
-            "quote": "It finally landed in his account on Friday 16th"
+            "quote": "16/10/2026 09:51:40 Status SETTLED."
           }
         ]
       },
       {
         "date": "2026-10-19",
-        "event": "Complaint received by email and logged in the CRM.",
+        "event": "Complaint received by email.",
         "citations": [
           {
             "source": "D1",
-            "quote": "Subject: Payment to my builder went missing for 3 days - complaint"
-          },
-          {
-            "source": "D3",
-            "quote": "Complaint logged from email."
+            "quote": "Payment to my builder went missing for 3 days"
           }
         ]
       },
       {
         "date": "2026-10-19",
-        "event": "Handler attempted to call the customer at 15:10; no answer and voicemail left.",
+        "event": "Handler called customer at 15:10, no answer, voicemail left.",
         "citations": [
           {
             "source": "D3",
@@ -289,19 +300,63 @@
       }
     ],
     "outcome_sought": {
-      "text": "Wants to know where the money was for three days, the £75 refunded, and compensation for stress.",
+      "text": "Customer wants to know where the money was for three days, wants the £75 returned, and believes he is owed something for the stress.",
       "citations": [
         {
           "source": "D1",
-          "quote": "I want the £75 back and I think I am owed something for the stress"
+          "quote": "I want to know where my money was for three days"
+        },
+        {
+          "source": "D1",
+          "quote": "I want the £75 back"
         }
       ]
     },
     "vulnerability": [],
     "relevant_policy": [
       {
+        "policy_id": "CP-3.2",
+        "why_relevant": "Payment services complaint, so the final response is due within fifteen business days.",
+        "citations": [
+          {
+            "source": "CP-3.2",
+            "quote": "the final response is due within fifteen business days"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-3.4",
+        "why_relevant": "The final response must include the Ombudsman referral right.",
+        "citations": [
+          {
+            "source": "CP-3.4",
+            "quote": "Every final response must tell the customer they have six months"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.3",
+        "why_relevant": "The customer's outcome must be recorded in their own words.",
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "record, in the customer's own words where possible, the outcome the customer is seeking"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.5",
+        "why_relevant": "Information about the 14 Oct call is missing, so a documented contact attempt is needed before handover.",
+        "citations": [
+          {
+            "source": "CP-4.5",
+            "quote": "the handler must make at least one documented attempt to contact the customer before a case is passed to a specialist team"
+          }
+        ]
+      },
+      {
         "policy_id": "CP-6.1",
-        "why_relevant": "Case falls within the Payments and Disputes remit, so it must be handed over.",
+        "why_relevant": "The case falls within Payments and Disputes remit and must be handed over with its checklist.",
         "citations": [
           {
             "source": "CP-6.1",
@@ -311,7 +366,7 @@
       },
       {
         "policy_id": "CP-6.2",
-        "why_relevant": "Handover is incomplete until every required checklist item is filled in or marked with a reason.",
+        "why_relevant": "The handover is incomplete until every checklist item is filled in or marked with a reason.",
         "citations": [
           {
             "source": "CP-6.2",
@@ -320,42 +375,12 @@
         ]
       },
       {
-        "policy_id": "CP-6.3",
-        "why_relevant": "Customer must be told which team now has the complaint and this must be recorded.",
+        "policy_id": "CP-2.4",
+        "why_relevant": "Earlier linked complaints must be checked before investigation. No check is recorded.",
         "citations": [
           {
-            "source": "CP-6.3",
-            "quote": "The handler must tell the customer which team now has their complaint"
-          }
-        ]
-      },
-      {
-        "policy_id": "CP-3.2",
-        "why_relevant": "Payment services complaint has a fifteen business day final response deadline.",
-        "citations": [
-          {
-            "source": "CP-3.2",
-            "quote": "the final response is due within fifteen business days"
-          }
-        ]
-      },
-      {
-        "policy_id": "CP-4.2",
-        "why_relevant": "Staff account of the payment status conflicts with the system record, so both must be recorded.",
-        "citations": [
-          {
-            "source": "CP-4.2",
-            "quote": "the handler must record both versions and the source of each"
-          }
-        ]
-      },
-      {
-        "policy_id": "CP-4.3",
-        "why_relevant": "Customer's desired outcome must be recorded in their own words.",
-        "citations": [
-          {
-            "source": "CP-4.3",
-            "quote": "the outcome the customer is seeking"
+            "source": "CP-2.4",
+            "quote": "the handler must check for earlier complaints from the same customer on the same subject in the last twelve months"
           }
         ]
       }
@@ -364,19 +389,23 @@
       {
         "item_id": "outcome_sought",
         "status": "present",
-        "value": "Refund of £75, explanation of where the money was, and compensation for stress",
+        "value": "Wants £75 returned and compensation for stress; wants to know where the money was.",
         "citations": [
           {
             "source": "D1",
-            "quote": "I want the £75 back and I think I am owed something for the stress"
+            "quote": "I want the £75 back"
           }
         ]
       },
       {
         "item_id": "customer_contact_attempted",
         "status": "present",
-        "value": "Call attempted 19 October at 15:10, no answer",
+        "value": "Customer called the bank on 14 Oct. Handler call on 19 Oct unanswered, voicemail left.",
         "citations": [
+          {
+            "source": "D1",
+            "quote": "I rang you on the 14th and was told the payment"
+          },
           {
             "source": "D3",
             "quote": "Tried to call [CUSTOMER_PHONE] at 15:10, no answer"
@@ -387,57 +416,76 @@
         "item_id": "customer_told_of_handover",
         "status": "missing",
         "value": "",
-        "citations": []
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Needs Payments & Disputes for PSR redress calc"
+          }
+        ]
       },
       {
         "item_id": "vulnerability_recorded",
         "status": "missing",
         "value": "",
-        "citations": []
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I had to take a day off to sort this out"
+          }
+        ]
       },
       {
         "item_id": "linked_complaints_checked",
         "status": "missing",
         "value": "",
-        "citations": []
+        "citations": [
+          {
+            "source": "CP-2.4",
+            "quote": "the handler must check for earlier complaints from the same customer on the same subject in the last twelve months"
+          }
+        ]
       },
       {
         "item_id": "transaction_reference",
         "status": "present",
-        "value": "13/10/2026, £1,250.00, reference KITCHEN STG2",
+        "value": "13/10/2026 14:22:07, GBP 1,250.00, ref 'KITCHEN STG2 [CUSTOMER]'.",
         "citations": [
           {
             "source": "D2",
-            "quote": "DR CA [ACCOUNT] GBP 1,250.00 ref"
+            "quote": "ref 'KITCHEN STG2 [CUSTOMER]'"
           }
         ]
       },
       {
         "item_id": "payment_type",
         "status": "present",
-        "value": "Faster Payment",
+        "value": "Faster Payment.",
         "citations": [
           {
             "source": "D2",
-            "quote": "FPS OUT 13/10/2026 14:22:07"
+            "quote": "FPS OUT 13/10/2026 14:22:07 DR CA"
           }
         ]
       },
       {
         "item_id": "expected_vs_actual",
         "status": "present",
-        "value": "Customer expected the builder to receive it promptly; builder said nothing had arrived the next day; settled 16 October",
+        "value": "Expected timing not stated. Funds reached payee 16 Oct, three days after payment was made.",
         "citations": [
           {
             "source": "D1",
-            "quote": "The builder rang me the next day and said nothing had come in"
+            "quote": "he could not order the steel without it"
+          },
+          {
+            "source": "D2",
+            "quote": "16/10/2026 09:51:40 Status SETTLED."
           }
         ]
       },
       {
         "item_id": "merchant_or_payee",
         "status": "present",
-        "value": "Hollinwood & Shaw Building Services",
+        "value": "Hollinwood & Shaw Building Services (HOLLINWOOD & SHAW BLDG SVS).",
         "citations": [
           {
             "source": "D2",
@@ -448,58 +496,24 @@
       {
         "item_id": "customer_loss",
         "status": "present",
-        "value": "£75 rebooking charge, job delayed about a week, one day off work",
+        "value": "£75 rebooking charge, lost delivery slot, job slipped a week, one day off work.",
         "citations": [
           {
             "source": "D1",
-            "quote": "he has charged me £75 to rebook the delivery"
-          }
-        ]
-      }
-    ],
-    "conflicts": [
-      {
-        "text": "Customer reports being told the payment had left the bank's side, while the system shows it was held in suspense until 16 October.",
-        "citations": [
-          {
-            "source": "D1",
-            "quote": "had left our side"
+            "quote": "he has charged me £75 to rebook the delivery and his lads"
           },
           {
-            "source": "D2",
-            "quote": "payment posted to internal suspense GL 99-410"
+            "source": "D1",
+            "quote": "I had to take a day off to sort this out"
           }
         ]
       }
     ],
+    "conflicts": [],
     "flags": [
       {
-        "type": "data_quality",
-        "description": "CRM note gives a customer phone placeholder that differs from the number placeholder in the customer's email.",
-        "citations": [
-          {
-            "source": "D3",
-            "quote": "Tried to call [CUSTOMER_PHONE] at 15:10"
-          },
-          {
-            "source": "D1",
-            "quote": "my work mobile [PHONE_1]"
-          }
-        ]
-      },
-      {
-        "type": "data_quality",
-        "description": "Customer says they called on the 14th, but no call on that date is recorded in the CRM.",
-        "citations": [
-          {
-            "source": "D1",
-            "quote": "I rang you on the 14th"
-          }
-        ]
-      },
-      {
         "type": "deadline_risk",
-        "description": "Payment services final response is due within fifteen business days of receipt on 19 October 2026.",
+        "description": "Payment services complaint. Final response due within fifteen business days of receipt on 2026-10-19 unless a holding reply is sent in time.",
         "citations": [
           {
             "source": "CP-3.2",
@@ -508,8 +522,22 @@
         ]
       },
       {
+        "type": "data_quality",
+        "description": "Customer's number is given as [PHONE_1] in the email, but the CRM call attempt used [CUSTOMER_PHONE]. Cannot confirm they are the same number.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Best number for me in the day is my work mobile [PHONE_1]"
+          },
+          {
+            "source": "D3",
+            "quote": "Tried to call [CUSTOMER_PHONE] at 15:10, no answer"
+          }
+        ]
+      },
+      {
         "type": "other",
-        "description": "Same agency table fault affected 41 other payments, linked to problem record PRB-2026-0442.",
+        "description": "Same agency table fault affected 41 payments across customers (PRB-2026-0442). Consider linking to the problem record and tagging root cause.",
         "citations": [
           {
             "source": "D2",
@@ -523,24 +551,12 @@
     "statements": [
       {
         "path": "intake.issues.0",
-        "text": "Faster Payment of £1,250 to builder delayed about three days by a routing fault. Customer wants to know where the money was, a £75 refund and compensation for stress and a day off work.",
+        "text": "Faster Payment of £1,250 to builder on 13 Oct 2026 arrived on 16 Oct, three days late, after a routing fault held it in suspense. Customer says this cost a £75 rebooking charge and a lost delivery slot.",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "I want to know where my money was for three days",
-            "result": "verified"
-          }
-        ]
-      },
-      {
-        "path": "intake.team_reason",
-        "text": "Delayed Faster Payment caused by a bank routing fault, needing a redress calculation from Payments and Disputes.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "D3",
-            "quote": "Needs Payments & Disputes for PSR redress calc",
+            "quote": "It finally landed in his account on Friday 16th, three days later",
             "result": "verified"
           },
           {
@@ -551,8 +567,59 @@
         ]
       },
       {
+        "path": "intake.team_reason",
+        "text": "The complaint concerns a Faster Payment that was delayed by a routing fault, and the CRM note directs it to Payments and Disputes.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "payment posted to internal suspense GL 99-410",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Needs Payments & Disputes for PSR redress calc",
+            "result": "verified"
+          }
+        ]
+      },
+      {
         "path": "intake.payment_services_reason",
-        "text": "Bank executed a Faster Payment late through its own routing fault, which falls under Parts 6 and 7 of the Payment Services Regulations 2017.",
+        "text": "The payment was executed late, which falls under Parts 6 and 7 of the Payment Services Regulations 2017. The customer authorised the payment, so this is not an unauthorised transaction.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-3.2",
+            "quote": "such as an unauthorised or wrongly executed payment",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "FPS OUT 13/10/2026 14:22:07 DR CA [ACCOUNT] GBP 1,250.00",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.0",
+        "text": "Customer sent £1,250 by Faster Payment from current account to builder on 13 Oct 2026; funds reached the payee on 16 Oct.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "On Tuesday 13th Oct at about 2.20pm I sent £1,250 by Faster Payment",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "16/10/2026 09:51:40 Status SETTLED.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.1",
+        "text": "System log shows a routing exception posted the payment to internal suspense, and 41 payments were affected by the same fault from 12 to 15 Oct.",
         "supported": true,
         "citations": [
           {
@@ -562,14 +629,48 @@
           },
           {
             "source": "D2",
-            "quote": "Status SETTLED",
+            "quote": "41 payments affected by same agency table fault 12/10-15/10",
             "result": "verified"
           }
         ]
       },
       {
-        "path": "summary.0",
-        "text": "Customer sent £1,250 by Faster Payment to builder Hollinwood & Shaw Building Services on 13 October 2026.",
+        "path": "summary.2",
+        "text": "Customer says the delay cost a £75 rebooking charge and a lost delivery slot, and wants £75 back plus compensation for stress.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "he has charged me £75 to rebook the delivery and his lads",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "I think I am owed something for the stress",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.3",
+        "text": "Customer says a bank call on 14 Oct told him the payment had left the bank. No note of that call is in the pack. A handler call on 19 Oct was not answered.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I rang you on the 14th and was told the payment",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Tried to call [CUSTOMER_PHONE] at 15:10, no answer",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.0",
+        "text": "2026-10-13: Faster Payment of £1,250 debited from current account to Hollinwood & Shaw Building Services, status ACCEPTED.",
         "supported": true,
         "citations": [
           {
@@ -580,8 +681,8 @@
         ]
       },
       {
-        "path": "summary.1",
-        "text": "Bank routing exception posted the payment to internal suspense instead of the beneficiary.",
+        "path": "timeline.1",
+        "text": "2026-10-13: Routing exception: beneficiary sort code mapped to legacy agency table and payment posted to internal suspense.",
         "supported": true,
         "citations": [
           {
@@ -592,119 +693,44 @@
         ]
       },
       {
-        "path": "summary.2",
-        "text": "Payment settled on 16 October after manual repair by Payments Ops.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "D2",
-            "quote": "Manual repair by Payments Ops (batch RPR-1016-04)",
-            "result": "verified"
-          }
-        ]
-      },
-      {
-        "path": "summary.3",
-        "text": "Customer says the delay cost a £75 rebooking charge, a week's slippage on the job and a day off work.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "D1",
-            "quote": "he has charged me £75 to rebook the delivery",
-            "result": "verified"
-          },
-          {
-            "source": "D1",
-            "quote": "I had to take a day off to sort this out",
-            "result": "verified"
-          }
-        ]
-      },
-      {
-        "path": "summary.4",
-        "text": "System note says 41 payments were affected by the same agency table fault between 12 and 15 October.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "D2",
-            "quote": "41 payments affected by same agency table fault 12/10-15/10",
-            "result": "verified"
-          }
-        ]
-      },
-      {
-        "path": "timeline.0",
-        "text": "2026-10-13: Faster Payment of £1,250 sent to builder at 14:22:07 and accepted by the bank.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "D2",
-            "quote": "FPS OUT 13/10/2026 14:22:07",
-            "result": "verified"
-          }
-        ]
-      },
-      {
-        "path": "timeline.1",
-        "text": "2026-10-13: Payment routed to internal suspense after a routing exception two seconds later.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "D2",
-            "quote": "payment posted to internal suspense GL 99-410",
-            "result": "verified"
-          }
-        ]
-      },
-      {
         "path": "timeline.2",
-        "text": "14th (as written): Customer called the bank and was told the payment had left the bank's side.",
+        "text": "2026-10-14: Customer called the bank and was told the payment had left the bank's side and to wait (customer's account; no call record in pack).",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "I rang you on the 14th",
+            "quote": "I rang you on the 14th and was told the payment",
             "result": "verified"
           }
         ]
       },
       {
         "path": "timeline.3",
-        "text": "2026-10-16: Payment manually repaired and resubmitted, then settled. Customer says the builder received it that day.",
+        "text": "2026-10-16: Manual repair by Payments Ops; payment resubmitted and status SETTLED at 09:51.",
         "supported": true,
         "citations": [
           {
             "source": "D2",
-            "quote": "Status SETTLED",
-            "result": "verified"
-          },
-          {
-            "source": "D1",
-            "quote": "It finally landed in his account on Friday 16th",
+            "quote": "16/10/2026 09:51:40 Status SETTLED.",
             "result": "verified"
           }
         ]
       },
       {
         "path": "timeline.4",
-        "text": "2026-10-19: Complaint received by email and logged in the CRM.",
+        "text": "2026-10-19: Complaint received by email.",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "Subject: Payment to my builder went missing for 3 days - complaint",
-            "result": "verified"
-          },
-          {
-            "source": "D3",
-            "quote": "Complaint logged from email.",
+            "quote": "Payment to my builder went missing for 3 days",
             "result": "verified"
           }
         ]
       },
       {
         "path": "timeline.5",
-        "text": "2026-10-19: Handler attempted to call the customer at 15:10; no answer and voicemail left.",
+        "text": "2026-10-19: Handler called customer at 15:10, no answer, voicemail left.",
         "supported": true,
         "citations": [
           {
@@ -716,55 +742,24 @@
       },
       {
         "path": "outcome_sought",
-        "text": "Wants to know where the money was for three days, the £75 refunded, and compensation for stress.",
+        "text": "Customer wants to know where the money was for three days, wants the £75 returned, and believes he is owed something for the stress.",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "I want the £75 back and I think I am owed something for the stress",
+            "quote": "I want to know where my money was for three days",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "I want the £75 back",
             "result": "verified"
           }
         ]
       },
       {
         "path": "relevant_policy.0",
-        "text": "CP-6.1: Case falls within the Payments and Disputes remit, so it must be handed over.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "CP-6.1",
-            "quote": "A complaint must be passed to a specialist team when it falls within that team's remit",
-            "result": "verified"
-          }
-        ]
-      },
-      {
-        "path": "relevant_policy.1",
-        "text": "CP-6.2: Handover is incomplete until every required checklist item is filled in or marked with a reason.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "CP-6.2",
-            "quote": "A handover is complete only when every required checklist item is filled in",
-            "result": "verified"
-          }
-        ]
-      },
-      {
-        "path": "relevant_policy.2",
-        "text": "CP-6.3: Customer must be told which team now has the complaint and this must be recorded.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "CP-6.3",
-            "quote": "The handler must tell the customer which team now has their complaint",
-            "result": "verified"
-          }
-        ]
-      },
-      {
-        "path": "relevant_policy.3",
-        "text": "CP-3.2: Payment services complaint has a fifteen business day final response deadline.",
+        "text": "CP-3.2: Payment services complaint, so the final response is due within fifteen business days.",
         "supported": true,
         "citations": [
           {
@@ -775,46 +770,99 @@
         ]
       },
       {
-        "path": "relevant_policy.4",
-        "text": "CP-4.2: Staff account of the payment status conflicts with the system record, so both must be recorded.",
+        "path": "relevant_policy.1",
+        "text": "CP-3.4: The final response must include the Ombudsman referral right.",
         "supported": true,
         "citations": [
           {
-            "source": "CP-4.2",
-            "quote": "the handler must record both versions and the source of each",
+            "source": "CP-3.4",
+            "quote": "Every final response must tell the customer they have six months",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.2",
+        "text": "CP-4.3: The customer's outcome must be recorded in their own words.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "record, in the customer's own words where possible, the outcome the customer is seeking",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.3",
+        "text": "CP-4.5: Information about the 14 Oct call is missing, so a documented contact attempt is needed before handover.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.5",
+            "quote": "the handler must make at least one documented attempt to contact the customer before a case is passed to a specialist team",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.4",
+        "text": "CP-6.1: The case falls within Payments and Disputes remit and must be handed over with its checklist.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-6.1",
+            "quote": "A complaint must be passed to a specialist team when it falls within that team's remit",
             "result": "verified"
           }
         ]
       },
       {
         "path": "relevant_policy.5",
-        "text": "CP-4.3: Customer's desired outcome must be recorded in their own words.",
+        "text": "CP-6.2: The handover is incomplete until every checklist item is filled in or marked with a reason.",
         "supported": true,
         "citations": [
           {
-            "source": "CP-4.3",
-            "quote": "the outcome the customer is seeking",
+            "source": "CP-6.2",
+            "quote": "A handover is complete only when every required checklist item is filled in",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.6",
+        "text": "CP-2.4: Earlier linked complaints must be checked before investigation. No check is recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.4",
+            "quote": "the handler must check for earlier complaints from the same customer on the same subject in the last twelve months",
             "result": "verified"
           }
         ]
       },
       {
         "path": "handover_checklist.outcome_sought",
-        "text": "outcome_sought: Refund of £75, explanation of where the money was, and compensation for stress",
+        "text": "outcome_sought: Wants £75 returned and compensation for stress; wants to know where the money was.",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "I want the £75 back and I think I am owed something for the stress",
+            "quote": "I want the £75 back",
             "result": "verified"
           }
         ]
       },
       {
         "path": "handover_checklist.customer_contact_attempted",
-        "text": "customer_contact_attempted: Call attempted 19 October at 15:10, no answer",
+        "text": "customer_contact_attempted: Customer called the bank on 14 Oct. Handler call on 19 Oct unanswered, voicemail left.",
         "supported": true,
         "citations": [
+          {
+            "source": "D1",
+            "quote": "I rang you on the 14th and was told the payment",
+            "result": "verified"
+          },
           {
             "source": "D3",
             "quote": "Tried to call [CUSTOMER_PHONE] at 15:10, no answer",
@@ -824,43 +872,48 @@
       },
       {
         "path": "handover_checklist.transaction_reference",
-        "text": "transaction_reference: 13/10/2026, £1,250.00, reference KITCHEN STG2",
+        "text": "transaction_reference: 13/10/2026 14:22:07, GBP 1,250.00, ref 'KITCHEN STG2 [CUSTOMER]'.",
         "supported": true,
         "citations": [
           {
             "source": "D2",
-            "quote": "DR CA [ACCOUNT] GBP 1,250.00 ref",
+            "quote": "ref 'KITCHEN STG2 [CUSTOMER]'",
             "result": "verified"
           }
         ]
       },
       {
         "path": "handover_checklist.payment_type",
-        "text": "payment_type: Faster Payment",
+        "text": "payment_type: Faster Payment.",
         "supported": true,
         "citations": [
           {
             "source": "D2",
-            "quote": "FPS OUT 13/10/2026 14:22:07",
+            "quote": "FPS OUT 13/10/2026 14:22:07 DR CA",
             "result": "verified"
           }
         ]
       },
       {
         "path": "handover_checklist.expected_vs_actual",
-        "text": "expected_vs_actual: Customer expected the builder to receive it promptly; builder said nothing had arrived the next day; settled 16 October",
+        "text": "expected_vs_actual: Expected timing not stated. Funds reached payee 16 Oct, three days after payment was made.",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "The builder rang me the next day and said nothing had come in",
+            "quote": "he could not order the steel without it",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "16/10/2026 09:51:40 Status SETTLED.",
             "result": "verified"
           }
         ]
       },
       {
         "path": "handover_checklist.merchant_or_payee",
-        "text": "merchant_or_payee: Hollinwood & Shaw Building Services",
+        "text": "merchant_or_payee: Hollinwood & Shaw Building Services (HOLLINWOOD & SHAW BLDG SVS).",
         "supported": true,
         "citations": [
           {
@@ -872,65 +925,24 @@
       },
       {
         "path": "handover_checklist.customer_loss",
-        "text": "customer_loss: £75 rebooking charge, job delayed about a week, one day off work",
+        "text": "customer_loss: £75 rebooking charge, lost delivery slot, job slipped a week, one day off work.",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "he has charged me £75 to rebook the delivery",
-            "result": "verified"
-          }
-        ]
-      },
-      {
-        "path": "conflicts.0",
-        "text": "Customer reports being told the payment had left the bank's side, while the system shows it was held in suspense until 16 October.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "D1",
-            "quote": "had left our side",
+            "quote": "he has charged me £75 to rebook the delivery and his lads",
             "result": "verified"
           },
           {
-            "source": "D2",
-            "quote": "payment posted to internal suspense GL 99-410",
+            "source": "D1",
+            "quote": "I had to take a day off to sort this out",
             "result": "verified"
           }
         ]
       },
       {
         "path": "flags.0",
-        "text": "data_quality: CRM note gives a customer phone placeholder that differs from the number placeholder in the customer's email.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "D3",
-            "quote": "Tried to call [CUSTOMER_PHONE] at 15:10",
-            "result": "verified"
-          },
-          {
-            "source": "D1",
-            "quote": "my work mobile [PHONE_1]",
-            "result": "verified"
-          }
-        ]
-      },
-      {
-        "path": "flags.1",
-        "text": "data_quality: Customer says they called on the 14th, but no call on that date is recorded in the CRM.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "D1",
-            "quote": "I rang you on the 14th",
-            "result": "verified"
-          }
-        ]
-      },
-      {
-        "path": "flags.2",
-        "text": "deadline_risk: Payment services final response is due within fifteen business days of receipt on 19 October 2026.",
+        "text": "deadline_risk: Payment services complaint. Final response due within fifteen business days of receipt on 2026-10-19 unless a holding reply is sent in time.",
         "supported": true,
         "citations": [
           {
@@ -941,8 +953,25 @@
         ]
       },
       {
-        "path": "flags.3",
-        "text": "other: Same agency table fault affected 41 other payments, linked to problem record PRB-2026-0442.",
+        "path": "flags.1",
+        "text": "data_quality: Customer's number is given as [PHONE_1] in the email, but the CRM call attempt used [CUSTOMER_PHONE]. Cannot confirm they are the same number.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Best number for me in the day is my work mobile [PHONE_1]",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Tried to call [CUSTOMER_PHONE] at 15:10, no answer",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.2",
+        "text": "other: Same agency table fault affected 41 payments across customers (PRB-2026-0442). Consider linking to the problem record and tagging root cause.",
         "supported": true,
         "citations": [
           {
@@ -953,7 +982,7 @@
         ]
       }
     ],
-    "supportedCount": 33,
+    "supportedCount": 31,
     "unsupportedCount": 0,
     "inventedPlaceholders": [],
     "checklist": {
@@ -983,10 +1012,10 @@
   },
   "usage": {
     "inputTokens": 1010,
-    "outputTokens": 8358,
-    "cacheReadTokens": 0,
-    "cacheWriteTokens": 9468,
-    "costUsd": 0.0054635,
-    "latencyMs": 33101
+    "outputTokens": 11871,
+    "cacheReadTokens": 9539,
+    "cacheWriteTokens": 0,
+    "costUsd": 0.00613189,
+    "latencyMs": 45462
   }
 }

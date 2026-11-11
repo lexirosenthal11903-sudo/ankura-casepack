@@ -1,8 +1,8 @@
 {
   "caseId": "HV-009",
-  "createdAt": "2026-11-06T10:39:52.929Z",
+  "createdAt": "2026-11-11T09:25:50.769Z",
   "model": "claude-haiku-5-5",
-  "promptVersion": "casepack-v3",
+  "promptVersion": "casepack-v4",
   "redacted": {
     "id": "HV-009",
     "received": "2026-09-24",
@@ -101,19 +101,30 @@
       "[CUSTOMER]",
       "[SORT_CODE_1]",
       "[STAFF]"
-    ]
+    ],
+    "display": {
+      "[SORT_CODE_1]": "77-41-63",
+      "[ACCOUNT_NUMBER_1]": "44719930",
+      "[CUSTOMER]": "Mr Lee Sutcliffe",
+      "[ACCOUNT_1]": "44719903",
+      "[STAFF]": "Hannah Lowe",
+      "[CARD]": "7742",
+      "[SORT_CODE]": "77-41-36",
+      "[ACCOUNT_2]": "44719903",
+      "[CUSTOMER_PHONE]": "0161 496 0219"
+    }
   },
   "pack": {
     "enough_information": {
       "sufficient": false,
-      "what_is_needed": "Confirm which customer account the complaint concerns, because the letter's account and sort code do not match the bank's record. Confirm that the claims management company's written authority covers this complaint. Make a documented attempt to contact the customer before any handover."
+      "what_is_needed": "Confirm the customer and account. The letter's account number and sort code do not match the account matched by name and DOB. Obtain written authority from the customer covering irresponsible lending, because the Letter of Authority on file covers packaged account mis-selling only. Make and document at least one attempt to contact the customer before handover (CP-4.5). Confirm which products the customer holds."
     },
     "intake": {
       "issues": [
         {
           "product": "overdraft",
           "cause": "affordability_arrears",
-          "description": "Alleged irresponsible lending: the claimant says the arranged overdraft was unaffordable at each limit increase and that creditworthiness checks were not carried out. Account identity is unconfirmed.",
+          "description": "Representative alleges the arranged overdraft was unaffordable at the point of sale and at each limit increase, with inadequate creditworthiness checks. Requests refund of interest and fees.",
           "citations": [
             {
               "source": "D1",
@@ -128,17 +139,17 @@
       ],
       "suggested_team": "financial_support",
       "team_reason": {
-        "text": "Affordability and lending decisions on an overdraft fall within the Financial Support remit, subject to identity and authority checks.",
+        "text": "Complaint concerns lending decisions on an overdraft, which this team handles.",
         "citations": [
           {
             "source": "D1",
-            "quote": "It is our client's position that the lending was unaffordable at the point of sale"
+            "quote": "LETTER OF COMPLAINT - IRRESPONSIBLE LENDING"
           }
         ]
       },
       "payment_services": "no",
       "payment_services_reason": {
-        "text": "The complaint concerns affordability of lending, not a payment.",
+        "text": "Complaint concerns lending affordability, not rights under Parts 6 and 7 of the Payment Services Regulations 2017.",
         "citations": [
           {
             "source": "D1",
@@ -151,25 +162,29 @@
     },
     "summary": [
       {
-        "text": "A claims management company, Reclaim Partners, complains of alleged irresponsible lending on an overdraft, credit card and loan.",
+        "text": "Reclaim Partners Ltd, a claims management company, complains of irresponsible lending for [CUSTOMER].",
         "citations": [
           {
             "source": "D1",
-            "quote": "LETTER OF COMPLAINT - IRRESPONSIBLE LENDING"
+            "quote": "We act on behalf of the above named client in respect of the above lending"
           }
         ]
       },
       {
-        "text": "The bank holds only a current account with an arranged overdraft. No credit card or loan is held.",
+        "text": "Bank records show only a current account with arranged overdraft; no card or loan is held.",
         "citations": [
           {
             "source": "D2",
             "quote": "Only product held is CA with arranged o/d"
+          },
+          {
+            "source": "D2",
+            "quote": "cust has never held card or loan with us"
           }
         ]
       },
       {
-        "text": "The letter's account number and sort code do not match the bank's records. The closest match by name and date of birth is account [ACCOUNT_1].",
+        "text": "Letter account number and sort code do not match the account matched by name and DOB search.",
         "citations": [
           {
             "source": "D2",
@@ -178,16 +193,20 @@
         ]
       },
       {
-        "text": "The written authority on file covers a packaged bank account complaint only, not irresponsible lending.",
+        "text": "Letter of Authority on file covers packaged bank account mis-selling only, not irresponsible lending.",
         "citations": [
           {
             "source": "D2",
             "quote": "covers 'packaged bank account mis-selling' only"
+          },
+          {
+            "source": "D2",
+            "quote": "No LOA for irresponsible lending"
           }
         ]
       },
       {
-        "text": "The overdraft was in use for 341 days in the last 12 months, with GBP 427.18 of overdraft interest and fees in that period.",
+        "text": "Overdraft was 341 days in use over the last 12 months, with GBP 427.18 interest and fees charged.",
         "citations": [
           {
             "source": "D3",
@@ -203,17 +222,21 @@
     "timeline": [
       {
         "date": "2019-06-14",
-        "event": "Current account opened with an arranged overdraft of GBP 250.",
+        "event": "Current account opened with GBP 250 arranged overdraft.",
         "citations": [
           {
             "source": "D3",
             "quote": "CA [ACCOUNT_1] opened 14/06/2019"
+          },
+          {
+            "source": "D3",
+            "quote": "Arranged o/d history: 14/06/2019 GBP 250"
           }
         ]
       },
       {
         "date": "2021-02-02",
-        "event": "Arranged overdraft increased to GBP 750 at the customer's request in the app.",
+        "event": "Arranged overdraft increased to GBP 750 at customer request in app.",
         "citations": [
           {
             "source": "D3",
@@ -223,7 +246,7 @@
       },
       {
         "date": "2022-08-19",
-        "event": "Arranged overdraft increased to GBP 1,500 under a pre-approved offer accepted in the app.",
+        "event": "Arranged overdraft increased to GBP 1,500 as pre-approved offer accepted in app.",
         "citations": [
           {
             "source": "D3",
@@ -232,8 +255,8 @@
         ]
       },
       {
-        "date": "03/2023, 03/2024, 03/2025",
-        "event": "Repeat use letters sent on the account.",
+        "date": "03/2023 to 03/2025",
+        "event": "Repeat use letters sent in March 2023, 2024 and 2025.",
         "citations": [
           {
             "source": "D3",
@@ -243,7 +266,7 @@
       },
       {
         "date": "2025-03-11",
-        "event": "Letter of authority from Reclaim Partners dated; it covers packaged bank account mis-selling only.",
+        "event": "Letter of Authority from Reclaim Partners dated, covering packaged bank account mis-selling.",
         "citations": [
           {
             "source": "D2",
@@ -253,7 +276,7 @@
       },
       {
         "date": "2025-04-22",
-        "event": "Earlier packaged bank account complaint closed, not upheld.",
+        "event": "Earlier packaged bank account mis-selling complaint closed, not upheld.",
         "citations": [
           {
             "source": "D2",
@@ -267,13 +290,13 @@
         "citations": [
           {
             "source": "D1",
-            "quote": "Date: 21/09/2026"
+            "quote": "LETTER OF COMPLAINT - IRRESPONSIBLE LENDING"
           }
         ]
       },
       {
         "date": "2026-09-24",
-        "event": "Letter received and logged; account identity checked by handler.",
+        "event": "Letter received and logged; account identity queried by handler.",
         "citations": [
           {
             "source": "D2",
@@ -283,7 +306,7 @@
       }
     ],
     "outcome_sought": {
-      "text": "Refund of all interest, fees and charges from account inception, statutory interest at 8% simple, removal of adverse credit file information, and copies of statements, credit checks and affordability assessments.",
+      "text": "Refund of all interest, fees and charges from inception, statutory interest at 8% simple, removal of adverse information from the credit file, and copies of statements, credit checks and affordability assessments.",
       "citations": [
         {
           "source": "D1",
@@ -292,16 +315,24 @@
         {
           "source": "D1",
           "quote": "remove any adverse information from our client's credit file"
+        },
+        {
+          "source": "D1",
+          "quote": "provide copies of all statements, credit checks and affordability assessments within 15 days"
         }
       ]
     },
     "vulnerability": [
       {
-        "signal": "Financial difficulty: alleged persistent debt and financial harm (stated by the representative, not verified).",
+        "signal": "Financial difficulty: reliance on facility and persistent overdraft use",
         "citations": [
           {
             "source": "D1",
             "quote": "was persistently in debt and that the lending caused him financial harm"
+          },
+          {
+            "source": "D3",
+            "quote": "Days in o/d last 12m: 341"
           }
         ]
       }
@@ -309,17 +340,17 @@
     "relevant_policy": [
       {
         "policy_id": "CP-1.2",
-        "why_relevant": "A claims management company may complain for a customer only with written authority.",
+        "why_relevant": "A claims management company may complain only with written authority from the customer.",
         "citations": [
           {
             "source": "CP-1.2",
-            "quote": "a representative the customer has authorised in writing, including a claims management company"
+            "quote": "or a representative the customer has authorised in writing, including a claims management company"
           }
         ]
       },
       {
         "policy_id": "CP-8.3",
-        "why_relevant": "The written authority must be checked to cover this complaint before the claim proceeds.",
+        "why_relevant": "The written authority on file must be checked against this complaint before details are shared.",
         "citations": [
           {
             "source": "CP-8.3",
@@ -329,7 +360,7 @@
       },
       {
         "policy_id": "CP-4.5",
-        "why_relevant": "A documented contact attempt with the customer is needed before handover.",
+        "why_relevant": "The customer must be contacted, with a documented attempt, before a specialist team takes the case.",
         "citations": [
           {
             "source": "CP-4.5",
@@ -339,7 +370,7 @@
       },
       {
         "policy_id": "CP-6.1",
-        "why_relevant": "The case goes to Financial Support once identity and authority are confirmed.",
+        "why_relevant": "The complaint goes to the specialist team using its handover checklist.",
         "citations": [
           {
             "source": "CP-6.1",
@@ -348,32 +379,42 @@
         ]
       },
       {
+        "policy_id": "CP-5.2",
+        "why_relevant": "Financial difficulty signs must be recorded with support needs, with consent where possible.",
+        "citations": [
+          {
+            "source": "CP-5.2",
+            "quote": "Signs of vulnerability must be recorded with the customer's consent where possible"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-9.2",
+        "why_relevant": "Fees and interest charged during financial difficulty must be reviewed, as the letter requests refunds.",
+        "citations": [
+          {
+            "source": "CP-9.2",
+            "quote": "Fees and interest applied while a customer was in financial difficulty must be reviewed as part of the complaint"
+          }
+        ]
+      },
+      {
         "policy_id": "CP-4.3",
-        "why_relevant": "The outcome sought must be recorded in the customer's own words where possible.",
+        "why_relevant": "The outcome the customer seeks must be recorded.",
         "citations": [
           {
             "source": "CP-4.3",
-            "quote": "record, in the customer's own words where possible, the outcome the customer is seeking"
+            "quote": "the outcome the customer is seeking"
           }
         ]
       },
       {
-        "policy_id": "CP-5.1",
-        "why_relevant": "The representative describes financial difficulty, which must be checked.",
+        "policy_id": "CP-3.1",
+        "why_relevant": "Sets the final response deadline for a standard complaint.",
         "citations": [
           {
-            "source": "CP-5.1",
-            "quote": "Staff must look for signs that a customer may be in vulnerable circumstances"
-          }
-        ]
-      },
-      {
-        "policy_id": "CP-2.4",
-        "why_relevant": "Earlier complaints must be checked for links before investigation.",
-        "citations": [
-          {
-            "source": "CP-2.4",
-            "quote": "check for earlier complaints from the same customer on the same subject in the last twelve months"
+            "source": "CP-3.1",
+            "quote": "We must send a final response within eight weeks of receiving the complaint"
           }
         ]
       }
@@ -382,7 +423,7 @@
       {
         "item_id": "outcome_sought",
         "status": "present",
-        "value": "Refund of interest, fees and charges; statutory interest; credit file correction; statements and assessments.",
+        "value": "Refund of interest, fees and charges from inception; 8% statutory interest; credit file correction; statements and assessments.",
         "citations": [
           {
             "source": "D1",
@@ -407,8 +448,8 @@
         "value": "",
         "citations": [
           {
-            "source": "CP-6.3",
-            "quote": "The handler must tell the customer which team now has their complaint"
+            "source": "D2",
+            "quote": "Have not contacted cust yet"
           }
         ]
       },
@@ -426,7 +467,7 @@
       {
         "item_id": "linked_complaints_checked",
         "status": "present",
-        "value": "Earlier packaged bank account complaint closed 22/04/2025; different subject and outside twelve months.",
+        "value": "Earlier complaint closed 22/04/2025 not upheld; different subject and outside 12 months.",
         "citations": [
           {
             "source": "D2",
@@ -437,7 +478,7 @@
       {
         "item_id": "balance_and_arrears",
         "status": "present",
-        "value": "Current balance GBP -1,182.40; arrears none. Account identity unconfirmed.",
+        "value": "Balance GBP -1,182.40; arrears none.",
         "citations": [
           {
             "source": "D3",
@@ -456,7 +497,7 @@
         "citations": [
           {
             "source": "D1",
-            "quote": "Our client states that he was reliant on the facility"
+            "quote": "was persistently in debt and that the lending caused him financial harm"
           }
         ]
       },
@@ -466,8 +507,8 @@
         "value": "",
         "citations": [
           {
-            "source": "CP-9.1",
-            "quote": "check whether forbearance was considered"
+            "source": "D3",
+            "quote": "Repeat use letters sent 03/2023, 03/2024, 03/2025"
           }
         ]
       },
@@ -477,8 +518,8 @@
         "value": "",
         "citations": [
           {
-            "source": "CP-9.1",
-            "quote": "whether collections activity should be paused while the complaint is investigated"
+            "source": "D3",
+            "quote": "Arrears: none"
           }
         ]
       },
@@ -488,15 +529,15 @@
         "value": "",
         "citations": [
           {
-            "source": "CP-9.1",
-            "quote": "whether the customer was signposted to free debt advice"
+            "source": "D3",
+            "quote": "Repeat use letters sent 03/2023, 03/2024, 03/2025"
           }
         ]
       }
     ],
     "conflicts": [
       {
-        "text": "The letter gives account number [ACCOUNT_NUMBER_1] and sort code [SORT_CODE_1], but the bank's matched account is [ACCOUNT_1].",
+        "text": "Account identifiers: letter gives account number [ACCOUNT_NUMBER_1] and sort code [SORT_CODE_1]; bank's matched account is [ACCOUNT_1].",
         "citations": [
           {
             "source": "D1",
@@ -509,7 +550,7 @@
         ]
       },
       {
-        "text": "The letter lists overdraft, credit card and loan. The bank's record shows only a current account with an arranged overdraft.",
+        "text": "Products: letter lists overdraft, credit card and loan; bank records show only a current account with arranged overdraft.",
         "citations": [
           {
             "source": "D1",
@@ -522,11 +563,11 @@
         ]
       },
       {
-        "text": "The letter says authority was previously provided. The handler's record shows the authority covers only packaged bank account mis-selling.",
+        "text": "Authority scope: letter says a Letter of Authority was previously provided for this lending; the LOA on file covers packaged account mis-selling only.",
         "citations": [
           {
             "source": "D1",
-            "quote": "A Letter of Authority has previously been provided"
+            "quote": "A Letter of Authority has previously been provided."
           },
           {
             "source": "D2",
@@ -538,18 +579,26 @@
     "flags": [
       {
         "type": "third_party_authority",
-        "description": "Written authority does not cover irresponsible lending. Not accepted until checked under CP-8.3.",
+        "description": "Claims management company authority does not cover this complaint, and the account identity is unconfirmed. Verify both before discussing account details.",
         "citations": [
           {
             "source": "D2",
-            "quote": "No LOA for irresponsible lending"
+            "quote": "covers 'packaged bank account mis-selling' only"
+          },
+          {
+            "source": "D2",
+            "quote": "closest match by name + DOB search is Mr [CUSTOMER] acct [ACCOUNT_1]"
           }
         ]
       },
       {
         "type": "data_quality",
-        "description": "Account number and sort code on the letter do not match the bank's records.",
+        "description": "Letter account number and sort code do not match bank records.",
         "citations": [
+          {
+            "source": "D1",
+            "quote": "Account number: [ACCOUNT_NUMBER_1]"
+          },
           {
             "source": "D2",
             "quote": "sort code on letter ([SORT_CODE_1]) also wrong"
@@ -558,18 +607,22 @@
       },
       {
         "type": "instruction_in_customer_text",
-        "description": "The letter asks the bank not to contact the customer directly. This is not followed, because CP-4.5 requires a documented contact attempt.",
+        "description": "Letter asks the bank not to contact the customer directly. Not followed; a decision on contact is required under CP-8.3.",
         "citations": [
           {
             "source": "D1",
-            "quote": "Please do not contact our client directly"
+            "quote": "Please do not contact our client directly."
           }
         ]
       },
       {
         "type": "deadline_risk",
-        "description": "Final response due eight weeks from receipt on 2026-09-24, or a written explanation of the delay.",
+        "description": "If not resolved, acknowledgement is due by the close of the third business day after receipt (2026-09-29). Final response is due within eight weeks (2026-11-19).",
         "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "by the close of the third business day after it was received"
+          },
           {
             "source": "CP-3.1",
             "quote": "We must send a final response within eight weeks of receiving the complaint"
@@ -582,7 +635,7 @@
     "statements": [
       {
         "path": "intake.issues.0",
-        "text": "Alleged irresponsible lending: the claimant says the arranged overdraft was unaffordable at each limit increase and that creditworthiness checks were not carried out. Account identity is unconfirmed.",
+        "text": "Representative alleges the arranged overdraft was unaffordable at the point of sale and at each limit increase, with inadequate creditworthiness checks. Requests refund of interest and fees.",
         "supported": true,
         "citations": [
           {
@@ -599,19 +652,19 @@
       },
       {
         "path": "intake.team_reason",
-        "text": "Affordability and lending decisions on an overdraft fall within the Financial Support remit, subject to identity and authority checks.",
+        "text": "Complaint concerns lending decisions on an overdraft, which this team handles.",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "It is our client's position that the lending was unaffordable at the point of sale",
+            "quote": "LETTER OF COMPLAINT - IRRESPONSIBLE LENDING",
             "result": "verified"
           }
         ]
       },
       {
         "path": "intake.payment_services_reason",
-        "text": "The complaint concerns affordability of lending, not a payment.",
+        "text": "Complaint concerns lending affordability, not rights under Parts 6 and 7 of the Payment Services Regulations 2017.",
         "supported": true,
         "citations": [
           {
@@ -623,31 +676,36 @@
       },
       {
         "path": "summary.0",
-        "text": "A claims management company, Reclaim Partners, complains of alleged irresponsible lending on an overdraft, credit card and loan.",
+        "text": "Reclaim Partners Ltd, a claims management company, complains of irresponsible lending for [CUSTOMER].",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "LETTER OF COMPLAINT - IRRESPONSIBLE LENDING",
+            "quote": "We act on behalf of the above named client in respect of the above lending",
             "result": "verified"
           }
         ]
       },
       {
         "path": "summary.1",
-        "text": "The bank holds only a current account with an arranged overdraft. No credit card or loan is held.",
+        "text": "Bank records show only a current account with arranged overdraft; no card or loan is held.",
         "supported": true,
         "citations": [
           {
             "source": "D2",
             "quote": "Only product held is CA with arranged o/d",
             "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "cust has never held card or loan with us",
+            "result": "verified"
           }
         ]
       },
       {
         "path": "summary.2",
-        "text": "The letter's account number and sort code do not match the bank's records. The closest match by name and date of birth is account [ACCOUNT_1].",
+        "text": "Letter account number and sort code do not match the account matched by name and DOB search.",
         "supported": true,
         "citations": [
           {
@@ -659,19 +717,24 @@
       },
       {
         "path": "summary.3",
-        "text": "The written authority on file covers a packaged bank account complaint only, not irresponsible lending.",
+        "text": "Letter of Authority on file covers packaged bank account mis-selling only, not irresponsible lending.",
         "supported": true,
         "citations": [
           {
             "source": "D2",
             "quote": "covers 'packaged bank account mis-selling' only",
             "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "No LOA for irresponsible lending",
+            "result": "verified"
           }
         ]
       },
       {
         "path": "summary.4",
-        "text": "The overdraft was in use for 341 days in the last 12 months, with GBP 427.18 of overdraft interest and fees in that period.",
+        "text": "Overdraft was 341 days in use over the last 12 months, with GBP 427.18 interest and fees charged.",
         "supported": true,
         "citations": [
           {
@@ -688,19 +751,24 @@
       },
       {
         "path": "timeline.0",
-        "text": "2019-06-14: Current account opened with an arranged overdraft of GBP 250.",
+        "text": "2019-06-14: Current account opened with GBP 250 arranged overdraft.",
         "supported": true,
         "citations": [
           {
             "source": "D3",
             "quote": "CA [ACCOUNT_1] opened 14/06/2019",
             "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Arranged o/d history: 14/06/2019 GBP 250",
+            "result": "verified"
           }
         ]
       },
       {
         "path": "timeline.1",
-        "text": "2021-02-02: Arranged overdraft increased to GBP 750 at the customer's request in the app.",
+        "text": "2021-02-02: Arranged overdraft increased to GBP 750 at customer request in app.",
         "supported": true,
         "citations": [
           {
@@ -712,7 +780,7 @@
       },
       {
         "path": "timeline.2",
-        "text": "2022-08-19: Arranged overdraft increased to GBP 1,500 under a pre-approved offer accepted in the app.",
+        "text": "2022-08-19: Arranged overdraft increased to GBP 1,500 as pre-approved offer accepted in app.",
         "supported": true,
         "citations": [
           {
@@ -724,7 +792,7 @@
       },
       {
         "path": "timeline.3",
-        "text": "03/2023, 03/2024, 03/2025: Repeat use letters sent on the account.",
+        "text": "03/2023 to 03/2025: Repeat use letters sent in March 2023, 2024 and 2025.",
         "supported": true,
         "citations": [
           {
@@ -736,7 +804,7 @@
       },
       {
         "path": "timeline.4",
-        "text": "2025-03-11: Letter of authority from Reclaim Partners dated; it covers packaged bank account mis-selling only.",
+        "text": "2025-03-11: Letter of Authority from Reclaim Partners dated, covering packaged bank account mis-selling.",
         "supported": true,
         "citations": [
           {
@@ -748,7 +816,7 @@
       },
       {
         "path": "timeline.5",
-        "text": "2025-04-22: Earlier packaged bank account complaint closed, not upheld.",
+        "text": "2025-04-22: Earlier packaged bank account mis-selling complaint closed, not upheld.",
         "supported": true,
         "citations": [
           {
@@ -765,14 +833,14 @@
         "citations": [
           {
             "source": "D1",
-            "quote": "Date: 21/09/2026",
+            "quote": "LETTER OF COMPLAINT - IRRESPONSIBLE LENDING",
             "result": "verified"
           }
         ]
       },
       {
         "path": "timeline.7",
-        "text": "2026-09-24: Letter received and logged; account identity checked by handler.",
+        "text": "2026-09-24: Letter received and logged; account identity queried by handler.",
         "supported": true,
         "citations": [
           {
@@ -784,7 +852,7 @@
       },
       {
         "path": "outcome_sought",
-        "text": "Refund of all interest, fees and charges from account inception, statutory interest at 8% simple, removal of adverse credit file information, and copies of statements, credit checks and affordability assessments.",
+        "text": "Refund of all interest, fees and charges from inception, statutory interest at 8% simple, removal of adverse information from the credit file, and copies of statements, credit checks and affordability assessments.",
         "supported": true,
         "citations": [
           {
@@ -796,36 +864,46 @@
             "source": "D1",
             "quote": "remove any adverse information from our client's credit file",
             "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "provide copies of all statements, credit checks and affordability assessments within 15 days",
+            "result": "verified"
           }
         ]
       },
       {
         "path": "vulnerability.0",
-        "text": "Financial difficulty: alleged persistent debt and financial harm (stated by the representative, not verified).",
+        "text": "Financial difficulty: reliance on facility and persistent overdraft use",
         "supported": true,
         "citations": [
           {
             "source": "D1",
             "quote": "was persistently in debt and that the lending caused him financial harm",
             "result": "verified"
-          }
-        ]
-      },
-      {
-        "path": "relevant_policy.0",
-        "text": "CP-1.2: A claims management company may complain for a customer only with written authority.",
-        "supported": true,
-        "citations": [
+          },
           {
-            "source": "CP-1.2",
-            "quote": "a representative the customer has authorised in writing, including a claims management company",
+            "source": "D3",
+            "quote": "Days in o/d last 12m: 341",
             "result": "verified"
           }
         ]
       },
       {
+        "path": "relevant_policy.0",
+        "text": "CP-1.2: A claims management company may complain only with written authority from the customer.",
+        "supported": false,
+        "citations": [
+          {
+            "source": "CP-1.2",
+            "quote": "or a representative the customer has authorised in writing, including a claims management company",
+            "result": "quote_not_found"
+          }
+        ]
+      },
+      {
         "path": "relevant_policy.1",
-        "text": "CP-8.3: The written authority must be checked to cover this complaint before the claim proceeds.",
+        "text": "CP-8.3: The written authority on file must be checked against this complaint before details are shared.",
         "supported": true,
         "citations": [
           {
@@ -837,7 +915,7 @@
       },
       {
         "path": "relevant_policy.2",
-        "text": "CP-4.5: A documented contact attempt with the customer is needed before handover.",
+        "text": "CP-4.5: The customer must be contacted, with a documented attempt, before a specialist team takes the case.",
         "supported": true,
         "citations": [
           {
@@ -849,7 +927,7 @@
       },
       {
         "path": "relevant_policy.3",
-        "text": "CP-6.1: The case goes to Financial Support once identity and authority are confirmed.",
+        "text": "CP-6.1: The complaint goes to the specialist team using its handover checklist.",
         "supported": true,
         "citations": [
           {
@@ -861,43 +939,55 @@
       },
       {
         "path": "relevant_policy.4",
-        "text": "CP-4.3: The outcome sought must be recorded in the customer's own words where possible.",
+        "text": "CP-5.2: Financial difficulty signs must be recorded with support needs, with consent where possible.",
         "supported": true,
         "citations": [
           {
-            "source": "CP-4.3",
-            "quote": "record, in the customer's own words where possible, the outcome the customer is seeking",
+            "source": "CP-5.2",
+            "quote": "Signs of vulnerability must be recorded with the customer's consent where possible",
             "result": "verified"
           }
         ]
       },
       {
         "path": "relevant_policy.5",
-        "text": "CP-5.1: The representative describes financial difficulty, which must be checked.",
+        "text": "CP-9.2: Fees and interest charged during financial difficulty must be reviewed, as the letter requests refunds.",
         "supported": true,
         "citations": [
           {
-            "source": "CP-5.1",
-            "quote": "Staff must look for signs that a customer may be in vulnerable circumstances",
+            "source": "CP-9.2",
+            "quote": "Fees and interest applied while a customer was in financial difficulty must be reviewed as part of the complaint",
             "result": "verified"
           }
         ]
       },
       {
         "path": "relevant_policy.6",
-        "text": "CP-2.4: Earlier complaints must be checked for links before investigation.",
+        "text": "CP-4.3: The outcome the customer seeks must be recorded.",
         "supported": true,
         "citations": [
           {
-            "source": "CP-2.4",
-            "quote": "check for earlier complaints from the same customer on the same subject in the last twelve months",
+            "source": "CP-4.3",
+            "quote": "the outcome the customer is seeking",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.7",
+        "text": "CP-3.1: Sets the final response deadline for a standard complaint.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-3.1",
+            "quote": "We must send a final response within eight weeks of receiving the complaint",
             "result": "verified"
           }
         ]
       },
       {
         "path": "handover_checklist.outcome_sought",
-        "text": "outcome_sought: Refund of interest, fees and charges; statutory interest; credit file correction; statements and assessments.",
+        "text": "outcome_sought: Refund of interest, fees and charges from inception; 8% statutory interest; credit file correction; statements and assessments.",
         "supported": true,
         "citations": [
           {
@@ -909,7 +999,7 @@
       },
       {
         "path": "handover_checklist.linked_complaints_checked",
-        "text": "linked_complaints_checked: Earlier packaged bank account complaint closed 22/04/2025; different subject and outside twelve months.",
+        "text": "linked_complaints_checked: Earlier complaint closed 22/04/2025 not upheld; different subject and outside 12 months.",
         "supported": true,
         "citations": [
           {
@@ -921,7 +1011,7 @@
       },
       {
         "path": "handover_checklist.balance_and_arrears",
-        "text": "balance_and_arrears: Current balance GBP -1,182.40; arrears none. Account identity unconfirmed.",
+        "text": "balance_and_arrears: Balance GBP -1,182.40; arrears none.",
         "supported": true,
         "citations": [
           {
@@ -938,7 +1028,7 @@
       },
       {
         "path": "conflicts.0",
-        "text": "The letter gives account number [ACCOUNT_NUMBER_1] and sort code [SORT_CODE_1], but the bank's matched account is [ACCOUNT_1].",
+        "text": "Account identifiers: letter gives account number [ACCOUNT_NUMBER_1] and sort code [SORT_CODE_1]; bank's matched account is [ACCOUNT_1].",
         "supported": true,
         "citations": [
           {
@@ -955,7 +1045,7 @@
       },
       {
         "path": "conflicts.1",
-        "text": "The letter lists overdraft, credit card and loan. The bank's record shows only a current account with an arranged overdraft.",
+        "text": "Products: letter lists overdraft, credit card and loan; bank records show only a current account with arranged overdraft.",
         "supported": true,
         "citations": [
           {
@@ -972,12 +1062,12 @@
       },
       {
         "path": "conflicts.2",
-        "text": "The letter says authority was previously provided. The handler's record shows the authority covers only packaged bank account mis-selling.",
+        "text": "Authority scope: letter says a Letter of Authority was previously provided for this lending; the LOA on file covers packaged account mis-selling only.",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "A Letter of Authority has previously been provided",
+            "quote": "A Letter of Authority has previously been provided.",
             "result": "verified"
           },
           {
@@ -989,21 +1079,31 @@
       },
       {
         "path": "flags.0",
-        "text": "third_party_authority: Written authority does not cover irresponsible lending. Not accepted until checked under CP-8.3.",
+        "text": "third_party_authority: Claims management company authority does not cover this complaint, and the account identity is unconfirmed. Verify both before discussing account details.",
         "supported": true,
         "citations": [
           {
             "source": "D2",
-            "quote": "No LOA for irresponsible lending",
+            "quote": "covers 'packaged bank account mis-selling' only",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "closest match by name + DOB search is Mr [CUSTOMER] acct [ACCOUNT_1]",
             "result": "verified"
           }
         ]
       },
       {
         "path": "flags.1",
-        "text": "data_quality: Account number and sort code on the letter do not match the bank's records.",
+        "text": "data_quality: Letter account number and sort code do not match bank records.",
         "supported": true,
         "citations": [
+          {
+            "source": "D1",
+            "quote": "Account number: [ACCOUNT_NUMBER_1]",
+            "result": "verified"
+          },
           {
             "source": "D2",
             "quote": "sort code on letter ([SORT_CODE_1]) also wrong",
@@ -1013,21 +1113,26 @@
       },
       {
         "path": "flags.2",
-        "text": "instruction_in_customer_text: The letter asks the bank not to contact the customer directly. This is not followed, because CP-4.5 requires a documented contact attempt.",
+        "text": "instruction_in_customer_text: Letter asks the bank not to contact the customer directly. Not followed; a decision on contact is required under CP-8.3.",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "Please do not contact our client directly",
+            "quote": "Please do not contact our client directly.",
             "result": "verified"
           }
         ]
       },
       {
         "path": "flags.3",
-        "text": "deadline_risk: Final response due eight weeks from receipt on 2026-09-24, or a written explanation of the delay.",
+        "text": "deadline_risk: If not resolved, acknowledgement is due by the close of the third business day after receipt (2026-09-29). Final response is due within eight weeks (2026-11-19).",
         "supported": true,
         "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "by the close of the third business day after it was received",
+            "result": "verified"
+          },
           {
             "source": "CP-3.1",
             "quote": "We must send a final response within eight weeks of receiving the complaint",
@@ -1037,7 +1142,7 @@
       }
     ],
     "supportedCount": 35,
-    "unsupportedCount": 0,
+    "unsupportedCount": 1,
     "inventedPlaceholders": [],
     "checklist": {
       "required": 10,
@@ -1068,10 +1173,10 @@
   },
   "usage": {
     "inputTokens": 1117,
-    "outputTokens": 10521,
-    "cacheReadTokens": 9468,
+    "outputTokens": 13925,
+    "cacheReadTokens": 9539,
     "cacheWriteTokens": 0,
-    "costUsd": 0.00546688,
-    "latencyMs": 39217
+    "costUsd": 0.00716959,
+    "latencyMs": 51726
   }
 }

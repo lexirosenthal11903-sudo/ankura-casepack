@@ -1,0 +1,893 @@
+{
+  "caseId": "HV-013",
+  "createdAt": "2026-11-11T09:28:25.801Z",
+  "model": "claude-haiku-5-5",
+  "promptVersion": "casepack-v4",
+  "redacted": {
+    "id": "HV-013",
+    "received": "2026-11-02",
+    "channel": "phone",
+    "documents": [
+      {
+        "id": "D1",
+        "system": "CRM",
+        "type": "call_summary",
+        "date": "2026-11-02",
+        "author_role": "handler",
+        "text": "Inbound 09:48 [CUSTOMER], ID&V passed. Fri 30/10 he was trying to buy 2 presale tickets for Corvid Bloom at Halden Arena, presale only open 10-12. Card payment needed approving in app (3DS) and the app was down, tried 3 times, all timed out. Presale sold out, general sale sold out in mins, only resale now at approx £180 more per ticket. Says 'this is the second time in three months your app has let me down' and he is 'seriously looking at moving banks'. Wants the extra £360 he'd have to pay on resale covered, or some compensation, and to know the app wont keep failing. Checked CRM, prev complaint Aug 2026 re app login failures, closed 12/08, same subject (app access), linked. Told him logged as complaint, will investigate and come back within 8 wks. - [STAFF_1]"
+      },
+      {
+        "id": "D2",
+        "system": "CRM",
+        "type": "crm_note",
+        "date": "2026-08-12",
+        "author_role": "handler",
+        "text": "Complaint CMP-2026-24471 closed. [CUSTOMER] reported unable to log in to app 03/08-07/08 after app update v8.14 ('session expired' loop). Known defect, fixed in v8.15 on 07/08. Apologised, £25 goodwill credited to CA [ACCOUNT]. Cust satisfied, summary resolution letter sent with FOS rights. - [STAFF_2]"
+      },
+      {
+        "id": "D3",
+        "system": "CORE",
+        "type": "system_log",
+        "date": "2026-10-30",
+        "author_role": "system",
+        "text": "INCIDENT INC-2026-1030-01 (P1) Service: H&V mobile app + online banking. Impact: app and online banking unavailable 30/10/2026 07:10-15:40. Cause: failed certificate rotation on authentication gateway following overnight change CHG-88213. Card payments and ATMs unaffected, 3DS in-app approvals unavailable for duration. Telephone banking queues peaked 74 min. Status: RESOLVED 15:40. Customer impact review: open, owner Digital Ops."
+      },
+      {
+        "id": "D4",
+        "system": "CARDS",
+        "type": "system_log",
+        "date": "2026-10-30",
+        "author_role": "system",
+        "text": "Card [CARD]. 30/10/2026 10:00:41 e-com AUTH REQ HALDEN ARENA TICKETS GBP 147.50 3DS challenge (in-app) sent, no response, TIMEOUT, declined. 30/10/2026 10:06:12 same merchant GBP 147.50 3DS TIMEOUT declined. 30/10/2026 10:19:55 same merchant GBP 147.50 3DS TIMEOUT declined. No SMS OTP fallback configured for card."
+      }
+    ],
+    "replacements": [
+      {
+        "placeholder": "[STAFF_1]",
+        "original": "B Clarke",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Mr Asanti",
+        "layer": "near_match",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Dan",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[ACCOUNT]",
+        "original": "24081597",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[STAFF_2]",
+        "original": "M Lee",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[CARD]",
+        "original": "6612",
+        "layer": "record",
+        "documentId": "D4"
+      }
+    ],
+    "placeholders": [
+      "[ACCOUNT]",
+      "[CARD]",
+      "[CUSTOMER]",
+      "[STAFF_1]",
+      "[STAFF_2]"
+    ],
+    "display": {
+      "[STAFF_1]": "Bethany Clarke",
+      "[CUSTOMER]": "Mr Daniel Asante",
+      "[ACCOUNT]": "24081597",
+      "[STAFF_2]": "Marcus Lee",
+      "[CARD]": "6612",
+      "[SORT_CODE]": "77-41-11",
+      "[CUSTOMER_PHONE]": "020 7946 0753",
+      "[CUSTOMER_EMAIL]": "dan.asante@example.com"
+    }
+  },
+  "pack": {
+    "enough_information": {
+      "sufficient": true,
+      "what_is_needed": ""
+    },
+    "intake": {
+      "issues": [
+        {
+          "product": "current_account",
+          "cause": "digital_outage",
+          "description": "Customer could not approve a card payment in the app during the 30/10/2026 outage and lost the presale tickets. Wants the resale price difference covered or compensation, and assurance the app will not keep failing.",
+          "citations": [
+            {
+              "source": "D1",
+              "quote": "tried 3 times, all timed out"
+            },
+            {
+              "source": "D3",
+              "quote": "app and online banking unavailable 30/10/2026 07:10-15:40"
+            }
+          ]
+        }
+      ],
+      "suggested_team": "frontline",
+      "team_reason": {
+        "text": "Frontline can investigate: the complaint is an app outage with a declined payment, and no specialist remit applies.",
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "3DS challenge (in-app) sent, no response, TIMEOUT, declined"
+          },
+          {
+            "source": "CP-6.1",
+            "quote": "A complaint must be passed to a specialist team when it falls within that team's remit"
+          }
+        ]
+      },
+      "payment_services": "no",
+      "payment_services_reason": {
+        "text": "No: the card payment was declined at a 3DS timeout during an app outage, and no wrongly executed or unauthorised payment is alleged.",
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "3DS challenge (in-app) sent, no response, TIMEOUT, declined"
+          },
+          {
+            "source": "CP-3.2",
+            "quote": "Where the complaint concerns rights and obligations under Parts 6 and 7 of the Payment Services Regulations 2017"
+          }
+        ]
+      },
+      "already_with_ombudsman": false,
+      "linked_to_earlier_complaint": true
+    },
+    "summary": [
+      {
+        "text": "Customer could not approve a GBP 147.50 card payment for Halden Arena tickets on 30/10/2026 because the in-app 3DS approval timed out.",
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "3DS challenge (in-app) sent, no response, TIMEOUT, declined"
+          },
+          {
+            "source": "D3",
+            "quote": "3DS in-app approvals unavailable for duration"
+          }
+        ]
+      },
+      {
+        "text": "Bank incident INC-2026-1030-01 made the app and online banking unavailable from 07:10 to 15:40 on 30/10/2026.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "app and online banking unavailable 30/10/2026 07:10-15:40"
+          }
+        ]
+      },
+      {
+        "text": "Customer says presale sold out and resale is about GBP 180 more per ticket, and wants the extra GBP 360 covered or compensation.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "only resale now at approx £180 more per ticket"
+          },
+          {
+            "source": "D1",
+            "quote": "Wants the extra £360 he'd have to pay on resale covered, or some compensation"
+          }
+        ]
+      },
+      {
+        "text": "Earlier complaint CMP-2026-24471 about app login failures in August 2026 was closed on 12/08 and is linked to this complaint.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Complaint CMP-2026-24471 closed."
+          },
+          {
+            "source": "D1",
+            "quote": "prev complaint Aug 2026 re app login failures, closed 12/08"
+          }
+        ]
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-08-03",
+        "event": "Customer unable to log in to app after app update v8.14 (session expired loop), until 07/08.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "reported unable to log in to app 03/08-07/08 after app update v8.14"
+          }
+        ]
+      },
+      {
+        "date": "2026-08-07",
+        "event": "Known app defect fixed in v8.15.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Known defect, fixed in v8.15 on 07/08."
+          }
+        ]
+      },
+      {
+        "date": "2026-08-12",
+        "event": "Earlier complaint CMP-2026-24471 closed with summary resolution.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Complaint CMP-2026-24471 closed."
+          }
+        ]
+      },
+      {
+        "date": "2026-10-30",
+        "event": "App and online banking unavailable from 07:10 due to failed certificate rotation after change CHG-88213.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "app and online banking unavailable 30/10/2026 07:10-15:40"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-30",
+        "event": "10:00:41 GBP 147.50 card payment to Halden Arena Tickets: 3DS challenge timed out and was declined.",
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "3DS challenge (in-app) sent, no response, TIMEOUT, declined"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-30",
+        "event": "10:06:12 and 10:19:55 further GBP 147.50 attempts to same merchant timed out and were declined.",
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "30/10/2026 10:06:12 same merchant GBP 147.50 3DS TIMEOUT declined"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-30",
+        "event": "Incident INC-2026-1030-01 resolved at 15:40.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Status: RESOLVED 15:40"
+          }
+        ]
+      },
+      {
+        "date": "2026-11-02",
+        "event": "Customer complaint received by phone at 09:48.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Inbound 09:48 [CUSTOMER], ID&V passed."
+          }
+        ]
+      }
+    ],
+    "outcome_sought": {
+      "text": "Customer wants the extra GBP 360 he would have to pay on resale covered, or some compensation, and assurance that the app will not keep failing.",
+      "citations": [
+        {
+          "source": "D1",
+          "quote": "Wants the extra £360 he'd have to pay on resale covered, or some compensation, and to know the app wont keep failing."
+        }
+      ]
+    },
+    "vulnerability": [],
+    "relevant_policy": [
+      {
+        "policy_id": "CP-1.3",
+        "why_relevant": "Complaint must be logged in the CRM on the day received, including phone complaints.",
+        "citations": [
+          {
+            "source": "CP-1.3",
+            "quote": "Every complaint must be logged in the CRM on the day it is received, whatever the channel"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-2.1",
+        "why_relevant": "Written acknowledgement is required if not resolved by the third business day.",
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "we must send a prompt written acknowledgement that names the handler or team dealing with it"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-2.4",
+        "why_relevant": "Linked earlier complaint on app access must be checked and the link recorded.",
+        "citations": [
+          {
+            "source": "CP-2.4",
+            "quote": "check for earlier complaints from the same customer on the same subject in the last twelve months and record any link"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-3.1",
+        "why_relevant": "Standard eight-week limit applies as the complaint is not a payment services complaint.",
+        "citations": [
+          {
+            "source": "CP-3.1",
+            "quote": "We must send a final response within eight weeks of receiving the complaint"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.3",
+        "why_relevant": "Customer's desired outcome must be recorded in their own words.",
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "record, in the customer's own words where possible, the outcome the customer is seeking"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.4",
+        "why_relevant": "Any redress or compensation on the resale cost must be decided by an authorised member of staff.",
+        "citations": [
+          {
+            "source": "CP-4.4",
+            "quote": "Decisions on whether a complaint is upheld, and on any redress or compensation, are made only by an authorised member of staff"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-10.2",
+        "why_relevant": "Complaint needs a root-cause tag, given the recurring app problems.",
+        "citations": [
+          {
+            "source": "CP-10.2",
+            "quote": "Each complaint must be tagged with a root-cause category so that recurring problems can be found and fixed"
+          }
+        ]
+      }
+    ],
+    "handover_checklist": [
+      {
+        "item_id": "outcome_sought",
+        "status": "present",
+        "value": "Compensation or covering the GBP 360 resale premium, and assurance the app will not keep failing.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Wants the extra £360 he'd have to pay on resale covered, or some compensation"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_contact_attempted",
+        "status": "present",
+        "value": "Inbound call from customer on 2026-11-02, ID and V passed.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Inbound 09:48 [CUSTOMER], ID&V passed."
+          }
+        ]
+      },
+      {
+        "item_id": "customer_told_of_handover",
+        "status": "not_applicable",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "vulnerability_recorded",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "linked_complaints_checked",
+        "status": "present",
+        "value": "Linked to CMP-2026-24471 (app access, closed 12/08).",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "prev complaint Aug 2026 re app login failures, closed 12/08"
+          }
+        ]
+      }
+    ],
+    "conflicts": [],
+    "flags": [
+      {
+        "type": "deadline_risk",
+        "description": "If not resolved by close of 2026-11-04 (third business day), a written acknowledgement naming the handler is required.",
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "If a complaint is not resolved by the close of the third business day after it was received"
+          }
+        ]
+      },
+      {
+        "type": "data_quality",
+        "description": "Each declined attempt is GBP 147.50, but the call note says two tickets. Whether 147.50 is per ticket or for both is not stated.",
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "same merchant GBP 147.50 3DS TIMEOUT declined"
+          },
+          {
+            "source": "D1",
+            "quote": "buy 2 presale tickets for Corvid Bloom"
+          }
+        ]
+      },
+      {
+        "type": "data_quality",
+        "description": "The card's linked account type is not stated in the card log. Confirm the product before relying on current_account.",
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "Card [CARD]. 30/10/2026 10:00:41 e-com AUTH REQ HALDEN ARENA TICKETS"
+          }
+        ]
+      },
+      {
+        "type": "other",
+        "description": "Customer impact review for the 30/10 incident is open with Digital Ops and is not yet complete.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Customer impact review: open, owner Digital Ops."
+          }
+        ]
+      }
+    ]
+  },
+  "checks": {
+    "statements": [
+      {
+        "path": "intake.issues.0",
+        "text": "Customer could not approve a card payment in the app during the 30/10/2026 outage and lost the presale tickets. Wants the resale price difference covered or compensation, and assurance the app will not keep failing.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "tried 3 times, all timed out",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "app and online banking unavailable 30/10/2026 07:10-15:40",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.team_reason",
+        "text": "Frontline can investigate: the complaint is an app outage with a declined payment, and no specialist remit applies.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "3DS challenge (in-app) sent, no response, TIMEOUT, declined",
+            "result": "verified"
+          },
+          {
+            "source": "CP-6.1",
+            "quote": "A complaint must be passed to a specialist team when it falls within that team's remit",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.payment_services_reason",
+        "text": "No: the card payment was declined at a 3DS timeout during an app outage, and no wrongly executed or unauthorised payment is alleged.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "3DS challenge (in-app) sent, no response, TIMEOUT, declined",
+            "result": "verified"
+          },
+          {
+            "source": "CP-3.2",
+            "quote": "Where the complaint concerns rights and obligations under Parts 6 and 7 of the Payment Services Regulations 2017",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.0",
+        "text": "Customer could not approve a GBP 147.50 card payment for Halden Arena tickets on 30/10/2026 because the in-app 3DS approval timed out.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "3DS challenge (in-app) sent, no response, TIMEOUT, declined",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "3DS in-app approvals unavailable for duration",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.1",
+        "text": "Bank incident INC-2026-1030-01 made the app and online banking unavailable from 07:10 to 15:40 on 30/10/2026.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "app and online banking unavailable 30/10/2026 07:10-15:40",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.2",
+        "text": "Customer says presale sold out and resale is about GBP 180 more per ticket, and wants the extra GBP 360 covered or compensation.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "only resale now at approx £180 more per ticket",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "Wants the extra £360 he'd have to pay on resale covered, or some compensation",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.3",
+        "text": "Earlier complaint CMP-2026-24471 about app login failures in August 2026 was closed on 12/08 and is linked to this complaint.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Complaint CMP-2026-24471 closed.",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "prev complaint Aug 2026 re app login failures, closed 12/08",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.0",
+        "text": "2026-08-03: Customer unable to log in to app after app update v8.14 (session expired loop), until 07/08.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "reported unable to log in to app 03/08-07/08 after app update v8.14",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.1",
+        "text": "2026-08-07: Known app defect fixed in v8.15.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Known defect, fixed in v8.15 on 07/08.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.2",
+        "text": "2026-08-12: Earlier complaint CMP-2026-24471 closed with summary resolution.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Complaint CMP-2026-24471 closed.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.3",
+        "text": "2026-10-30: App and online banking unavailable from 07:10 due to failed certificate rotation after change CHG-88213.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "app and online banking unavailable 30/10/2026 07:10-15:40",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.4",
+        "text": "2026-10-30: 10:00:41 GBP 147.50 card payment to Halden Arena Tickets: 3DS challenge timed out and was declined.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "3DS challenge (in-app) sent, no response, TIMEOUT, declined",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.5",
+        "text": "2026-10-30: 10:06:12 and 10:19:55 further GBP 147.50 attempts to same merchant timed out and were declined.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "30/10/2026 10:06:12 same merchant GBP 147.50 3DS TIMEOUT declined",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.6",
+        "text": "2026-10-30: Incident INC-2026-1030-01 resolved at 15:40.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Status: RESOLVED 15:40",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.7",
+        "text": "2026-11-02: Customer complaint received by phone at 09:48.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Inbound 09:48 [CUSTOMER], ID&V passed.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "outcome_sought",
+        "text": "Customer wants the extra GBP 360 he would have to pay on resale covered, or some compensation, and assurance that the app will not keep failing.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Wants the extra £360 he'd have to pay on resale covered, or some compensation, and to know the app wont keep failing.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.0",
+        "text": "CP-1.3: Complaint must be logged in the CRM on the day received, including phone complaints.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-1.3",
+            "quote": "Every complaint must be logged in the CRM on the day it is received, whatever the channel",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.1",
+        "text": "CP-2.1: Written acknowledgement is required if not resolved by the third business day.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "we must send a prompt written acknowledgement that names the handler or team dealing with it",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.2",
+        "text": "CP-2.4: Linked earlier complaint on app access must be checked and the link recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.4",
+            "quote": "check for earlier complaints from the same customer on the same subject in the last twelve months and record any link",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.3",
+        "text": "CP-3.1: Standard eight-week limit applies as the complaint is not a payment services complaint.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-3.1",
+            "quote": "We must send a final response within eight weeks of receiving the complaint",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.4",
+        "text": "CP-4.3: Customer's desired outcome must be recorded in their own words.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "record, in the customer's own words where possible, the outcome the customer is seeking",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.5",
+        "text": "CP-4.4: Any redress or compensation on the resale cost must be decided by an authorised member of staff.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.4",
+            "quote": "Decisions on whether a complaint is upheld, and on any redress or compensation, are made only by an authorised member of staff",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.6",
+        "text": "CP-10.2: Complaint needs a root-cause tag, given the recurring app problems.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-10.2",
+            "quote": "Each complaint must be tagged with a root-cause category so that recurring problems can be found and fixed",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.outcome_sought",
+        "text": "outcome_sought: Compensation or covering the GBP 360 resale premium, and assurance the app will not keep failing.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Wants the extra £360 he'd have to pay on resale covered, or some compensation",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.customer_contact_attempted",
+        "text": "customer_contact_attempted: Inbound call from customer on 2026-11-02, ID and V passed.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Inbound 09:48 [CUSTOMER], ID&V passed.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.linked_complaints_checked",
+        "text": "linked_complaints_checked: Linked to CMP-2026-24471 (app access, closed 12/08).",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "prev complaint Aug 2026 re app login failures, closed 12/08",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.0",
+        "text": "deadline_risk: If not resolved by close of 2026-11-04 (third business day), a written acknowledgement naming the handler is required.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "If a complaint is not resolved by the close of the third business day after it was received",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.1",
+        "text": "data_quality: Each declined attempt is GBP 147.50, but the call note says two tickets. Whether 147.50 is per ticket or for both is not stated.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "same merchant GBP 147.50 3DS TIMEOUT declined",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "buy 2 presale tickets for Corvid Bloom",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.2",
+        "text": "data_quality: The card's linked account type is not stated in the card log. Confirm the product before relying on current_account.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D4",
+            "quote": "Card [CARD]. 30/10/2026 10:00:41 e-com AUTH REQ HALDEN ARENA TICKETS",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.3",
+        "text": "other: Customer impact review for the 30/10 incident is open with Digital Ops and is not yet complete.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Customer impact review: open, owner Digital Ops.",
+            "result": "verified"
+          }
+        ]
+      }
+    ],
+    "supportedCount": 30,
+    "unsupportedCount": 0,
+    "inventedPlaceholders": [],
+    "checklist": {
+      "required": 4,
+      "present": 3,
+      "missing": [
+        "vulnerability_recorded"
+      ],
+      "conflicting": []
+    }
+  },
+  "clock": "8_weeks",
+  "deadlines": {
+    "received": "2026-11-02",
+    "clock": "8_weeks",
+    "summaryResolutionWindowCloses": "2026-11-05",
+    "eightWeekDue": "2026-12-28",
+    "workingDue": "2026-12-28",
+    "needsHandlerConfirmation": false,
+    "calendarDaysLeft": 49,
+    "businessDaysLeft": 33,
+    "status": "on_track"
+  },
+  "usage": {
+    "inputTokens": 996,
+    "outputTokens": 10269,
+    "cacheReadTokens": 9539,
+    "cacheWriteTokens": 0,
+    "costUsd": 0.005329490000000001,
+    "latencyMs": 38511
+  }
+}

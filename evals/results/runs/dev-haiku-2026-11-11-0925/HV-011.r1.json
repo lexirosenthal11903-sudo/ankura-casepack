@@ -1,0 +1,1046 @@
+{
+  "caseId": "HV-011",
+  "createdAt": "2026-11-11T09:27:15.926Z",
+  "model": "claude-haiku-5-5",
+  "promptVersion": "casepack-v4",
+  "redacted": {
+    "id": "HV-011",
+    "received": "2026-10-14",
+    "channel": "email",
+    "documents": [
+      {
+        "id": "D1",
+        "system": "EMAIL",
+        "type": "email",
+        "date": "2026-10-14",
+        "author_role": "customer",
+        "text": "Subject: Gym direct debit taken TWICE after I cancelled it\n\nHi there,\n\nI cancelled my direct debit to Corefield Fitness in your app on the evening of Friday 2nd October. The app showed it as cancelled straight away and I have a screenshot. Despite that, £42.99 went out on Monday 5th and then ANOTHER £42.99 on the 12th. The gym says I'm 'still in my notice period' and that it's between me and my bank.\n\nI cancelled the membership with them by email on 30/09 as well. I don't see how you can let a company take money when the direct debit isn't there any more. I'd like both payments (£85.98) put back in my account and confirmation they can't take anything else.\n\nYou can reach me on [PHONE_1] if easier, I'm not always near my landline.\n\nThanks\n[CUSTOMER]\n\n[CUSTOMER]\nSort code [SORT_CODE]"
+      },
+      {
+        "id": "D2",
+        "system": "CORE",
+        "type": "system_log",
+        "date": "2026-10-14",
+        "author_role": "system",
+        "text": "CA [ACCOUNT]. DDI ref CFL-00418823 originator COREFIELD FITNESS LTD SUN 448120. 02/10/2026 23:48 DDI CANCELLED via mobile app. AUDDIS 0C advice sent 05/10/2026. 05/10/2026 DD paid GBP 42.99 COREFIELD FITNESS (BACS input 01/10/2026, collection already in cycle at cancellation). 12/10/2026 DD paid GBP 42.99 COREFIELD FITNESS ref 'FINAL MONTH NOTICE' - DDI status at presentation: CANCELLED. Not rejected. Exception code DD-NR-07 (cancelled mandate reject rule not applied)."
+      },
+      {
+        "id": "D3",
+        "system": "CRM",
+        "type": "crm_note",
+        "date": "2026-10-15",
+        "author_role": "handler",
+        "text": "[CUSTOMER] - 2 x £42.99 gym DDs after she cancelled DDI in app 02/10. 2nd one (12/10) should have bounced, CORE shows reject rule failed. 1st one maybe already in BACS cycle. Is this a DD Guarantee indemnity claim or unauth payment under PSRs (15 day clock)? Prob both for diff payments. Asked [STAFF_2] to confirm which clock. Emailed cust 15/10 asking for copy of gym cancellation email, no reply yet. Sending to Payments & Disputes. - [STAFF_1]"
+      }
+    ],
+    "replacements": [
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Bex",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Rebecca Osei",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[SORT_CODE]",
+        "original": "77-41-05",
+        "layer": "record",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[PHONE_1]",
+        "original": "07700 900 238",
+        "layer": "pattern",
+        "documentId": "D1"
+      },
+      {
+        "placeholder": "[ACCOUNT]",
+        "original": "26398814",
+        "layer": "record",
+        "documentId": "D2"
+      },
+      {
+        "placeholder": "[CUSTOMER]",
+        "original": "Ms Osei",
+        "layer": "record",
+        "documentId": "D3"
+      },
+      {
+        "placeholder": "[STAFF_2]",
+        "original": "RF",
+        "layer": "record",
+        "documentId": "D3"
+      },
+      {
+        "placeholder": "[STAFF_1]",
+        "original": "JP",
+        "layer": "record",
+        "documentId": "D3"
+      }
+    ],
+    "placeholders": [
+      "[ACCOUNT]",
+      "[CUSTOMER]",
+      "[PHONE_1]",
+      "[SORT_CODE]",
+      "[STAFF_1]",
+      "[STAFF_2]"
+    ],
+    "display": {
+      "[CUSTOMER]": "Ms Rebecca Osei",
+      "[SORT_CODE]": "77-41-05",
+      "[PHONE_1]": "07700 900 238",
+      "[ACCOUNT]": "26398814",
+      "[STAFF_2]": "Rachel Fenwick",
+      "[STAFF_1]": "Jonah Price",
+      "[CARD]": "4079",
+      "[CUSTOMER_PHONE]": "020 7946 0461",
+      "[CUSTOMER_EMAIL]": "rebecca.osei@example.com"
+    }
+  },
+  "pack": {
+    "enough_information": {
+      "sufficient": true,
+      "what_is_needed": ""
+    },
+    "intake": {
+      "issues": [
+        {
+          "product": "current_account",
+          "cause": "payment_problem",
+          "description": "Direct Debit of £42.99 to Corefield Fitness taken on 05/10/2026 after the customer cancelled the mandate in the app. Collection was already in the BACS cycle at cancellation.",
+          "citations": [
+            {
+              "source": "D2",
+              "quote": "05/10/2026 DD paid GBP 42.99 COREFIELD FITNESS"
+            },
+            {
+              "source": "D2",
+              "quote": "collection already in cycle at cancellation"
+            }
+          ]
+        },
+        {
+          "product": "current_account",
+          "cause": "payment_problem",
+          "description": "Direct Debit of £42.99 to Corefield Fitness taken on 12/10/2026 although the mandate was cancelled and the payment was not rejected.",
+          "citations": [
+            {
+              "source": "D2",
+              "quote": "DDI status at presentation: CANCELLED. Not rejected."
+            },
+            {
+              "source": "D2",
+              "quote": "Exception code DD-NR-07 (cancelled mandate reject rule not applied)"
+            }
+          ]
+        }
+      ],
+      "suggested_team": "payments_disputes",
+      "team_reason": {
+        "text": "Direct Debit payments executed on a cancelled mandate, with a reject rule failure. This is a Direct Debit claim within the Payments and Disputes remit.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Exception code DD-NR-07 (cancelled mandate reject rule not applied)"
+          },
+          {
+            "source": "D3",
+            "quote": "Sending to Payments & Disputes"
+          }
+        ]
+      },
+      "payment_services": "unclear",
+      "payment_services_reason": {
+        "text": "The 12/10 payment appears wrongly executed, which is a Parts 6-7 matter. Whether the 05/10 collection was authorised or correctly executed is not settled, and the handler must confirm the time limit.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "DDI status at presentation: CANCELLED. Not rejected."
+          },
+          {
+            "source": "D3",
+            "quote": "Asked [STAFF_2] to confirm which clock"
+          }
+        ]
+      },
+      "already_with_ombudsman": false,
+      "linked_to_earlier_complaint": false
+    },
+    "summary": [
+      {
+        "text": "Customer cancelled a Direct Debit to Corefield Fitness in the app on 02/10/2026.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "02/10/2026 23:48 DDI CANCELLED via mobile app"
+          }
+        ]
+      },
+      {
+        "text": "Two payments of £42.99 were taken, on 05/10/2026 and 12/10/2026.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "05/10/2026 DD paid GBP 42.99 COREFIELD FITNESS"
+          },
+          {
+            "source": "D2",
+            "quote": "12/10/2026 DD paid GBP 42.99 COREFIELD FITNESS"
+          }
+        ]
+      },
+      {
+        "text": "The 12/10 payment was not rejected although the mandate status was CANCELLED. Exception code DD-NR-07 is recorded.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "DDI status at presentation: CANCELLED. Not rejected."
+          }
+        ]
+      },
+      {
+        "text": "Customer asks for both payments (£85.98) to be returned and for confirmation that no further collections will be taken.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I'd like both payments (£85.98) put back in my account"
+          }
+        ]
+      },
+      {
+        "text": "The gym says the customer is still in their notice period. This has not been checked.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "still in my notice period"
+          }
+        ]
+      }
+    ],
+    "timeline": [
+      {
+        "date": "2026-09-30",
+        "event": "Customer says they cancelled the gym membership by email.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I cancelled the membership with them by email on 30/09"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-01",
+        "event": "Collection of the 05/10 Direct Debit was input to BACS.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "BACS input 01/10/2026, collection already in cycle at cancellation"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-02",
+        "event": "Direct Debit mandate cancelled in the mobile app at 23:48.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "02/10/2026 23:48 DDI CANCELLED via mobile app"
+          },
+          {
+            "source": "D1",
+            "quote": "on the evening of Friday 2nd October"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-05",
+        "event": "£42.99 paid to Corefield Fitness. AUDDIS 0C advice sent the same day.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "05/10/2026 DD paid GBP 42.99 COREFIELD FITNESS"
+          },
+          {
+            "source": "D2",
+            "quote": "AUDDIS 0C advice sent 05/10/2026"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-12",
+        "event": "Second £42.99 paid to Corefield Fitness. Mandate was CANCELLED and the payment was not rejected.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "12/10/2026 DD paid GBP 42.99 COREFIELD FITNESS"
+          },
+          {
+            "source": "D2",
+            "quote": "DDI status at presentation: CANCELLED. Not rejected."
+          }
+        ]
+      },
+      {
+        "date": "2026-10-14",
+        "event": "Customer complaint received by email.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Subject: Gym direct debit taken TWICE after I cancelled it"
+          }
+        ]
+      },
+      {
+        "date": "2026-10-15",
+        "event": "Handler emailed customer asking for a copy of the gym cancellation email. No reply yet.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Emailed cust 15/10 asking for copy of gym cancellation email"
+          }
+        ]
+      }
+    ],
+    "outcome_sought": {
+      "text": "Customer wants both payments (£85.98) returned to their account and confirmation that the gym cannot take anything else.",
+      "citations": [
+        {
+          "source": "D1",
+          "quote": "I'd like both payments (£85.98) put back in my account"
+        },
+        {
+          "source": "D1",
+          "quote": "confirmation they can't take anything else"
+        }
+      ]
+    },
+    "vulnerability": [],
+    "relevant_policy": [
+      {
+        "policy_id": "CP-3.2",
+        "why_relevant": "The 12/10 payment may be a wrongly executed payment, which sets a fifteen business day time limit.",
+        "citations": [
+          {
+            "source": "CP-3.2",
+            "quote": "the final response is due within fifteen business days"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-3.3",
+        "why_relevant": "The complaint may mix payment services issues with other issues, so a team leader must confirm the time limit.",
+        "citations": [
+          {
+            "source": "CP-3.3",
+            "quote": "the handler must confirm with a team leader whether the whole complaint will be answered within the payment services time limit"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-2.3",
+        "why_relevant": "Each payment is a separate issue and needs its own record.",
+        "citations": [
+          {
+            "source": "CP-2.3",
+            "quote": "each issue must be recorded separately with its own product and cause category"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-2.4",
+        "why_relevant": "Earlier complaints about the gym or Direct Debit must be checked and any link recorded.",
+        "citations": [
+          {
+            "source": "CP-2.4",
+            "quote": "check for earlier complaints from the same customer on the same subject in the last twelve months"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.3",
+        "why_relevant": "The customer's requested outcome must be recorded in their own words.",
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "The handler must record, in the customer's own words where possible, the outcome the customer is seeking"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-4.5",
+        "why_relevant": "The handler has asked the customer for the gym cancellation email, which is a documented contact attempt.",
+        "citations": [
+          {
+            "source": "CP-4.5",
+            "quote": "the handler must make at least one documented attempt to contact the customer before a case is passed to a specialist team"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-6.1",
+        "why_relevant": "The case is proposed for the Payments and Disputes team, so a handover is required.",
+        "citations": [
+          {
+            "source": "CP-6.1",
+            "quote": "A complaint must be passed to a specialist team when it falls within that team's remit"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-6.2",
+        "why_relevant": "The handover is incomplete until every checklist item is filled in or marked with a reason.",
+        "citations": [
+          {
+            "source": "CP-6.2",
+            "quote": "A handover is complete only when every required checklist item is filled in or marked as not available with a reason"
+          }
+        ]
+      }
+    ],
+    "handover_checklist": [
+      {
+        "item_id": "outcome_sought",
+        "status": "present",
+        "value": "Customer wants both £42.99 payments returned and confirmation that nothing else will be taken.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I'd like both payments (£85.98) put back in my account"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_contact_attempted",
+        "status": "present",
+        "value": "Customer emailed the complaint. Handler emailed the customer on 15/10 requesting the gym cancellation email. No reply yet.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Emailed cust 15/10 asking for copy of gym cancellation email"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_told_of_handover",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "vulnerability_recorded",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "linked_complaints_checked",
+        "status": "missing",
+        "value": "",
+        "citations": []
+      },
+      {
+        "item_id": "transaction_reference",
+        "status": "present",
+        "value": "Two £42.99 Direct Debits, 05/10/2026 and 12/10/2026, under DDI ref CFL-00418823.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "DDI ref CFL-00418823"
+          },
+          {
+            "source": "D2",
+            "quote": "05/10/2026 DD paid GBP 42.99 COREFIELD FITNESS"
+          }
+        ]
+      },
+      {
+        "item_id": "payment_type",
+        "status": "present",
+        "value": "Direct Debit",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "12/10/2026 DD paid GBP 42.99 COREFIELD FITNESS"
+          }
+        ]
+      },
+      {
+        "item_id": "expected_vs_actual",
+        "status": "present",
+        "value": "Customer expected collections to stop after cancelling in the app. Both payments were taken, and the second was not rejected.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I don't see how you can let a company take money when the direct debit isn't there any more"
+          },
+          {
+            "source": "D2",
+            "quote": "DDI status at presentation: CANCELLED. Not rejected."
+          }
+        ]
+      },
+      {
+        "item_id": "merchant_or_payee",
+        "status": "present",
+        "value": "Corefield Fitness Ltd",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "originator COREFIELD FITNESS LTD"
+          }
+        ]
+      },
+      {
+        "item_id": "customer_loss",
+        "status": "present",
+        "value": "Two payments totalling £85.98.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Despite that, £42.99 went out on Monday 5th and then ANOTHER £42.99 on the 12th"
+          }
+        ]
+      }
+    ],
+    "conflicts": [],
+    "flags": [
+      {
+        "type": "deadline_risk",
+        "description": "If the payment services time limit applies, the final response is due fifteen business days after receipt on 2026-10-14. The handler is still waiting for confirmation of which clock applies.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Asked [STAFF_2] to confirm which clock"
+          },
+          {
+            "source": "CP-3.2",
+            "quote": "the final response is due within fifteen business days"
+          }
+        ]
+      },
+      {
+        "type": "other",
+        "description": "The gym's claim that the customer is still in their notice period is unverified and comes from a third party.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "still in my notice period"
+          }
+        ]
+      }
+    ]
+  },
+  "checks": {
+    "statements": [
+      {
+        "path": "intake.issues.0",
+        "text": "Direct Debit of £42.99 to Corefield Fitness taken on 05/10/2026 after the customer cancelled the mandate in the app. Collection was already in the BACS cycle at cancellation.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "05/10/2026 DD paid GBP 42.99 COREFIELD FITNESS",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "collection already in cycle at cancellation",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.issues.1",
+        "text": "Direct Debit of £42.99 to Corefield Fitness taken on 12/10/2026 although the mandate was cancelled and the payment was not rejected.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "DDI status at presentation: CANCELLED. Not rejected.",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "Exception code DD-NR-07 (cancelled mandate reject rule not applied)",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.team_reason",
+        "text": "Direct Debit payments executed on a cancelled mandate, with a reject rule failure. This is a Direct Debit claim within the Payments and Disputes remit.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "Exception code DD-NR-07 (cancelled mandate reject rule not applied)",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Sending to Payments & Disputes",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.payment_services_reason",
+        "text": "The 12/10 payment appears wrongly executed, which is a Parts 6-7 matter. Whether the 05/10 collection was authorised or correctly executed is not settled, and the handler must confirm the time limit.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "DDI status at presentation: CANCELLED. Not rejected.",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Asked [STAFF_2] to confirm which clock",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.0",
+        "text": "Customer cancelled a Direct Debit to Corefield Fitness in the app on 02/10/2026.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "02/10/2026 23:48 DDI CANCELLED via mobile app",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.1",
+        "text": "Two payments of £42.99 were taken, on 05/10/2026 and 12/10/2026.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "05/10/2026 DD paid GBP 42.99 COREFIELD FITNESS",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "12/10/2026 DD paid GBP 42.99 COREFIELD FITNESS",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.2",
+        "text": "The 12/10 payment was not rejected although the mandate status was CANCELLED. Exception code DD-NR-07 is recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "DDI status at presentation: CANCELLED. Not rejected.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.3",
+        "text": "Customer asks for both payments (£85.98) to be returned and for confirmation that no further collections will be taken.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I'd like both payments (£85.98) put back in my account",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.4",
+        "text": "The gym says the customer is still in their notice period. This has not been checked.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "still in my notice period",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.0",
+        "text": "2026-09-30: Customer says they cancelled the gym membership by email.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I cancelled the membership with them by email on 30/09",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.1",
+        "text": "2026-10-01: Collection of the 05/10 Direct Debit was input to BACS.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "BACS input 01/10/2026, collection already in cycle at cancellation",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.2",
+        "text": "2026-10-02: Direct Debit mandate cancelled in the mobile app at 23:48.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "02/10/2026 23:48 DDI CANCELLED via mobile app",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "on the evening of Friday 2nd October",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.3",
+        "text": "2026-10-05: £42.99 paid to Corefield Fitness. AUDDIS 0C advice sent the same day.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "05/10/2026 DD paid GBP 42.99 COREFIELD FITNESS",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "AUDDIS 0C advice sent 05/10/2026",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.4",
+        "text": "2026-10-12: Second £42.99 paid to Corefield Fitness. Mandate was CANCELLED and the payment was not rejected.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "12/10/2026 DD paid GBP 42.99 COREFIELD FITNESS",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "DDI status at presentation: CANCELLED. Not rejected.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.5",
+        "text": "2026-10-14: Customer complaint received by email.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Subject: Gym direct debit taken TWICE after I cancelled it",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "timeline.6",
+        "text": "2026-10-15: Handler emailed customer asking for a copy of the gym cancellation email. No reply yet.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Emailed cust 15/10 asking for copy of gym cancellation email",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "outcome_sought",
+        "text": "Customer wants both payments (£85.98) returned to their account and confirmation that the gym cannot take anything else.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I'd like both payments (£85.98) put back in my account",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "confirmation they can't take anything else",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.0",
+        "text": "CP-3.2: The 12/10 payment may be a wrongly executed payment, which sets a fifteen business day time limit.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-3.2",
+            "quote": "the final response is due within fifteen business days",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.1",
+        "text": "CP-3.3: The complaint may mix payment services issues with other issues, so a team leader must confirm the time limit.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-3.3",
+            "quote": "the handler must confirm with a team leader whether the whole complaint will be answered within the payment services time limit",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.2",
+        "text": "CP-2.3: Each payment is a separate issue and needs its own record.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.3",
+            "quote": "each issue must be recorded separately with its own product and cause category",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.3",
+        "text": "CP-2.4: Earlier complaints about the gym or Direct Debit must be checked and any link recorded.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.4",
+            "quote": "check for earlier complaints from the same customer on the same subject in the last twelve months",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.4",
+        "text": "CP-4.3: The customer's requested outcome must be recorded in their own words.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "The handler must record, in the customer's own words where possible, the outcome the customer is seeking",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.5",
+        "text": "CP-4.5: The handler has asked the customer for the gym cancellation email, which is a documented contact attempt.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.5",
+            "quote": "the handler must make at least one documented attempt to contact the customer before a case is passed to a specialist team",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.6",
+        "text": "CP-6.1: The case is proposed for the Payments and Disputes team, so a handover is required.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-6.1",
+            "quote": "A complaint must be passed to a specialist team when it falls within that team's remit",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.7",
+        "text": "CP-6.2: The handover is incomplete until every checklist item is filled in or marked with a reason.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-6.2",
+            "quote": "A handover is complete only when every required checklist item is filled in or marked as not available with a reason",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.outcome_sought",
+        "text": "outcome_sought: Customer wants both £42.99 payments returned and confirmation that nothing else will be taken.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I'd like both payments (£85.98) put back in my account",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.customer_contact_attempted",
+        "text": "customer_contact_attempted: Customer emailed the complaint. Handler emailed the customer on 15/10 requesting the gym cancellation email. No reply yet.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Emailed cust 15/10 asking for copy of gym cancellation email",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.transaction_reference",
+        "text": "transaction_reference: Two £42.99 Direct Debits, 05/10/2026 and 12/10/2026, under DDI ref CFL-00418823.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "DDI ref CFL-00418823",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "05/10/2026 DD paid GBP 42.99 COREFIELD FITNESS",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.payment_type",
+        "text": "payment_type: Direct Debit",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "12/10/2026 DD paid GBP 42.99 COREFIELD FITNESS",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.expected_vs_actual",
+        "text": "expected_vs_actual: Customer expected collections to stop after cancelling in the app. Both payments were taken, and the second was not rejected.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "I don't see how you can let a company take money when the direct debit isn't there any more",
+            "result": "verified"
+          },
+          {
+            "source": "D2",
+            "quote": "DDI status at presentation: CANCELLED. Not rejected.",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.merchant_or_payee",
+        "text": "merchant_or_payee: Corefield Fitness Ltd",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "originator COREFIELD FITNESS LTD",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "handover_checklist.customer_loss",
+        "text": "customer_loss: Two payments totalling £85.98.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Despite that, £42.99 went out on Monday 5th and then ANOTHER £42.99 on the 12th",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.0",
+        "text": "deadline_risk: If the payment services time limit applies, the final response is due fifteen business days after receipt on 2026-10-14. The handler is still waiting for confirmation of which clock applies.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Asked [STAFF_2] to confirm which clock",
+            "result": "verified"
+          },
+          {
+            "source": "CP-3.2",
+            "quote": "the final response is due within fifteen business days",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.1",
+        "text": "other: The gym's claim that the customer is still in their notice period is unverified and comes from a third party.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "still in my notice period",
+            "result": "verified"
+          }
+        ]
+      }
+    ],
+    "supportedCount": 34,
+    "unsupportedCount": 0,
+    "inventedPlaceholders": [],
+    "checklist": {
+      "required": 10,
+      "present": 7,
+      "missing": [
+        "customer_told_of_handover",
+        "vulnerability_recorded",
+        "linked_complaints_checked"
+      ],
+      "conflicting": []
+    }
+  },
+  "clock": "confirm",
+  "deadlines": {
+    "received": "2026-10-14",
+    "clock": "confirm",
+    "summaryResolutionWindowCloses": "2026-10-19",
+    "eightWeekDue": "2026-12-09",
+    "psrDue": "2026-11-04",
+    "psrExceptionalDue": "2026-12-02",
+    "workingDue": "2026-11-04",
+    "needsHandlerConfirmation": true,
+    "calendarDaysLeft": -5,
+    "businessDaysLeft": -3,
+    "status": "overdue"
+  },
+  "usage": {
+    "inputTokens": 927,
+    "outputTokens": 10893,
+    "cacheReadTokens": 9539,
+    "cacheWriteTokens": 0,
+    "costUsd": 0.00563459,
+    "latencyMs": 39986
+  }
+}

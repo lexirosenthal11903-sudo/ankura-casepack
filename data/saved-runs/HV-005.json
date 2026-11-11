@@ -1,8 +1,8 @@
 {
   "caseId": "HV-005",
-  "createdAt": "2026-11-06T10:39:12.002Z",
+  "createdAt": "2026-11-11T09:22:55.153Z",
   "model": "claude-haiku-5-5",
-  "promptVersion": "casepack-v3",
+  "promptVersion": "casepack-v4",
   "redacted": {
     "id": "HV-005",
     "received": "2026-11-03",
@@ -109,7 +109,19 @@
       "[PHONE_1]",
       "[STAFF]",
       "[THIRD_PARTY]"
-    ]
+    ],
+    "display": {
+      "[CUSTOMER]": "Mr Callum Reid",
+      "[CARD]": "1174",
+      "[THIRD_PARTY]": "Sam Whitlock",
+      "[STAFF]": "Nkechi Adeyemi",
+      "[PHONE_1]": "07700 900 659",
+      "[ACCOUNT_1]": "71558206",
+      "[CUSTOMER_PHONE]": "01632 960 873",
+      "[ACCOUNT_2]": "28803175",
+      "[SORT_CODE]": "77-41-52",
+      "[CUSTOMER_EMAIL]": "callum.reid@example.com"
+    }
   },
   "pack": {
     "enough_information": {
@@ -121,54 +133,55 @@
         {
           "product": "credit_card",
           "cause": "fees_interest",
-          "description": "Late fees and interest charged while the customer was in hospital; customer asks for them to be removed.",
+          "description": "Customer asks for late fees and interest applied while he was in hospital to be removed.",
           "citations": [
             {
               "source": "D1",
-              "quote": "Wants the late fees and interest from while he was in hospital taken off"
+              "quote": "I was lying in a hospital bed and you were charging me late fees"
+            },
+            {
+              "source": "D3",
+              "quote": "Late fee GBP 12.00 26/09"
             }
           ]
         },
         {
           "product": "credit_card",
           "cause": "affordability_arrears",
-          "description": "Collections calls and letters, including a default warning, while the customer was ill and off work.",
+          "description": "Customer says collections calls and letters continued during his hospital stay, including a default warning, and asks for the calls to stop.",
           "citations": [
             {
               "source": "D1",
-              "quote": "collections kept ringing his mobile 'every day' and letters piled up, incl a default warning"
-            }
-          ]
-        },
-        {
-          "product": "credit_card",
-          "cause": "service_delay",
-          "description": "Partner called on 6 October to explain the situation and was told the bank could not discuss the account.",
-          "citations": [
+              "quote": "collections kept ringing his mobile 'every day' and letters piled up"
+            },
             {
-              "source": "D1",
-              "quote": "was told we couldnt discuss the acct"
+              "source": "D3",
+              "quote": "default warning DW1 20/10"
             }
           ]
         }
       ],
       "suggested_team": "financial_support",
       "team_reason": {
-        "text": "Arrears, collections and fees on a credit card, with the customer reporting financial difficulty.",
+        "text": "Credit card arrears, collections and fees during financial difficulty fall within Financial Support's remit, and the call summary records that the complaint will go to Financial Support.",
         "citations": [
           {
             "source": "D1",
-            "quote": "Advised complaint will go to Financial Support."
+            "quote": "Advised complaint will go to Financial Support"
+          },
+          {
+            "source": "CP-6.1",
+            "quote": "A complaint must be passed to a specialist team when it falls within that team's remit"
           }
         ]
       },
       "payment_services": "no",
       "payment_services_reason": {
-        "text": "Complaint concerns fees, collections and service only. No unauthorised or wrongly executed payment is alleged.",
+        "text": "The complaint concerns card fees, interest and collections, not an unauthorised or wrongly executed payment.",
         "citations": [
           {
             "source": "D1",
-            "quote": "you were charging me late fees"
+            "quote": "Wants the late fees and interest from while he was in hospital taken off and the calls to stop"
           }
         ]
       },
@@ -177,38 +190,59 @@
     },
     "summary": [
       {
-        "text": "Customer had major bowel surgery on 28 September and was in hospital until 19 October; he is still recovering at home and is off work on SSP.",
+        "text": "Customer says he had major bowel surgery and three weeks in hospital, discharged 19/10, and is still recovering at home and off work on SSP.",
         "citations": [
           {
             "source": "D1",
-            "quote": "had major bowel surgery 28/9 and was in hosp 3 weeks (discharged 19/10)"
-          }
-        ]
-      },
-      {
-        "text": "Customer complains about late fees and interest charged during his hospital stay, and about collections calls and letters, including a default warning.",
-        "citations": [
-          {
-            "source": "D1",
-            "quote": "Wants the late fees and interest from while he was in hospital taken off and the calls to stop."
-          }
-        ]
-      },
-      {
-        "text": "Card balance is GBP 3,412.60 against a GBP 3,500 limit, with GBP 186.00 in arrears over two cycles.",
-        "citations": [
-          {
-            "source": "D3",
-            "quote": "Balance GBP 3,412.60"
+            "quote": "had major bowel surgery 28/9 and was in hosp 3 weeks"
           },
+          {
+            "source": "D1",
+            "quote": "discharged 19/10"
+          }
+        ]
+      },
+      {
+        "text": "Credit card is in arrears of GBP 186.00 over two cycles, with minimum payments due 25/09 and 25/10 missed.",
+        "citations": [
           {
             "source": "D3",
             "quote": "Arrears 2 cycles GBP 186.00"
+          },
+          {
+            "source": "D3",
+            "quote": "Min pmt due 25/09 GBP 93.00 MISSED"
           }
         ]
       },
       {
-        "text": "A 30-day collections hold was set on 3 November 2026 pending this complaint.",
+        "text": "Late fees of GBP 12.00 and interest were applied on 26/09, 28/09, 26/10 and 28/10, including during the hospital stay.",
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Interest 28/09 GBP 71.84, 28/10 GBP 74.12"
+          },
+          {
+            "source": "D3",
+            "quote": "Late fee GBP 12.00 26/10"
+          }
+        ]
+      },
+      {
+        "text": "Partner contacted the bank on 6 Oct to explain the situation and was told the bank could not discuss the account; no third-party authority is on file.",
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "no third party authority on file, unable to discuss"
+          },
+          {
+            "source": "D1",
+            "quote": "was told we couldnt discuss the acct"
+          }
+        ]
+      },
+      {
+        "text": "A 30-day collections hold was set on 03/11/2026 pending this complaint.",
         "citations": [
           {
             "source": "D3",
@@ -220,27 +254,27 @@
     "timeline": [
       {
         "date": "2026-09-25",
-        "event": "Minimum payment of GBP 93.00 due, recorded as missed.",
+        "event": "Minimum payment of GBP 93.00 due and missed.",
         "citations": [
           {
             "source": "D3",
-            "quote": "Min pmt due 25/09 GBP 93.00 MISSED."
+            "quote": "Min pmt due 25/09 GBP 93.00 MISSED"
           }
         ]
       },
       {
         "date": "2026-09-26",
-        "event": "Late fee of GBP 12.00 applied.",
+        "event": "Late fee GBP 12.00 applied.",
         "citations": [
           {
             "source": "D3",
-            "quote": "Late fee GBP 12.00 26/09."
+            "quote": "Late fee GBP 12.00 26/09"
           }
         ]
       },
       {
-        "date": "2026-09-28",
-        "event": "Customer says he had major bowel surgery.",
+        "date": "28/9",
+        "event": "Customer says major bowel surgery took place; date as written, year not stated.",
         "citations": [
           {
             "source": "D1",
@@ -260,11 +294,11 @@
       },
       {
         "date": "2026-09-29",
-        "event": "Outbound dialler attempts begin; 19 attempts logged to 16 October.",
+        "event": "Outbound collections dialler attempts begin; 19 attempts logged to 16/10.",
         "citations": [
           {
             "source": "D3",
-            "quote": "29/09-16/10 x19"
+            "quote": "Outbound dialler attempts to [CUSTOMER_PHONE]: 29/09-16/10 x19"
           }
         ]
       },
@@ -274,17 +308,17 @@
         "citations": [
           {
             "source": "D3",
-            "quote": "arrears L1 30/09"
+            "quote": "arrears L1 30/09, arrears L2 09/10, NOSIA 14/10"
           }
         ]
       },
       {
         "date": "2026-10-06",
-        "event": "Partner called about the customer; told the bank could not discuss the account. No third-party authority on file.",
+        "event": "Partner called the bank about the customer's account, was unable to discuss it, and was told to provide authority; no action taken.",
         "citations": [
           {
             "source": "D2",
-            "quote": "Not a party to acct, no third party authority on file, unable to discuss."
+            "quote": "Says cust in hospital after an op, cant come to phone, asks us to stop calling"
           }
         ]
       },
@@ -310,7 +344,7 @@
       },
       {
         "date": "2026-10-19",
-        "event": "Customer discharged from hospital.",
+        "event": "Customer discharged from hospital, date as written in call summary.",
         "citations": [
           {
             "source": "D1",
@@ -330,70 +364,58 @@
       },
       {
         "date": "2026-10-25",
-        "event": "Minimum payment of GBP 93.00 due, recorded as missed.",
+        "event": "Minimum payment of GBP 93.00 due and missed.",
         "citations": [
           {
             "source": "D3",
-            "quote": "Min pmt due 25/10 GBP 93.00 MISSED."
-          }
-        ]
-      },
-      {
-        "date": "2026-10-26",
-        "event": "Late fee of GBP 12.00 applied.",
-        "citations": [
-          {
-            "source": "D3",
-            "quote": "Late fee GBP 12.00 26/10."
-          }
-        ]
-      },
-      {
-        "date": "2026-10-28",
-        "event": "Interest of GBP 74.12 applied.",
-        "citations": [
-          {
-            "source": "D3",
-            "quote": "28/10 GBP 74.12"
+            "quote": "Min pmt due 25/10 GBP 93.00 MISSED"
           }
         ]
       },
       {
         "date": "2026-11-03",
-        "event": "Customer called in to complain; 30-day collections hold placed on the card account.",
+        "event": "Customer complained by phone; 30-day collections hold set on the card account pending complaint.",
         "citations": [
           {
             "source": "D1",
-            "quote": "Placed 30 day collections hold on card acct pending complaint."
+            "quote": "Placed 30 day collections hold on card acct pending complaint"
+          },
+          {
+            "source": "D1",
+            "quote": "Inbound 11:05, [CUSTOMER], ID&V ok."
           }
         ]
       }
     ],
     "outcome_sought": {
-      "text": "Late fees and interest from the hospital period removed, and collections calls to stop.",
+      "text": "Wants the late fees and interest from while he was in hospital taken off and the calls to stop.",
       "citations": [
         {
           "source": "D1",
-          "quote": "Wants the late fees and interest from while he was in hospital taken off and the calls to stop."
+          "quote": "Wants the late fees and interest from while he was in hospital taken off and the calls to stop"
         }
       ]
     },
     "vulnerability": [
       {
-        "signal": "Recent major surgery with ongoing recovery at home",
+        "signal": "Illness: major surgery and ongoing recovery at home",
         "citations": [
           {
             "source": "D1",
-            "quote": "still recovering at home"
+            "quote": "had major bowel surgery 28/9 and was in hosp 3 weeks"
           }
         ]
       },
       {
-        "signal": "Financial difficulty: unable to work, receiving SSP",
+        "signal": "Financial difficulty: unable to work, on SSP, expects to struggle with November payment",
         "citations": [
           {
             "source": "D1",
             "quote": "cant work at the moment, on SSP"
+          },
+          {
+            "source": "D1",
+            "quote": "will struggle with the Nov payment"
           }
         ]
       },
@@ -409,8 +431,18 @@
     ],
     "relevant_policy": [
       {
+        "policy_id": "CP-2.1",
+        "why_relevant": "Complaint is not resolved by day three, so a written acknowledgement naming the team is required.",
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "we must send a prompt written acknowledgement that names the handler or team dealing with it"
+          }
+        ]
+      },
+      {
         "policy_id": "CP-2.3",
-        "why_relevant": "Three separate issues were raised and each needs its own category and answer.",
+        "why_relevant": "Two separate issues must each be recorded with their own cause category and answered.",
         "citations": [
           {
             "source": "CP-2.3",
@@ -419,28 +451,28 @@
         ]
       },
       {
-        "policy_id": "CP-9.1",
-        "why_relevant": "The complaint involves arrears and collections, so forbearance, pausing collections and debt advice must be checked.",
+        "policy_id": "CP-3.1",
+        "why_relevant": "Sets the final response deadline of eight weeks.",
         "citations": [
           {
-            "source": "CP-9.1",
-            "quote": "whether collections activity should be paused while the complaint is investigated"
+            "source": "CP-3.1",
+            "quote": "We must send a final response within eight weeks of receiving the complaint"
           }
         ]
       },
       {
-        "policy_id": "CP-9.2",
-        "why_relevant": "Fees and interest were applied while the customer was reportedly in financial difficulty.",
+        "policy_id": "CP-4.3",
+        "why_relevant": "The customer's requested outcome must be recorded in their own words.",
         "citations": [
           {
-            "source": "CP-9.2",
-            "quote": "Fees and interest applied while a customer was in financial difficulty must be reviewed as part of the complaint."
+            "source": "CP-4.3",
+            "quote": "record, in the customer's own words where possible, the outcome the customer is seeking"
           }
         ]
       },
       {
         "policy_id": "CP-5.2",
-        "why_relevant": "Vulnerability signs and the customer's email preference need formal recording with consent.",
+        "why_relevant": "Signs of vulnerability must be recorded with any support needs, such as contact preference.",
         "citations": [
           {
             "source": "CP-5.2",
@@ -449,18 +481,8 @@
         ]
       },
       {
-        "policy_id": "CP-4.3",
-        "why_relevant": "The outcome sought must be recorded in the customer's own words.",
-        "citations": [
-          {
-            "source": "CP-4.3",
-            "quote": "The handler must record, in the customer's own words where possible, the outcome the customer is seeking."
-          }
-        ]
-      },
-      {
         "policy_id": "CP-6.1",
-        "why_relevant": "The complaint goes to Financial Support and must use that team's handover checklist.",
+        "why_relevant": "Case is being passed to Financial Support using its handover checklist.",
         "citations": [
           {
             "source": "CP-6.1",
@@ -469,12 +491,22 @@
         ]
       },
       {
-        "policy_id": "CP-4.5",
-        "why_relevant": "Income and expenditure details are missing, so a documented contact attempt is needed before handover.",
+        "policy_id": "CP-9.1",
+        "why_relevant": "Arrears and collections require checks on forbearance, collections pause and debt advice.",
         "citations": [
           {
-            "source": "CP-4.5",
-            "quote": "the handler must make at least one documented attempt to contact the customer before a case is passed to a specialist team"
+            "source": "CP-9.1",
+            "quote": "whether forbearance was considered, whether collections activity should be paused while the complaint is investigated, and whether the customer was signposted to free debt advice"
+          }
+        ]
+      },
+      {
+        "policy_id": "CP-9.2",
+        "why_relevant": "Fees and interest applied during financial difficulty must be reviewed.",
+        "citations": [
+          {
+            "source": "CP-9.2",
+            "quote": "Fees and interest applied while a customer was in financial difficulty must be reviewed as part of the complaint"
           }
         ]
       }
@@ -483,46 +515,41 @@
       {
         "item_id": "outcome_sought",
         "status": "present",
-        "value": "Late fees and interest from the hospital period removed, and collections calls to stop.",
+        "value": "Remove late fees and interest from hospital period and stop calls.",
         "citations": [
           {
             "source": "D1",
-            "quote": "Wants the late fees and interest from while he was in hospital taken off and the calls to stop."
+            "quote": "Wants the late fees and interest from while he was in hospital taken off and the calls to stop"
           }
         ]
       },
       {
         "item_id": "customer_contact_attempted",
         "status": "present",
-        "value": "Customer called in on 3 November 2026.",
+        "value": "Customer called in and ID&V completed.",
         "citations": [
           {
             "source": "D1",
-            "quote": "Inbound 11:05"
+            "quote": "Inbound 11:05, [CUSTOMER], ID&V ok."
           }
         ]
       },
       {
         "item_id": "customer_told_of_handover",
         "status": "present",
-        "value": "Customer told the complaint will go to Financial Support.",
+        "value": "Customer advised complaint will go to Financial Support.",
         "citations": [
           {
             "source": "D1",
-            "quote": "Advised complaint will go to Financial Support."
+            "quote": "Advised complaint will go to Financial Support"
           }
         ]
       },
       {
         "item_id": "vulnerability_recorded",
         "status": "missing",
-        "value": "Signs and email preference noted in the call summary; no vulnerability flag or support plan recorded.",
-        "citations": [
-          {
-            "source": "D1",
-            "quote": "prefers email for now"
-          }
-        ]
+        "value": "",
+        "citations": []
       },
       {
         "item_id": "linked_complaints_checked",
@@ -533,8 +560,12 @@
       {
         "item_id": "balance_and_arrears",
         "status": "present",
-        "value": "Balance GBP 3,412.60; arrears GBP 186.00 over two cycles.",
+        "value": "Balance GBP 3,412.60; limit GBP 3,500; arrears GBP 186.00 over 2 cycles.",
         "citations": [
+          {
+            "source": "D3",
+            "quote": "Balance GBP 3,412.60"
+          },
           {
             "source": "D3",
             "quote": "Arrears 2 cycles GBP 186.00"
@@ -544,13 +575,8 @@
       {
         "item_id": "income_expenditure",
         "status": "missing",
-        "value": "Customer says he is on SSP; no income or expenditure recorded.",
-        "citations": [
-          {
-            "source": "D1",
-            "quote": "cant work at the moment, on SSP"
-          }
-        ]
+        "value": "",
+        "citations": []
       },
       {
         "item_id": "forbearance_history",
@@ -561,7 +587,7 @@
       {
         "item_id": "collections_status",
         "status": "present",
-        "value": "30-day collections hold set 3 November 2026.",
+        "value": "Collections hold set 03/11/2026 for 30 days; strategy STD-2.",
         "citations": [
           {
             "source": "D3",
@@ -578,20 +604,7 @@
     ],
     "conflicts": [
       {
-        "text": "Customer says late fees were charged while he was in hospital. System shows late fees dated 26 September, before the 28 September admission, and 26 October, after the 19 October discharge.",
-        "citations": [
-          {
-            "source": "D1",
-            "quote": "I was lying in a hospital bed and you were charging me late fees"
-          },
-          {
-            "source": "D3",
-            "quote": "Late fee GBP 12.00 26/10."
-          }
-        ]
-      },
-      {
-        "text": "Customer says collections rang his mobile every day. System logs 19 dialler attempts between 29 September and 16 October.",
+        "text": "Customer says collections rang every day; dialler log records 19 attempts between 29/09 and 16/10. Both versions are recorded and not resolved.",
         "citations": [
           {
             "source": "D1",
@@ -599,33 +612,43 @@
           },
           {
             "source": "D3",
-            "quote": "29/09-16/10 x19"
+            "quote": "Outbound dialler attempts to [CUSTOMER_PHONE]: 29/09-16/10 x19"
           }
         ]
       }
     ],
     "flags": [
       {
-        "type": "deadline_risk",
-        "description": "Collections hold ends around 3 December 2026. Customer says he will struggle with the November payment. Final response due within eight weeks of 3 November 2026.",
-        "citations": [
-          {
-            "source": "D3",
-            "quote": "Collections hold: SET 03/11/2026 30 days"
-          },
-          {
-            "source": "D1",
-            "quote": "Also said he will struggle with the Nov payment."
-          }
-        ]
-      },
-      {
         "type": "third_party_authority",
-        "description": "Partner contacted the bank on 6 October. No third-party authority is on file, so no account details may be shared with the partner unless authority is received and checked.",
+        "description": "Partner contacted the bank on 6 Oct; no third-party authority is on file and the partner has not been verified as acting for the customer.",
         "citations": [
           {
             "source": "D2",
             "quote": "no third party authority on file"
+          }
+        ]
+      },
+      {
+        "type": "deadline_risk",
+        "description": "Acknowledgement due by 2026-11-06 if unresolved; final response due by 2026-12-29. Hold ends around 2026-12-03 and a November payment is at risk.",
+        "citations": [
+          {
+            "source": "CP-3.1",
+            "quote": "We must send a final response within eight weeks of receiving the complaint"
+          },
+          {
+            "source": "D1",
+            "quote": "will struggle with the Nov payment"
+          }
+        ]
+      },
+      {
+        "type": "data_quality",
+        "description": "Hospital and surgery dates in the call summary have no year.",
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "had major bowel surgery 28/9"
           }
         ]
       }
@@ -635,33 +658,128 @@
     "statements": [
       {
         "path": "intake.issues.0",
-        "text": "Late fees and interest charged while the customer was in hospital; customer asks for them to be removed.",
+        "text": "Customer asks for late fees and interest applied while he was in hospital to be removed.",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "Wants the late fees and interest from while he was in hospital taken off",
+            "quote": "I was lying in a hospital bed and you were charging me late fees",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Late fee GBP 12.00 26/09",
             "result": "verified"
           }
         ]
       },
       {
         "path": "intake.issues.1",
-        "text": "Collections calls and letters, including a default warning, while the customer was ill and off work.",
+        "text": "Customer says collections calls and letters continued during his hospital stay, including a default warning, and asks for the calls to stop.",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "collections kept ringing his mobile 'every day' and letters piled up, incl a default warning",
+            "quote": "collections kept ringing his mobile 'every day' and letters piled up",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "default warning DW1 20/10",
             "result": "verified"
           }
         ]
       },
       {
-        "path": "intake.issues.2",
-        "text": "Partner called on 6 October to explain the situation and was told the bank could not discuss the account.",
+        "path": "intake.team_reason",
+        "text": "Credit card arrears, collections and fees during financial difficulty fall within Financial Support's remit, and the call summary records that the complaint will go to Financial Support.",
         "supported": true,
         "citations": [
+          {
+            "source": "D1",
+            "quote": "Advised complaint will go to Financial Support",
+            "result": "verified"
+          },
+          {
+            "source": "CP-6.1",
+            "quote": "A complaint must be passed to a specialist team when it falls within that team's remit",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "intake.payment_services_reason",
+        "text": "The complaint concerns card fees, interest and collections, not an unauthorised or wrongly executed payment.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "Wants the late fees and interest from while he was in hospital taken off and the calls to stop",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.0",
+        "text": "Customer says he had major bowel surgery and three weeks in hospital, discharged 19/10, and is still recovering at home and off work on SSP.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "had major bowel surgery 28/9 and was in hosp 3 weeks",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "discharged 19/10",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.1",
+        "text": "Credit card is in arrears of GBP 186.00 over two cycles, with minimum payments due 25/09 and 25/10 missed.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Arrears 2 cycles GBP 186.00",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Min pmt due 25/09 GBP 93.00 MISSED",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.2",
+        "text": "Late fees of GBP 12.00 and interest were applied on 26/09, 28/09, 26/10 and 28/10, including during the hospital stay.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D3",
+            "quote": "Interest 28/09 GBP 71.84, 28/10 GBP 74.12",
+            "result": "verified"
+          },
+          {
+            "source": "D3",
+            "quote": "Late fee GBP 12.00 26/10",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "summary.3",
+        "text": "Partner contacted the bank on 6 Oct to explain the situation and was told the bank could not discuss the account; no third-party authority is on file.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D2",
+            "quote": "no third party authority on file, unable to discuss",
+            "result": "verified"
+          },
           {
             "source": "D1",
             "quote": "was told we couldnt discuss the acct",
@@ -670,73 +788,8 @@
         ]
       },
       {
-        "path": "intake.team_reason",
-        "text": "Arrears, collections and fees on a credit card, with the customer reporting financial difficulty.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "D1",
-            "quote": "Advised complaint will go to Financial Support.",
-            "result": "verified"
-          }
-        ]
-      },
-      {
-        "path": "intake.payment_services_reason",
-        "text": "Complaint concerns fees, collections and service only. No unauthorised or wrongly executed payment is alleged.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "D1",
-            "quote": "you were charging me late fees",
-            "result": "verified"
-          }
-        ]
-      },
-      {
-        "path": "summary.0",
-        "text": "Customer had major bowel surgery on 28 September and was in hospital until 19 October; he is still recovering at home and is off work on SSP.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "D1",
-            "quote": "had major bowel surgery 28/9 and was in hosp 3 weeks (discharged 19/10)",
-            "result": "verified"
-          }
-        ]
-      },
-      {
-        "path": "summary.1",
-        "text": "Customer complains about late fees and interest charged during his hospital stay, and about collections calls and letters, including a default warning.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "D1",
-            "quote": "Wants the late fees and interest from while he was in hospital taken off and the calls to stop.",
-            "result": "verified"
-          }
-        ]
-      },
-      {
-        "path": "summary.2",
-        "text": "Card balance is GBP 3,412.60 against a GBP 3,500 limit, with GBP 186.00 in arrears over two cycles.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "D3",
-            "quote": "Balance GBP 3,412.60",
-            "result": "verified"
-          },
-          {
-            "source": "D3",
-            "quote": "Arrears 2 cycles GBP 186.00",
-            "result": "verified"
-          }
-        ]
-      },
-      {
-        "path": "summary.3",
-        "text": "A 30-day collections hold was set on 3 November 2026 pending this complaint.",
+        "path": "summary.4",
+        "text": "A 30-day collections hold was set on 03/11/2026 pending this complaint.",
         "supported": true,
         "citations": [
           {
@@ -748,31 +801,31 @@
       },
       {
         "path": "timeline.0",
-        "text": "2026-09-25: Minimum payment of GBP 93.00 due, recorded as missed.",
+        "text": "2026-09-25: Minimum payment of GBP 93.00 due and missed.",
         "supported": true,
         "citations": [
           {
             "source": "D3",
-            "quote": "Min pmt due 25/09 GBP 93.00 MISSED.",
+            "quote": "Min pmt due 25/09 GBP 93.00 MISSED",
             "result": "verified"
           }
         ]
       },
       {
         "path": "timeline.1",
-        "text": "2026-09-26: Late fee of GBP 12.00 applied.",
+        "text": "2026-09-26: Late fee GBP 12.00 applied.",
         "supported": true,
         "citations": [
           {
             "source": "D3",
-            "quote": "Late fee GBP 12.00 26/09.",
+            "quote": "Late fee GBP 12.00 26/09",
             "result": "verified"
           }
         ]
       },
       {
         "path": "timeline.2",
-        "text": "2026-09-28: Customer says he had major bowel surgery.",
+        "text": "28/9: Customer says major bowel surgery took place; date as written, year not stated.",
         "supported": true,
         "citations": [
           {
@@ -796,12 +849,12 @@
       },
       {
         "path": "timeline.4",
-        "text": "2026-09-29: Outbound dialler attempts begin; 19 attempts logged to 16 October.",
+        "text": "2026-09-29: Outbound collections dialler attempts begin; 19 attempts logged to 16/10.",
         "supported": true,
         "citations": [
           {
             "source": "D3",
-            "quote": "29/09-16/10 x19",
+            "quote": "Outbound dialler attempts to [CUSTOMER_PHONE]: 29/09-16/10 x19",
             "result": "verified"
           }
         ]
@@ -813,19 +866,19 @@
         "citations": [
           {
             "source": "D3",
-            "quote": "arrears L1 30/09",
+            "quote": "arrears L1 30/09, arrears L2 09/10, NOSIA 14/10",
             "result": "verified"
           }
         ]
       },
       {
         "path": "timeline.6",
-        "text": "2026-10-06: Partner called about the customer; told the bank could not discuss the account. No third-party authority on file.",
+        "text": "2026-10-06: Partner called the bank about the customer's account, was unable to discuss it, and was told to provide authority; no action taken.",
         "supported": true,
         "citations": [
           {
             "source": "D2",
-            "quote": "Not a party to acct, no third party authority on file, unable to discuss.",
+            "quote": "Says cust in hospital after an op, cant come to phone, asks us to stop calling",
             "result": "verified"
           }
         ]
@@ -856,7 +909,7 @@
       },
       {
         "path": "timeline.9",
-        "text": "2026-10-19: Customer discharged from hospital.",
+        "text": "2026-10-19: Customer discharged from hospital, date as written in call summary.",
         "supported": true,
         "citations": [
           {
@@ -880,84 +933,70 @@
       },
       {
         "path": "timeline.11",
-        "text": "2026-10-25: Minimum payment of GBP 93.00 due, recorded as missed.",
+        "text": "2026-10-25: Minimum payment of GBP 93.00 due and missed.",
         "supported": true,
         "citations": [
           {
             "source": "D3",
-            "quote": "Min pmt due 25/10 GBP 93.00 MISSED.",
+            "quote": "Min pmt due 25/10 GBP 93.00 MISSED",
             "result": "verified"
           }
         ]
       },
       {
         "path": "timeline.12",
-        "text": "2026-10-26: Late fee of GBP 12.00 applied.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "D3",
-            "quote": "Late fee GBP 12.00 26/10.",
-            "result": "verified"
-          }
-        ]
-      },
-      {
-        "path": "timeline.13",
-        "text": "2026-10-28: Interest of GBP 74.12 applied.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "D3",
-            "quote": "28/10 GBP 74.12",
-            "result": "verified"
-          }
-        ]
-      },
-      {
-        "path": "timeline.14",
-        "text": "2026-11-03: Customer called in to complain; 30-day collections hold placed on the card account.",
+        "text": "2026-11-03: Customer complained by phone; 30-day collections hold set on the card account pending complaint.",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "Placed 30 day collections hold on card acct pending complaint.",
+            "quote": "Placed 30 day collections hold on card acct pending complaint",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "Inbound 11:05, [CUSTOMER], ID&V ok.",
             "result": "verified"
           }
         ]
       },
       {
         "path": "outcome_sought",
-        "text": "Late fees and interest from the hospital period removed, and collections calls to stop.",
+        "text": "Wants the late fees and interest from while he was in hospital taken off and the calls to stop.",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "Wants the late fees and interest from while he was in hospital taken off and the calls to stop.",
+            "quote": "Wants the late fees and interest from while he was in hospital taken off and the calls to stop",
             "result": "verified"
           }
         ]
       },
       {
         "path": "vulnerability.0",
-        "text": "Recent major surgery with ongoing recovery at home",
+        "text": "Illness: major surgery and ongoing recovery at home",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "still recovering at home",
+            "quote": "had major bowel surgery 28/9 and was in hosp 3 weeks",
             "result": "verified"
           }
         ]
       },
       {
         "path": "vulnerability.1",
-        "text": "Financial difficulty: unable to work, receiving SSP",
+        "text": "Financial difficulty: unable to work, on SSP, expects to struggle with November payment",
         "supported": true,
         "citations": [
           {
             "source": "D1",
             "quote": "cant work at the moment, on SSP",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "will struggle with the Nov payment",
             "result": "verified"
           }
         ]
@@ -976,7 +1015,19 @@
       },
       {
         "path": "relevant_policy.0",
-        "text": "CP-2.3: Three separate issues were raised and each needs its own category and answer.",
+        "text": "CP-2.1: Complaint is not resolved by day three, so a written acknowledgement naming the team is required.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-2.1",
+            "quote": "we must send a prompt written acknowledgement that names the handler or team dealing with it",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.1",
+        "text": "CP-2.3: Two separate issues must each be recorded with their own cause category and answered.",
         "supported": true,
         "citations": [
           {
@@ -987,32 +1038,32 @@
         ]
       },
       {
-        "path": "relevant_policy.1",
-        "text": "CP-9.1: The complaint involves arrears and collections, so forbearance, pausing collections and debt advice must be checked.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "CP-9.1",
-            "quote": "whether collections activity should be paused while the complaint is investigated",
-            "result": "verified"
-          }
-        ]
-      },
-      {
         "path": "relevant_policy.2",
-        "text": "CP-9.2: Fees and interest were applied while the customer was reportedly in financial difficulty.",
+        "text": "CP-3.1: Sets the final response deadline of eight weeks.",
         "supported": true,
         "citations": [
           {
-            "source": "CP-9.2",
-            "quote": "Fees and interest applied while a customer was in financial difficulty must be reviewed as part of the complaint.",
+            "source": "CP-3.1",
+            "quote": "We must send a final response within eight weeks of receiving the complaint",
             "result": "verified"
           }
         ]
       },
       {
         "path": "relevant_policy.3",
-        "text": "CP-5.2: Vulnerability signs and the customer's email preference need formal recording with consent.",
+        "text": "CP-4.3: The customer's requested outcome must be recorded in their own words.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-4.3",
+            "quote": "record, in the customer's own words where possible, the outcome the customer is seeking",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.4",
+        "text": "CP-5.2: Signs of vulnerability must be recorded with any support needs, such as contact preference.",
         "supported": true,
         "citations": [
           {
@@ -1023,20 +1074,8 @@
         ]
       },
       {
-        "path": "relevant_policy.4",
-        "text": "CP-4.3: The outcome sought must be recorded in the customer's own words.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "CP-4.3",
-            "quote": "The handler must record, in the customer's own words where possible, the outcome the customer is seeking.",
-            "result": "verified"
-          }
-        ]
-      },
-      {
         "path": "relevant_policy.5",
-        "text": "CP-6.1: The complaint goes to Financial Support and must use that team's handover checklist.",
+        "text": "CP-6.1: Case is being passed to Financial Support using its handover checklist.",
         "supported": true,
         "citations": [
           {
@@ -1048,57 +1087,74 @@
       },
       {
         "path": "relevant_policy.6",
-        "text": "CP-4.5: Income and expenditure details are missing, so a documented contact attempt is needed before handover.",
+        "text": "CP-9.1: Arrears and collections require checks on forbearance, collections pause and debt advice.",
         "supported": true,
         "citations": [
           {
-            "source": "CP-4.5",
-            "quote": "the handler must make at least one documented attempt to contact the customer before a case is passed to a specialist team",
+            "source": "CP-9.1",
+            "quote": "whether forbearance was considered, whether collections activity should be paused while the complaint is investigated, and whether the customer was signposted to free debt advice",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "relevant_policy.7",
+        "text": "CP-9.2: Fees and interest applied during financial difficulty must be reviewed.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-9.2",
+            "quote": "Fees and interest applied while a customer was in financial difficulty must be reviewed as part of the complaint",
             "result": "verified"
           }
         ]
       },
       {
         "path": "handover_checklist.outcome_sought",
-        "text": "outcome_sought: Late fees and interest from the hospital period removed, and collections calls to stop.",
+        "text": "outcome_sought: Remove late fees and interest from hospital period and stop calls.",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "Wants the late fees and interest from while he was in hospital taken off and the calls to stop.",
+            "quote": "Wants the late fees and interest from while he was in hospital taken off and the calls to stop",
             "result": "verified"
           }
         ]
       },
       {
         "path": "handover_checklist.customer_contact_attempted",
-        "text": "customer_contact_attempted: Customer called in on 3 November 2026.",
+        "text": "customer_contact_attempted: Customer called in and ID&V completed.",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "Inbound 11:05",
+            "quote": "Inbound 11:05, [CUSTOMER], ID&V ok.",
             "result": "verified"
           }
         ]
       },
       {
         "path": "handover_checklist.customer_told_of_handover",
-        "text": "customer_told_of_handover: Customer told the complaint will go to Financial Support.",
+        "text": "customer_told_of_handover: Customer advised complaint will go to Financial Support.",
         "supported": true,
         "citations": [
           {
             "source": "D1",
-            "quote": "Advised complaint will go to Financial Support.",
+            "quote": "Advised complaint will go to Financial Support",
             "result": "verified"
           }
         ]
       },
       {
         "path": "handover_checklist.balance_and_arrears",
-        "text": "balance_and_arrears: Balance GBP 3,412.60; arrears GBP 186.00 over two cycles.",
+        "text": "balance_and_arrears: Balance GBP 3,412.60; limit GBP 3,500; arrears GBP 186.00 over 2 cycles.",
         "supported": true,
         "citations": [
+          {
+            "source": "D3",
+            "quote": "Balance GBP 3,412.60",
+            "result": "verified"
+          },
           {
             "source": "D3",
             "quote": "Arrears 2 cycles GBP 186.00",
@@ -1108,7 +1164,7 @@
       },
       {
         "path": "handover_checklist.collections_status",
-        "text": "collections_status: 30-day collections hold set 3 November 2026.",
+        "text": "collections_status: Collections hold set 03/11/2026 for 30 days; strategy STD-2.",
         "supported": true,
         "citations": [
           {
@@ -1120,24 +1176,7 @@
       },
       {
         "path": "conflicts.0",
-        "text": "Customer says late fees were charged while he was in hospital. System shows late fees dated 26 September, before the 28 September admission, and 26 October, after the 19 October discharge.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "D1",
-            "quote": "I was lying in a hospital bed and you were charging me late fees",
-            "result": "verified"
-          },
-          {
-            "source": "D3",
-            "quote": "Late fee GBP 12.00 26/10.",
-            "result": "verified"
-          }
-        ]
-      },
-      {
-        "path": "conflicts.1",
-        "text": "Customer says collections rang his mobile every day. System logs 19 dialler attempts between 29 September and 16 October.",
+        "text": "Customer says collections rang every day; dialler log records 19 attempts between 29/09 and 16/10. Both versions are recorded and not resolved.",
         "supported": true,
         "citations": [
           {
@@ -1147,31 +1186,14 @@
           },
           {
             "source": "D3",
-            "quote": "29/09-16/10 x19",
+            "quote": "Outbound dialler attempts to [CUSTOMER_PHONE]: 29/09-16/10 x19",
             "result": "verified"
           }
         ]
       },
       {
         "path": "flags.0",
-        "text": "deadline_risk: Collections hold ends around 3 December 2026. Customer says he will struggle with the November payment. Final response due within eight weeks of 3 November 2026.",
-        "supported": true,
-        "citations": [
-          {
-            "source": "D3",
-            "quote": "Collections hold: SET 03/11/2026 30 days",
-            "result": "verified"
-          },
-          {
-            "source": "D1",
-            "quote": "Also said he will struggle with the Nov payment.",
-            "result": "verified"
-          }
-        ]
-      },
-      {
-        "path": "flags.1",
-        "text": "third_party_authority: Partner contacted the bank on 6 October. No third-party authority is on file, so no account details may be shared with the partner unless authority is received and checked.",
+        "text": "third_party_authority: Partner contacted the bank on 6 Oct; no third-party authority is on file and the partner has not been verified as acting for the customer.",
         "supported": true,
         "citations": [
           {
@@ -1180,9 +1202,38 @@
             "result": "verified"
           }
         ]
+      },
+      {
+        "path": "flags.1",
+        "text": "deadline_risk: Acknowledgement due by 2026-11-06 if unresolved; final response due by 2026-12-29. Hold ends around 2026-12-03 and a November payment is at risk.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "CP-3.1",
+            "quote": "We must send a final response within eight weeks of receiving the complaint",
+            "result": "verified"
+          },
+          {
+            "source": "D1",
+            "quote": "will struggle with the Nov payment",
+            "result": "verified"
+          }
+        ]
+      },
+      {
+        "path": "flags.2",
+        "text": "data_quality: Hospital and surgery dates in the call summary have no year.",
+        "supported": true,
+        "citations": [
+          {
+            "source": "D1",
+            "quote": "had major bowel surgery 28/9",
+            "result": "verified"
+          }
+        ]
       }
     ],
-    "supportedCount": 44,
+    "supportedCount": 43,
     "unsupportedCount": 0,
     "inventedPlaceholders": [],
     "checklist": {
@@ -1212,10 +1263,10 @@
   },
   "usage": {
     "inputTokens": 900,
-    "outputTokens": 10605,
-    "cacheReadTokens": 0,
-    "cacheWriteTokens": 9468,
-    "costUsd": 0.006576,
-    "latencyMs": 39472
+    "outputTokens": 10892,
+    "cacheReadTokens": 9539,
+    "cacheWriteTokens": 0,
+    "costUsd": 0.00563139,
+    "latencyMs": 41395
   }
 }
