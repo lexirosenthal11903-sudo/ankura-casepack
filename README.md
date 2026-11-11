@@ -10,7 +10,7 @@ Live site: https://ankura-casepack.vercel.app
 
 There is no login and no real data. Each complaint opens on a saved result from a real run, and the button "Run live AI on this case" drafts a fresh pack in about 45 seconds. Live runs are limited per visitor and per day, with a spending cap.
 
-1. Open the front page. It gives the route: the guided tour first, then a complaint from the list, the team leader view, and Try your own.
+1. Open the front page, Start here. It gives the route: the guided tour first, then a complaint from the list, the team leader view, and Try your own.
 2. Choose **All complaints** in the navigation and open **HV-007, Mr Kieran Doyle**. This case has an instruction hidden in the customer's text, and you will see it flagged.
 3. Accept each section with its **Accept verified here** button. Every line the AI wrote has a quote from the source, and code has checked each quote exists.
 4. Fill each gap in the specialist team's checklist, or mark it not available with a reason. Sign-off stays blocked until you do.
@@ -106,10 +106,10 @@ The held-back set needs `ALLOW_HELDOUT=1` in front of the same command. I added 
 
 | Folder | What it holds |
 |---|---|
-| `src/app/` | The Next.js pages and the API route (front page replay, queue, case workspace, team leader view, how it works) |
+| `src/app/` | The Next.js pages and the API routes (start page, guided tour, queue, case workspace, team leader view, try your own, how it works) |
 | `src/lib/` | The logic. Redaction, deadlines, quote checking (`provenance.ts`), the case pack schema, the AI call, saved runs |
 | `src/lib/prompts/` | The three prompt versions. v3 is in production |
-| `data/` | The fictional bank, the policy with citable paragraph numbers, handover checklists, 25 complaints and the saved runs the site replays |
+| `data/` | The fictional bank, the policy with citable paragraph numbers, handover checklists, 25 complaints and the saved runs the site shows |
 | `evals/` | The scorer, the eval runner, the answer keys and every result file |
 | `docs/` | The decision log, verified regulatory facts, the plan, the review notes and the deck |
 | `tests/` | Unit tests for deadlines, redaction, quote checking, the live-mode guard and insights, plus the end-to-end test in `tests/e2e/` |

@@ -51,12 +51,15 @@ test("handler fills every gap before handover; a send-back must be fixed before 
   await expect(page.getByText("You accepted the handover.")).toBeVisible();
 });
 
-test("front page replays a real run through to the team leader board", async ({ page }) => {
+test("front page gives the route and the tour starts from it", async ({ page }) => {
   await page.goto("/");
-  await page.getByRole("button", { name: "Skip to the end" }).click();
-  await expect(page.getByText("Pattern spotted")).toBeVisible();
-  await expect(page.getByText("accepted the handover")).toBeVisible();
-  await expect(page.getByRole("link", { name: "Do the review yourself" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Start here" })).toBeVisible();
+  await page.getByRole("link", { name: "Take the guided tour" }).click();
+  await expect(page.getByRole("dialog")).toContainText("1 of 8");
+  await page.getByRole("button", { name: "Next" }).click();
+  await expect(page.getByRole("dialog")).toContainText("2 of 8");
+  await page.getByRole("button", { name: "Skip tour" }).click();
+  await expect(page.getByRole("dialog")).toHaveCount(0);
 });
 
 test("walkthrough shows a failed quote check", async ({ page }) => {
