@@ -232,7 +232,7 @@ export default function Workspace({
       <div className={styles.sectionHead}>
         <Tag>{title}</Tag>
         {editable && n > 0 && (
-          <button className="btn btn-small btn-secondary" data-tour="accept" onClick={() => acceptSection(prefixes, typeof title === "string" ? title.toLowerCase() : "this section")}>
+          <button className="btn btn-small btn-secondary" data-tour="accept" onClick={() => acceptSection(prefixes, typeof title === "string" ? title.split(/[:(]/)[0].trim().toLowerCase() : "this section")}>
             Accept {n} verified here
           </button>
         )}
@@ -511,57 +511,58 @@ export default function Workspace({
             </div>
           )}
 
-          {pack.flags.length > 0 && (
-            <>
-              <SectionHead title="Flags" prefixes={["flags"]} />
-              {pack.flags.map((f, i) => renderStatement(`flags.${i}`, <>
-                <span className={`tag ${f.type === "instruction_in_customer_text" ? "tag-red" : "tag-amber"}`}>{f.type.replaceAll("_", " ")}</span> {show(f.description)}
-              </>, i))}
-            </>
-          )}
-
-          <SectionHead title="Summary" prefixes={["summary"]} />
-          {pack.summary.map((_, i) => renderStatement(`summary.${i}`, undefined, i))}
-
-          <SectionHead title="What the customer wants" prefixes={["outcome_sought"]} />
-          {renderStatement("outcome_sought")}
-
-          <SectionHead title="Vulnerability" prefixes={["vulnerability"]} />
-          {pack.vulnerability.length === 0 && <p className="small muted">No signs found. Check the documents yourself before relying on this.</p>}
-          {pack.vulnerability.map((_, i) => renderStatement(`vulnerability.${i}`, undefined, i))}
-
-          {pack.conflicts.length > 0 && (
-            <>
-              <SectionHead title="Records that disagree" prefixes={["conflicts"]} />
-              {pack.conflicts.map((_, i) => renderStatement(`conflicts.${i}`, undefined, i))}
-            </>
-          )}
-
-          <details className={styles.fold} open>
-            <summary><h3>Routing: {team.label}</h3></summary>
-            <SectionHead title="Routing" prefixes={["intake"]} as="span" />
-            {pack.intake.issues.map((iss, i) => renderStatement(`intake.issues.${i}`, <>
-              <strong>{labels.products[iss.product]}: {labels.causes[iss.cause]}.</strong> {show(iss.description)}
-            </>, i))}
-            {renderStatement("intake.team_reason", <><strong>Suggested team: {team.label}.</strong> {show(pack.intake.team_reason.text)}</>)}
-            {renderStatement("intake.payment_services_reason", <>
-              <strong>Payment services rule applies: {pack.intake.payment_services}.</strong> {show(pack.intake.payment_services_reason.text)}
-            </>)}
-          </details>
-
-          <details className={styles.fold} open>
-            <summary><h3>Timeline ({pack.timeline.length} events)</h3></summary>
-            <SectionHead title="Timeline" prefixes={["timeline"]} as="span" />
-            {pack.timeline.map((t, i) => renderStatement(`timeline.${i}`, <><strong>{formatDate(t.date)}</strong> {show(t.event)}</>, i))}
-          </details>
-
-          <details className={styles.fold} open>
-            <summary><h3>Relevant policy ({pack.relevant_policy.length} paragraphs)</h3></summary>
-            <SectionHead title="Relevant policy" prefixes={["relevant_policy"]} as="span" />
-            {pack.relevant_policy.map((rp, i) => renderStatement(`relevant_policy.${i}`, <>
-              <strong>{rp.policy_id} {labels.policy[rp.policy_id]?.heading}.</strong> {show(rp.why_relevant)}
-            </>, i))}
-          </details>
+          {(() => {
+            // Every section folds. Only the first one starts open, so the handler opens each section before accepting it.
+            let first = true;
+            const Fold = ({ title, prefixes, children }: { title: string; prefixes: string[]; children: React.ReactNode }) => {
+              const open = first;
+              first = false;
+              return (
+                <details className={styles.fold} open={open} data-fold={title}>
+                  <summary><h3>{title}</h3></summary>
+                  <SectionHead title={title} prefixes={prefixes} as="span" />
+                  {children}
+                </details>
+              );
+            };
+            return (
+              <>
+                {pack.flags.length > 0 && (
+                  <Fold title="Flags" prefixes={["flags"]}>
+                    {pack.flags.map((f, i) => renderStatement(`flags.${i}`, <>
+                      <span className={`tag ${f.type === "instruction_in_customer_text" ? "tag-red" : "tag-amber"}`}>{f.type.replaceAll("_", " ")}</span> {show(f.description)}
+                    </>, i))}
+                  </Fold>
+                )}
+                <Fold title="Summary" prefixes={["summary"]}>{pack.summary.map((_, i) => renderStatement(`summary.${i}`, undefined, i))}</Fold>
+                <Fold title="What the customer wants" prefixes={["outcome_sought"]}>{renderStatement("outcome_sought")}</Fold>
+                <Fold title="Vulnerability" prefixes={["vulnerability"]}>
+                  {pack.vulnerability.length === 0 && <p className="small muted">No signs found. Check the documents yourself before relying on this.</p>}
+                  {pack.vulnerability.map((_, i) => renderStatement(`vulnerability.${i}`, undefined, i))}
+                </Fold>
+                {pack.conflicts.length > 0 && (
+                  <Fold title="Records that disagree" prefixes={["conflicts"]}>{pack.conflicts.map((_, i) => renderStatement(`conflicts.${i}`, undefined, i))}</Fold>
+                )}
+                <Fold title={`Routing: ${team.label}`} prefixes={["intake"]}>
+                  {pack.intake.issues.map((iss, i) => renderStatement(`intake.issues.${i}`, <>
+                    <strong>{labels.products[iss.product]}: {labels.causes[iss.cause]}.</strong> {show(iss.description)}
+                  </>, i))}
+                  {renderStatement("intake.team_reason", <><strong>Suggested team: {team.label}.</strong> {show(pack.intake.team_reason.text)}</>)}
+                  {renderStatement("intake.payment_services_reason", <>
+                    <strong>Payment services rule applies: {pack.intake.payment_services}.</strong> {show(pack.intake.payment_services_reason.text)}
+                  </>)}
+                </Fold>
+                <Fold title={`Timeline (${pack.timeline.length} events)`} prefixes={["timeline"]}>
+                  {pack.timeline.map((t, i) => renderStatement(`timeline.${i}`, <><strong>{formatDate(t.date)}</strong> {show(t.event)}</>, i))}
+                </Fold>
+                <Fold title={`Relevant policy (${pack.relevant_policy.length} paragraphs)`} prefixes={["relevant_policy"]}>
+                  {pack.relevant_policy.map((rp, i) => renderStatement(`relevant_policy.${i}`, <>
+                    <strong>{rp.policy_id} {labels.policy[rp.policy_id]?.heading}.</strong> {show(rp.why_relevant)}
+                  </>, i))}
+                </Fold>
+              </>
+            );
+          })()}
         </section>
 
         <aside className={styles.col} aria-label="Deadlines, handover and sign-off">

@@ -62,7 +62,7 @@
 .audit li { margin-bottom: 6px; }
 
 .tick { color: var(--green); font-size: 14px; font-weight: 700; }
-.fold { margin-top: 24px; }
+.fold { margin-top: 18px; }
 .fold > summary { cursor: pointer; list-style: none; border-bottom: 1px solid var(--border); padding-bottom: 4px; }
 .fold > summary::-webkit-details-marker { display: none; }
 .fold > summary h3 { display: inline; margin: 0; padding: 0; border: 0; }

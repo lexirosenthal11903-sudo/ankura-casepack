@@ -12,7 +12,9 @@ test("handler fills every gap before handover; a send-back must be fixed before 
   await expect(page.locator(".ph").first()).toBeVisible();
   await expect(page.getByText("Refund decision due")).toBeVisible();
 
-  // Accepting is by section. Routing, timeline and policy are open by default, so every button is visible.
+  // Accepting is by section, and every section but the first starts folded, so open each one before accepting.
+  const folded = page.locator("details[data-fold]:not([open]) > summary");
+  while ((await folded.count()) > 0) await folded.first().click();
   const acceptButtons = page.getByRole("button", { name: /Accept \d+ verified here/ });
   while ((await acceptButtons.count()) > 0) await acceptButtons.first().click();
   // Handover is blocked until every checklist gap is filled or explained.
