@@ -167,7 +167,7 @@ export default function Workspace({
   const supported = reviewable.filter((s) => s.supported);
   const undecidedGreen = supported.filter((s) => !decisions[s.path]);
 
-  const clock: Clock = run.clock === "confirm" ? clockChoice ?? "confirm" : run.clock;
+  const clock: Clock = clockChoice ?? run.clock;
   const deadlines = computeDeadlines(run.redacted.received, clock, DEMO_TODAY, { refundDuty: refundDutyApplies(pack) });
   const needsClock = run.clock === "confirm" && !clockChoice;
 
@@ -591,13 +591,13 @@ export default function Workspace({
                 </>
               )}
             </dl>
-            {run.clock === "confirm" && (
+            {(run.clock === "confirm" || editable) && (
               <div role="group" aria-labelledby="clock-q" className={styles.clockChoice}>
-                <p id="clock-q" className="small"><strong>Which time limit applies?</strong> The AI was not sure. Until you choose, the shorter one is used (policy CP-3.3).</p>
+                <p id="clock-q" className="small">{run.clock === "confirm" ? <><strong>Which time limit applies?</strong> The AI was not sure. Until you choose, the shorter one is used (policy CP-3.3).</> : <><strong>Is this the right time limit?</strong> The AI suggested it. If it is wrong, choose the other one and the dates update.</>}</p>
                 {(["15_business_days", "8_weeks"] as Clock[]).map((c) => (
                   <label key={c} className="small">
-                    <input type="radio" name="clock" checked={clockChoice === c} disabled={!editable}
-                      onChange={() => { setClockChoice(c); click(); changed(); log("Handler", `Confirmed deadline rule: ${CLOCK_LABEL[c]}.`); }} />{" "}
+                    <input type="radio" name="clock" checked={clock === c} disabled={!editable}
+                      onChange={() => { setClockChoice(c); click(); changed(); log("Handler", c === run.clock ? `Confirmed deadline rule: ${CLOCK_LABEL[c]}.` : `Changed deadline rule from the AI's suggestion to ${CLOCK_LABEL[c]}.`); }} />{" "}
                     {CLOCK_LABEL[c]}
                   </label>
                 ))}
