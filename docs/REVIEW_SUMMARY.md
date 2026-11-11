@@ -2,7 +2,7 @@
 
 Six independent reviewers read plan v1. Their full notes are in [reviews/](reviews/). Every regulatory point was then checked against the official source ([VERIFIED_FACTS.md](VERIFIED_FACTS.md)).
 
-**Overall verdict.** The idea is right and would already sit in roughly the top 10 to 15 percent. Three things stop it reaching the top 5 percent. It tries to do too much for six days. A few claims would not survive a sharp interviewer. And it needs to be obvious that Lexi did the thinking, not just Claude.
+**Overall verdict.** The idea is right and would already sit in roughly the top 10 to 15 percent. Three things stop it reaching the top 5 percent. It tries to do too much for six days. A few claims would not survive a sharp interviewer. And the author's own reasoning has to be visible, not just Claude's.
 
 ## What changed
 
@@ -40,8 +40,8 @@ The live "new complaint arrived" feed (all six said cut it). PDF export. The in-
 ## What we kept against advice
 The Sonnet vs Haiku comparison. Three reviewers said cut it, but the assessor wanted real evidence for "AI tools and your assessment". It costs little once the test runner exists, and it is first to go if we fall behind.
 
-## Added to your interview prep
-Eighteen hard questions. The three most likely:
+## Questions the reviewers would ask
+Eighteen in total, across the six reviews. The three most likely:
 1. "Your quote is real but supports the wrong conclusion. Who catches that, across 10,000 cases?"
 2. "The CFO wants to cut two handlers with your time saving. What do you say?"
 3. "Tell me one thing Claude Code built that you threw away, and why."

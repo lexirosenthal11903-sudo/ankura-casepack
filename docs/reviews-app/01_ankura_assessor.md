@@ -34,7 +34,7 @@ What confused me was the queue. HV-011 is "5 days overdue" while every other row
 - "Records that disagree" catching the 3DS-approved payment against "I did not make it".
 - A decisions log that records Claude Code's mistakes, and a case where the AI was right and the answer key was wrong.
 
-## 6. Hardest interview questions
+## 6. Hardest questions a reviewer would ask
 1. A handler accepted 33 statements in one second. In a pilot, how would you tell careful review from rubber-stamping, and what would you do about it?
 2. You corrected the HV-009 answer key after seeing the AI's output. Why should I trust 93%, and what will you say if the held-back set comes in at 70%?
 3. Salesforce and Pega already sell complaint summarisation. Give me one value number with its baseline, and tell me why the bank should build or pilot this rather than buy.

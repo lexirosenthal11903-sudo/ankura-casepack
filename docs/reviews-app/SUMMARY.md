@@ -24,10 +24,10 @@ Eight independent reviewers tested the working app. Their full notes are in this
 
 ## Bigger picture (assessor and brief challenger)
 - Business value (5 out of 10), roles and workflows (5) and AI tools assessment (3) are the weakest scores. The deck, the value case, the Sonnet vs Haiku comparison and the held-back results are what lift them. **Start the deck on Saturday, not Tuesday.**
-- **Lexi's voice must show.** Lexi writes the deck argument and opportunity scores, edits her 5 cases, adds first-person entries to the decisions log, and records the video unscripted.
-- Both reviewers suggest cutting the intake connection (plan item 2b) if it threatens the deck. That is Lexi's call.
+- **The author's own judgement must be visible.** The deck argument, the opportunity scores and the decisions log are written in the first person for that reason.
+- Both reviewers suggest cutting the intake connection (plan item 2b) if it threatens the deck. That is the author's call.
 
-## Interview questions added
+## Questions a reviewer would ask
 1. "Three clicks sent an incomplete case to Fraud. How did you stop rubber-stamping?"
 2. "You changed an answer key after seeing the AI's output. Why should I trust your results?"
 3. "Why would a bank build this rather than buy Salesforce or Pega?"

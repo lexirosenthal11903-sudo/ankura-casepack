@@ -42,7 +42,7 @@ v2 on the same cases: team 93%, clock 93%, vulnerability 100%, policy 71%, missi
 
 ## 6 Nov 2026
 
-**Guided walkthrough as the landing page.** Lexi found the full workspace overwhelming ("a lot of information and not very clear"). If it overwhelmed her, it would overwhelm an assessor with 15 minutes. So the first screen is now a five-step walkthrough of one real case, one idea per screen (the GOV.UK "one thing per page" rule), with the full workspace one click away.
+**Guided walkthrough as the landing page.** I found the full workspace overwhelming on first use ("a lot of information and not very clear"). If it overwhelmed me, it would overwhelm an assessor with 15 minutes. So the first screen is now a five-step walkthrough of one real case, one idea per screen (the GOV.UK "one thing per page" rule), with the full workspace one click away.
 
 **Eight-reviewer app review.** Full notes and the summary are in docs/reviews-app/. Every major finding was checked against the code first, and all held up. What changed:
 - **Handover gate.** Three clicks could send an incomplete case to Fraud (found by four reviewers). The handler must now fill each checklist gap or mark it not available with a reason before sign-off, which is what policy CP-6.2 already said. A case sent back can only be signed off again after something changes.
@@ -57,7 +57,7 @@ v2 on the same cases: team 93%, clock 93%, vulnerability 100%, policy 71%, missi
 
 **Prompt v3 (development set only).** Team 100%, deadline rule 100%, missing information found 95% (precision 92%), quotes verified 100%, $0.0056 per case. These are tuned figures. The held-back set gives the reported ones.
 
-**Intake connection deferred (Lexi's decision).** Both the assessor and the brief challenger said the deck matters more. The deck starts first, and the connection is built on Monday only if the deck is on track.
+**Intake connection deferred (my decision).** Both the assessor and the brief challenger said the deck matters more. The deck starts first, and the connection is built on Monday only if the deck is on track.
 
 ## 11 Nov 2026, the held-back run
 

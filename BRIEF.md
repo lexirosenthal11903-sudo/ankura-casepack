@@ -11,4 +11,4 @@
 2. A slide deck or document, max 5 pages, covering: the client problem and why this approach · how it was built and how AI tools were used · what was tested, results and limitations · controls, human review requirements and effects on staff.
 
 **Deadline:** 11.30pm GMT Wed 11 Nov 2026. Reply to the email. Subject: `Completed Task – {Full Name} - R105079 Digital Advisory Associate (Sept 2027 Graduate Programme)`.
-**Adjustments or access issues:** [contact removed]
+**Adjustments or access issues:** the contact given in the invitation email.

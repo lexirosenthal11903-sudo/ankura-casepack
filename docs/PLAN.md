@@ -22,7 +22,7 @@ The **build vs buy** framing matters. Salesforce, Pega and Microsoft already sel
 ### Must have
 1. **Pre-loaded queue.** About 12 complaints in messy, realistic formats: phone-call summaries with typos, emails, branch notes, a claims management company (CMC) template letter, notes from three systems that disagree on dates, and one complaint bundling three issues. No live "new complaint arrived" feed (all six reviewers said cut it).
 2. **Intake step.** On arrival the tool suggests a product and cause category (the bank's own list, mapped to FCA reporting categories) and a specialist team. It also notes payment-services status, signs of vulnerability, "already with the Ombudsman?" and repeat or linked complaints. The handler confirms. This answers the Head of Complaints' point that *mis-routing at intake* is a big source of bad handovers.
-2b. **Intake connection, added 5 Nov at Lexi's request.** A real intake API (`POST /api/intake`) in the format a bank's case system (Salesforce, Pega, Dynamics) would send when a new case is created. Plus a mock "Harbour & Vale case system" screen, labelled as a stand-in, with an inbox of incoming items (email, web form, call note). "Send to case pack tool" calls the real API, and the tool hides personal data, sorts, starts the deadline clock and queues the case. A small panel shows the request and response. The API only accepts built-in case ids, so no real data and no runaway cost. `docs/INTEGRATION.md` documents the format, explains why the tool connects to the case system rather than to each channel, and says the results go back into the case system as a note. About half a day, Mon 9 Nov. **Updated 6 Nov after the app review: deck first. Build a lean version on Mon only if the deck is on track, otherwise describe it in the deck and docs/INTEGRATION.md.**
+2b. **Intake connection, added 5 Nov at the author's request.** A real intake API (`POST /api/intake`) in the format a bank's case system (Salesforce, Pega, Dynamics) would send when a new case is created. Plus a mock "Harbour & Vale case system" screen, labelled as a stand-in, with an inbox of incoming items (email, web form, call note). "Send to case pack tool" calls the real API, and the tool hides personal data, sorts, starts the deadline clock and queues the case. A small panel shows the request and response. The API only accepts built-in case ids, so no real data and no runaway cost. `docs/INTEGRATION.md` documents the format, explains why the tool connects to the case system rather than to each channel, and says the results go back into the case system as a note. About half a day, Mon 9 Nov. **Updated 6 Nov after the app review: deck first. Build a lean version on Mon only if the deck is on track, otherwise describe it in the deck and docs/INTEGRATION.md.**
 3. **Deadline engine (plain code, unit-tested).**
    - 8 weeks for standard complaints.
    - 15 business days (35 in exceptional cases, with a holding reply) under DISP 1.6.2A. *Verified 5 Nov:* this covers only complaints about rights and obligations under Parts 6–7 of the Payment Services Regulations (e.g. unauthorised or wrongly executed payments). Other payment complaints stay on 8 weeks. A mixed complaint splits, unless the firm chooses to handle all of it on the 15-day clock (DISP 1.6.2B/C). So the tool asks the handler to confirm, and we default to the shorter clock when unsure.
@@ -93,7 +93,7 @@ This is the evidence behind the controls.
 | Layer | What | What we report |
 |---|---|---|
 | Unit tests | deadline rules (including payment services and bank holidays), redaction, provenance check, placeholder validation | all pass in GitHub Actions |
-| Answer-key test set | ~25 synthetic cases: **15 for development, 10 held back** and only run at the end. **Lexi writes or edits some cases herself** from her UTB experience. Scoring is by code, not AI: category, routing, vulnerability flag, citation IDs, missing-info recall, omissions, planted personal data caught | per-measure scores, run 3× with the spread, on the held-back set |
+| Answer-key test set | ~25 synthetic cases: **15 for development, 10 held back** and only run at the end. **some cases are written or edited by the author** from experience of how banks work. Scoring is by code, not AI: category, routing, vulnerability flag, citation IDs, missing-info recall, omissions, planted personal data caught | per-measure scores, run 3× with the spread, on the held-back set |
 | Adversarial | injection, contradictory notes, very long input, a "not enough information" case | pass/fail with examples |
 | Fairness (proportionate) | the same case rewritten in different styles: angry, non-native English, very brief. Check routing and vulnerability flags stay stable. Labelled illustrative | stable / not stable |
 | Model comparison | the same test set on Sonnet 5.5 and Haiku 5.5: quality, cost per case and response time | table (cheap once the test runner exists) |
@@ -102,11 +102,11 @@ This is the evidence behind the controls.
 
 ---
 
-## 7. Lexi's authorship (visible and defensible)
-- Lexi writes the **first draft of the deck's argument** and the **opportunity-map scores** in her own words.
-- She writes or edits about 5 of the test cases.
-- `docs/decisions.md` logs every significant choice, including **where Claude Code got something wrong and how she caught it** (real examples, kept as we go). The deck gets a short section on this.
-- Rule: if she can't explain it on the phone, it gets cut.
+## 7. Authorship (visible and defensible)
+- The deck's argument and the opportunity-map scores are the author's own.
+- About 5 of the test cases are written or edited by the author.
+- `docs/decisions.md` logs every significant choice, including where Claude Code got something wrong and how it was caught.
+- Rule: anything the author cannot explain on the phone gets cut.
 
 ---
 
@@ -120,19 +120,19 @@ This is the evidence behind the controls.
 
 ## 9. Deliverables
 1. A live link + a public GitHub repo + a **90-second video**. It opens on the injection attempt being blocked and an unsupported claim showing red, then walks through one case.
-2. **A 5-slide consulting deck, exported to PDF.** Lexi's preference, and the reviewers agreed. It follows a situation–complication–resolution storyline, and every slide title states a conclusion. Neutral styling with "Prepared for Ankura" on the cover (see the open question on branding).
+2. **A 5-slide consulting deck, exported to PDF.** the author's preference, and the reviewers agreed. It follows a situation–complication–resolution storyline, and every slide title states a conclusion. Neutral styling with "Prepared for Ankura" on the cover (see the open question on branding).
    1. The problem, the baseline and the opportunity map → why this pilot (incl. build vs buy)
    2. What we built and how AI tools were used (Claude Code to build, the Claude API in the product, Sonnet vs Haiku, where it went wrong)
    3. What we tested, results and limitations
    4. Controls, human review and governance (applicability, control register highlights)
    5. Effects on staff + pilot design with stop criteria
 3. A zip backup attached to the email. Site kept live until interviews end.
-4. An interview prep pack built from the reviewers' 18 hardest questions.
+4. The reviewers' 18 hardest questions, kept in the review notes.
 
 ---
 
 ## 10. Schedule
-| Day | Work | Lexi |
+| Day | Work | Author |
 |---|---|---|
 | **Thu 5** | Reviews done ✓, plan v2 ✓. `gh auth login`, API key | approve v2, ~30 min |
 | **Fri 6** | Synthetic bank policy (~30 paragraphs) + team checklists + 25 cases with the answer key. Verified baseline numbers | **writes/edits ~5 cases**, checks realism |
@@ -152,4 +152,4 @@ This is the evidence behind the controls.
 - `/verification-before-completion` before sending.
 
 ## Schedule update (6 Nov, after the app review panel)
-See docs/reviews-app/SUMMARY.md. Fri 6: review fixes (handover gate, unauthorised payments, claims wording, display bugs, failed-check example, case summary bar, accessibility, rate limit). Sat 7: Vercel deploy, deck draft starts (Lexi writes the argument first), Lexi edits her 5 cases. Sun 8: value case, Sonnet comparison, README. Mon 9: usability check, intake connection only if the deck is on track. Tue 10: held-back evaluation x3, video, final polish. Wed 11: final assessor check, submit by about 6pm.
+See docs/reviews-app/SUMMARY.md. Fri 6: review fixes (handover gate, unauthorised payments, claims wording, display bugs, failed-check example, case summary bar, accessibility, rate limit). Sat 7: Vercel deploy, deck draft starts (the author writes the argument first), the author edits 5 cases. Sun 8: value case, Sonnet comparison, README. Mon 9: usability check, intake connection only if the deck is on track. Tue 10: held-back evaluation x3, video, final polish. Wed 11: final assessor check, submit by about 6pm.

@@ -41,7 +41,7 @@ Gold-plating to cut or not mention. The intake API and mock "case system" (half 
 
 ## 4. Claude-built risk
 
-High. The repo is polished, the docs read in one voice, and decisions.md says "we". An assessor will ask "what did you decide?". Fixes. Write the deck argument and opportunity scores before Claude touches them. Edit the five cases (HV-003, 005, 006, 014, 020) from UTB experience and say so in the README. Put two or three first-person decisions in the deck, for example "I reversed the no-fast-track rule because a bereaved customer owed £15 wants it fixed today". Name one thing you threw away. Record the video in your own voice, unscripted. Assess Claude Code honestly: fast scaffolding, wrong on shared surnames and reference numbers, and you caught it by listing every replacement.
+High. The repo is polished, the docs read in one voice, and decisions.md says "we". An assessor will ask "what did you decide?". Fixes. The deck argument and the opportunity scores are written by the author first, and the decisions log records what was decided and why.
 
 ## 5. At risk and matters most
 

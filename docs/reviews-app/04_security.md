@@ -29,7 +29,7 @@ Fix, in order of value. (1) Put the key in its own Anthropic workspace with a lo
 - **L2.** `ci.yml` has no `permissions:` block. Add `permissions: contents: read`. Actions are pinned by tag, not commit SHA, which is acceptable here.
 - **L3.** `npm audit` flags PostCSS inside Next 15.5.29 (high). It only runs at build on your own CSS, so it is not exploitable here. Enable Dependabot alerts.
 - **L4.** The API response and page payload include `redacted.replacements` with the `original` values, and the full `record`. That is fine for synthetic data and an authorised handler, but in production this map must never be logged or stored alongside AI output.
-- **L5.** Held-back answer keys are public, so "held back" is a process promise, not a technical one. Commits also show a personal Gmail address.
+- **L5.** Held-back answer keys are public, so "held back" is a process promise, not a technical one.
 
 ## What is fine
 

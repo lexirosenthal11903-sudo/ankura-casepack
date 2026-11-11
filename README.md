@@ -130,3 +130,7 @@ The rules the tool applies are real UK rules, such as the FCA DISP deadlines. I 
 ## AI tools used in building it
 
 I built this with Claude Code over six days, working with it on the design, the code and the test cases. In the product, the Claude API (Haiku 5.5) drafts the case pack. `docs/decisions.md` records the choices I made and the places where Claude Code got something wrong, for example labelling a mother's surname as her son and reading an incident ticket as an account number. I caught those by reading the output, not by trusting it.
+
+## Licence
+
+All rights reserved. This repository is published so that it can be read and run for assessment. The synthetic data and the fictional policy may be reused for testing with attribution.
