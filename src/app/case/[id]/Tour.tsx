@@ -33,14 +33,18 @@ export default function Tour({ caseId }: { caseId: string }) {
     if (step === null) return;
     const sel = STOPS[step].target;
     const el = sel ? (document.querySelector(sel) as HTMLElement | null) : null;
-    setRect(el ? el.getBoundingClientRect() : null);
+    if (!el) return setRect(null);
+    // A tall target (a whole column) is highlighted only at its top, so the box has room underneath and the page still makes sense.
+    const r = el.getBoundingClientRect();
+    const maxH = Math.min(r.height, window.innerHeight * 0.45);
+    setRect(new DOMRect(r.left, r.top, r.width, maxH));
   }, [step]);
 
   useEffect(() => {
     if (step === null) return;
     const sel = STOPS[step].target;
     const el = sel ? (document.querySelector(sel) as HTMLElement | null) : null;
-    if (el) el.scrollIntoView({ block: "center", behavior: "smooth" });
+    if (el) el.scrollIntoView({ block: el.getBoundingClientRect().height > window.innerHeight * 0.45 ? "start" : "center", behavior: "smooth" });
     const t = window.setTimeout(() => {
       measure();
       boxRef.current?.focus();
