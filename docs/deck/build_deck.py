@@ -72,7 +72,7 @@ y = table(s, xr, y, wr, [("Measure", 3), ("Result", 1.3)], [
     ["Weaknesses found and fixed (page 4)", "2"],
 ])
 y = heading(s, xr, y + 0.16, wr, "Try it")
-para(s, xr, y, wr, f"ankura-casepack.vercel.app, no login. The front page gives a fifteen-minute route, starting with a guided tour.<br>Code and tests: {GITHUB}")
+para(s, xr, y, wr, f"ankura-casepack.vercel.app, no login. The first page says where to start, with a two-minute guided tour.<br>Code and tests: {GITHUB}")
 
 # ---------------------------------------------------------------- 2. problem and scope
 s = new_slide("problem", "The hours go on assembling facts, so that is where the AI goes. The decision stays with people",
@@ -128,7 +128,7 @@ bullets(s, X(7), yr, SPAN(6), size=12.5, lh=16, gap=0.16, items=[
 s = new_slide("tested", "Ten cases held back until the end found two weaknesses. Both are fixed and both are reported",
     "Source: evals/results, eval-heldout-haiku-2026-11-11-0844-blind.md (blind), eval-heldout-haiku-2026-11-11-0919.md (after the fixes), eval-dev-haiku-2026-11-11-0925.md (development set); docs/decisions.md.", 4,
     notes="Answer sheet before prompt, ten cases never touched. Then the two findings, because they are the most honest things in the deck and they show the method working. Say the deadline one was your mistake, not the model's. Then the limits.")
-y = heading(s, L, Y_BODY, SPAN(6), "Marked by code against answer sheets written before the prompt")
+y = heading(s, L, Y_BODY, SPAN(6), "Marked by code against answer sheets written before the AI instructions")
 y = table(s, L, y, SPAN(6), [("Measure", 2.1), ("Tuned", 1.15), ("Blind", 1.4), ("Fixed", 1.15)], [
     ["Right specialist team", "100%", "90 to 100%", "90 to 100%"],
     ["<b>Right deadline rule</b>", "100%", "<b>60 to 80%</b> (corrected keys)", "80 to 89%"],
@@ -140,12 +140,12 @@ y = table(s, L, y, SPAN(6), [("Measure", 2.1), ("Tuned", 1.15), ("Blind", 1.4), 
     ["Fake instruction flagged, not followed", "1 of 1", "n/a", "n/a"],
     ["Cost, time per case", "$0.0055, 40s", "$0.0063, 45s", "$0.0060, 42s"],
 ], shade={1, 6})
-para(s, L, y + 0.1, SPAN(6), "Tuned: the 15 cases the prompt was improved on. Blind: the 10 held-back cases, 3 runs, the column to trust. Fixed: the same 10 after the two corrections.")
+para(s, L, y + 0.1, SPAN(6), "Tuned: the 15 cases the AI instructions were improved on. Blind: the 10 held-back cases, 3 runs, the column to trust. Fixed: the same 10 after the two corrections.")
 xr = X(8); wr = SPAN(5); y = Y_BODY
 y = heading(s, xr, y, wr, "Why hiding details missed people")
 y = para(s, xr, y, wr, "Every miss was a person the bank's record does not know, such as a boyfriend or a scammer's payee name. A new layer finds people from how the text introduces them. Now 101 of 101, but not blind, so both are shown.")
 y = heading(s, xr, y + 0.06, wr, "The scam deadline was my rule, and wrong")
-y = para(s, xr, y, wr, "The Ombudsman's guidance puts scam complaints on the 15 business day clock. My prompt, policy and three answer keys said 8 weeks. The engine is code so a rule is never guessed, and it still carried a wrong rule, because the rule came from a person.")
+y = para(s, xr, y, wr, "The Ombudsman's guidance puts scam complaints on the 15 business day clock. My AI instructions, policy and three answer keys said 8 weeks. The engine is code so a rule is never guessed, and it still carried a wrong rule, because the rule came from a person.")
 y = heading(s, xr, y + 0.02, wr, "What it cannot do")
 bullets(s, xr, y, wr, [
     "A verified quote proves the words exist, not that they support the point.",
@@ -163,7 +163,7 @@ y = table(s, L, y, SPAN(6), [("Control", 2.3), ("What it stops", 1.8), ("Rule be
     ["No field exists for an outcome or compensation", "The AI deciding, or being tricked into it", "UK GDPR Arts 22A to 22D, DISP 1.4"],
     ["Handover blocked until every gap is filled or explained", "Incomplete handovers", "Bank policy CP-6.2 (fictional)"],
     ["Vulnerability signs recorded before handover", "Missing someone who needs extra care", "FCA guidance FG21/1"],
-    ["Model and prompt version on every run", "Not being able to explain a case later", "DISP 1.9 record keeping"],
+    ["The AI model and instructions version recorded on every run", "Not being able to explain a case later", "DISP 1.9 record keeping"],
     ["Rate limits, a spend cap, an off switch", "Runaway cost, or a bad model day", "The bank's own controls"],
 ])
 para(s, L, y + 0.08, SPAN(6), "<b>A person always</b> confirms the deadline rule, fills every gap, signs off, accepts or sends back, and decides the outcome.")

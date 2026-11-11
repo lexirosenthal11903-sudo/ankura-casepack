@@ -19,7 +19,7 @@ export default function StartPage() {
       <h1>Start here</h1>
       <p className={styles.lede}>
         A complaints case pack tool for a fictional UK bank. The AI drafts the pack, code checks every quote and every deadline, and a person decides.
-        Fifteen minutes covers it, in this order.
+        About ten minutes covers it, in this order.
       </p>
       <ol className={styles.route}>
         <li>
