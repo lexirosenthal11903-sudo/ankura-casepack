@@ -2,6 +2,7 @@
  * Builds a case pack: redact -> one AI call -> code checks -> deadlines.
  * The AI never sees the unredacted case, the answer key or the outcome of any check.
  */
+import { tidyPackCurrency } from "./format";
 import Anthropic from "@anthropic-ai/sdk";
 import { zodOutputFormat } from "@anthropic-ai/sdk/helpers/zod";
 import { checklistFor, loadCase, policy } from "./data";
@@ -149,7 +150,7 @@ export async function generateCasePack(caseId: string, opts: { model?: ModelKey;
     model,
     promptVersion: PROMPT_VERSION,
     redacted: { ...redacted, display: buildDisplay(caseFile.record, redacted.replacements) },
-    pack,
+    pack: tidyPackCurrency(pack),
     checks: checkPack(pack, redacted),
     clock,
     deadlines: computeDeadlines(redacted.received, clock, opts.asOf, { refundDuty: refundDutyApplies(pack) }),

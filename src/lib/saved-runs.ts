@@ -6,6 +6,7 @@ import { computeDeadlines } from "./deadlines";
 import { loadCase } from "./data";
 import { DEMO_TODAY } from "./demo";
 import { buildDisplay } from "./redact";
+import { tidyPackCurrency } from "./format";
 import { refundDutyApplies } from "./rules";
 
 export function loadSavedRun(caseId: string): CasePackRun | null {
@@ -19,6 +20,7 @@ export function loadSavedRun(caseId: string): CasePackRun | null {
   return {
     ...run,
     redacted: { ...run.redacted, display },
+    pack: tidyPackCurrency(run.pack),
     deadlines: computeDeadlines(run.redacted.received, run.clock, DEMO_TODAY, { refundDuty: refundDutyApplies(run.pack) }),
   };
 }

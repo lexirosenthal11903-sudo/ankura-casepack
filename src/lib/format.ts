@@ -24,3 +24,19 @@ export function deadlineTag(status: string, businessDaysLeft: number, calendarDa
   if (calendarDaysLeft === 0) return "Due today";
   return `${businessDaysLeft} business day${businessDaysLeft === 1 ? "" : "s"} left`;
 }
+
+/** The AI writes amounts as "GBP 249.99". The rest of the site uses "£249.99", so the pack text is tidied once at load time.
+ *  Only the pack's statement text is touched, never the source documents or the quotes the checks were run on. */
+export function tidyCurrency(text: string): string {
+  return text.replace(/\bGBP\s?(?=\d)/g, "£");
+}
+export function tidyPackCurrency<T>(value: T): T {
+  if (typeof value === "string") return tidyCurrency(value) as T;
+  if (Array.isArray(value)) return value.map(tidyPackCurrency) as T;
+  if (value && typeof value === "object") {
+    const out: Record<string, unknown> = {};
+    for (const [k, v] of Object.entries(value as Record<string, unknown>)) out[k] = k === "quote" ? v : tidyPackCurrency(v);
+    return out as T;
+  }
+  return value;
+}

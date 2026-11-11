@@ -1,4 +1,5 @@
 "use client";
+import type React from "react";
 
 import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import type { CasePackRun } from "@/lib/casepack";
@@ -59,6 +60,11 @@ function Redacted({ text }: { text: string }) {
     </>
   );
 }
+
+const ALL_SECTIONS = [
+  { prefixes: ["flags"] }, { prefixes: ["summary"] }, { prefixes: ["outcome_sought"] }, { prefixes: ["vulnerability"] }, { prefixes: ["conflicts"] },
+  { prefixes: ["intake"] }, { prefixes: ["timeline"] }, { prefixes: ["relevant_policy"] },
+];
 
 export default function Workspace({
   caseFile,
@@ -204,15 +210,34 @@ export default function Workspace({
     log("Handler", description);
   }
 
-  function acceptAllVerified() {
+  // Accepting is by section, not one click for the whole pack. The handler has to be looking at a section to accept it,
+  // which is the smallest honest unit of review. Each section's button says how many verified statements it accepts.
+  const inSection = (prefixes: string[]) => undecidedGreen.filter((s) => prefixes.some((p) => s.path === p || s.path.startsWith(p + ".")));
+  function acceptSection(prefixes: string[], label: string) {
+    const items = inSection(prefixes);
+    if (!items.length) return;
     const next = { ...decisions };
-    for (const s of undecidedGreen) next[s.path] = { status: "accepted" };
+    for (const s of items) next[s.path] = { status: "accepted" };
     setDecisions(next);
     click();
     changed();
-    log("Handler", `Accepted ${undecidedGreen.length} statements whose sources were verified.`);
-    focusAfter.current = "signoff";
+    log("Handler", `Accepted ${items.length} verified ${items.length === 1 ? "statement" : "statements"} in ${label}.`);
+    if (inSection(ALL_SECTIONS.flatMap((x) => x.prefixes)).length === items.length) focusAfter.current = "signoff";
   }
+  const SectionHead = ({ title, prefixes, as = "h3" }: { title: React.ReactNode; prefixes: string[]; as?: "h3" | "span" }) => {
+    const n = inSection(prefixes).length;
+    const Tag = as;
+    return (
+      <div className={styles.sectionHead}>
+        <Tag>{title}</Tag>
+        {editable && n > 0 && (
+          <button className="btn btn-small btn-secondary" onClick={() => acceptSection(prefixes, typeof title === "string" ? title.toLowerCase() : "this section")}>
+            Accept {n} verified here
+          </button>
+        )}
+      </div>
+    );
+  };
 
   function saveGap() {
     if (!gapEditing || !gapDraft.trim()) return;
@@ -464,11 +489,7 @@ export default function Workspace({
               <strong>{supported.length}</strong> statements with verified sources, <strong className={unsupported.length ? styles.redText : ""}>{unsupported.length}</strong> unsupported.
               {run.checks.inventedPlaceholders.length > 0 && <> Invented placeholders: {run.checks.inventedPlaceholders.join(", ")}.</>}
             </div>
-            {editable && (
-              <button className="btn btn-small" onClick={acceptAllVerified} disabled={undecidedGreen.length === 0}>
-                Accept all {undecidedGreen.length} verified
-              </button>
-            )}
+            {editable && <div className="small muted">{undecidedGreen.length} still to accept, section by section.</div>}
           </div>
           <p className="small muted">
             A verified source proves the quoted words exist, not that they support the statement. Read each one. Unsupported statements are red and must be rejected or edited before sign-off.
@@ -482,32 +503,33 @@ export default function Workspace({
 
           {pack.flags.length > 0 && (
             <>
-              <h3>Flags</h3>
+              <SectionHead title="Flags" prefixes={["flags"]} />
               {pack.flags.map((f, i) => renderStatement(`flags.${i}`, <>
                 <span className={`tag ${f.type === "instruction_in_customer_text" ? "tag-red" : "tag-amber"}`}>{f.type.replaceAll("_", " ")}</span> {show(f.description)}
               </>, i))}
             </>
           )}
 
-          <h3>Summary</h3>
+          <SectionHead title="Summary" prefixes={["summary"]} />
           {pack.summary.map((_, i) => renderStatement(`summary.${i}`, undefined, i))}
 
-          <h3>What the customer wants</h3>
+          <SectionHead title="What the customer wants" prefixes={["outcome_sought"]} />
           {renderStatement("outcome_sought")}
 
-          <h3>Vulnerability</h3>
+          <SectionHead title="Vulnerability" prefixes={["vulnerability"]} />
           {pack.vulnerability.length === 0 && <p className="small muted">No signs found. Check the documents yourself before relying on this.</p>}
           {pack.vulnerability.map((_, i) => renderStatement(`vulnerability.${i}`, undefined, i))}
 
           {pack.conflicts.length > 0 && (
             <>
-              <h3>Records that disagree</h3>
+              <SectionHead title="Records that disagree" prefixes={["conflicts"]} />
               {pack.conflicts.map((_, i) => renderStatement(`conflicts.${i}`, undefined, i))}
             </>
           )}
 
           <details className={styles.fold}>
             <summary><h3>Routing: {team.label}</h3></summary>
+            <SectionHead title="Routing" prefixes={["intake"]} as="span" />
             {pack.intake.issues.map((iss, i) => renderStatement(`intake.issues.${i}`, <>
               <strong>{labels.products[iss.product]}: {labels.causes[iss.cause]}.</strong> {show(iss.description)}
             </>, i))}
@@ -519,11 +541,13 @@ export default function Workspace({
 
           <details className={styles.fold}>
             <summary><h3>Timeline ({pack.timeline.length} events)</h3></summary>
+            <SectionHead title="Timeline" prefixes={["timeline"]} as="span" />
             {pack.timeline.map((t, i) => renderStatement(`timeline.${i}`, <><strong>{formatDate(t.date)}</strong> {show(t.event)}</>, i))}
           </details>
 
           <details className={styles.fold}>
             <summary><h3>Relevant policy ({pack.relevant_policy.length} paragraphs)</h3></summary>
+            <SectionHead title="Relevant policy" prefixes={["relevant_policy"]} as="span" />
             {pack.relevant_policy.map((rp, i) => renderStatement(`relevant_policy.${i}`, <>
               <strong>{rp.policy_id} {labels.policy[rp.policy_id]?.heading}.</strong> {show(rp.why_relevant)}
             </>, i))}

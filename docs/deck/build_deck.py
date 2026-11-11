@@ -150,7 +150,7 @@ y = para(s, xr, y, wr, "The Ombudsman's guidance puts scam complaints on the 15 
 y = heading(s, xr, y + 0.02, wr, "What it cannot do")
 bullets(s, xr, y, wr, [
     "A verified quote proves the words exist, not that they support the point.",
-    "\"Accept all\" is one click. In a pilot I would track review time and remove it if that collapses.",
+    "Accepting is by section, not one click, but a handler can still skim. In a pilot I would track review time per pack.",
     "25 synthetic cases, no handler time measured, no bank system. The pilot answers all three."])
 
 # ---------------------------------------------------------------- 5. controls and staff

@@ -12,7 +12,10 @@ test("handler fills every gap before handover; a send-back must be fixed before 
   await expect(page.locator(".ph").first()).toBeVisible();
   await expect(page.getByText("Refund decision due")).toBeVisible();
 
-  await page.getByRole("button", { name: /Accept all \d+ verified/ }).click();
+  // Accepting is by section. Open the folded sections first, then accept each one.
+  for (const name of [/^Routing/, /^Timeline/, /^Relevant policy/]) await page.getByRole("heading", { name }).click();
+  const acceptButtons = page.getByRole("button", { name: /Accept \d+ verified here/ });
+  while ((await acceptButtons.count()) > 0) await acceptButtons.first().click();
   // Handover is blocked until every checklist gap is filled or explained.
   await expect(page.getByText("Finish the items marked To do to sign off.")).toBeVisible();
   const notAvailable = page.getByRole("button", { name: "Not available" });

@@ -458,9 +458,9 @@ export default function Replay({ data }: { data: ReplayData }) {
               {at(cues.phase5) && !at(cues.sentAt) && (
                 <div className={`${styles.acceptRow} ${styles.in}`}>
                   <button ref={setTarget("accept")} className={`btn btn-small ${at(cues.acceptClick) ? styles.pressed : ""}`} tabIndex={-1} disabled={accepted}>
-                    {accepted ? `${data.totalStatements} accepted` : `Accept all ${data.totalStatements} verified`}
+                    {accepted ? `${data.totalStatements} accepted` : `Accept ${data.totalStatements} verified, section by section`}
                   </button>
-                  <span className="small muted">Any sentence can still be edited or rejected one at a time.</span>
+                  <span className="small muted">Accepting is by section. Any sentence can still be edited or rejected one at a time.</span>
                 </div>
               )}
               {at(cues.routingAt) && (

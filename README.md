@@ -12,7 +12,7 @@ There is no login and no real data. Each complaint opens on a saved result from 
 
 1. Open the front page. It replays a real run from the bank's complaint through to the team leader's board.
 2. Choose **All complaints** in the navigation and open **HV-007, Mr Kieran Doyle**. This case has an instruction hidden in the customer's text, and you will see it flagged.
-3. Select **Accept all verified**. Every line the AI wrote has a quote from the source, and code has checked each quote exists.
+3. Accept each section with its **Accept verified here** button. Every line the AI wrote has a quote from the source, and code has checked each quote exists.
 4. Fill each gap in the specialist team's checklist, or mark it not available with a reason. Sign-off stays blocked until you do.
 5. Sign off and hand the case over.
 6. Open **Team leader view** for the whole queue, the deadlines at risk and the repeat problems. It is built from the saved case packs, so your own sign-off does not change it in this prototype.

@@ -108,7 +108,16 @@ export default function Walkthrough({ data }: { data: WalkthroughData }) {
   }, [step]);
 
   const injection = injectionStart(data.email);
-  const go = (n: number) => setStep(Math.max(0, Math.min(STEPS.length - 1, n)));
+  const go = (n: number) => {
+    const next = Math.max(0, Math.min(STEPS.length - 1, n));
+    setStep(next);
+    // Each step has its own address, so a refresh or a shared link lands on the same step.
+    if (typeof window !== "undefined") window.history.replaceState(null, "", next === 0 ? window.location.pathname : `#step-${next + 1}`);
+  };
+  useEffect(() => {
+    const m = /^#step-(\d)$/.exec(window.location.hash);
+    if (m) setStep(Math.max(0, Math.min(STEPS.length - 1, Number(m[1]) - 1)));
+  }, []);
   // A deliberately altered quote, checked by the real provenance code in the browser.
   const tampered = data.check.quote.replace(/\bdid not\b|\bnot\b/i, "definitely").replace(/\s+$/, "") + " and was refunded";
   const failResult = checkCitation({ source: "doc", quote: tampered }, { doc: data.check.sourceText }).result;

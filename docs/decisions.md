@@ -78,3 +78,13 @@ Fixed: prompt v4 (one sentence changed), policy CP-3.2 now names fraud and scam 
 The lesson I would give an assessor: the deadline engine was deliberately code, not AI, so that a rule could never be guessed. It still carried a wrong rule, because the rule came from me. Verifying at source is a control too, and it should have run before the blind test, not after.
 
 **Prompt v4 re-run (not blind).** Held-back set, three repeats: team 90 to 100%, deadline rule 80 to 89% (the misses are the AI saying "confirm", which sends the case to a person, plus HV-025 routed to Payments and Disputes), vulnerability 89 to 90%, policy 70 to 73%, missing information 82 to 90%, quotes verified 100%, redaction 101 of 101, about $0.006 a case. One of thirty runs failed to parse and was retried. Development set on v4: team 100%, clock 100%, vulnerability 93%, policy 66%, missing information 93%, quotes 100%, $0.0055 a case. The saved runs the site replays were regenerated on v4 so the site and the results agree.
+
+## 11 Nov 2026, evening
+
+**Accept by section, not one click.** The assessor review said one-click "Accept all" was the weak point in human review: three seconds from opening a case to sign-off. It is now one button per section ("Accept 6 verified here") on flags, summary, what the customer wants, vulnerability, records that disagree, routing, timeline and policy. The handler has to be looking at a section to accept it. It is still possible to skim, and the deck says so.
+
+**Team leader board shows your own sign-offs.** Review state lives in the browser, so the server-rendered board could not see a case the visitor had just handed over. A client-side section now lists them, with a note that a real system would record them for everyone.
+
+**Small fixes from the site sweep.** The AI writes "GBP 249.99" and the rest of the site uses "£", so pack text is tidied once at load time (statement text only, never the source documents or the quotes the checks ran on). Walkthrough steps now have their own address (#step-3), so a refresh or a shared link lands on the same step. Held-back case ids show an explanation instead of a bare 404.
+
+**Live mode switched on.** The API key was added to the hosting settings at 18:30. Live runs are limited per visitor and per day, with a spending cap on the key and LIVE_MODE=off as the kill switch.

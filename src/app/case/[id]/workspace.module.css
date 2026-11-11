@@ -93,3 +93,7 @@
 .role { border-left: 5px solid var(--brand); background: var(--blue-bg); padding: 10px 14px; margin-bottom: 16px; }
 .handedOver { display: grid; gap: 10px; justify-items: start; background: var(--blue-bg); padding: 12px; }
 .handedOver p { margin: 0; }
+
+.sectionHead { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-top: 18px; }
+.sectionHead h3 { margin: 0; }
+.sectionHead span { font-weight: 700; }
