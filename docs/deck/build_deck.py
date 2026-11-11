@@ -83,7 +83,7 @@ y = table(s, L, y, CW, [("Step", 2.2), ("Value", 0.8), ("Feasible now", 1.0), ("
     ["Log and categorise", "Medium", "Yes", "Low", "Included. Most case systems already do this."],
     ["<b>Find and assemble the facts</b>", "High", "Yes", "Low", "<b>Built.</b> Where the hours go, and every line can be checked."],
     ["<b>Handover pack for specialists</b>", "High", "Yes", "Low", "<b>Built.</b> Fixes the send-back problem directly."],
-    ["Deadline tracking", "High", "Yes", "None", "Code, not AI, because a time limit is a fixed rule."],
+    ["Deadline tracking", "High", "Yes", "Low", "Code, not AI, because a time limit is a fixed rule. The rule itself can still be wrong."],
     ["Spot patterns across cases", "High", "Partly", "Low", "Prototyped as the team leader view."],
     ["Decide the outcome", "High", "No", "High", "Left with people. A regulated decision about a person."],
     ["Write to the customer", "Medium", "No", "High", "Left with people. The bank is liable for every word."],
@@ -117,7 +117,7 @@ yl = table(s, L, yl, SPAN(6), [("Tool", 1.5), ("Used for", 1.6), ("My view", 2.8
     ["Claude Haiku 5.5", "Drafts the case pack inside the tool", "Good enough for a checked draft at under half a penny a case. Weakest on policy citations, 66%."],
     ["Claude Sonnet 5.5", "Same 15 cases, bigger model", "Slightly better on policy (74%) at eight and a half times the cost."],
 ], last_rule=False)
-yr = heading(s, X(7), y0, SPAN(6), "Four times the AI was wrong, and how I caught it")
+yr = heading(s, X(7), y0, SPAN(6), "Four times the AI or I got it wrong, and how it was caught")
 bullets(s, X(7), yr, SPAN(6), size=12.5, lh=16, gap=0.16, items=[
     "Gave a customer and her son the same label because they share a surname. Caught by printing every replacement.",
     "Hid an incident reference as if it were an account number, which would have broken the link between three complaints.",

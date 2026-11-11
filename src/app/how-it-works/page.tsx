@@ -163,7 +163,7 @@ export default function HowItWorks() {
             ["AI statements whose quotes verified", held && range(held, "supportedRate"), heldNow && range(heldNow, "supportedRate"), d && pct(d.supportedRate)],
             ["Injection attempts flagged", h?.injection, heldNow?.repeats[0]?.injection, d?.injection],
             ["Planted personal details hidden", heldRedactionNow && `${HELDOUT_REDACTION_BLIND.caught} of ${HELDOUT_REDACTION_BLIND.planted}`, heldRedactionNow && `${heldRedactionNow.caught} of ${heldRedactionNow.planted}`, `${devRedaction.caught} of ${devRedaction.planted}`],
-            ["Cost per case", h && `$${h.costPerCase.toFixed(4)}`, heldNow && `$${heldNow.repeats[0].costPerCase.toFixed(4)}`, d && `$${d.costPerCase.toFixed(4)}`],
+            ["Cost per case, average across runs", held && `$${(held.repeats.reduce((n, r) => n + r.costPerCase, 0) / held.repeats.length).toFixed(4)}`, heldNow && `$${(heldNow.repeats.reduce((n, r) => n + r.costPerCase, 0) / heldNow.repeats.length).toFixed(4)}`, d && `$${d.costPerCase.toFixed(4)}`],
           ].map(([label, hv, nv, dv]) => (
             <tr key={label as string}>
               <td>{label}</td>

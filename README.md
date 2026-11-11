@@ -15,7 +15,7 @@ There is no login and no real data. Each complaint opens on a saved result from 
 3. Accept each section with its **Accept verified here** button. Every line the AI wrote has a quote from the source, and code has checked each quote exists.
 4. Fill each gap in the specialist team's checklist, or mark it not available with a reason. Sign-off stays blocked until you do.
 5. Sign off and hand the case over.
-6. Open **Team leader view** for the whole queue, the deadlines at risk and the repeat problems. It is built from the saved case packs, so your own sign-off does not change it in this prototype.
+6. Open **Team leader view** for the whole queue, the deadlines at risk and the repeat problems. The case you just handed over shows at the bottom, kept in your browser.
 
 The **How this works** page shows the same story with the test results on one page. The **Step by step** page takes one case in five short steps. **Try your own** lets you type a made-up complaint, or use the example with a hidden instruction, and watch the whole pipeline run on it.
 
@@ -59,7 +59,7 @@ I wrote 25 complaints and an answer key for each before I wrote the prompt. I us
 
 Model in production is Claude Haiku 5.5 with prompt v4. On the development set, Claude Sonnet 5.5 was a few points better on vulnerability and policy citations (74% against 66%) at $0.047 per case, about eight and a half times the cost, so I kept Haiku.
 
-**The two findings on the held-back set.** The second, found by checking facts at source, was that the prompt had scam complaints on the 8-week clock when the Ombudsman's guidance says 15 business days. Prompt v4, the policy and three answer keys were corrected and everything re-run. The first: On the held-back set the first three redaction layers caught only 78 of 101 planted identifiers. Every miss was a person the bank's record does not know, such as a boyfriend, a scammer, four children named in one email, a carer or a nickname. Those layers work from the bank's record and from number patterns, and my development cases happened not to name anyone outside the record. I added a fourth layer the same day that finds people from how the text introduces them, and the held-back set now scores 101 of 101. That second number is not blind, because I fixed the code after seeing the misses. The AI quality figures in the blind column were produced before either fix. The second held-back column is the re-run after both corrections and is not blind. The full account is in `docs/decisions.md`.
+**The two findings on the held-back set.** The first was in the hiding of personal details. On the held-back set the first three redaction layers caught only 78 of 101 planted identifiers. Every miss was a person the bank's record does not know, such as a boyfriend, a scammer, four children named in one email, a carer or a nickname. Those layers work from the bank's record and from number patterns, and my development cases happened not to name anyone outside the record. I added a fourth layer the same day that finds people from how the text introduces them, and the held-back set now scores 101 of 101. That second number is not blind, because I fixed the code after seeing the misses. The AI quality figures in the blind column were produced before either fix. The second held-back column is the re-run after both corrections and is not blind. The second, found by checking facts at source, was that the prompt had scam complaints on the 8-week clock when the Ombudsman's guidance says 15 business days. Prompt v4, the policy and three answer keys were corrected and everything re-run. The full account is in `docs/decisions.md`.
 
 ## Controls
 
@@ -108,7 +108,7 @@ The held-back set needs `ALLOW_HELDOUT=1` in front of the same command. I added 
 |---|---|
 | `src/app/` | The Next.js pages and the API routes (start page, guided tour, queue, case workspace, team leader view, try your own, how it works) |
 | `src/lib/` | The logic. Redaction, deadlines, quote checking (`provenance.ts`), the case pack schema, the AI call, saved runs |
-| `src/lib/prompts/` | The three prompt versions. v3 is in production |
+| `src/lib/prompts/` | The four prompt versions. v4 is in production |
 | `data/` | The fictional bank, the policy with citable paragraph numbers, handover checklists, 25 complaints and the saved runs the site shows |
 | `evals/` | The scorer, the eval runner, the answer keys and every result file |
 | `docs/` | The decision log, verified regulatory facts, the plan, the review notes and the deck |
