@@ -140,7 +140,7 @@ export default function HowItWorks() {
           <tr><td>Wrong deadline</td><td>Deadlines are plain code (8 weeks, or 15 and 35 business days for payment services). Unclear cases default to the shorter one and ask the handler</td><td>Unit tests with hand-counted dates, including bank holidays</td></tr>
           <tr><td>Over-trusting the AI</td><td>A verified quote proves the words exist, not that they support the statement. The handler judges relevance</td><td>Stated on screen and in training</td></tr>
           <tr><td>Results tuned to look good</td><td>Answer key written before the prompt. Ten test cases held back until the end</td><td>Held-back results reported separately</td></tr>
-          <tr><td>Public demo misused</td><td>Saved results by default. Live mode runs built-in cases only, with a spending cap and an off switch</td><td>No free-text input exists</td></tr>
+          <tr><td>Public demo misused</td><td>Saved results by default. Live runs and typed complaints share a per-visitor limit, a daily cap, a spending cap and an off switch. Typed text must be confirmed as fictional and is never stored</td><td>Limits enforced in the API, not the page</td></tr>
         </tbody>
       </table>
 

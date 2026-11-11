@@ -238,7 +238,7 @@ const PATTERNS: { kind: string; source: string; flags: string; group?: number }[
   { kind: "CARD_NUMBER", source: `${WORD_BEFORE}(?:\\d{4}[\\s-]?){3}\\d{4}${WORD_AFTER}`, flags: "gu" },
   // Not joined by a hyphen, so reference numbers such as INC-2026-1030-01 are left alone.
   { kind: "ACCOUNT_NUMBER", source: "(?<![\\p{L}\\d-])\\d{4}\\s?\\d{4}(?![\\p{L}\\d-])", flags: "gu" },
-  { kind: "CARD_DIGITS", source: "(?:ending(?: in)?|ends in|last (?:4|four)(?: digits)?(?: of [\\w ]{1,20}?)?|card|acc(?:oun)?t)[:\\s]+(?:no\\.?\\s*)?(\\d{4})(?!\\d)", flags: "giu", group: 1 },
+  { kind: "CARD_DIGITS", source: "(?:ending(?: in| with)?|ends(?: in| with)?|last (?:4|four)(?: digits)?(?: of [\\w ]{1,20}?)?|card|acc(?:oun)?t)(?: (?:number|no\\.?|num))?(?: (?:ending|ends)(?: in| with)?)?[:\\s]+(?:no\\.?\\s*)?(\\d{4})(?!\\d)", flags: "giu", group: 1 },
   { kind: "ADDRESS", source: `${WORD_BEFORE}(?:Flat \\d+[A-Za-z]?,?\\s+)?\\d{1,4}[A-Za-z]?\\s+(?:(?:[A-Z][a-z]+|[A-Z]{3,})\\s){1,3}(?:Road|Rd|Street|St|Lane|Ln|Avenue|Ave|Close|Cl|Drive|Dr|Way|Court|Ct|Place|Pl|Crescent|Cres|Gardens|Gdns|Terrace|Grove|Mews|Row|Walk|Square|Sq|Hill|Park|ROAD|RD|STREET|ST|LANE|LN|AVENUE|AVE|CLOSE|CL|DRIVE|DR|WAY|COURT|CT|PLACE|PL|CRESCENT|CRES|GARDENS|GDNS|TERRACE|GROVE|MEWS|ROW|WALK|SQUARE|SQ|HILL|PARK)\\b`, flags: "gu" },
   { kind: "STAFF", source: "(?:^|\\s)[-–]\\s?([A-Z]{2,3})\\.?\\s*$", flags: "gmu", group: 1 },
   { kind: "STAFF", source: "\\b(?:user|by|agent|handler)[:\\s]+([A-Z]{5,})\\b", flags: "gu", group: 1 },

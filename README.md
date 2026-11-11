@@ -17,7 +17,7 @@ There is no login and no real data. Each complaint opens on a saved result from 
 5. Sign off and hand the case over.
 6. Open **Team leader view** for the whole queue, the deadlines at risk and the repeat problems. It is built from the saved case packs, so your own sign-off does not change it in this prototype.
 
-The **How this works** page shows the same story with the test results on one page. The **Step by step** page takes one case in five short steps.
+The **How this works** page shows the same story with the test results on one page. The **Step by step** page takes one case in five short steps. **Try your own** lets you type a made-up complaint, or use the example with a hidden instruction, and watch the whole pipeline run on it.
 
 ## What is in the deck
 
@@ -69,7 +69,7 @@ Model in production is Claude Haiku 5.5 with prompt v4. On the development set, 
 - A handover cannot be signed off until every checklist gap is filled or explained (policy CP-6.2).
 - Routing and the deadline rule are confirmed by a person, because injected text could still try to nudge them.
 - The answer key was written before the prompt, and ten cases were held back until the end.
-- Live mode runs built-in cases only, with a per-visitor and daily limit and an off switch. There is no free-text input.
+- Live mode and the "Try your own complaint" page share one limit per visitor and per day, a global daily cap, a spending cap on the key and an off switch. Typed text must be confirmed as fictional and is never stored.
 - Every step is in an audit trail that can be exported.
 
 ## Run it locally

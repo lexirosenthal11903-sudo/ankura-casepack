@@ -118,3 +118,9 @@ describe("people the record does not know (layer 4)", () => {
     expect(redact("'maybe you're right, Mo' she said a month ago.", { other_parties: [{ role: "THIRD_PARTY", name: "Maureen Doherty" }] })).toBe("'maybe you're right, [THIRD_PARTY]' she said a month ago.");
   });
 });
+
+describe("digits written the way customers write them", () => {
+  it("catches 'account number ends 4471' and 'card ending with 7731'", () => {
+    expect(redact("My account number ends 4471 and my card ending with 7731 was declined.")).toBe("My account number ends [CARD_DIGITS_1] and my card ending with [CARD] was declined.");
+  });
+});
