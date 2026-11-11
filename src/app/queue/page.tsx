@@ -32,6 +32,9 @@ export default function QueuePage() {
           Each complaint has a case pack prepared from its notes and the bank&apos;s policy. A handler reviews it, signs it off and, if
           needed, hands it to a specialist team. The AI never decides the outcome.
         </p>
+        <p>
+          New here? Start with <Link href="/case/HV-007">Mr Kieran Doyle</Link>: a disputed card payment with a hidden instruction in the email, a refund deadline already passed and four gaps to fill. Or <Link href="/case/HV-007?tour=1">take the guided tour</Link> first.
+        </p>
         <p className="small muted">
           {rows.length} open complaints. {overdue} overdue, {dueSoon} due within five business days. Only urgent cases are coloured.
           Deadlines are worked out by code under the FCA complaint rules, not by the AI.

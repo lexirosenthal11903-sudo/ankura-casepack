@@ -699,7 +699,7 @@ export default function Workspace({
           </section>
         </aside>
       </div>
-      <Tour caseId={caseFile.id} />
+      <Tour />
     </div>
   );
 }

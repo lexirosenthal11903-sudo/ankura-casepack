@@ -6,7 +6,7 @@ import NavLinks from "./NavLinks";
 import styles from "./layout.module.css";
 
 export const metadata: Metadata = {
-  title: "Watch it work | Harbour & Vale case pack prototype (fictional bank)",
+  title: "Start here | Harbour & Vale case pack prototype (fictional bank)",
   description: "Prototype complaint case pack for a fictional UK bank. Synthetic data only.",
 };
 

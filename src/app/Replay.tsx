@@ -339,10 +339,20 @@ export default function Replay({ data }: { data: ReplayData }) {
   return (
     <div className={styles.page}>
       <div className={styles.intro}>
-        <h1 className={styles.h1}>See a complaint become a case pack, one stage at a time</h1>
+        <h1 className={styles.h1}>Start here</h1>
         <p className={styles.lede}>
-          New here? <Link href={`/case/${data.caseId}?tour=1`}><strong>Take the two-minute guided tour</strong></Link> of the real screen, or press Start below to watch one run, then Next for each of the nine stages. Each one explains what is happening. It is one real run, replayed, then the people who act on it.
-          Every word in the pack was written by the AI, checked by code and timed. Real time {data.seconds} seconds, cost {cost}.
+          A complaints case pack tool for a fictional UK bank. The AI drafts, code checks every quote and every deadline, and a person decides.
+          Fifteen minutes covers it, in this order.
+        </p>
+        <ol className={styles.route}>
+          <li><Link href={`/case/${data.caseId}?tour=1`}><strong>Take the guided tour</strong></Link>, two minutes. Eight stops over the real screen, Next and Skip.</li>
+          <li><Link href="/queue"><strong>Review a complaint</strong></Link>, three minutes. Pick one from the list, accept the checked sentences, fill the gaps, sign off, then accept it as the specialist.</li>
+          <li><Link href="/team"><strong>Team leader view</strong></Link>, one minute. The whole queue, deadlines at risk, repeat problems, and the case you just handed over.</li>
+          <li><Link href="/try"><strong>Try your own complaint</strong></Link>, one minute. Type one, or use the example with a hidden instruction, and watch the real pipeline run.</li>
+          <li><Link href="/how-it-works"><strong>How this works</strong></Link>. Controls, results on the held-back cases, limitations.</li>
+        </ol>
+        <p className={styles.lede}>
+          Or watch one real run replayed below. Press Start, then Next for each of the nine stages. Real time {data.seconds} seconds, cost {cost}.
         </p>
       </div>
 

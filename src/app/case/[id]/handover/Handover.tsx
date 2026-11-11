@@ -169,7 +169,7 @@ export default function Handover({ caseFile, heading, run, labels }: { caseFile:
 
         <div ref={resultRef} tabIndex={-1} role="status" className={styles.result}>
           {state.stage === "accepted_by_specialist" && (
-            <p><span className="tag tag-green">Accepted</span> You accepted the handover. <Link href={`/case/${caseFile.id}`}>Back to the handler&apos;s view</Link></p>
+            <p><span className="tag tag-green">Accepted</span> You accepted the handover. <Link href="/team" className="btn btn-small">See it on the team leader board</Link> <Link href={`/case/${caseFile.id}`}>Back to the handler&apos;s view</Link></p>
           )}
           {state.stage === "returned" && (
             <p><span className="tag tag-red">Sent back</span> Reason: {state.returnReason}. <Link href={`/case/${caseFile.id}`}>Switch to the handler&apos;s view to fix it</Link></p>

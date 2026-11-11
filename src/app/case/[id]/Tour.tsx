@@ -17,10 +17,10 @@ const STOPS: Stop[] = [
   { target: '[data-tour="deadlines"]', title: "5 of 8. Deadlines are worked out by code", text: "The FCA time limit is a rule, so code calculates it from the date received. The AI only says which rule it thinks applies, and a person confirms when it is unsure." },
   { target: '[data-tour="checklist"]', title: "6 of 8. What the specialist team needs", text: "The specialist's own checklist. Each gap has to be filled in or marked not available with a reason before the case can be handed over. That is the fix for incomplete handovers." },
   { target: '[data-tour="signoff"]', title: "7 of 8. Nothing moves until a person signs off", text: "When every item is done, the sign-off button appears. There is no field anywhere for an outcome or compensation, so the AI cannot decide and cannot be tricked into deciding." },
-  { title: "8 of 8. Now try it for real", text: "Accept the sections, fill the gaps, sign off, and follow the link to the specialist's view. Then open the team leader view to see the whole queue. Or go to Try your own and type a complaint of your own." },
+  { title: "8 of 8. That is the tool. Where next?", text: "See all complaints and pick one to review from start to finish. Or stay on this one. Or type a complaint of your own and watch the pipeline run on it." },
 ];
 
-export default function Tour({ caseId }: { caseId: string }) {
+export default function Tour() {
   const [step, setStep] = useState<number | null>(null);
   const [rect, setRect] = useState<DOMRect | null>(null);
   const boxRef = useRef<HTMLDivElement>(null);
@@ -99,11 +99,13 @@ export default function Tour({ caseId }: { caseId: string }) {
         <p id="tour-title" className={styles.title}>{stop.title}</p>
         <p className={styles.text}>{stop.text}</p>
         <div className={styles.row}>
-          <button className="btn btn-secondary btn-small" onClick={end}>{last ? "Close" : "Skip tour"}</button>
+          {!last && <button className="btn btn-secondary btn-small" onClick={end}>Skip tour</button>}
           <span className={styles.nav}>
             {step > 0 && <button className="btn btn-secondary btn-small" onClick={() => setStep(step - 1)}>Back</button>}
             {!last && <button className="btn btn-small" onClick={() => setStep(step + 1)}>Next</button>}
-            {last && <a className="btn btn-small" href={`/case/${caseId}`} onClick={end}>Start reviewing</a>}
+            {last && <a className="btn btn-small" href="/queue">See all complaints</a>}
+            {last && <button className="btn btn-secondary btn-small" onClick={end}>Review this case</button>}
+            {last && <a className="btn btn-secondary btn-small" href="/try">Try your own</a>}
           </span>
         </div>
       </div>
