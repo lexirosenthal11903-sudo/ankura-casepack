@@ -6,7 +6,7 @@ This is stage 2 of Ankura's AI by Design graduate programme (R105079). The scena
 
 Ankura's job ad says they want people who can "connect a business opportunity with a working solution, to measure and prove value". Their work spans three areas: AI Strategy, Governance Engineering and Workforce Transformation.
 
-**How it will be judged** (from the assessor review). An assessor spends 15–20 minutes. They read the deck first, watch about 60 seconds of the video, try one case and skim the top of the README. One inflated claim makes them distrust everything else. So the priorities are **honest claims, a smaller scope done well, and visible thinking by Lexi.**
+**How it will be judged** (from the assessor review). An assessor spends 15–20 minutes. They read the deck first, watch about 60 seconds of the video, try one case and skim the top of the README. One inflated claim makes them distrust everything else. So the priorities are **honest claims, a smaller scope done well, and visible thinking by the author.**
 
 ---
 
