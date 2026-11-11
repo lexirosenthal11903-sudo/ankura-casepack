@@ -78,16 +78,16 @@ para(s, xr, y, wr, f"ankura-casepack.vercel.app, two minutes, no login.<br>Code 
 s = new_slide("problem", "The hours go on assembling facts, so that is where the AI goes. The decision stays with people",
     "Source: FCA Handbook DISP 1.6.2R and 1.6.2AR; Financial Ombudsman Plans and Budget 2026/27; FCA complaints data 2026 H1. Scores and estimates are my own judgement.", 2,
     notes="Three problems, all about assembling, none about deciding. Walk the table top to bottom. The value figures are assumptions and you say so before anyone asks. Be ready to defend 'decide the outcome, left with people' on the phone.")
-y = heading(s, L, Y_BODY, CW, "Seven steps in handling a complaint, and what I did with each")
-y = table(s, L, y, CW, [("Step", 2.2), ("Value", 0.8), ("Risk", 0.8), ("What I did", 4.2)], [
-    ["Log and categorise", "Medium", "Low", "Included. Most case systems already do this."],
-    ["<b>Find and assemble the facts</b>", "High", "Low", "<b>Built.</b> Where the hours go, and every line can be checked."],
-    ["<b>Handover pack for specialists</b>", "High", "Low", "<b>Built.</b> Fixes the send-back problem directly."],
-    ["Deadline tracking", "High", "None", "Code, not AI, because a time limit is a fixed rule."],
-    ["Spot patterns across cases", "High", "Low", "Prototyped as the team leader view."],
-    ["Decide the outcome", "High", "High", "Left with people. A regulated decision about a person."],
-    ["Write to the customer", "Medium", "High", "Left with people. The bank is liable for every word."],
-], shade={1, 2})
+y = heading(s, L, Y_BODY, CW, "Seven steps in handling a complaint, scored for value, feasibility and risk, and what I did with each")
+y = table(s, L, y, CW, [("Step", 2.2), ("Value", 0.8), ("Feasible now", 1.0), ("Risk", 0.8), ("What I did", 3.6)], [
+    ["Log and categorise", "Medium", "Yes", "Low", "Included. Most case systems already do this."],
+    ["<b>Find and assemble the facts</b>", "High", "Yes", "Low", "<b>Built.</b> Where the hours go, and every line can be checked."],
+    ["<b>Handover pack for specialists</b>", "High", "Yes", "Low", "<b>Built.</b> Fixes the send-back problem directly."],
+    ["Deadline tracking", "High", "Yes", "None", "Code, not AI, because a time limit is a fixed rule."],
+    ["Spot patterns across cases", "High", "Partly", "Low", "Prototyped as the team leader view."],
+    ["Decide the outcome", "High", "No", "High", "Left with people. A regulated decision about a person."],
+    ["Write to the customer", "Medium", "No", "High", "Left with people. The bank is liable for every word."],
+])
 half = SPAN(6); y0 = y + 0.42
 rect(s, L - 0.12, y0 - 0.16, half + 0.24, Y_BODY_END - y0 + 0.1, WHITE); rect(s, X(7) - 0.12, y0 - 0.16, half + 0.24, Y_BODY_END - y0 + 0.1, WHITE)
 y = heading(s, L, y0, half, "The brief's three problems are one problem")

@@ -2,6 +2,7 @@ import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import Link from "next/link";
 import { bank, checklists, listCaseIds, loadCase } from "@/lib/data";
+import YourReviews from "./YourReviews";
 import { DEMO_TODAY } from "@/lib/demo";
 import { deadlineTag, formatDate, modelName } from "@/lib/format";
 import { byUrgency, groupCases, median, percent, sharedIncidents } from "@/lib/insights";
@@ -91,6 +92,7 @@ export default function TeamPage() {
     .map((id) => ({ c: loadCase(id), run: loadSavedRun(id) }))
     .filter((x): x is { c: CaseFile; run: NonNullable<ReturnType<typeof loadSavedRun>> } => x.run !== null);
   const total = cases.length;
+  const yourCases = cases.map(({ c, run }) => ({ id: c.id, name: customerName(c), team: bank.teams.find((t) => t.id === run.pack.intake.suggested_team)?.label ?? run.pack.intake.suggested_team }));
   const names = new Map(cases.map(({ c }) => [c.id, customerName(c)]));
   const label = (list: { id: string; label: string }[], id: string) => list.find((x) => x.id === id)?.label ?? id;
   const allItems = [...checklists.common, ...Object.values(checklists.teams).flat()];
@@ -181,8 +183,11 @@ export default function TeamPage() {
           <dd className={styles.statNote}>
             {withGaps.length} with gaps, {plural(gapTotal, "item")} in all
           </dd>
+          <YourReviews mode="tile" cases={yourCases} />
         </div>
       </dl>
+
+      <YourReviews mode="section" cases={yourCases} />
 
       <section aria-labelledby="risk">
         <h2 id="risk">Deadlines at risk</h2>
