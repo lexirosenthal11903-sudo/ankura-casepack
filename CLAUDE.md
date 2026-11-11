@@ -14,5 +14,5 @@ A build task for the Ankura AI by Design graduate programme, Scenario 1: a ficti
 ## Rules
 - Fictional bank, fictional customers only. Never real names, firms or data.
 - `.env` holds the API key and is gitignored. Never print it.
-- The live site is https://ankura-casepack.vercel.app, deployed with `npx vercel@latest --prod`. It runs on saved results unless an API key is set.
+- The live site is https://ankura-casepack.vercel.app, deployed with `npx vercel@latest --prod`. Live mode is on (ANTHROPIC_API_KEY set in Vercel on 11 Nov 2026), limited per visitor and per day. Set LIVE_MODE=off in Vercel to switch it off.
 - Design follows the GOV.UK Design System. The deck is plain and neutral.

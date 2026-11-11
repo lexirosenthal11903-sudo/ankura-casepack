@@ -8,7 +8,7 @@ Built by Alexandra Rosenthal for the Ankura graduate build task (deadline 11 Nov
 
 Live site: https://ankura-casepack.vercel.app
 
-The site runs on saved results, so there is no login, no real data and no cost. The saved results come from real runs of the model.
+There is no login and no real data. Each complaint opens on a saved result from a real run, and the button "Run live AI on this case" drafts a fresh pack in about 45 seconds. Live runs are limited per visitor and per day, with a spending cap.
 
 1. Open the front page. It replays a real run from the bank's complaint through to the team leader's board.
 2. Choose **All complaints** in the navigation and open **HV-007, Mr Kieran Doyle**. This case has an instruction hidden in the customer's text, and you will see it flagged.
