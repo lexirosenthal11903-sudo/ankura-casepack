@@ -12,3 +12,6 @@ evals/results/*.raw.json
 test-results/
 playwright-report/
 .vercel
+
+# Office lock files
+~$*

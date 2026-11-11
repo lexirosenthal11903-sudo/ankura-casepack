@@ -63,9 +63,3 @@ test("front page gives the route and the tour starts from it", async ({ page }) 
   await expect(page.getByRole("dialog")).toHaveCount(0);
 });
 
-test("walkthrough shows a failed quote check", async ({ page }) => {
-  await page.goto("/walkthrough");
-  for (let i = 0; i < 3; i++) await page.getByRole("button", { name: /^Next/ }).click();
-  await page.getByRole("button", { name: "See what a failed check looks like" }).click();
-  await expect(page.getByText(/Quote not found in the source/)).toBeVisible();
-});

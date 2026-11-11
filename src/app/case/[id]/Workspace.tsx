@@ -67,6 +67,18 @@ const ALL_SECTIONS = [
   { prefixes: ["intake"] }, { prefixes: ["timeline"] }, { prefixes: ["relevant_policy"] },
 ];
 
+/** A folding case-pack section. Only the first starts open. Keeps its own open state, so re-renders never close it. */
+function Fold({ title, initialOpen, head, children }: { title: string; initialOpen: boolean; head: React.ReactNode; children: React.ReactNode }) {
+  const [open, setOpen] = useState(initialOpen);
+  return (
+    <details className={styles.fold} open={open} onToggle={(e) => setOpen((e.currentTarget as HTMLDetailsElement).open)} data-fold={title}>
+      <summary><h3>{title}</h3></summary>
+      {head}
+      {children}
+    </details>
+  );
+}
+
 export default function Workspace({
   caseFile,
   heading,
@@ -512,38 +524,25 @@ export default function Workspace({
           )}
 
           {(() => {
-            // Every section folds. Only the first one starts open, so the handler opens each section before accepting it.
             let first = true;
-            const Fold = ({ title, prefixes, children }: { title: string; prefixes: string[]; children: React.ReactNode }) => {
+            const fold = (title: string, prefixes: string[], children: React.ReactNode) => {
               const open = first;
               first = false;
-              return (
-                <details className={styles.fold} open={open} data-fold={title}>
-                  <summary><h3>{title}</h3></summary>
-                  <SectionHead title={title} prefixes={prefixes} as="span" />
-                  {children}
-                </details>
-              );
+              return <Fold key={title} title={title} initialOpen={open} head={<SectionHead title={title} prefixes={prefixes} as="span" />}>{children}</Fold>;
             };
             return (
               <>
-                {pack.flags.length > 0 && (
-                  <Fold title="Flags" prefixes={["flags"]}>
-                    {pack.flags.map((f, i) => renderStatement(`flags.${i}`, <>
-                      <span className={`tag ${f.type === "instruction_in_customer_text" ? "tag-red" : "tag-amber"}`}>{f.type.replaceAll("_", " ")}</span> {show(f.description)}
-                    </>, i))}
-                  </Fold>
-                )}
-                <Fold title="Summary" prefixes={["summary"]}>{pack.summary.map((_, i) => renderStatement(`summary.${i}`, undefined, i))}</Fold>
-                <Fold title="What the customer wants" prefixes={["outcome_sought"]}>{renderStatement("outcome_sought")}</Fold>
-                <Fold title="Vulnerability" prefixes={["vulnerability"]}>
+                {pack.flags.length > 0 && fold("Flags", ["flags"], pack.flags.map((f, i) => renderStatement(`flags.${i}`, <>
+                  <span className={`tag ${f.type === "instruction_in_customer_text" ? "tag-red" : "tag-amber"}`}>{f.type.replaceAll("_", " ")}</span> {show(f.description)}
+                </>, i)))}
+                {fold("Summary", ["summary"], pack.summary.map((_, i) => renderStatement(`summary.${i}`, undefined, i)))}
+                {fold("What the customer wants", ["outcome_sought"], renderStatement("outcome_sought"))}
+                {fold("Vulnerability", ["vulnerability"], <>
                   {pack.vulnerability.length === 0 && <p className="small muted">No signs found. Check the documents yourself before relying on this.</p>}
                   {pack.vulnerability.map((_, i) => renderStatement(`vulnerability.${i}`, undefined, i))}
-                </Fold>
-                {pack.conflicts.length > 0 && (
-                  <Fold title="Records that disagree" prefixes={["conflicts"]}>{pack.conflicts.map((_, i) => renderStatement(`conflicts.${i}`, undefined, i))}</Fold>
-                )}
-                <Fold title={`Routing: ${team.label}`} prefixes={["intake"]}>
+                </>)}
+                {pack.conflicts.length > 0 && fold("Records that disagree", ["conflicts"], pack.conflicts.map((_, i) => renderStatement(`conflicts.${i}`, undefined, i)))}
+                {fold(`Routing: ${team.label}`, ["intake"], <>
                   {pack.intake.issues.map((iss, i) => renderStatement(`intake.issues.${i}`, <>
                     <strong>{labels.products[iss.product]}: {labels.causes[iss.cause]}.</strong> {show(iss.description)}
                   </>, i))}
@@ -551,15 +550,11 @@ export default function Workspace({
                   {renderStatement("intake.payment_services_reason", <>
                     <strong>Payment services rule applies: {pack.intake.payment_services}.</strong> {show(pack.intake.payment_services_reason.text)}
                   </>)}
-                </Fold>
-                <Fold title={`Timeline (${pack.timeline.length} events)`} prefixes={["timeline"]}>
-                  {pack.timeline.map((t, i) => renderStatement(`timeline.${i}`, <><strong>{formatDate(t.date)}</strong> {show(t.event)}</>, i))}
-                </Fold>
-                <Fold title={`Relevant policy (${pack.relevant_policy.length} paragraphs)`} prefixes={["relevant_policy"]}>
-                  {pack.relevant_policy.map((rp, i) => renderStatement(`relevant_policy.${i}`, <>
-                    <strong>{rp.policy_id} {labels.policy[rp.policy_id]?.heading}.</strong> {show(rp.why_relevant)}
-                  </>, i))}
-                </Fold>
+                </>)}
+                {fold(`Timeline (${pack.timeline.length} events)`, ["timeline"], pack.timeline.map((t, i) => renderStatement(`timeline.${i}`, <><strong>{formatDate(t.date)}</strong> {show(t.event)}</>, i)))}
+                {fold(`Relevant policy (${pack.relevant_policy.length} paragraphs)`, ["relevant_policy"], pack.relevant_policy.map((rp, i) => renderStatement(`relevant_policy.${i}`, <>
+                  <strong>{rp.policy_id} {labels.policy[rp.policy_id]?.heading}.</strong> {show(rp.why_relevant)}
+                </>, i)))}
               </>
             );
           })()}

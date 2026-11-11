@@ -3,7 +3,7 @@
  * The visitor types a fictional complaint and sees the real pipeline run on it.
  * The result view is read-only: what the AI saw, then the pack with each statement's check result.
  */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { CasePackRun } from "@/lib/casepack";
 import { formatDate } from "@/lib/format";
 import styles from "./try.module.css";
@@ -44,6 +44,22 @@ export default function TryForm({ liveAvailable, example, maxChars, teams }: { l
     }
   }
 
+  const [waited, setWaited] = useState(0);
+  useEffect(() => {
+    if (!loading) return;
+    setWaited(0);
+    const t = window.setInterval(() => setWaited((w) => w + 1), 1000);
+    return () => window.clearInterval(t);
+  }, [loading]);
+  const stageText = waited < 2 ? "Hiding personal details…" : waited < 35 ? `The AI is drafting the pack, usually 25 to 45 seconds… ${waited}s` : `Checking every quote against the source… ${waited}s`;
+  function reset() {
+    setRun(null);
+    setError(null);
+    setText("");
+    setConfirmed(false);
+    window.scrollTo({ top: 0 });
+  }
+
   const checks = run ? new Map(run.checks.statements.map((s) => [s.path, s])) : null;
   const Mark = ({ path }: { path: string }) => {
     const c = checks?.get(path);
@@ -71,14 +87,18 @@ export default function TryForm({ liveAvailable, example, maxChars, teams }: { l
         </label>
         {!liveAvailable && <p className={styles.error}>Live mode is switched off at the moment, so your own complaint cannot be run. The built-in cases still work.</p>}
         <button className="btn" type="submit" disabled={loading || !liveAvailable || !confirmed || text.length < 80}>
-          {loading ? "Running, about 45 seconds…" : "Run it"}
+          {loading ? "Running…" : "Run it"}
         </button>
+        {loading && <p className="small muted" role="status">{stageText}</p>}
         {error && <p className={styles.error} role="alert">{error}</p>}
       </form>
 
       {run && (
         <div className={styles.result} aria-live="polite">
-          <h2>1. What the AI was allowed to see</h2>
+          <div className={styles.row}>
+            <h2>1. What the AI was allowed to see</h2>
+            <button type="button" className="btn btn-secondary btn-small" onClick={reset}>Start again</button>
+          </div>
           <p className="small muted">{run.redacted.replacements.length} details replaced before anything was sent. Dates and amounts stay, because deadlines and facts depend on them.</p>
           <pre className={styles.doc}><Placeholders text={run.redacted.documents[0].text} /></pre>
 
@@ -113,6 +133,7 @@ export default function TryForm({ liveAvailable, example, maxChars, teams }: { l
           <p className="small muted">
             There is no field for an outcome or compensation anywhere in this form, so an instruction to award money has nowhere to go. A handler would now check each line, fill the gaps and sign off. The AI decided nothing.
           </p>
+          <button type="button" className="btn btn-secondary" onClick={reset}>Start again with another complaint</button>
         </div>
       )}
     </>

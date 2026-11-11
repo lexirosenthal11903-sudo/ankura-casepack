@@ -144,8 +144,9 @@ export default function TeamPage() {
       <div className={styles.intro}>
         <h1>Team leader&apos;s view</h1>
         <p className={styles.lede}>
-          The whole complaints queue at a glance, built from the same checked case packs handlers use. It shows what needs action today
-          and which problems keep causing complaints.
+          This is the manager&apos;s screen. Handlers see one complaint at a time. The team leader sees all of them: which are about to miss a legal deadline,
+          which customers need extra care, which cases are stuck waiting for information, and which bank problems keep causing complaints. Every number
+          comes from the checked case packs, so nobody has to build a report by hand.
         </p>
         <p className="small muted">As at {formatDate(DEMO_TODAY, true)}. All figures are worked out by code from the saved case packs.</p>
       </div>
