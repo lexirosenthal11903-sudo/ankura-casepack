@@ -47,7 +47,7 @@
 .dl dt { font-size: 13px; color: var(--text-secondary); margin-top: 8px; }
 .dl dd { margin: 2px 0 0; }
 .clockChoice { border: 0; border-left: 5px solid var(--amber); background: var(--amber-bg); padding: 10px 12px; margin: 14px 0 0; display: grid; gap: 8px; }
-.clockChoice legend { float: left; width: 100%; padding: 0; margin-bottom: 4px; }
+.clockChoice > p { margin: 0 0 4px; }
 .checklist { list-style: none; padding: 0; margin: 0; }
 .checklist li { display: grid; grid-template-columns: 22px 1fr; gap: 6px; padding: 6px 0; border-bottom: 1px solid var(--border-light); }
 .checkIcon { font-weight: 700; text-align: center; }
@@ -66,8 +66,8 @@
 .fold > summary { cursor: pointer; list-style: none; border-bottom: 1px solid var(--border); padding-bottom: 4px; }
 .fold > summary::-webkit-details-marker { display: none; }
 .fold > summary h3 { display: inline; margin: 0; padding: 0; border: 0; }
-.fold > summary::before { content: "▸ "; color: var(--link); }
-.fold[open] > summary::before { content: "▾ "; }
+.fold > summary::before { content: "▸ Show "; color: var(--link); font-size: 14px; }
+.fold[open] > summary::before { content: "▾ Hide "; }
 .fold > summary:hover h3 { color: var(--link); }
 
 .summaryBar { display: flex; flex-wrap: wrap; gap: 0; margin: 0 0 20px; border-top: 2px solid var(--text); border-bottom: 1px solid var(--border); }

@@ -537,7 +537,7 @@ export default function Workspace({
             </>
           )}
 
-          <details className={styles.fold}>
+          <details className={styles.fold} open>
             <summary><h3>Routing: {team.label}</h3></summary>
             <SectionHead title="Routing" prefixes={["intake"]} as="span" />
             {pack.intake.issues.map((iss, i) => renderStatement(`intake.issues.${i}`, <>
@@ -549,13 +549,13 @@ export default function Workspace({
             </>)}
           </details>
 
-          <details className={styles.fold}>
+          <details className={styles.fold} open>
             <summary><h3>Timeline ({pack.timeline.length} events)</h3></summary>
             <SectionHead title="Timeline" prefixes={["timeline"]} as="span" />
             {pack.timeline.map((t, i) => renderStatement(`timeline.${i}`, <><strong>{formatDate(t.date)}</strong> {show(t.event)}</>, i))}
           </details>
 
-          <details className={styles.fold}>
+          <details className={styles.fold} open>
             <summary><h3>Relevant policy ({pack.relevant_policy.length} paragraphs)</h3></summary>
             <SectionHead title="Relevant policy" prefixes={["relevant_policy"]} as="span" />
             {pack.relevant_policy.map((rp, i) => renderStatement(`relevant_policy.${i}`, <>
@@ -595,8 +595,8 @@ export default function Workspace({
               )}
             </dl>
             {run.clock === "confirm" && (
-              <fieldset className={styles.clockChoice}>
-                <legend className="small"><strong>Which time limit applies?</strong> The AI was not sure. Until you choose, the shorter one is used (policy CP-3.3).</legend>
+              <div role="group" aria-labelledby="clock-q" className={styles.clockChoice}>
+                <p id="clock-q" className="small"><strong>Which time limit applies?</strong> The AI was not sure. Until you choose, the shorter one is used (policy CP-3.3).</p>
                 {(["15_business_days", "8_weeks"] as Clock[]).map((c) => (
                   <label key={c} className="small">
                     <input type="radio" name="clock" checked={clockChoice === c} disabled={!editable}
@@ -604,7 +604,7 @@ export default function Workspace({
                     {CLOCK_LABEL[c]}
                   </label>
                 ))}
-              </fieldset>
+              </div>
             )}
           </section>
 
