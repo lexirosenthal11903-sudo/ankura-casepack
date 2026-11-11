@@ -58,9 +58,9 @@ def bullets(s, x, y, w, items=None, size=SZ, lh=LH, gap=0.0):
 s = new_slide("cover", "A complaints case pack the handler can check: the AI drafts, code checks, a person decides",
     "Alexandra Rosenthal, Ankura AI by Design build task, Scenario 1, November 2026. Source: evals/results, held-back set, blind run, 3 repeats. Harbour &amp; Vale Bank is fictional and every customer, policy and complaint is synthetic.", 1,
     notes="Say the one idea in your own words. The AI drafts, the handler checks, the handler decides. Then point at the screenshot and the numbers. Say the ten held-back cases are the real test.")
-pw = SPAN(6) + 0.3; ph = pw * 1360 / 2880
+pw = SPAN(6) + 0.3; ph = pw * 1470 / 2880
 s.shapes.add_picture(os.path.join(SHOTS, "case2-crop.png"), I(L), I(Y_BODY), width=I(pw))
-tb(s, L, Y_BODY + ph + 0.1, pw, 0.5, "The handler's screen for one complaint: what the AI was allowed to see, the drafted pack with a source for each line, and the deadlines worked out by code. Case HV-007, a disputed card payment with a fake instruction hidden in the email.", 12, INK2, lh=15)
+tb(s, L, Y_BODY + ph + 0.15, pw, 0.5, "The handler's screen for one complaint: what the AI was allowed to see, the drafted pack with a source for each line, and the deadlines worked out by code. Case HV-007, a disputed card payment with a fake instruction hidden in the email.", 12, INK2, lh=15)
 xr = X(8); wr = SPAN(5); y = Y_BODY
 y = heading(s, xr, y, wr, "What it is")
 y = para(s, xr, y, wr, "A working tool for a made-up UK bank. The AI drafts a case pack from the complaint and the bank's policy. Code hides personal details first and checks that every sentence quotes something real. A handler fills the gaps and signs off.")
@@ -89,7 +89,6 @@ y = table(s, L, y, CW, [("Step", 2.2), ("Value", 0.8), ("Feasible now", 1.0), ("
     ["Write to the customer", "Medium", "No", "High", "Left with people. The bank is liable for every word."],
 ])
 half = SPAN(6); y0 = y + 0.42
-rect(s, L - 0.12, y0 - 0.16, half + 0.24, Y_BODY_END - y0 + 0.1, WHITE); rect(s, X(7) - 0.12, y0 - 0.16, half + 0.24, Y_BODY_END - y0 + 0.1, WHITE)
 y = heading(s, L, y0, half, "The brief's three problems are one problem")
 para(s, L, y, half, "A growing backlog, handlers searching notes and policy, and incomplete handovers are all about finding facts, not deciding. A final answer is due within 8 weeks, or 15 business days for most payment complaints. After that the customer can go to the Ombudsman, at £680 a case.")
 y = heading(s, X(7), y0, half, "What it could be worth (assumptions, not measurements)")
@@ -141,10 +140,10 @@ y = table(s, L, y, SPAN(6), [("Measure", 2.1), ("Tuned", 1.15), ("Blind", 1.4), 
     ["Fake instruction flagged, not followed", "1 of 1", "n/a", "n/a"],
     ["Cost, time per case", "$0.0055, 40s", "$0.0063, 45s", "$0.0060, 42s"],
 ], shade={1, 6})
-para(s, L, y + 0.1, SPAN(6), "Tuned: the 15 cases the prompt was improved on. Blind: 10 held-back cases, 3 runs, the column to trust. Fixed: the same 10 after the two corrections. The remaining deadline misses are the AI saying \"confirm\", which sends the case to a person.")
+para(s, L, y + 0.1, SPAN(6), "Tuned: the 15 cases the prompt was improved on. Blind: the 10 held-back cases, 3 runs, the column to trust. Fixed: the same 10 after the two corrections.")
 xr = X(8); wr = SPAN(5); y = Y_BODY
 y = heading(s, xr, y, wr, "Why hiding details missed people")
-y = para(s, xr, y, wr, "Every miss was a person the bank's record does not know: a boyfriend, a scammer's payee name, children named in an email. A new layer finds people from how the text introduces them. Now 101 of 101, but not blind, so both are shown.")
+y = para(s, xr, y, wr, "Every miss was a person the bank's record does not know, such as a boyfriend or a scammer's payee name. A new layer finds people from how the text introduces them. Now 101 of 101, but not blind, so both are shown.")
 y = heading(s, xr, y + 0.06, wr, "The scam deadline was my rule, and wrong")
 y = para(s, xr, y, wr, "The Ombudsman's guidance puts scam complaints on the 15 business day clock. My prompt, policy and three answer keys said 8 weeks. The engine is code so a rule is never guessed, and it still carried a wrong rule, because the rule came from a person.")
 y = heading(s, xr, y + 0.02, wr, "What it cannot do")
