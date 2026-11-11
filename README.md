@@ -77,7 +77,7 @@ Model in production is Claude Haiku 5.5 with prompt v4. On the development set, 
 You need Node 20 or later. Python 3 is needed only for `npm run validate-data`.
 
 ```bash
-git clone <this repository>
+git clone https://github.com/lexirosenthal11903-sudo/ankura-casepack.git
 cd ankura-casepack
 npm install
 cp .env.example .env

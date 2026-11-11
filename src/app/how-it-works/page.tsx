@@ -193,7 +193,7 @@ export default function HowItWorks() {
           answer keys had scam complaints on the 8-week clock. The Financial Ombudsman&apos;s guidance to firms says a complaint about how a fraud or scam was
           handled must be answered within 15 business days under DISP 1.6.2A. The deadline engine is deliberately code so that a rule is never guessed, and it
           still carried a wrong rule, because the rule came from a person. Prompt v4, the policy and the keys were corrected, and the second held-back column is
-          the re-run. The full account, with every number, is in the decision log in the repository.
+          the re-run. The full account, with every number, is in <a href="https://github.com/lexirosenthal11903-sudo/ankura-casepack/blob/main/docs/decisions.md">the decision log in the repository</a>.
         </p>
       )}
 
