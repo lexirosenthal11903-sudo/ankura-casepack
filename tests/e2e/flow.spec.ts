@@ -4,7 +4,7 @@ import { expect, test } from "@playwright/test";
 test("handler fills every gap before handover; a send-back must be fixed before signing off again", async ({ page }) => {
   await page.goto("/queue");
   await expect(page.getByRole("heading", { name: "Complaints queue" })).toBeVisible();
-  await page.getByRole("link", { name: "Mr Kieran Doyle" }).click();
+  await page.getByRole("link", { name: "Mr Kieran Doyle" }).last().click();
 
   await expect(page.getByRole("heading", { name: "Mr Kieran Doyle" })).toBeVisible();
   // The injection attempt is flagged, the AI saw placeholders, and the overdue refund duty is shown.

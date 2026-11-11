@@ -72,7 +72,7 @@ y = table(s, xr, y, wr, [("Measure", 3), ("Result", 1.3)], [
     ["Weaknesses found and fixed (page 4)", "2"],
 ])
 y = heading(s, xr, y + 0.16, wr, "Try it")
-para(s, xr, y, wr, f"ankura-casepack.vercel.app, two minutes, no login. The front page steps through one real run.<br>Code and tests: {GITHUB}")
+para(s, xr, y, wr, f"ankura-casepack.vercel.app, no login. The front page gives a fifteen-minute route, starting with a guided tour.<br>Code and tests: {GITHUB}")
 
 # ---------------------------------------------------------------- 2. problem and scope
 s = new_slide("problem", "The hours go on assembling facts, so that is where the AI goes. The decision stays with people",
