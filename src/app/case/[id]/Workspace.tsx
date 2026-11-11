@@ -419,18 +419,19 @@ export default function Workspace({
         </div>
         <div className={styles.modeBox}>
           <div className="small">
-            {source === "live" ? <span className="tag tag-green">Live run</span> : <span className="tag">Saved run</span>} {modelName(run.model)} · prompt{" "}
+            {source === "live" ? <span className="tag tag-green">Live AI result</span> : <span className="tag">Saved AI result</span>} {modelName(run.model)} · instructions{" "}
             {run.promptVersion.replace("casepack-", "")} · {formatDate(run.createdAt.slice(0, 10))}
           </div>
           <div className={styles.modeButtons}>
             {liveAvailable && (
               <button className="btn btn-secondary btn-small" onClick={runLive} disabled={loading}>
-                {loading ? "Running live, about 45 seconds…" : "Run live AI on this case"}
+                {loading ? "Drafting again, about 45 seconds…" : "Draft this pack again with live AI"}
               </button>
             )}
             <button className="link-button small" onClick={reset}>Reset review</button>
           </div>
           {!liveAvailable && <div className="small muted">Saved result from a real earlier AI run.</div>}
+          {liveAvailable && <div className="small muted">The saved result is from a real run. Drafting again calls the AI now and shows what it produces this time, which can differ a little.</div>}
         </div>
       </div>
 

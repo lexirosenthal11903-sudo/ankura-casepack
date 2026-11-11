@@ -36,7 +36,7 @@ export default function StartPage() {
         </li>
         <li>
           <Link href="/try"><strong>Try your own complaint</strong></Link>
-          <span>One minute. Type one, or use the example with a hidden instruction, and watch the real pipeline run on it.{live ? "" : " Live mode is off in this copy."}</span>
+          <span>One minute. Type one, or use the example with a hidden instruction, and watch the real process run on it.{live ? "" : " Live mode is off in this copy."}</span>
         </li>
         <li>
           <Link href="/how-it-works"><strong>How this works</strong></Link>

@@ -334,7 +334,7 @@ export default function TeamPage() {
               </td>
             </tr>
             <tr>
-              <th scope="row">Invented placeholders</th>
+              <th scope="row">Made-up labels in the AI&apos;s text (should be none)</th>
               <td>
                 {invented === 0 ? "None" : <span className="tag tag-red">{invented}</span>}{" "}
                 <span className="muted small">Labels such as [CUSTOMER] the AI made up rather than copied</span>

@@ -14,7 +14,7 @@ export default function TryPage() {
     <div className={styles.page}>
       <h1>Try your own complaint</h1>
       <p className={styles.lede}>
-        Write a made-up complaint, or use the example, and watch the whole pipeline run on it: personal details hidden, the AI drafts a pack, every quote checked by code, the deadline rule applied. About 45 seconds.
+        Write a made-up complaint, or use the example, and watch the whole process run on it: personal details hidden, the AI drafts a pack, every quote checked by code, the deadline rule applied. About 45 seconds.
       </p>
       <p className="small muted">
         Fictional text only. Nothing you type is stored. Live runs are limited to a few per visitor and a daily cap, and the AI only ever sees the text after the hiding step, which you can inspect below.

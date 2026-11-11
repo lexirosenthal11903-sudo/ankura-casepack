@@ -46,7 +46,7 @@ export default async function QueuePage({ searchParams }: { searchParams: Promis
           needed, hands it to a specialist team. The AI never decides the outcome.
         </p>
         <p>
-          New here? Start with <Link href="/case/HV-007">Mr Kieran Doyle</Link>: a disputed card payment with a hidden instruction in the email, a refund deadline already passed and four gaps to fill. Or <Link href="/case/HV-007?tour=1">take the guided tour</Link> first.
+          New here? Start with <Link href="/case/HV-007">Mr Kieran Doyle</Link>: a disputed card payment with a hidden instruction in the email, a refund deadline already passed and four gaps to fill. Or <Link href="/case/HV-007?tour=1">take the guided tour</Link> first. A manager sees this same queue summarised on the <Link href="/team">team leader view</Link>.
         </p>
         <p className="small muted">
           {allRows.length} open complaints. {overdue} overdue, {dueSoon} due within five business days. Only urgent cases are coloured.

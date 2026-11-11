@@ -8,11 +8,11 @@
   display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; margin: 0;
   border-top: 2px solid var(--border); border-bottom: 1px solid var(--border-light);
 }
-.stats > div { padding: 14px 16px 14px 0; border-left: 0; }
+.stats > div { padding: 14px 16px 14px 0; border-left: 0; display: grid; grid-template-rows: 40px auto auto; align-content: start; }
 .stats > div + div { padding-left: 16px; border-left: 1px solid var(--border-light); }
-.stats dt { font-size: 14px; font-weight: 700; color: var(--text-secondary); }
+.stats dt { font-size: 14px; font-weight: 700; color: var(--text-secondary); line-height: 1.3; align-self: start; }
 .stats dd { margin: 0; }
-.statNum { font-size: 36px; font-weight: 700; line-height: 1.15; margin-top: 4px !important; }
+.statNum { font-size: 36px; font-weight: 700; line-height: 1.15; margin-top: 0 !important; }
 .statOf { font-size: 17px; font-weight: 400; color: var(--text-secondary); }
 .statNote { font-size: 14px; color: var(--text-secondary); }
 .statRed { border-top: 4px solid var(--red); margin-top: -2px; }

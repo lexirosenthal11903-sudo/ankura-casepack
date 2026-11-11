@@ -157,7 +157,7 @@ export default function Handover({ caseFile, heading, run, labels }: { caseFile:
         <ul>{pack.timeline.map((t, i) => { const e = kept(`timeline.${i}`, t.event); return e ? <li key={i}><strong>{formatDate(t.date)}</strong> {e}</li> : null; })}</ul>
 
         <p className={styles.provenance}>
-          Prepared by {modelName(run.model)} (prompt {run.promptVersion}) from redacted case notes. Every statement was checked against its
+          Prepared by {modelName(run.model)} (instructions {run.promptVersion}) from case notes. Every statement was checked against its
           source by code, then reviewed and signed off by the complaints handler{signedOffAt ? ` at ${signedOffAt.slice(11, 16)}` : ""}.
           Statements the handler rejected are left out. Fictional bank and synthetic data.
         </p>
